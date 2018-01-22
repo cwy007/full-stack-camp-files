@@ -1,0 +1,932 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1. 数码网络是如何运作的？
+    </h1><h4>所属章节：Part 1: 网络基础</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>电脑和电脑之间，是如何透过网络来进行数据传输的呢？让我们先回答一个问题：数码网络跟传统类比电话有什么不一样?</p>
+
+<p>传统的类比电话使用的是<a href="https://zh.wikipedia.org/zh-cn/%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2">电路交换</a>的方式：呼叫方拨打电话后，中间经过电话交换机将线路接到受话方。讲电话的时候整条线路会被完全佔用，一条电话线同时间只能一个人在讲电话。</p>
+
+<p>数码网络使用的是<a href="https://zh.wikipedia.org/zh-cn/%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2">数据包交换</a>的方式：我们会把要传输的数据拆碎成适当大小的区块(例如 1500 bytes)，每个小区块叫做数据包(Packet)，每个数据包有个首部(Header)会写上接收方的地址，要传输的数据本身叫做酬载(Payload)，然后再通过网络来传输。</p>
+
+<p>就像寄信一样，我们把要寄出去的东西放在信封里面，这个信封可以想像成是数据包的首部(Header)，信封里面的东西就是数据包的酬载(Payload)。</p>
+
+<p>数据包交换网络比起传统的电路交换网络，整个网络基础设施可以运作的更有效率。因为拆成数据包之后，线路就可以让大家共享，不同人不同电脑可以同时传输不同的数据，最佳化整个线路的连线负载能力。</p>
+<h3>什么是网络传输协议？</h3>
+<p>所谓的网络传输协议，就是那个数据包的首部的格式，就像信封要怎么写有固定的格式。我们需要规范这个格式，才可以顺利地让数据包发送出去，让中间传输的网络设备知道要寄到哪里去。</p>
+<h3>网络分层的设计</h3>
+<p>网络传输协议有一个非常重要的设计就是分层(Layer)，实务上被分为四层：</p>
+
+<ul>
+<li>数据链路层 (Link Layer)：用来处理局部网中硬件连接的传输，例如 Etherent 协议、无线网络 802.11n 协议、3G/4G 手机网络</li>
+<li>网络层 (Internet Layer)：用来处理因特网中的网络设备和网络设备之间的传输，例如 IP 协议</li>
+<li>传输层 (Transport Layer)：用来处理电脑到电脑之间的可靠传输，例如 TCP 和 UDP 协议</li>
+<li>应用层 (Application Layer)，网络应用程序之间如何处理数据，例如 HTTP 协议</li>
+</ul>
+
+<blockquote>
+<p>教科书上会教 <a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B">OSI 理论模型</a>分成七层，这里采用实务的  <a href="https://tools.ietf.org/html/rfc1122">RFC 1122</a> 说法。</p>
+</blockquote>
+
+<p>你可以想像分层的意思就是数据包了四个信封，一层包一层。当我们的浏览器打开一个网站的时候，服务器回传的 HTML 源码是最里面的酬载(Payload)，会被包在 HTTP 信封内，然后再包一层 IP 信封，然后再包一层 TCP 信封，然后再包一层 Etherent 信封，才会抵达你的电脑。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>--------------------------------------------------------------------
+| Etherent 首部 | IP 首部 | TCP 首部 | HTTP 首部 | 实际的数据 HTML 源码 |
+--------------------------------------------------------------------
+</pre></div>
+</figure>
+
+<p>这样设计的好处是某一层如果需要改变的时候，只需要替换那一层信封就好了。而且层次化之后，要设计新协议也会简单许多，我们不需要每次都重新设计全部的协议。</p>
+
+<p>接下来几章让我们大概说明一下这几层协议的作用。这些只需要大概了解原理跟一些专业术语即可，不需要了解协议的完整细节。我们主要会针对应用层的 DNS 和 HTTP 协议重点说明。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2. 数据链路层 (Link Layer)
+    </h1><h4>所属章节：Part 1: 网络基础</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>家里或公司的电脑要连上网，首先必须接上网络线或用无线网络，来连结到家里的路由器(Router)，这之间就需要一层信封写上电脑的地址，这样路由器把数据传回来的时候，才知道要送到哪一台电脑上。</p>
+
+<p>这一层的传输协议根据不同的硬件连接方式有不同的协议，最常见的有：</p>
+
+<ul>
+<li>有线网络使用<a href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91">以太网 (Ethernet)</a>协议。这种硬件使用 RJ-45 网络线(拧成4对的8根电线)，又可以细分为 100M、1000M 不同频宽的规格。</li>
+<li>无线网络的 <a href="https://zh.wikipedia.org/zh-cn/IEEE_802.11">IEEE 802.11</a> 协议，又可以分成  802.11b, , 802.11g, 802.11n 等等不同规格。</li>
+<li>移动通信网络使用 <a href="https://zh.wikipedia.org/zh-cn/3G">3G</a>、<a href="https://zh.wikipedia.org/zh-cn/4G">4G</a> 协议。</li>
+</ul>
+
+<p>每一个网络设备在出厂的时候，都会配有一个 <a href="https://zh.wikipedia.org/zh-cn/MAC%E5%9C%B0%E5%9D%80">Mac 地址</a>(Media Access Control Address)，这个地址将用于「直接」相连在一起的硬件。例如连结到同一台路由器的公司电脑，这台路由器就会用 Mac 地址来决定数据包要寄到哪一台去(我们会说：这是同一个局域网)。</p>
+
+<p>在命令行输入 <code>ifconfig</code> 可以看到 Mac 地址</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/r4zhGLaZT52kJSp0NDpW_1.png" title=""></figure></p>
+
+<p>在 Mac 上 <code>en0</code> 接口就是你的无线网卡</p>
+
+<p>打开 Mac 的 Networking 配置，也可以看到这个 Mac 地址</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QwHnmUsTDS6clRl9jorR_2.png" title=""></figure></p>
+
+<p>当你有数据要传到公开的网站时，首先会从你的电脑传到家里或公司的路由器，信封会填上路由路的 Mac 地址，然后发送出去。路由器收到之后，会把这一层的信封拆掉，换上与路由器直接连接的 ISP 路由器的 Mac 地址，然后寄到下一个网络设备，以此类推直到目的地网站服务器。</p>
+
+<blockquote>
+<p>互联网服务供应商，Internet Service Provider，简称ISP。指的是例如中国移动、中国联通的因特网电信运营商。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3. 网络层 (Internet Layer)
+    </h1><h4>所属章节：Part 1: 网络基础</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据链路层使用的 Mac 地址，只有直接相连网络设备才会知道。你的电脑知道路由器的 Mac 地址、路由器知道跟他连结的设备的 Mac 地址。但是我们并不知道家里或公司路由器出去之后的网络设备的 Mac 地址，我们也不可能知道因特网上所有网络设备 Mac 地址。</p>
+
+<p>互联网上的节点数太多了，数据包是由一个路由器传递给下一个路由器，每个传递都更接近目的地。而这个目的地需要一个地址，而这就是 IP 协议所处理的。在 IP 协议中，定义了<a href="https://zh.wikipedia.org/zh-cn/IP%E5%9C%B0%E5%9D%80">IP 地址</a>，其中第四版 <a href="https://zh.wikipedia.org/zh-cn/IPv4">IPv4</a> 由 4 bytes(32位二进制)的数字组成，也就是大家常看到的 XXX.XXX.XXX.XXX 形式，例如全栈营服务器的 IP 地址是 <code>124.42.118.141</code>。</p>
+
+<p>这个 IP 地址是全球唯一的，IP 地址最多可有4,294,967,296个，乍看之下好像很多，但是由于互联网的大量普及，IPv4的42亿个地址的分配已经于2011年2月3日全部分配完毕，这会分给<a href="https://zh.wikipedia.org/zh-cn/%E5%90%84%E5%9B%BDIPv4%E4%BD%8D%E5%9D%80%E5%88%86%E9%85%8D%E5%88%97%E8%A1%A8">不同国家</a>、公司组织、学校等等使用。</p>
+
+<p>IP 地址设在计的时候，保留了一些<a href="https://zh.wikipedia.org/wiki/%E4%B8%93%E7%94%A8%E7%BD%91%E7%BB%9C">私有IP地址</a>地址用于局域网，最常见的是 <code>192.168.0.0</code> 到 <code>192.168.255.255</code> 这个范围，你在家里或公司连上无线路由器时，就会被分配到这个位址。另外还保留一个 <code>127.0.0.1</code> 代表的是本机电脑。私有IP地址</p>
+<h3>CIDR 块</h3>
+<p><a href="https://zh.wikipedia.org/zh-cn/%E6%97%A0%E7%B1%BB%E5%88%AB%E5%9F%9F%E9%97%B4%E8%B7%AF%E7%94%B1">CIDR</a>是一种 IP 位址的表示法，用来表示一整个区块的 IP 位置。</p>
+
+<p><code>a.b.c.0/16</code> 的意思是 <code>a.b.0.0</code> 到 <code>a.b.255.255</code>，共 65,536 个地址<br>
+<code>a.b.c.0/24</code> 的意思是 <code>a.b.c.0</code> 到 <code>a.b.c.255</code>，共 256 个地址<br>
+<code>a.b.c.0/32</code> 的意思是 <code>a.b.c.d</code> 一个地址</p>
+
+<p>详见<a href="https://zh.wikipedia.org/zh-cn/%E6%97%A0%E7%B1%BB%E5%88%AB%E5%9F%9F%E9%97%B4%E8%B7%AF%E7%94%B1">CIDR</a>的说明，这个用法在你配置网络防火墙的时候会用到。</p>
+<h3>IPv6</h3>
+<p>既然 IPv4 地址不够了，新的标准 <a href="https://zh.wikipedia.org/zh-cn/IPv6">IPv6</a> 使用了 16 bytes 来表示网络位置，具体数量为 340,282,366,920,938,463,463,374,607,431,768,211,456 个，真的是用不完了。不过实务上对一般用户似乎很少用到。这是因为要使用 IPv6，必须客户端到服务器中间的网络设备都要支援 IPv6，而大部分的 ISP 营运商都还没默认支援 IPv6。</p>
+
+<blockquote>
+<p><a href="http://shoshino21.logdown.com/posts/736331-send-apple-for-review-ipv6-support-specifically-should-be-in-line-with-what-conditions">Apple 要求从 2016/6/1 开始，所有上架的 App 必须 IPv6 相容</a></p>
+</blockquote>
+<h3>NAT 技术</h3>
+<p>刚刚提到 IPv 4的42亿个地址已经被分配完毕，但是似乎大家不是很着急要升级 IPv6 这件事情，这是什么原因呢？ 这是因为我们用了<a href="https://zh.wikipedia.org/zh-cn/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2">NAT</a>技术，因此不需要每一台需要上网的电脑，都需要一个公开的 IP 地址。</p>
+
+<p>透过 NAT 技术，家里或公司只有路由器那一台网络设备需要公开的 IP 地址，局域网内使用私有 IP 地址即可。这台路由器会记得当初数据包是从拿一台电脑送出来的，当数据包从因特网返回时，会做一个 IP 地址转换。</p>
+
+<p>这也是因为局域网内的电脑只需要上网，不需要做成服务器让因特网上的其他电脑可以连线。换言之，一台电脑如果要是因特网上可以被连线的服务器，必须要有一个公开的 IP 地址。</p>
+<h3>
+<code>ifconfig</code> 指令</h3>
+<p><code>ifconfig</code> 可以查看 IP 地址</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3NszhJZ9RYS6uH1WGO4h_3.png" title=""></figure></p>
+
+<p>打开 Mac 的 Networking 配置，也可以看到这个 IP 地址</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KwhE9z8QGH4rapWoGeiA_4.png" title=""></figure></p>
+
+<blockquote>
+<p>截图中的 <a href="https://zh.wikipedia.org/zh-cn/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE">DHCP 协议</a> 指的是当电脑连上路由器时，会自动请路由器分配一个局域网的私有 IP 地址给你。Subnet Mask 是着这个局域网的 IP 范围，其中 <code>255.255.255.0</code> 意思是整段私有 IP 地址数字前面 24bit 是固定的，也就是范围会是 <code>192.168.1.1</code> 到 <code>192.168.1.255</code>。Router(路由器)的地址是 <code>192.168.1.1</code>，你的数据包首先会送到这台网络设备，由路由路决定下一站去哪里。broadcast 地址 <code>192.168.1.255</code> 是向全局域网广播的地址，结尾 <code>.255</code> 是广播的意思。</p>
+</blockquote>
+<h3>ping 指令</h3>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Y0aZhdgjTmGPJqp4ndk1_5.png" title=""></figure></p>
+
+<p>ping 可以用来测试数据包送到目的地所需要的时间，其中的 time 是 RTT(Round Trip Time) 也就是往返时间，单位是 ms (千分之一秒)。</p>
+
+<p>这个时间主要取决于地理位置，如果你在北京市去 ping 全栈营，会得到 10ms 内超快的速度。如果去 ping 台湾或日本的服务器，大约是 50ms，去 ping 美国的服务器要 200ms (例如 github.com)，要去欧洲或南美洲就更远了。</p>
+
+<p>这个速度的物理限制是光速，要去美国的海底电缆是走太平洋，往返到地球另一端就是需要这么多时间。这就是为什么网站的连线速度要好，就得把服务器摆的离用户比较近的原因。</p>
+
+<blockquote>
+<p>不是每一台服务器都会回应 ping 信息，有些服务器会关闭这个功能。</p>
+</blockquote>
+<h3>traceroute 指令</h3>
+<p>traceroute 可以用来追踪到达目的地过程中，每台路由器节点的回应：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zICLhg41Quyuulq2mObu_6.png" title=""></figure></p>
+
+<p>跟 ping 一样，不是每台路由器都会回应这个信息，有些路由器会关闭这个功能。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4. 传输层 (Transport Layer)
+    </h1><h4>所属章节：Part 1: 网络基础</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>IP 数据包有 IP 地址可以抵达对方电脑，但是一台电脑上有很多不同种类的应用程序，到底这个数据包抵达对方电脑后，是要给哪一个程序去处理呢? 数据包送回来后，又是你电脑的那一个程序去处理？</p>
+
+<p>在传输层协议 <a href="https://zh.wikipedia.org/zh-cn/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE">TCP</a> 和 <a href="https://zh.wikipedia.org/zh-cn/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE">UDP</a> 中定义了 Port number，在数据包首部上会写上来源埠(Source Port Number)和目的埠(Destination Port Number)。Port Number 就像不同码头，编号从 0~65535。</p>
+
+<p>以客户端浏览器发出的数据包为例，浏览器会随机选一个来源埠出去，目的埠会是 80 (http) 或 443 (https)，除非你在浏览器的自行指定不同的目的埠，例如 <code>http://localhost:3000</code>，那就会改用 3000 port，因为 <code>rails s</code> 服务器在本机默认用 3000 port。</p>
+
+<p>服务器会用哪些 Port 详见<a href="https://zh.wikipedia.org/zh-cn/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8">TCP/UDP埠列表</a>，不同的应用程序就会用不同的 Port。每一个需要用到网络的程序，都必须跟操作系统登记申请一个 Port 来使用，操作系统会确认说一个 Port 只能分给一个程序使用。</p>
+
+<p>如果你要编号 1024 以下的话，操作系统还会要求你有 root 权限。1024 以上则不需要，例如 <code>rails</code> 服务器就默认使用了 Port 3000。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/CKMR2XeVTkKXCrTZi4Yq_7.png" title=""></figure></p>
+
+<blockquote>
+<p>这个 localhost 会被解析成 127.0.0.1 代表本机地址</p>
+</blockquote>
+
+<p>另外，IP 协议让我们可以将数据包从因特网的一端传送到另一端，但是没有保证数据包的可靠传输。传输过程中可能被中间的路由器丢失(有意或无意、网络壅塞被丢包、外界噪声干扰等等)，不同数据包也可能因为经过不同路由器而造成抵达的顺序不同。</p>
+
+<p>因此在 TCP 协议中实作了更多步骤来保证资料传输的正确性，包括会重发遗失的封包、舍弃重复的封包、无错误资料传输、阻塞/流量控制、确认有建立三方交握，连线已建立才作传输等等算法。TCP 是一个非常复杂的协议&lt;<br>
+也是使用最为广泛的协议，和 IP 协议合称 TCP/IP，大部分的应用层协议，包括 HTTP 都是基于 TCP/IP 的。</p>
+
+<blockquote>
+<p>TCP/IP 是大学本科网络概论课程的重头戏，会完整介绍如何实作 TCP 协议。TCP/IP 的首部是二进制格式，本教程就不讲解规格细节了。</p>
+</blockquote>
+<h3>网络工具</h3>
+<p>透过 <a href="https://zh.wikipedia.org/zh-cn/Wireshark">Wireshark</a> 或 <a href="https://packetpeeper.org">Packet Peeper</a> 之类的软件可以进行网络封包的撷取：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xdXaKg7TT2yKurrNpSpg_8.jpg" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5. 应用层 (Application Layer)
+    </h1><h4>所属章节：Part 1: 网络基础</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>TCP/IP 协议是操作系统就会提供的网络功能，而在我们电脑上会有不同的应用软件，这些软件会基于 TCP/IP 实作<a href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E5%B1%82">应用层协议</a>，例如：</p>
+
+<ul>
+<li>DNS</li>
+<li>HTTP</li>
+<li>SSH</li>
+<li>FTP 档案传输</li>
+<li>SMTP 寄email</li>
+<li>POP 收email</li>
+<li>SMB 微软的网络文件共享系统</li>
+<li>Bitcoin</li>
+<li>BitTorrent</li>
+</ul>
+
+<p>其中最常用的就是 DNS 协议和浏览器使用的 HTTP 协议了，接下来的章节会重点详述这两个协议。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6. 什么是 DNS
+    </h1><h4>所属章节：Part 2: DNS 网域名称系统</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>由于 IP 位址并不容易记忆，所以我们偏好让用户使用域名(Domain Name)来访问服务器，但是数据包要传递必须使用 IP 地址。因此我们会用 <a href="https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F">域名系统</a>来做 Domain Name 和 IP 地址的转换。</p>
+
+<p>除了好记忆的原因之外，使用域名也比较有弹性，服务器的 IP 位置可能会变动(例如换不同服务商的机房就一定会变动IP地址)，但是透过 DNS 就可以保持域名不变。</p>
+
+<p>这个 DNS 机制基本上就是一个对照表，对照某某域名的 IP 地址是什么。</p>
+
+<p>在我们本机电脑上就有一个对照表的档案，也就是 <code>/etc/hosts</code>，你可以编辑这个档案，写下域名和 IP 地址的对应。</p>
+
+<p>但是，本机不可能预先存好全世界网域名称的对照表，因此我们会用 DNS 协议来做即时的线上查询。</p>
+<h3>认识网域名称(Domain Name)</h3>
+<p>我们先深入认识一下<a href="https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%90%8D">域名</a>的组成：</p>
+
+<p>一个网域名称组成是 <code>sub-domain.second-level-domain(your-domain).top-level-domain</code>，例如 <code>fullstack.xinshengdaxue.com</code> 其中 <code>.com</code> 就是 top-level、<code>xinshengdaxue</code> 是 second-level，而 <code>fullstack</code> 是 sub-domain。这个 sub-domain 可以是空的，因此 <code>xinshengdaxue.com</code>也是合法的网域名称。</p>
+
+<p>全世界的 top-level-domain 是由 <a href="https://zh.wikipedia.org/zh-cn/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%B7%E7%A0%81%E5%88%86%E9%85%8D%E5%B1%80">互联网号码分配局 IANA</a> 机构所管理的，所有的 top-level-domain 的列表请参考 <a href="http://www.iana.org/domains/root/db">Root Zone Database</a>，每个 top-level-domain 会分配给不同国家的非营利组织进行管理，例如管理 <code>.cn</code> 的单位是 <a href="http://www.cnnic.net.cn">中国互联网络信息中心(CNNIC)</a>。</p>
+
+<p>一般个人或公司组织会向这些非营利组织进行网域购买和登记，例如 xinshengdaxue.com 是登记在负责管理 .com 网域的 VeriSign Global Registry Services 组织。不过实务上我们不会直接跟 VeriSign Global Registry Services 购买，而是透过域名注册商进行购买，在这些域名注册商的网站上，你可以一次选购各种不同的网域。例如 <a href="/myaccount/login.aspx">Namecheap</a>、<a href="http://godaddy.com/">Godaddy</a> 或 <a href="https://wanwang.aliyun.com/domain/">阿里云-万网</a> 等等。</p>
+
+<p>买到你自己的 second-level-domain 后，你就可以自行设定管理你的 sub-domain，例如 fullstack.xinshengdaxue.com 和 <a href="http://www.xinshengdaxue.com">www.xinshengdaxue.com</a> 指向不同的 IP 地址，是不同的网站服务器。</p>
+<h3>DNS 是如何查询的？</h3>
+<p>一般用户是如何进行 DNS 查询的呢？在操作系统中可以设置偏好的 DNS 服务器，通常会使用 ISP 默认提供的 DNS 服务器，也可以自己指定，例如：</p>
+
+<ul>
+<li>阿里 DNS <a href="http://www.alidns.com" rel="nofollow" target="_blank">http://www.alidns.com</a>
+</li>
+<li>国内 <a href="https://www.114dns.com">114dns</a> 的114.114.114.114</li>
+<li>Google 的 8.8.8.8</li>
+</ul>
+
+<p>在 Mac 中的设定：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/nn68tr1tSWqONvd1xQsJ_9.png" title=""></figure></p>
+
+<p>查询的流程会是先从客户端偏好的 DNS 开始查询。如果 DNS 找不到纪录，则该 DNS 会从根网域名称服务器(root nameserver)开始查询，直到找到负责该网域的 DNS 服务器为止。在第一次查询后，那台客户端偏好的 DNS 就会缓存起来。</p>
+
+<p>举例来说：查询 fullstack.xinshengdaxue.com 时，如果客户端偏好的 DNS 没有纪录，就会去问 <a href="https://zh.wikipedia.org/zh-cn/%E6%A0%B9%E7%BD%91%E5%9F%9F%E5%90%8D%E7%A7%B0%E6%9C%8D%E5%8A%A1%E5%99%A8">根网域名称服务器(root nameserver)</a> 说 .com 网域是谁管理的，它会回答负责 .com 的 nameserver，然后该 DNS 再去问 .com 的 nameserver 说 xinshengdaxue.com 是哪一台 DNS 负责的，然后再去问那一台 fullstack.xinshengdaxue.com 对应的 IP 是什么。</p>
+<h3>whois 指令</h3>
+<p><code>whois</code> 指令可以查询是谁注册了这个网域。不过，注册者可以选择关闭联络信息，所以不一定可以查到。</p>
+<h3>nslookup 指令</h3>
+<p><code>nslookup</code> 指令可以简单查询 DNS</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rEg2YVSQVCwQDwUebGgH_10.png" title=""></figure></p>
+
+<blockquote>
+<p>Non-authoritative answer 的意思是这个答案并不是从负责 xinshengdaxue.com 网域的主机回传，而是直接从客户端偏好的 DNS 服务器 8.8.8.8 的缓存纪录回答的。而 Authoritative 的意思就是这个答案是从负责 xinshengdaxue.com 网域的 DNS 主机回传的。</p>
+</blockquote>
+<h3>dig 指令</h3>
+<p><code>dig</code> 指令也可以查询 DNS，提供更详细的数据：</p>
+
+<p><code>dig fullstack.xinshengdaxue.com</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; fullstack.xinshengdaxue.com
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 19728
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;fullstack.xinshengdaxue.com. IN  A
+
+;; ANSWER SECTION:
+fullstack.xinshengdaxue.com. 600 IN A 124.42.118.141
+
+;; Query time: 85 msec
+;; SERVER: 168.95.1.1#53(168.95.1.1)
+;; WHEN: Thu Jul 20 15:15:56 2017
+;; MSG SIZE  rcvd: 61
+</pre></div>
+</figure>
+
+<p>得到答案是 <code>fullstack.xinshengdaxue.com. 600 IN A 124.42.118.141</code>。</p>
+
+<p>其中 600 秒是指缓存有效时间，<code>A</code> 表示这一笔纪录是 IPv4 的纪录。</p>
+
+<p>假设从根网域服务器开始查询：</p>
+
+<p><code>dig @a.root-servers.net. fullstack.xinshengdaxue.com</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/VKBmC2yzQXCN05DVC5Nd_11.png" title=""></figure></p>
+
+<p>其中一行 <code>com.      172800  IN  NS  a.gtld-servers.net.</code></p>
+
+<p>告诉们 .com 网域请去问 <code>a.gtld-servers.net</code> 这一台。NS 表示这一笔纪录是 Name Server 用途。</p>
+
+<p><code>dig @a.gtld-servers.net. fullstack.xinshengdaxue.com</code></p>
+
+<p>继续</p>
+
+<p><code>dig @f1g1ns1.dnspod.net. fullstack.xinshengdaxue.com</code></p>
+
+<blockquote>
+<p>这台 f1g1ns1.dnspod.net 服务器是 xinshengdaxue.com 网域的 Authoritative 服务器。</p>
+</blockquote>
+
+<p>其中一行 <code>fullstack.xinshengdaxue.com. 600 IN A 124.42.118.141</code></p>
+
+<p>我们得到答案是 <code>124.42.118.141</code> 了。</p>
+
+<p>DNS 纪录有分不同类型，例如：</p>
+
+<ul>
+<li>
+<code>A</code> 一笔 IPv4 纪录，某个 subdomain 指向某一个 IPv4 地址</li>
+<li>
+<code>AAAA</code> 一笔 IPv6 纪录</li>
+<li>
+<code>MX</code> 邮件服务器</li>
+<li>
+<code>CNAME</code> 别名，可以设定某个 subdomain 指向另一个地址(不一定是同一个主网域)</li>
+</ul>
+
+<p>例如 xinshengdaxue.com 的邮件服务器和网站不是同一台服务器，很多公司会把邮件服务器改用 <a href="https://gsuite.google.com">Google Apps</a>，这在 DNS 设定中就可以指定 MX 纪录：</p>
+
+<p><code>dig -t mx xinshengdaxue.com</code></p>
+
+<p>回答</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>xinshengdaxue.com.  599 IN  MX  10 mxbiz2.qq.com.
+xinshengdaxue.com.  599 IN  MX  5 mxbiz1.qq.com.
+</pre></div>
+</figure>
+
+<p>改指向到 qq 的服务器了，也就是寄信给 <code>example@xinshengdaxue.com</code> 时，该邮件是去 qq 的服务器，而不是 <code>124.42.118.141</code>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7. DNS 使用情境
+    </h1><h4>所属章节：Part 2: DNS 网域名称系统</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>了解 DNS 机制的话，就可以理解以下的现象：</p>
+<h3>标售哄抬现象</h3>
+<p>因为购买一个网域一年并不贵，所以一些热门的网址组合，很多网络蟑螂会预先注册保留起来，如果你要买则需要花更贵的价钱才能买到。当然，你也可以根据商标走法律程序，不过很多网域是跨国的，所以并不容易处理。</p>
+<h3>故障排除</h3>
+<p>有时候网络好像故障了，浏览器无法连线，但是可以 ping ip address。这时候可以优先检查是否是 DNS 坏了，换一台试试看。</p>
+<h3>钓鱼网站</h3>
+<p>所谓的钓鱼网站，就是利用网址很像，然后画面弄成一样骗你输入帐号密码。</p>
+
+<p>例如收到重新设定密码的邮件，然后超连结前往 g00gle.com/forget_password，画面长的跟 google 一模一样。没有注意网址的话，很可能就不小心输入自己的帐号密码了。</p>
+<h3>网域忘记续约</h3>
+<p>购买网域是需要定期续约了，一年、三年、五年等等。在大公司可能因为交接失败，造成网域失效的现象层出不穷，例如：</p>
+
+<ul>
+<li><a href="http://thehackernews.com/2016/07/tp-link-router-setting.html">TP Link</a></li>
+<li><a href="http://eq2wire.com/2014/07/15/sonyonline-net-domain-expires-shenanigans-ensue-for-all-soe-games-websites/">Sony Online</a></li>
+</ul>
+<h3>Geo-based 或 Round-Robin</h3>
+<p>查询 DNS 时，不一定总是回答同一个 IP 答案。有些网站会在不同国家有服务器，但是希望网址是一样的，这时候有可以根据用户不同的地理位置，回答不同的 IP 答案。</p>
+
+<p>或是在超高流量的网站，则可以回答不同台服务器的 IP 位址来分散流量到不同服务器。</p>
+<h3>DNS 污染</h3>
+<p>身为网站主，是无法控制用户偏好使用的 DNS 服务器。在一个理想信任的网络环境中，如果用户的 DNS 不知道答案，它会一层一层去询问。但是在一个受管制的网络环境，DNS 可以被控制回答不正确的 IP 位址，进而限制一般用户无法顺利浏览，甚至回答钓鱼网站的 IP。这种行为就叫做 DNS 污染。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8. 什么是 HTTP ?
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>身为一个 Web 工程师，最需要熟悉的就是应用层的 HTTP 协议了，这是目前最广为流行的应用层协议。</p>
+
+<p>HTTP 全称 Hypertext Transfer Protocol(超文本传输协议)，是由客户端发送 HTTP Request (请求)到服务器端，然后服务器端返回 HTTP Response (回复)。HTTP 一定是先从客户端开始的，服务器端不能直接发送信息给客户端。</p>
+
+<blockquote>
+<p>什么是 Hypertext (超文本)呢？意思是拥有超链接(一点就跳去另一个网页)能力的文件。</p>
+</blockquote>
+
+<p>以下是一个 HTTP Request 的具体长相，当你在浏览器输入 <a href="http://ihower.tw" rel="nofollow" target="_blank">http://ihower.tw</a> 时，浏览器就会将以下的信息包进 TCP/IP 数据包内，然后透过因特网传到服务器：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>GET / HTTP/1.1
+Host: ihower.tw
+</pre></div>
+</figure>
+
+<p>这个 Request 只有 Header，没有 Payload。</p>
+
+<p>HTTP 服务器在接收到以上的信息后，会回传以下的 HTTP Response 给浏览器：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;html&gt;
+&lt;h1&gt;这是HTML源码&lt;/h1&gt;
+&lt;p&gt;....&lt;/p&gt;
+&lt;/html&gt;
+
+</pre></div>
+</figure>
+
+<p>这个 Response 的前两行是 Header，空一行之后是 Payload，也就是 HTML 内容。</p>
+
+<blockquote>
+<p>豆知识：因特网(Internet) 和 Web(万维网) 的技术差别是? 用 TCP/IP 技术的叫做因特网，用 HTTP 技术的叫做万维网。万维网当然也是因特网的一种，但不是每个因特网的应用都使用 HTTP 协议，例如 email 邮件系统使用 SMTP 协议。</p>
+</blockquote>
+<h3>curl 工具</h3>
+<p><code>curl</code> 指令可以在命令行中发送 HTTP Request，示范如下：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>curl -v https://ihower.tw
+
+* Rebuilt URL to: https://ihower.tw/
+*   Trying 104.155.217.243...
+* TCP_NODELAY set
+* Connected to ihower.tw (104.155.217.243) port 443 (#0)
+* TLS 1.2 connection using TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+* Server certificate: ihower.tw
+* Server certificate: COMODO RSA Domain Validation Secure Server CA
+* Server certificate: COMODO RSA Certification Authority
+
+&gt; GET / HTTP/1.1
+&gt; Host: ihower.tw
+&gt; User-Agent: curl/7.51.0
+&gt; Accept: */*
+
+&lt; HTTP/1.1 302 Found
+&lt; Server: nginx
+&lt; Date: Tue, 18 Jul 2017 14:08:22 GMT
+&lt; Content-Type: text/html; charset=UTF-8
+&lt; Transfer-Encoding: chunked
+&lt; Connection: keep-alive
+&lt; Location: /blog/
+&lt; Strict-Transport-Security: max-age=31536000
+&lt; X-Content-Type-Options: nosniff
+&lt; X-XSS-Protection: 1; mode=block
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+   略
+&lt;/head&gt;
+&lt;body&gt;
+略
+&lt;/body&gt;
+&lt;/html&gt;
+* Curl_http_done: called premature == 0
+* Connection #0 to host ihower.tw left intact
+
+</pre></div>
+</figure>
+
+<p>其中 <code>&gt;</code> 的部分就是完整的 Request 数据包，<code>&lt;</code> 的部分就是完整的 Response 数据包。</p>
+<h3>httpie</h3>
+<p>要彩色的话，可以用 <a href="https://github.com/jakubroztocil/httpie">httpie</a> 工具</p>
+
+<p>可用 <code>brew install httpie</code> 进行安装</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9. 浏览器的 HTTP 工具
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>和 TCP/IP 二进制的 Header 不同，HTTP Header 是肉眼可以阅读的文字(plain-text)，让我们详细暸解一下这些 Header 的作用。</p>
+<h3>浏览器 Inspector</h3>
+<p>使用 Google Chrome 的 Inspector 可以观察 HTTP Networking 的情形：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fT3ujoURTQ21JHo9W0G4_12.png" title=""></figure></p>
+
+<p>每一行就是一个 HTTP Request，你会发现浏览器要完整加载一个网页(HTML Page Load)，必须要发送非常多的 Request。第一个 Request 拿 HTML，接着浏览器会解析 HTML 内容，找出还需要哪些 CSS/JavaScript 和图档等资源，然后再发送 HTTP Request 去抓取这些资源。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IUCIRSnkQu2WUCQEVnZh_13.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fvgRPM2T06H5inLdIdNq_14.png" title=""></figure></p>
+
+<p>可以进一步观察每一个 Request 的细节，包括 Request Header 和 Response Header。</p>
+<h3>浏览器 Extension</h3>
+<p>在 Web API 设计实作教程中，我们有安装一个 Chrome Extension 叫做 Postman，这就是一个万用的表单工具，可以让我们在浏览器中发送自定义的 HTTP Request。</p>
+
+<p>首先进入 Chrome 选单上的 Windows &gt; Extensions，然后安装 <a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop">Postman</a>：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/d9mQ5DsMTQGyCbD5Qanp_postman-1.png" title=""></figure></p>
+
+<p>透过这个工具，我们可以指定 URL 地址、HTTP 方法和要传递的参数。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10. 认识 HTTP 数据包
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>认识 HTTP Request</h3>
+<p>一个 HTTP Request 包括几个成分：</p>
+
+<ul>
+<li>HTTP 方法(Method)</li>
+<li>网址，包括 URL + parameters</li>
+<li>HTTP 首部 (Headers)</li>
+<li>信息内容 (Message Body)，GET 方法没有这个部分</li>
+</ul>
+
+<p>举例来说</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&gt; GET / HTTP/1.1
+&gt; Host: ihower.tw
+&gt; User-Agent: curl/7.51.0
+&gt; Accept: */*
+&gt;
+</pre></div>
+</figure>
+
+<p>其中第一行的第一单字就是 HTTP 方法，第二个单字是网址，第三个单字是 HTTP 的版本，目前通行的版本是 HTTP 1.1</p>
+
+<p>第二行之后是 HTTP Header，是 <code>key: value</code> 的格式，例如 Host 是 <code>ihower.tw</code>。</p>
+<h4>HTTP 方法</h4>
+<p>HTTP 方法常见有以下几种：</p>
+
+<ul>
+<li>GET: 安全(Safe)且 幂等(Idempotent)，用来读取数据</li>
+<li>POST: 不安全(Non-safe) 且不是幂等(non-idempotent)，用来新增数据或执行某个操作</li>
+<li>PUT: 不安全(Non-safe) 但幂等(idempotent)，用来置换数据</li>
+<li>PATCH: 不安全(Non-safe) 且不是幂等(non-idempotent)，用来修改数据</li>
+<li>DELETE: 不安全(Non-safe) 但幂等(idempotent)，用来删除数据</li>
+</ul>
+
+<p>在浏览器中输入网址时，会用 GET 方法。网页中的 a 超连结，会用 GET 跳到下一页。网页中的 form 表单，默认是用 POST 送出。在 Ajax 中，我们可以用 JavaScript 自行指定要用哪一种 HTTP 方法。</p>
+
+<p>这里安全(Safe)的意思是这个操作不会修改到服务器的数据。但这只是语意上的意思，不代表服务器的实作。例如 GET 某一个网页时，服务器还是可以实做浏览量(Page view)功能，每次有人浏览就在数据库加一。但是我们并不会因此就改成用 POST 或 PATCH 方法，因为从用户的立场来说，浏览网页并不预期会修改或新增数据。</p>
+
+<p>另外，因为互联网都会假设 GET 是可以重复读取并缓存的，而 POST 不行。因此搜寻引擎只会用 GET 抓资料，像<a href="https://www.puritys.me/docs-blog/article-204-%E6%88%91%E8%A2%AB-Google-%E9%AA%87%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%86.html">这篇文章</a>就闹了笑话，这个人用 GET 来删除资料，造成Google 爬虫一爬就不小心删除了，他还以为是 Google 故意骇他...lol 另外，像浏览器的表单送出是用POST，如果我们在action 中不redirect (也就是让浏览器去GET 另一页)，而是直接render 返回，那么如果用户重新整理画面的话，浏览器会跳出以下的警告视窗，要求用户确认是否再POST 一次，因为这可能会造成重复操作(重复新增)。如果是 GET 的话，重新整理就不会有这种警告了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/S2hCzQITYORTVc6vEveP_post-confirm.png" title=""></figure></p>
+
+<p>幂等(Idempotent) 的意思是如果相同的操作再执行第二遍第三遍，结果还是跟第一遍的结果一样 (也就是说不管执行几次，结果都跟只有执行一次一样)，例如点删除第二次，或是点第三次，最终结果跟点完第一次是一样的，那笔数据已经被删除了。这个特性对支援离线(offline)功能的软件比较重要，这表示这个操作如果失败，是可以放心重试(retry)的。不过浏览器默认是不支持离线功能的，没连上网无法浏览和操作网站。像桌机或手机软件才会优先考虑离线的场景。</p>
+
+<p>最后，PUT 和 PATCH 看起来也很像？在 Rails 中 PUT 和 PATCH 的确没有差别，但根据 HTTP 规格有语意上的差异，详细可以参考 <a href="https://ihower.tw/blog/archives/6483">HTTP Verbs: 谈 POST, PUT 和 PATCH 的应用</a> 一文。</p>
+<h4>Header 首部</h4>
+<p>常见的 Request Header 例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>Host: ihower.tw
+User-Agent: curl/7.51.0
+Accept: */*
+</pre></div>
+</figure>
+
+<ul>
+<li>Host 指的是请求的网域名称。这样因为同一个 IP 地址的 HTTP 实体服务器上，可以同时有不同网站。但要如何区分呢？它们的 TCP/IP 首部上的 IP 地址是一样的数字，抵达服务器后也用一样的 Port (HTTP 用80、HTTPS用443)，因此一定要用不同的网域名称来做区分，例如 <a href="https://fullstack.xinshengdaxue.com" rel="nofollow" target="_blank">https://fullstack.xinshengdaxue.com</a> 和 <a href="https://forum.qzy.camp" rel="nofollow" target="_blank">https://forum.qzy.camp</a> 其实是在同一台主机上，IP 地址是一样的。但是透过 Host 的不同，HTTP 服务器就可以区分是要打开那一个网站。</li>
+<li>
+<a href="https://zh.wikipedia.org/zh-cn/%E7%94%A8%E6%88%B7%E4%BB%A3%E7%90%86">User-Agent</a> 是用户使用的软件，不过由于历史因素，这些 User Agent 字符串都<a href="https://udger.com/resources/ua-list">蛮丑的</a>。另外，User-Agent 也不代表客户端真的是用这个软件，这是可以自行修改的。</li>
+<li>Accept 指的是希望服务器回传的格式。<code>*/*</code> 是都可以的意思，像 Chrome 浏览器的 GET 操作默认会用 <code>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</code>，表示第一优先是 <code>text/html</code> 格式。</li>
+</ul>
+
+<p>HTTP 并没有规定 Response 一定是什么格式，所以在 Request Header 会用 Accept 注明希望什么格式，等等回传的 Response Header 中也会写清楚是什么格式。</p>
+
+<p>如果是 HTML 表单用 POST 送出，浏览器则会用 <code>application/x-www-form-urlencoded</code> 或 <code>form-data</code> 格式，详见 <a href="https://imququ.com/post/four-ways-to-post-data-in-http.html">四种常见的 POST 提交数据方式</a></p>
+<h4>信息内容 Message Body</h4>
+<p>GET 没有信息内容，要用 POST/PATCH/PUT/DELETE 才会有信息内容。另外，也因为浏览器的网址(URL)是有长度限制的，所以如果 HTTP Request 要带很多数据时，就不能用 GET。所以 HTML 表单的送出默认是用 POST。</p>
+<h3>HTTP Response</h3>
+<p>一个 Response 包括几个成分：</p>
+
+<ul>
+<li>状态码 (Response Status)</li>
+<li>首部 (Response Headers)</li>
+<li>信息内容(Response Body)</li>
+</ul>
+
+<p>举例来说</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;html&gt;
+&lt;h1&gt;这是HTML源码&lt;/h1&gt;
+&lt;p&gt;....&lt;/p&gt;
+&lt;/html&gt;
+
+</pre></div>
+</figure>
+
+<p><code>HTTP/1.1</code> 是 HTTP 规格的版本、第二个单字 <code>200</code> 是 HTTP 状态码数字、第三个单字 'OK' 是状态码。</p>
+
+<p>隔一行后，就是 Response 的信息内容，这个内容物可以是任何格式，例如 HTML 或 JSON 或是二进制的图片等等。这个会在 Headers 里面用 <code>Content-Type</code> 告所我们这是什么格式。</p>
+<h4>HTTP Status Code</h4>
+<ul>
+<li>2XX: 成功，例如 200</li>
+<li>3XX: 转向，例如 301 (永久转向)、302 (暂时转向)</li>
+<li>4XX: 客户端的问题: 例如 404</li>
+<li>5XX: 服务器的问题: 例如 500</li>
+</ul>
+
+<p>完整的<a href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81">HTTP 状态码列表</a>，看起来很多，不过一般不会区分这么细。对浏览器来说 200、301、302 就够了。很多状态码的设计是针对网络设备、设计 Web API 的时候使用，而不是浏览器场景。</p>
+<h4>HTTP Headers</h4>
+<p>常见的 Request Header 例如：</p>
+
+<ul>
+<li>
+<code>Content-Type</code> 会指名信息内容的格式，
+Response Body 是没有限制格式的，例如 HTML 是 <code>text/html; charset=UTF-8</code>。在 Web API 教程中用 <code>application/json</code>，如果是JPG图片则会是 <code>image/jpeg</code>。完整的内容格式列表请参考<a href="https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E7%94%A8%E9%80%94%E5%9B%A0%E7%89%B9%E7%BD%91%E9%82%AE%E4%BB%B6%E6%89%A9%E5%B1%95">MIME</a>
+</li>
+<li>
+<code>Location</code> 搭配 301 或 302 转向的时候使用。例如当浏览器看到 301 状态码的时候，就会用 <code>Location</code> 写的位址来做转址，浏览器会跳去 Location 指定的网址。如果是你自己写的客户端程序，看到 301 或 302 不会自动跳转的喔。例如输入 <code>curl -v http://ihower.tw</code>，只会告诉你请转址到 <code>https://ihower.tw</code>，但不会自动 <code>curl -v https://ihower.tw</code>。</li>
+<li>
+<code>Accept-Encoding: gzip, deflate, br</code> 这个 Header 告诉浏览器信息内容经过压缩，请解压缩。现代 HTTP 服务器都有这样的功能可以打开，可以大大加速下载速度。</li>
+</ul>
+
+<p>现代浏览器支援一些增加安全性的 Header，例如 <code>Strict-Transport-Security</code>、<code>X-Content-Type-Options: nosniff</code>、<code>X-XSS-Protection</code>等等，对网络安全有兴趣的请进一步参考：</p>
+
+<ul>
+<li><a href="http://devco.re/blog/2014/03/10/security-issues-of-http-headers-1/">HTTP Headers 的资安议题 (1)</a></li>
+<li><a href="http://devco.re/blog/2014/04/08/security-issues-of-http-headers-2-content-security-policy/">Content-Security-Policy - HTTP Headers 的资安议题 (2)
+</a></li>
+<li><a href="http://devco.re/blog/2014/06/11/setcookie-httponly-security-issues-of-http-headers-3/">HttpOnly - HTTP Headers 的资安议题 (3)</a></li>
+</ul>
+
+<p>HTTP Header 还有一些是告诉浏览器和路由路如何做缓存、哪些信息可以缓存哪些不行，例如 <code>Cache-Control</code>、<code>ETag</code> 和 <code>Last-Modified</code> 等等，让浏览器可以不需要重复抓取一样的内容。有兴趣的请进一步参考 <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching">HTTP Caching</a>。在正式的部署中，我们也会设定静态档案(CSS/JavaScript/图档等)可以缓存，告诉浏览器可以放心地缓存这些静态档案，这也是因为 Rails 的 Asset Pipeline 会将静态档案的档名修改成根据内容加上 digest 编码，因此只要静态档案内容有修改，档名就会变更。那浏览器就会重新下载到最新的档案，而不怕继续用旧的缓存盘案。</p>
+<h3>HTTP 的无状态(Stateless)特性，以及用 Cookie 做状态管理</h3>
+<p>在 HTTP 的设计中，每个 Requests 之间都是完全独立的(和前后 Request 相比)，也就是说每个 Request 必须带有完整的参数来完成操作。</p>
+
+<p>那要如何识别登入的用户呢? 每个 Request 都要自带可以识别的资讯，例如浏览器会使用 Cookies 这个功能。服务器透过 Response Header 的 <code>Set-Cookie</code> 来告诉浏览器要记住一些数据，然后浏览器就会在之后的 Request 都带有 Cookie 这个 Header。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kIWND9f4Q2SzEdKFZ4Yb_15.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vJXdvoucTvWyykm90JWc_16.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KJjKjLk9Shu3HIR3J04x_17.png" title=""></figure></p>
+
+<p>另外，Cookie 只会向同一个网域送出，这是浏览器的<a href="https://en.wikipedia.org/wiki/Same-origin_policy">安全同源政策 Same-origin policy</a>，例如在 fullstack.xinshengdaxue.com 设定的 Cookie，浏览器只会向 fullstack.xinshengdaxue.com 送回 Cookie。</p>
+
+<p>画面中还有看到 baidu 和 intercom 的 Cookie，这是因为全栈营网页上有安装 <a href="https://tongji.baidu.com">百度统计</a> 来统计用户流量，以及 <a href="https://www.intercom.com/">Intercom</a> 来做即时线上客服。这两个是 JavaScript 插件放在 HTML 上的，你可以在网页上放其他网域的 JavaScript/CSS或图片。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11. 什么是 URL
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们进一步了解浏览器中的「网址 URL(Uniform Resource Locator)」是什么：</p>
+
+<p>以 <code>http://www.example.com/home</code> 举例：</p>
+
+<ul>
+<li>协议用 http</li>
+<li>服务器主机(Host)是 <code>www.example.com</code>
+</li>
+<li>URL 路径(path)是 <code>/home</code>
+</li>
+<li>Port 号码: http 默认是 80，https 默认是 443。这可以自订例如 <code>http://www.example.com:3000</code>
+</li>
+</ul>
+
+<p>什么是 Query Strings/Parameters？ 可以用来额外传递一些参数给服务器，例如 <code>http://www.example.com?search=ruby&amp;results=10</code>，其中：</p>
+
+<ul>
+<li>
+<code>?</code> 是保留符号，query string 的开头</li>
+<li>
+<code>&amp;</code> 是保留符号，分隔 Parameter Name/Value，例如 search=ruby 和 results=10</li>
+<li>GET 或 POST 都可以用 Query Strings 的写法来传递参数，但 GET 比较常见，因为 GET Request 也只能用这种方式传参数给服务器 (GET 没有 body)</li>
+</ul>
+
+<p>但是用 Query String 有一些限制：</p>
+
+<ul>
+<li>Query strings 有长度限制 (因为整个 URL 长度有限制，太长会被截掉)，因此如果参数真的很多，有时候就算是查询，也会改用 POST 做(例如进阶查询功能，参数多到 GET 的网址放不下)</li>
+<li>不适合传敏感信息，例如帐号密码或信用卡号码等等，因为放网址太明显了，用户甚至可以加入书籤等等。</li>
+<li>空白和特殊字符必须做逸出编码(encoded)</li>
+</ul>
+
+<p>当作网址的参数都必须要经过编码，这有一套规则 <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL Encoding</a><br>
+)，例如：</p>
+
+<ul>
+<li>空白变成 <code>%20</code>
+</li>
+<li>
+<code>!</code> 变成 <code>%21</code>
+</li>
+<li>
+<code>+</code> 变成 <code>%2B</code>
+</li>
+<li>
+<code>#</code> 变成 <code>%23</code>
+</li>
+<li>其他还有 <code>/</code> <code>?</code> <code>:</code> <code>@</code> <code>&amp;</code> 等等</li>
+</ul>
+
+<p>这就是为什么有时候网址列很长又很丑的原因。中文字也需要经过编码 (但现代浏览器会自动做转换，所以中文字看起来可以使用，但只是因为浏览器帮忙编码处理了)。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12. 什么是 HTTPS 和 HTTP/2
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>HTTPS</h3>
+<p>近年来由于上网安全意识的提升，越来越多的网站使用 HTTPS 加密连线，网址像这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FQaKnbDVTyaoqrilCA3M_10-1.png" title=""></figure></p>
+
+<p>没有加密的 HTTP 连线，可以透过监听网络封包，就可以知道浏览器传输的内容。例如在咖啡厅上网，骇客可以透过监听无线网络，看到你上网的一举一动。有些咖啡厅可以在网页中置入广告 Banner，就是因为连线是走 HTTP 未加密的关系，所以很容易就可以修改网页内容。</p>
+
+<blockquote>
+<p>在 Rails 网站安全教程中，我们会介绍这个加密的原理</p>
+</blockquote>
+
+<p>详细也可以先参考以下文章：</p>
+
+<ul>
+<li><a href="http://showme.codes/2017-02-20/understand-https/">也许，这样理解HTTPS更容易</a></li>
+<li><a href="https://segmentfault.com/a/1190000004523659">HTTPS科普扫盲帖</a></li>
+<li><a href="https://cattail.me/tech/2015/11/30/how-https-works.html">HTTPS工作原理</a></li>
+</ul>
+<h3>HTTP/2</h3>
+<p>HTTP/2 是 2015 年制定的最新 HTTP 标准，语意和功能都与 HTTP 1.1 是相容的，主要是改善加载网页的效能，详细请参考老师之前写的一篇文章 <a href="https://ihower.tw/blog/archives/8489">更快更安全: 每个网站都应该升级到 HTTP/2</a>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13. 总结浏览器的 Request/Response Lifecycle
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>好，让我们总结复盘一下教程一开始的问题：当我们在浏览器输入一个网址到显示出网页，背后发生的事情：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/VIjzFT2HSRG65RHzTwIe_18.jpg" title=""></figure></p>
+
+<p>(图片取自图解 HTTP, 人民邮电一书)</p>
+
+<p>文字版说明：</p>
+
+<ol>
+<li>在网址列输入网址，或是点网页上的超连结</li>
+<li>浏览器解析这个 URL 找出 protocol、host、port 和 path</li>
+<li>如果是 HTTP，则组出 HTTP request 数据包</li>
+<li>查询 DNS 用 host 找出对应的 IP 位址，组出 IP 数据包</li>
+<li>组出 TCP 封包并打开一个 TCP connection 到上述 IP 位址和 Port</li>
+<li>送出 HTTP Request 数据包</li>
+<li>Web 服务器(例如 Nginx)接收到 HTTP Request 封包后，解析其中的内容(特别是其中的 path)来决定如何回应：
+
+<ul>
+<li>如果是静态内容，也就是 HTTP Response 不会根据不同用户、不同时间等任何因素而改变，例如图片、影片、CSS、JavaScript 等等。那么 Web 服务器会直接将该档案回传给浏览器。</li>
+<li>如果是动态内容，也就是会根据不同登入的使用者、时间等参数来回传不同内容，那个 Nginx 会将 HTTP Request 交给应用程序处理，例如 PHP、Ruby、Python、Node.js、Java 等程序，由该程序动态地根据不同参数和条件，搭配数据库来捞取资料，然后组合出 HTML 网页包成 HTTP Response 经由 Nginx 回传给浏览器。</li>
+</ul>
+</li>
+<li>浏览器接收到这个 HTTP Response，开始解析这份 HTML 网页成为 Document Object Model (DOM) 一种树状的资料结构来对应 HTML 的标籤节点。</li>
+<li>浏览器会依序检查 HTML 原始码中，需要下载的资源网址 URL，例如 CSS、图片、JavaScript 等等，就会再发 HTTP Request 请求下载回来 (依照上述步骤二到九)</li>
+<li>如果下载到 CSS 样式表，就会去装饰对应的 DOM 节点</li>
+<li>如果下载到 JavaScript 程序码，则会执行它。浏览器上的 JavaScript 程序可以操作 DOM 节点，通常会用 jQuery 函式库来做，来达到一些网页动态特效。</li>
+<li>直到所有资源都下载完毕，浏览器执行完 CSS 和 JavaScript，才算大功告成完成(Page Load)。如果你又点击网页上的超连结，则又回到步骤一。</li>
+</ol>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14. 推荐阅读
+    </h1><h4>所属章节：Part 3: HTTP 超文本传输协议</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>网络时代每一个软件都需要连网功能。身为一个软件工程师，多了解网络原理的话，对于网络相关问题的设定和故障排查，会有很大的帮助。这份教程文字有点多，建议你还可以搭配以下阅读资料，多方理解：</p>
+
+<ul>
+<li><a href="https://juejin.im/entry/5763cb427f578500546c91d4">我是一个网卡</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html">DNS 原理入门</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/08/http.html">HTTP 协议入门</a></li>
+<li><a href="http://www.jianshu.com/p/e544b7a76dac">你应该知道的HTTP基础知识</a></li>
+<li><a href="https://ruby-china.org/topics/33160">网络协议——写给每个懂点编程的同学</a></li>
+<li><a href="https://www.khanacademy.org/computing/computer-science/internet-intro">Khan: Internet 101 影片</a></li>
+<li>
+<a href="https://book.douban.com/subject/25863515/">图解 HTTP</a>, 人民邮电出版社</li>
+<li>
+<a href="https://book.douban.com/subject/26941639/">网络是怎样连接的</a>, 人民邮电出版社</li>
+</ul>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

@@ -1,0 +1,2466 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-1 闰年程序(第一版)
+    </h1><h4>所属章节：1. 一个简单的闰年程序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>所谓的自动化测试，就是用程序去测试程序，听起来好像有点玄妙。让我们用一个简单的题目来举例：</p>
+
+<p>请写一个方法判断闰年，闰年的规则是这样的：</p>
+
+<ul>
+<li>西元年分除以400可整除，为闰年。</li>
+<li>西元年分除以4可整除但除以100不可整除，为闰年。</li>
+<li>西元年分除以4不可整除，为平年。</li>
+<li>西元年分除以100可整除但除以400不可整除，为平年</li>
+</ul>
+
+<p>我们来写程序吧，请新增一个档案 <code>leap_year.rb</code>，内容如下：</p>
+
+<figure class="figure-code code"><figcaption><span>leap_year.rb
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">is_leap_year?</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="kp">true</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+
+  <span class="c1"># 同学们可能会发现这不是正确的版本，让我们继续做下去
+</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>接下来你怎么知道这个方法对不对呢? 让我们试试看：</p>
+
+<p>执行 <code>irb</code>，输入：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>require_relative './leap_year'
+is_leap_year?(2016)   # =&gt; 应该得到 true
+is_leap_year?(2017)   # =&gt; 应该得到 false
+
+</pre></div>
+</figure>
+
+<p>好像对了吗? 让我们想想想，好像应该再测测看 2100 年，照规格应该是平年才对。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>is_leap_year?(2100)   # =&gt; 得到 true，但是应该要 false 才对
+
+</pre></div>
+</figure>
+
+<p>果然写错了，让我们回去修 bug...</p>
+
+<p>离开<code>irb</code>，请输入 <code>exit</code>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-2 闰年程序(第二版)
+    </h1><h4>所属章节：1. 一个简单的闰年程序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>leap_year.rb</code>，改写成：</p>
+
+<figure class="figure-code code"><figcaption><span>leap_year.rb
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">is_leap_year?</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="k">return</span> <span class="kp">false</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>再进来<code>irb</code>测测看，执行 <code>irb</code>：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>require_relative './leap_year'
+is_leap_year?(2016)   # =&gt; 应该得到 true
+is_leap_year?(2017)   # =&gt; 应该得到 false
+is_leap_year?(2100)   # =&gt; 应该得到 false 了
+</pre></div>
+</figure>
+
+<p>看起来好像都对了吗? 我们可能会再多输入几个年份试试看。</p>
+
+<p>但我相信这样往返检查程序是否正确的过程，大家一定不陌生。</p>
+
+<p>而自动化测试想要做的事情，就是去自动化这个过程。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-3 使用 RSpec 自动化测试
+    </h1><h4>所属章节：1. 一个简单的闰年程序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>首先请各位安装 Rspec，这是一个自动化测试的框架。输入：</p>
+
+<p><code>gem install rspec</code></p>
+
+<p>新增一个档案 <code>.rspec</code>，内容如下：</p>
+
+<figure class="figure-code code"><figcaption><span>.rspec
+</span></figcaption><div class="highlight"><pre><span class="gd">--format documentation
+</span><span class="err">--color
+</span></pre></div>
+</figure>
+
+<p>接着新增一个档案 <code>leap_year_spec.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>leap_year_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require_relative</span> <span class="s1">'./leap_year'</span>
+
+<span class="n">describe</span> <span class="s2">"Leap Year"</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="s2">"2016 is leap year"</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_leap_year?</span><span class="p">(</span><span class="mi">2016</span><span class="p">)</span>  <span class="c1"># 把 2016 传进去
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>    <span class="c1"># 检查结果应该要是 true
+</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"2017 is common year"</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_leap_year?</span><span class="p">(</span><span class="mi">2017</span><span class="p">)</span>  <span class="c1"># 把 2017 传进去
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>   <span class="c1"># 检查结果应该要是 false
+</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"2100 is common year"</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_leap_year?</span><span class="p">(</span><span class="mi">2100</span><span class="p">)</span>  <span class="c1"># 把 2100 传进去
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>   <span class="c1"># 检查结果应该要是 false
+</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"2400 is leap year"</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_leap_year?</span><span class="p">(</span><span class="mi">2400</span><span class="p">)</span>  <span class="c1"># 把 2400 传进去
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>    <span class="c1"># 检查结果应该要是 true
+</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>其中每一个 <code>it</code> 包起来的就是一个要测试的案例，我们会在里面用 <code>expect</code> 方法去检查结果是否如我们所预期。</p>
+
+<p>这里除了刚刚测试的 2016、2017、2100 案例之外，我们还多补了一个检查 2400 年，这应该是润年。</p>
+
+<p>执行 <code>rspec leap_year_spec.rb</code> 就会自动测试这四个测试案例(test example)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mFJuf8ObR3WgfX8XDYsd_1-1.png" title=""></figure></p>
+
+<p>红字表示测试没有通过了(这很正常，代表我们发现还有bug)，它指出 2400 年的检查结果不正确。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-4 闰年程序(完成版)
+    </h1><h4>所属章节：1. 一个简单的闰年程序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们回去继续改程序，改写成如下版本：</p>
+
+<figure class="figure-code code"><figcaption><span>leap_year.rb
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">is_leap_year?</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="k">if</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="kp">true</span>
+      <span class="k">else</span>
+        <span class="k">return</span> <span class="kp">false</span>
+      <span class="k">end</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>再执行一次<code>rspec leap_year_spec.rb</code>，出现：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rc0rOUIFQcWGu8hNU5As_1-2.png" title=""></figure></p>
+
+<p>一片绿字就表示测试通过了，这四个测试案例都通过，我们不需要进<code>irb</code>检查了，这个 RSpec 测试程序就帮我们检查好了。</p>
+
+<p>如果你还不放心闰年程序是不是都正确了，也可以继续加更多测试案例进来检查。就判断闰年来说，用这四个测试资料就是关键的测试案例了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-5 重构闰年程序(最终版)
+    </h1><h4>所属章节：1. 一个简单的闰年程序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>最后，我们觉得那段源码有点丑，我们想要重构一下，重构意思是在不影响功能的情况下让代码变得更漂亮，例如上述的逻辑可以改成这样：</p>
+
+<figure class="figure-code code"><figcaption><span>leap_year.rb
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">is_leap_year?</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>但是怎么确认改成这样，结果还是正确的呢?</p>
+
+<p>只要再执行一次 <code>rspec leap_year_spec.rb</code> 观察测试结果通过就知道了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rc0rOUIFQcWGu8hNU5As_1-2.png" title=""></figure></p>
+
+<p>自动化测试提供了重构的安全网。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 目标
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章只是单纯的 Ruby 程序，那么在 Rails 里面，要怎么写测试呢?</p>
+
+<p>如果是非常简单的程序逻辑，写自动化测试比较没有价值，让我们挑战一个比较难的例子，计算停车费的应用：</p>
+
+<p>规格如下：</p>
+
+<ul>
+<li>未注册登入用户，可以点选开始计费和结束，并使用「一般费率」： 第一个小时 ¥2，之后每半小时 ¥1</li>
+<li>有注册的登入用户，可以选择「短期费率」 或「长期费率」
+
+<ul>
+<li>短期费率：第一个小时 ¥2，之后每半小时 ¥0.5</li>
+<li>长期费率：一天 ¥16，若停六小时以内 ¥12</li>
+</ul>
+</li>
+</ul>
+
+<p>你应该可以想像得到，这个要测试的时候，会有很多种情况吧? 如果每次改代码都要把全部情况都测过一遍，是会非常耗时的。 这时候如果有撰写自动化的技能的话，就可以大大地辅助我们开发，减少开发的时间、减少程序是否正确的疑惑。</p>
+
+<p>接下来我们会实作 Rails Model 的单元测试。自动化测试分成几种不同类型，目前学的这种是针对单一类别的方法进行测试，叫做单元测试(Unit Testing)。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 初始 Rails 并安装 rspec-rails
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>执行</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>rails new parking-app
+cd parking-app
+rm -rf test
+git init
+git add .
+git commit -m "Init Rails project"
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>Rails 内建也有一个测试框架放在 <code>/test</code> 目录，但是不太好用。业界几乎都改用 RSpec 来写测试。</p>
+</blockquote>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  group :development, :test do
+<span class="gi">+   gem 'rspec-rails'
+</span>
+    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+    gem 'byebug', platform: :mri
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>执行 <code>rails g rspec:install</code> 这会建立出 <code>spec</code> 目录来放我们的测试档案。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>git add .
+git commit -m "Install rspec-rails"
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 建立 Parking Model
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 Parking model 来储存停车的资料，并检查必填的资料。</p>
+
+<p><code>rails g model parking</code></p>
+
+<p>编辑 migration 档案：</p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201703XXXXXXXX_create_parkings.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">class</span> <span class="nc">CreateParkings</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">change</span>
+      <span class="n">create_table</span> <span class="ss">:parkings</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+<span class="o">+</span>       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:parking_type</span>  <span class="c1"># 费率类型: guest, short-term, long-term
+</span>
+<span class="o">+</span>       <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:start_at</span>    <span class="c1"># 开始时间
+</span>
+<span class="o">+</span>       <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:end_at</span>      <span class="c1"># 结束时间
+</span>
+<span class="o">+</span>       <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:amount</span>       <span class="c1"># 总金额(分)
+</span>
+<span class="o">+</span>       <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:index</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+        <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>注意到 <code>amount</code> 金额字段通常会储存货币的最小单位，因此这里 ¥1 会存成 100。</p>
+</blockquote>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/parking.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  class Parking &lt; ApplicationRecord
+
+<span class="gi">+  validates_presence_of :parking_type, :start_at
++  validates_inclusion_of :parking_type, :in =&gt; ["guest", "short-term", "long-term"]
++
++  validate :validate_end_at_with_amount
++
++  def validate_end_at_with_amount
++    if ( end_at.present? &amp;&amp; amount.blank? )
++      errors.add(:amount, "有结束时间就必须有金额")
++    end
++
++    if ( end_at.blank? &amp;&amp; amount.present? )
++      errors.add(:end_at, "有金额就必须有结束时间")
++    end
++  end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里我们检查 <code>parking_type</code> 和 <code>start_at</code> 是必填，而且 <code>parking_type</code> 的值只能是 <code>["guest", "short-term", "long-term"]</code> 其中之一。另外我们还自订了一个检查规则是 <code>end_at</code> 和 <code>amount</code> 需要一起填。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-4 撰写 Parking Model 的 Validation 测试
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上述的检查该如何写测试呢?</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>  require 'rails_helper'
+
+  RSpec.describe Parking, type: :model do
+<span class="gd">-   pending "add some examples to (or delete) #{__FILE__}" 这行砍掉不需要
+</span><span class="gi">+   describe ".validate_end_at_with_amount" do
++
++     it "is invalid without amount" do
++       parking = Parking.new( :parking_type =&gt; "guest",
++                              :start_at =&gt; Time.now - 6.hours,
++                              :end_at =&gt; Time.now)
++       expect( parking ).to_not be_valid
++     end
++
++     it "is invalid without end_at" do
++       parking = Parking.new( :parking_type =&gt; "guest",
++                              :start_at =&gt; Time.now - 6.hours,
++                              :amount =&gt; 999)
++       expect( parking ).to_not be_valid
++     end
++   end
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 会看到绿色测试通过：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hi6VJhaSSeeiXPmDsVBm_2-1.png" title=""></figure></p>
+
+<p>不过，太顺利其实不是好事，假如我们把验证暂时注解掉：</p>
+
+<figure class="figure-code code"><figcaption><span>apps/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  class Parking &lt; ApplicationRecord
+
+<span class="gd">-  validate :validate_end_at_with_amount
+</span><span class="gi">+  # validate :validate_end_at_with_amount
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后把两个 <code>expect</code> 也注解掉试看看：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>
+      it "is invalid without amount" do
+        parking = Parking.new( :parking_type =&gt; "guest",
+                               :start_at =&gt; Time.now - 6.hours,
+                               :end_at =&gt; Time.now)
+<span class="gd">-       expect( parking ).to_not be_valid
+</span><span class="gi">+       # expect( parking ).to_not be_valid
+</span>      end
+
+      it "is invalid without end_at" do
+        parking = Parking.new( :parking_type =&gt; "guest",
+                               :start_at =&gt; Time.now - 6.hours,
+                               :amount =&gt; 999)
+<span class="gd">-       expect( parking ).to_not be_valid
+</span><span class="gi">+       # expect( parking ).to_not be_valid
+</span>      end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>你会发现跑测试也是一片绿：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YyY01abBRJix3Z7edxNV_2-1.png" title=""></figure></p>
+
+<p>这告诉我们如果没有先看到测试失败，那么测试成功可能只是幻觉：其实你的测试代码什么也没测到，结果也会是绿色通过。</p>
+
+<p>让我们把测试的注解改回来</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  # expect( parking ).to_not be_valid
+</span><span class="gi">+  expect( parking ).to_not be_valid
+</span>
+   (略)
+
+<span class="gd">-  # expect( parking ).to_not be_valid
+</span><span class="gi">+  expect( parking ).to_not be_valid
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>再跑一次测试：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/w3DDXl2eQbqsXmAuMDp0_2-2.png" title=""></figure></p>
+
+<p>红字了，这表示这个测试真的起了作用，因为我们注解掉 <code>validate :validate_end_at_with_amount</code> 的关系，所以测试失败了。</p>
+
+<p>接着请把 <code>validate :validate_end_at_with_amount</code> 的注解改回来：</p>
+
+<figure class="figure-code code"><figcaption><span>apps/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  class Parking &lt; ApplicationRecord
+
+<span class="gd">-  # validate :validate_end_at_with_amount
+</span><span class="gi">+  validate :validate_end_at_with_amount
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-5 完成基本架构
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来我们来制作 Controller 和网页表单，把操作流程做出来：</p>
+
+<ul>
+<li>Step1: 显示开始停车的表单</li>
+<li>Step2: 新建一笔停车，纪录下开始时间</li>
+<li>Step3: 显示结束停车的表单</li>
+<li>Step4: 结束一笔停车，记录下结束时间，并且计算停车费</li>
+<li>Step5: 显示停车费用</li>
+</ul>
+
+<p>首先修改 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  Rails.application.routes.draw do
+
+<span class="gi">+   resources :parkings
++   root "parkings#new"
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller parkings</code></p>
+
+<p>修改 <code>app/controllers/parkings_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/parkings_controller.rb
+</span></figcaption><div class="highlight"><pre>  class ParkingsController &lt; ApplicationController
+
+<span class="gi">+   # Step1: 显示开始停车的表单
++   def new
++     @parking = Parking.new
++   end
++
++   # Step2: 新建一笔停车，纪录下开始时间
++   def create
++     @parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; Time.now )
++     @parking.save!
++
++     redirect_to parking_path(@parking)
++   end
++
++   # Step3: 如果还没结束，显示结束停车的表单
++   # Step5: 如果已经结束，显示停车费用。
++   def show
++     @parking = Parking.find(params[:id])
++   end
++
++   # Step4: 结束一笔停车，记录下结束时间，并且计算停车费
++   def update
++     @parking = Parking.find(params[:id])
++     @parking.end_at = Time.now
++     @parking.calculate_amount
++
++     @parking.save!
++
++     redirect_to parking_path(@parking)
++   end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/parking.rb</code>，新增一个 <code>duration</code> 和 <code>calculate_amount</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>   class Parking &lt; ApplicationRecord
+
+     # (略)
+
+<span class="gi">+    # 计算停了多少分钟
++    def duration
++      ( end_at - start_at ) / 60
++    end
+</span>
+<span class="gi">+    def calculate_amount
++      # 如果有开始时间和结束时间，则可以计算价格
++      if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
++        self.amount = 9487   # TODO: 等会再来处理
++      end
++    end
++
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/parkings/new.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/parkings/new.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;全栈营停车费用计算&lt;/h1&gt;
+
+&lt;%= form_for @parking do |f| %&gt;
+
+  &lt;p&gt;&lt;%= f.submit "开始计费" %&gt;&lt;/p&gt;
+
+&lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/parkings/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/parkings/show.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;全栈营停车费用计算&lt;/h1&gt;
+
+&lt;% if @parking.amount.present? # 已经结束，显示停车费 %&gt;
+
+  &lt;p&gt;从 &lt;%= @parking.start_at %&gt; 至 &lt;%= @parking.end_at %&gt;&lt;p&gt;
+  &lt;p&gt;共 &lt;%= @parking.duration %&gt; 分钟&lt;/p&gt;
+  &lt;p&gt;总计 &lt;%= number_to_currency(@parking.amount.to_f / 100, :unit =&gt; "¥") %&gt; 元&lt;/p&gt;
+
+  &lt;p&gt;&lt;%= link_to "继续停车", new_parking_path %&gt;&lt;/p&gt;
+
+&lt;% else # 还没结束，显示结束按钮 %&gt;
+
+  &lt;%= form_for @parking do |f| %&gt;
+
+    &lt;p&gt;&lt;%= f.submit "结束计费" %&gt;&lt;/p&gt;
+
+  &lt;% end %&gt;
+
+&lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>让我们操作看看，浏览 <code>http://localhost:3000</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/d1QMZnSQQSRdLSlxhVEc_2-3.png" title=""></figure></p>
+
+<p>按下开始计费：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Aagn4jpRf6IQDskmpJ9u_2-4.png" title=""></figure></p>
+
+<p>按下结束计费：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/psJZUnWQky8eJF9kd8tU_2-5.png" title=""></figure></p>
+
+<p>最后显示时间是 UTC 有点奇怪，这是因为 Rails 默认的时区是 UTC，让我们改成北京时间：</p>
+
+<p>修改 <code>config/application.rb</code>，加上一行指定北京时区：</p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb
+</span></figcaption><div class="highlight"><pre>  module ParkingApp
+    class Application &lt; Rails::Application
+<span class="gi">+      config.time_zone = "Beijing"
+</span>    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>重开服务器再看一次就是北京时区了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rp4K2puJSsyxdHFjeRNc_2-6.png" title=""></figure></p>
+
+<blockquote>
+<p>无论设定什么时区，Rails 存进数据库一律是用 UTC 储存，这样在做跨时区的应用时，比大小才不会出错。这里有设定时区的话，Rails 会自动在读取和写入数据库的时候帮你转换时区。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-6 准备「一般费率」测试案例
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来让我们进攻这堂课的重点，计算停车的费率：未注册登入用户使用一般费率的规则：第一个小时 ¥2，之后每半小时 ¥1</p>
+
+<p>刚才在写测试的时候，有一个关键是要决定要测什么：准备测试案例可说是写测试的关键，要测哪些案例(example)才算这个程序是正确的。</p>
+
+<p>因此在开始写代码前，我们先梳理一下：根据上述的规则，我们脑力激荡一下列出所有可能测试案例的清单，特别是边界(edge case)的情形：</p>
+
+<table class="table">
+<tr>
+  <th>时间长度</th>
+  <th>总金额</th>
+</tr>
+<tr>
+  <td>30 分钟</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>60 分钟</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>61 分钟</td>
+  <td>3</td>
+</tr>
+<tr>
+  <td>90 分钟</td>
+  <td>3</td>
+</tr>
+<tr>
+  <td>120 分钟</td>
+  <td>4</td>
+</tr>
+</table>
+
+<p>列出所有需要测试的可能情况后，再删减掉明显重复的案例，例如测了 30 分钟，就不需要再测 15 分钟 或 45 分钟了，因为都在第一个小时内。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-7 开始撰写「一般费率」的测试
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们在 2-4 时，告诉各位写测试时，要看到测试失败，才表示测试有作用。</p>
+
+<p>因此，写测试的时机点，不一定是先写实作代码，再写测试代码。而可以是先写测试代码，再写实作代码。这样就顺理成章会先看到测试失败的情形。</p>
+
+<p>根据上一节准备的案例，我们开始写第一个测试案例：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  describe ".calculate_amount" do
++    it "30 mins should be ¥2" do
++      t = Time.now
++      parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 30.minutes )
++      parking.calculate_amount
++      expect(parking.amount).to eq(200)
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>用 describe 包起来只是用来分类测试案例而已，并没有什么真正的作用。这里用意是里面都是针对 calculate_amount 方法的测试。另外，describe 和 it 的第一个字串参数也只是描述，是可以打中文的，例如  <code>it "30 分钟应该是 2 元"</code></p>
+</blockquote>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 会出现红字测试失败：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6RBBCP5DSkuVxWzokLPk_2-7.png" title=""></figure></p>
+
+<p>开始实作，只需要让这个测试通过即可，先不用急着完成：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>   def calculate_amount
+     if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
+<span class="gd">-      self.amount = 9487 # TODO: 等会再来处理
+</span><span class="gi">+      if duration &lt;= 60
++        self.amount = 200
++      end
+</span>    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9ZdpwSTQQSuupEWYtpvC_2-8.png" title=""></figure></p>
+
+<p>增加 60 分钟的测试案例，注意到案例跟案例之间是互相独立、不会互相影响的(这样测试失败时，才不用怀疑是不是被别的测试影响到)，因此新增加的测试案例，里面需要的物件会重新建立。</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>   describe ".calculate_amount" do
+
+<span class="gi">+    it "60 mins should be ¥2" do
++      t = Time.now
++      parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 60.minutes )
++      parking.calculate_amount
++      expect( parking.amount ).to eq(200)
++    end
+</span>
+     # (略)
+   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试也通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bvgnKrMxSLeHBi8z9CFa_2-9.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-8 完成「一般费率」计算
+    </h1><h4>所属章节：2. 停车计费程序 Part 1</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>增加 61 分钟的测试案例：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+    it "61 mins should be ¥3" do
++      t = Time.now
++      parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 61.minutes )
++      parking.calculate_amount
++      expect( parking.amount ).to eq(300)
++    end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 会出现红字测试失败：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/e8h0p8gSkKM273oSbTRI_2-10.png" title=""></figure></p>
+
+<p>改实作：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>
+  def calculate_amount
+    if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
+<span class="gd">-     if duration &lt;= 60
+-       self.amount = 200
+-     end
+</span><span class="gi">+     total = 0
++     if duration &lt;= 60
++       total = 200
++     else
++       total += 200
++       left_duration = duration - 60
++       total += ( left_duration.to_f / 30 ).ceil * 100
++     end
++
++     self.amount = total
+</span>    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5lRF5XXFRy6ZGxyLHatA_2-11.png" title=""></figure></p>
+
+<p>增加 90 分钟的测试案例：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>it "90 mins should be ¥3" do
+  t = Time.now
+  parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 90.minutes )
+  parking.calculate_amount
+  expect( parking.amount ).to eq(300)
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/d5ONPqfTAWqkALmq1zyx_2-12.png" title=""></figure></p>
+
+<p>增加 120 分钟的测试案例：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>it "120 mins should be ¥4" do
+  t = Time.now
+  parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 120.minutes )
+  parking.calculate_amount
+  expect( parking.amount ).to eq(400)
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/APqzjPugTOWf4fMJTW2n_2-13.png" title=""></figure></p>
+
+<p>你会发现我们不需要一开始就把全部测试案例都先写上去(这样要一次通过所有测试会很辛苦)，而是新写一段测试码让测试失败，改一下实作让测试通过，然后再新写下一个测试码让测试失败，然后再改实作，如此迭代交替。</p>
+
+<p>这种技巧，在软件开发领域有一个很响亮的名称，叫做 TDD(Test-Driven Development)，流程是这样的：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9HKlzsNoQfm7A0zHddNw_tdd.jpg" title=""></figure></p>
+
+<p>流程的最后一步是重构，例如，我们可以整个方法改成更简洁的写法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  def calculate_amount
+    if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
+      if duration &lt;= 60
+        self.amount = 200
+      else
+        self.amount = 200 + ((duration - 60).to_f / 30).ceil * 100
+      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这时候再执行 <code>rspec spec/models/parking_spec.rb</code> 还是通过，就知道这个重构万无一失了。</p>
+
+<p>至此，我们完成了一般费率的计算，过程中不需要打开浏览器，或是进 <code>rails console</code> 进行检查。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 目标
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来实作有注册的登入用户，可以选择「短期费率」或「长期费率」：</p>
+
+<ul>
+<li>短期费率：第一个小时 ¥2，之后每半小时 ¥0.5</li>
+<li>长期费率：一天 ¥16，若停六小时以内 ¥12</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 装 Devise 产生 User Model
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>Gemfile</code> 加上 <code>gem "devise"</code></p>
+
+<p>执行 <code>bundle</code>，然后重启服务器</p>
+
+<p>执行 <code>rails g devise:install</code></p>
+
+<p>执行 <code>rails g devise user</code></p>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/views/layout/application.html.erb</code>，插入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre>
+  &lt;body&gt;
+<span class="gi">+   &lt;% if flash[:notice] %&gt;
++     &lt;%= flash[:notice] %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="gi">+   &lt;% if flash[:alert] %&gt;
++     &lt;%= flash[:alert] %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="gi">+  &lt;% if current_user %&gt;
++     &lt;%= link_to('登出', destroy_user_session_path, :method =&gt; :delete) %&gt;
++    &lt;%= link_to('修改密码', edit_registration_path(:user)) %&gt;
++  &lt;% else %&gt;
++    &lt;%= link_to('注册', new_registration_path(:user)) %&gt; |
++    &lt;%= link_to('登入', new_session_path(:user)) %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/user.rb</code>，加上 parkings 关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>
+ class User &lt; ApplicationRecord
+
+<span class="gi">+ has_many :parkings
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/parking.rb</code>，加上 user 关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre> class Parking &lt; ApplicationRecord
+
+<span class="gi">+ belongs_to :user, :optional =&gt; true
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>重启 Rails 服务器</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-3 修正前台接口
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>parkings_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/parkings_controller.rb
+</span></figcaption><div class="highlight"><pre>   def create
+<span class="gd">-    @parking = Parking.new( :parking_type =&gt; "guest", :start_at =&gt; Time.now )
+</span><span class="gi">+    @parking = Parking.new( :start_at =&gt; Time.now )
++
++    # 有登入的话，根据用户选的费率。没有登入的话，指定是 guest 费率
++    if current_user
++      @parking.parking_type = params[:parking][:parking_type]
++      @parking.user = current_user
++    else
++      @parking.parking_type = "guest"
++    end
++
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/parkings/new.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/parkings/new.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;%= form_for @parking do |f| %&gt;
+<span class="gi">+  &lt;% if current_user %&gt;
++
++    &lt;label&gt;
++      &lt;%= f.radio_button :parking_type, "short-term" %&gt; 短期费率
++    &lt;/label&gt;
++
++    &lt;label&gt;
++      &lt;%= f.radio_button :parking_type, "long-term" %&gt; 长期费率
++    &lt;/label&gt;
++
++  &lt;% else %&gt;
++    一般费率
++  &lt;% end %&gt;
++
+</span>
+   &lt;p&gt;&lt;%= f.submit "开始计费" %&gt;&lt;/p&gt;
+
+ &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/parkings/show.html.erb</code>，多加一行显示是哪一种费率：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/parkings/show.html.erb
+</span></figcaption><div class="highlight"><pre>
+  &lt;% if @parking.amount.present? # 已经结束，显示停车费 %&gt;
+
+<span class="gi">+   &lt;p&gt;计费方式 &lt;%= @parking.parking_type %&gt;&lt;/p&gt;
+</span>
+    # (略)
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>实际注册和登入之后，就可以操作看看了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Nb2t2VeeSrypTuQMbapZ_3-1.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xUWuKmNQ7eVmOOtkC9Gs_3-2.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/CIQyLThSqO9orIrccmLA_3-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-4 准备「短期费率」测试案例
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>和准备「一般费率」测试案例一样，让我们列出「短期费率」需要测试的清单：</p>
+
+<table class="table">
+<tr>
+  <th>时间长度</th>
+  <th>总金额</th>
+</tr>
+<tr>
+  <td>30 分钟</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>60 分钟</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td>61 分钟</td>
+  <td>2.5</td>
+</tr>
+<tr>
+  <td>90 分钟</td>
+  <td>2.5</td>
+</tr>
+<tr>
+  <td>120 分钟</td>
+  <td>3</td>
+</tr>
+</table>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-5 开始撰写「短期费率」的测试
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>现在 <code>calculate_amount</code> 方法里面有两种计费方式，我们可以用 <code>context</code> 语法来分类，一个区块是<code>context "guest"</code>，另一个区块是<code>context "short-term"</code>。</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>  describe ".calculate_amount" do
+<span class="gi">+   context "guest" do
+</span>      # (略，本来的一般费率测试放在这层)
+<span class="gi">+   end
++
++   context "short-term" do
++     it "30 mins should be ¥2" do
++       t = Time.now
++       parking = Parking.new( :parking_type =&gt; "short-term",
++                              :start_at =&gt; t, :end_at =&gt; t + 30.minutes )
++       parking.user = User.create(:email =&gt; "test@example.com", :password =&gt; "123455678")
++
++       parking.calculate_amount
++       expect(parking.amount).to eq(200)
++     end
++
++     it "60 mins should be ¥2" do
++       t = Time.now
++       parking = Parking.new( :parking_type =&gt; "short-term",
++                              :start_at =&gt; t, :end_at =&gt; t + 60.minutes )
++       parking.user = User.create(:email =&gt; "test@example.com", :password =&gt; "123455678")
++
++       parking.calculate_amount
++       expect( parking.amount ).to eq(200)
++     end
++
++     it "61 mins should be ¥2.5" do
++       t = Time.now
++       parking = Parking.new( :parking_type =&gt; "short-term",
++                              :start_at =&gt; t, :end_at =&gt; t + 61.minutes )
++       parking.user = User.create(:email =&gt; "test@example.com", :password =&gt; "123455678")
++
++       parking.calculate_amount
++
++       expect( parking.amount ).to eq(250)
++     end
++
++     it "90 mins should be ¥2.5" do
++       t = Time.now
++       parking = Parking.new( :parking_type =&gt; "short-term",
++                              :start_at =&gt; t, :end_at =&gt; t + 90.minutes )
++       parking.user = User.create(:email =&gt; "test@example.com", :password =&gt; "123455678")
++
++       parking.calculate_amount
++       expect( parking.amount ).to eq(250)
++     end
++
++     it "120 mins should be ¥3" do
++       t = Time.now
++       parking = Parking.new( :parking_type =&gt; "short-term",
++                              :start_at =&gt; t, :end_at =&gt; t + 120.minutes )
++       parking.user = User.create(:email =&gt; "test@example.com", :password =&gt; "123455678")
++
++       parking.calculate_amount
++       expect( parking.amount ).to eq(300)
++     end
++
++   end
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>context 和 describe 作用一模一样，单纯只是分类组织而已，没有实际作用</p>
+</blockquote>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 测试失败。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/jdpXuVHS8G1ECfenvxnX_3-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-6 增加实作
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>一般费率和短期费率，只有差在停了一小时后，前者是每半小时 ¥1，后者是 ¥0.5，我们很快地就修好实作了：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  def calculate_amount
+<span class="gi">+    factor = (self.user.present?)? 50 : 100
+</span>
+    if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
+      if duration &lt;= 60
+        self.amount = 200
+      else
+<span class="gd">-        self.amount = 200 + ((duration - 60).to_f / 30).ceil * 100
+</span><span class="gi">+        self.amount = 200 + ((duration - 60).to_f / 30).ceil * factor
+</span>      end
+    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 全部测试通过。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/g2vPTGmSTumjAscNSKWz_3-5.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-7 重构测试码
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了实作代码，测试代码也可以重构。不同案例之间如果有重复用到的变量，可以抽取出来放在 <code>before</code> 区块：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre>
+  describe ".calculate_amount" do
+<span class="gi">+   before do
++     # 把每个测试都会用到的 @time 提取出来，这个 before 区块会在这个 describe 内的所有测试前执行
++     @time = Time.new(2017,3, 27, 8, 0, 0) # 固定一个时间比 Time.now 更好，这样每次跑测试才能确保一样的结果
++   end
+</span>
+    context "guest" do
+
+<span class="gi">+     before do
++       # 把每个测试都会用到的 @parking 提取出来，这个 before 区块会在这个 context 内的所有测试前执行
++       @parking = Parking.new( :parking_type =&gt; "guest", :user =&gt; @user, :start_at =&gt; @time )
++     end
+</span>
+      it "30 mins should be ¥2" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new(:parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 30.minutes)
+-       parking.calculate_amount
+-       expect(parking.amount).to eq(200)
+</span><span class="gi">+       @parking.end_at = @time + 30.minutes
++       @parking.calculate_amount
++       expect(@parking.amount).to eq(200)
+</span>      end
+
+      it "60 mins should be ¥2" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new(:parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 60.minutes)
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(200)
+</span><span class="gi">+       @parking.end_at = @time + 60.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(200)
+</span>      end
+
+      it "61 mins should be ¥3" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new(:parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 61.minutes)
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(300)
+</span><span class="gi">+       @parking.end_at = @time + 61.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(300)
+</span>      end
+
+      it "90 mins should be ¥3" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new(:parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 90.minutes)
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(300)
+</span><span class="gi">+       @parking.end_at = @time + 90.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(300)
+</span>      end
+
+      it "120 mins should be ¥4" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new(:parking_type =&gt; "guest", :start_at =&gt; t, :end_at =&gt; t + 120.minutes)
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(400)
+</span><span class="gi">+       @parking.end_at = @time + 120.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(400)
+</span>      end
+    end
+
+    context "short-term" do
+
+<span class="gi">+     before do
++       # 把每个测试都会用到的 @user 和 @parking 提取出来
++       @user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
++       @parking = Parking.new( :parking_type =&gt; "short-term", :user =&gt; @user, :start_at =&gt; @time )
++     end
+</span>
+      it "30 mins should be ¥2" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new( :parking_type =&gt; "short-term",
+-                              :start_at =&gt; t, :end_at =&gt; t + 30.minutes )
+-       parking.user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
+-       parking.calculate_amount
+-       expect(parking.amount).to eq(200)
+</span><span class="gi">+       @parking.end_at = @time + 30.minutes
++       @parking.calculate_amount
++       expect(@parking.amount).to eq(200)
+</span>      end
+
+      it "60 mins should be ¥2" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new( :parking_type =&gt; "short-term",
+-                              :start_at =&gt; t, :end_at =&gt; t + 60.minutes )
+-       parking.user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(200)
+</span><span class="gi">+       @parking.end_at = @time + 60.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(200)
+</span>      end
+
+      it "61 mins should be ¥2.5" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new( :parking_type =&gt; "short-term",
+-                              :start_at =&gt; t, :end_at =&gt; t + 61.minutes )
+-       parking.user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(250)
+</span><span class="gi">+       @parking.end_at = @time + 61.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(250)
+</span>      end
+
+      it "90 mins should be ¥2.5" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new( :parking_type =&gt; "short-term",
+-                              :start_at =&gt; t, :end_at =&gt; t + 90.minutes )
+-       parking.user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(250)
+</span><span class="gi">+       @parking.end_at = @time + 90.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(250)
+</span>      end
+
+      it "120 mins should be ¥3" do
+<span class="gd">-       t = Time.now
+-       parking = Parking.new( :parking_type =&gt; "short-term",
+-                              :start_at =&gt; t, :end_at =&gt; t + 120.minutes )
+-       parking.user = User.create( :email =&gt; "test@example.com", :password =&gt; "123455678")
+-       parking.calculate_amount
+-       expect( parking.amount ).to eq(300)
+</span><span class="gi">+       @parking.end_at = @time + 120.minutes
++       @parking.calculate_amount
++       expect( @parking.amount ).to eq(300)
+</span>      end
+    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>但是，也不能做的太过分，例如把所有测试案例改写成循环:</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="c1"># 不好的例子，请不要这么写
+</span>
+<span class="p">[[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">400</span><span class="p">]].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span>
+  <span class="n">it</span> <span class="s2">"</span><span class="si">#{</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> mins should be </span><span class="si">#{</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">do</span>
+    <span class="vi">@parking</span><span class="p">.</span><span class="nf">end_at</span> <span class="o">=</span> <span class="vi">@time</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">minutes</span>
+    <span class="vi">@parking</span><span class="p">.</span><span class="nf">calculate_amount</span>
+    <span class="n">expect</span><span class="p">(</span><span class="vi">@parking</span><span class="p">.</span><span class="nf">amount</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这样就太过分了，因为测试码需要尽量好读，每一个测试案例尽量清楚，能一眼就看出来要测试什么。</p>
+
+<p>因此测试代码比实作还多行是正常的，请耐着性子看完，你会发现其实非常平铺直叙，就是 1. 建立测试资料 2.执行程序 3. 检查结果</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-8 扩充长期费率计算
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>长期费率的计算，跟前两者差比较多。让我们来调整看看。来修改 <code>calulate_amount</code> 方法，根据不同费率呼叫不同计算方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>  def calculate_amount
+    if self.amount.blank? &amp;&amp; self.start_at.present? &amp;&amp; self.end_at.present?
+      if self.user.blank?
+        self.amount = calculate_guest_term_amount  # 一般费率
+      elsif self.parking_type == "long-term"
+          self.amount = calculate_long_term_amount # 长期费率
+      elsif self.parking_type == "short-term"
+        self.amount = calculate_short_term_amount  # 短期费率
+      end
+    end
+  end
+
+  def calculate_guest_term_amount
+    if duration &lt;= 60
+      self.amount = 200
+    else
+      self.amount = 200 + ((duration - 60).to_f / 30).ceil * 100
+    end
+  end
+
+  def calculate_short_term_amount
+    if duration &lt;= 60
+      self.amount = 200
+    else
+      self.amount = 200 + ((duration - 60).to_f / 30).ceil * 50
+    end
+  end
+
+  def calculate_long_term_amount
+    # TODO
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>在跑一次测试，一片绿，非常好!! 这样修改 calulate_amount 有测试安全网太棒了。</p>
+
+<p>剩下一个计算长期费率的就当作挑战作业吧。</p>
+
+<blockquote>
+<p>在测试代码中，你可以直接 <code>puts</code> 变量，跑测试的时候就会印出来了。这是最简单的除错方式。或是你可以在任意地方放 <code>byebug</code> 下中断点，就会在执行到那一行时停下来，可以检查变量，输入 <code>continue</code> 就会继续执行下去。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-9 如何在测试除错
+    </h1><h4>所属章节：3. 停车计费程序 Part 2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在测试代码中，你可以直接 <code>puts</code> 变量，跑测试的时候就会印出来了。这是最简单的除错方式。</p>
+
+<p>例如我们想观察一下执行 <code>calculate_amount</code> 方法时，里面的 <code>parking_type</code> 长怎样：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>   def calculate_amount
+<span class="gi">+    puts "----"
++    puts self.parking_type
++    puts "----"
+</span>    # (略)
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 会发现每个测试都印出来了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rffoc2SSzySB5iBstbGT_3-6.png" title=""></figure></p>
+
+<p>但是这样可能不是我们除错时想要的，有没有办法只跑我想要除错的那一个测试案例?</p>
+
+<p>方法一：暂时注解掉其他的测试案例，只留下一个就好了<br>
+方法二：请编辑 <code>spec/rails_helper.rb</code>，加上两行设定：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/rails_helper.rb
+</span></figcaption><div class="highlight"><pre>  RSpec.configure do |config|
+  # (略)
+
+<span class="gi">+  config.filter_run :focus =&gt; true
++  config.run_all_when_everything_filtered = true
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后修改 <code>spec/models/parking_spec.rb</code> 针对你想要单独测试的案例，加上 <code>:focus =&gt; true</code>，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-     it "30 mins should be ¥2" do
+</span><span class="gi">+     it "30 mins should be ¥2", :focus =&gt; true do
+</span>        @parking.end_at = @time + 30.minutes
+        @parking.save
+        expect(@parking.amount).to eq(200)
+      end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>再跑一次测试 <code>rspec spec/models/parking_spec.rb</code> 就只会跑这个测试了。除错完毕把 <code>:focus =&gt; true</code> 移除就可以了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/uloagW4TpuJuMAfYr5DI_3-7.png" title=""></figure></p>
+
+<p>除了用 <code>puts</code>，你也可以在用 <code>byebug</code> 下中断点(这是一个内建的gem，你在Gemfile里面可以看到)，就会在执行到那一行时停下来，可以检查变量，输入 <code>continue</code> 就会继续执行下去。</p>
+
+<p>例如</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre>   def calculate_amount
+<span class="gi">+    byebug
+</span>     # (略)
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/models/parking_spec.rb</code> 会发现停在中途，这时候可以检查变量。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/w7rDU6USISRDJxRv8Pe6_3-8.png" title=""></figure></p>
+
+<p>最后输入 <code>continue</code> 就会继续执行下去。这一招不只在测试可以用，平常开发除错也可以使用：<code>rails server</code> 服务器就会在你下中断点的地方暂时停止以供除错。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5GvxAYg4SeCqK7h4nUws_3-9.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 目标
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>单元测试是针对单一类别和方法进行测试，但是对一个系统来说，单一组件运作正常，不代表整个系统运作正常。就像这张 GIF 图一样，锁是正常运作的，门也是正常运作的，但是组起来不OK啊。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/uz9dSFmyQduBvUqyhyeO_4-1.gif" title=""></figure></p>
+
+<p>刚才我们只测试了 Parking model，但是整个 Rails 还包括 Router、Controller 和 View。</p>
+
+<p>这时候可以撰写所谓的用户验收测试，在 Rspec 中叫做 Feature Spec。这会模拟用户操作浏览器的行为，来对 Rails 进行整合性的测试。</p>
+
+<blockquote>
+<p>在稍后的补充我们会提到也可以针对 Router、Controller 和 View 进行做单元测试，但是效益不大，因为用 Model Spec 和 Feature Spec 就可以大致涵盖我们的测试需要了。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 Capybara 安装
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Capybara 这个 gem 会用来搭配 Rspec 进行 Feature Spec 测试，请先安装：</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  group :development, :test do
+    gem 'rspec-rails'
+<span class="gi">+   gem 'capybara'
+</span>    gem 'byebug', platform: :mri
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>编辑 <code>spec/rails_helper.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/rails_helper.rb
+</span></figcaption><div class="highlight"><pre>   # (略)
+   require 'spec_helper'
+   require 'rspec/rails'
+
+<span class="gi">+  require 'capybara/rails'
++  require 'capybara/rspec'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-3 测试「一般费率」缴费流程
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>执行 <code>mkdir spec/features</code> 建立验收测试的目录</p>
+
+<p>新增 <code>spec/features/guest_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/features/guest_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="n">feature</span> <span class="s2">"parking"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:feature</span> <span class="k">do</span>
+
+  <span class="n">scenario</span> <span class="s2">"guest parking"</span> <span class="k">do</span>
+    <span class="c1"># Step 1
+</span>
+    <span class="n">visit</span> <span class="s2">"/"</span>            <span class="c1"># 浏览首页
+</span>
+    <span class="c1"># save_and_open_page # 这会存下测试当时的 HTML 页面
+</span>
+    
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"一般费率"</span><span class="p">)</span> <span class="c1"># 检查 HTML 中要出现 "一般费率" 文字
+</span>
+
+    <span class="c1"># Step 2
+</span>
+    <span class="n">click_button</span> <span class="s2">"开始计费"</span> <span class="c1"># 按这个按钮
+</span>
+    <span class="c1"># Step 3:
+</span>
+    <span class="n">click_button</span> <span class="s2">"结束计费"</span> <span class="c1"># 按这个按钮
+</span>
+    <span class="c1"># Step 4: 看到费用画面
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"¥2.00"</span><span class="p">)</span>  <span class="c1"># 检查 HTML 中要出现 ¥2.00 文字
+</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+
+</pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/features/guest_spec.rb</code> 测试会通过。</p>
+
+<p>你可以试试看稍微更动画面的文字，就会发现测试失败。例如拿掉开始计费按钮之类的。</p>
+
+<p>说明一下：</p>
+
+<ol>
+<li>
+<code>feature</code> 的作用等同于 <code>describe</code>，<code>scenario</code> 的作用等同于 <code>it</code>
+</li>
+<li>这里用了 <code>have_content</code> 来检查指定文字有没有出现在 HTML 里面。Web 应用的测试，没办法去完整比对 HTML 字串，因为字串比对差一个空白就不一样。如果说设计师稍微多加一个 <code>&lt;br&gt;</code> 就要改测试，这样就太累了，测试会太敏感。所以我们只能检查说 HTML 里面有出现我们希望要有的关键字。</li>
+<li>注意到我们不需要再重复测试金额对不对了，在前几章单元测试中我们已经确定这部分的元件正常。Feature Spec 的重点在于检查东西(Model + Controller + View)接起来有没有正常运作。</li>
+<li>被注解掉的 <code>save_and_open_page</code> 会存下测试当时的 HTML 页面，除错的时候可以使用。如果打开的话，跑测试会出现：</li>
+</ol>
+
+<figure class="figure-code code"><figcaption><span>spec/features/guest_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">- # save_and_open_page
+</span><span class="err">+ save_and_open_page
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/939nupNT9GxXu7ov5ELo_4-2.png" title=""></figure></p>
+
+<p>你会找到存下来的 HTML 档名，执行 <code>open tmp/capybara/capybara-xxxxxx.html</code> 就可以直接用默认浏览器打开看看。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-4 测试注册流程
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>测试用户注册的流程：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/features/auth_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="n">feature</span> <span class="s2">"register and login"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:feature</span> <span class="k">do</span>
+
+  <span class="n">scenario</span> <span class="s2">"register"</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="s2">"/users/sign_up"</span>  <span class="c1"># 浏览注册页面
+</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"Sign up"</span><span class="p">)</span>
+
+    <span class="n">within</span><span class="p">(</span><span class="s2">"#new_user"</span><span class="p">)</span> <span class="k">do</span>  <span class="c1"># 填表单
+</span>
+      <span class="n">fill_in</span> <span class="s2">"Email"</span><span class="p">,</span> <span class="ss">with: </span><span class="s2">"foobar@example.com"</span>
+      <span class="n">fill_in</span> <span class="s2">"Password"</span><span class="p">,</span> <span class="ss">with: </span><span class="s2">"12345678"</span>
+      <span class="n">fill_in</span> <span class="s2">"Password confirmation"</span><span class="p">,</span> <span class="ss">with: </span><span class="s2">"12345678"</span>
+    <span class="k">end</span>
+
+    <span class="n">click_button</span> <span class="s2">"Sign up"</span>
+    <span class="c1"># 检查文字。这文字是 Devise 默认会放在 flash[:notice] 上的
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"Welcome! You have signed up successfully"</span><span class="p">)</span>
+
+    <span class="c1"># 检查数据库里面最后一笔真的有刚刚填的资料
+</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">last</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">email</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"foobar@example.com"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>这里我们模拟用户填写表单送出的情况，用<code>fill_in</code>可以填入值。最后除了检查画面上有没有出现想要的关键字，也可以检查资料有没有正确存进数据库。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-5 测试登入登出流程
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>测试用户登入登出的流程：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/features/auth_spec.rb
+</span></figcaption><div class="highlight"><pre>  <span class="n">feature</span> <span class="s2">"register and login"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:feature</span> <span class="k">do</span>
+
+<span class="o">+</span>  <span class="n">scenario</span> <span class="s2">"login and logout"</span> <span class="k">do</span>
+<span class="o">+</span>    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"foobar@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">)</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">visit</span> <span class="s2">"/users/sign_in"</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">within</span><span class="p">(</span><span class="s2">"#new_user"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">+</span>      <span class="n">fill_in</span> <span class="s2">"Email"</span><span class="p">,</span> <span class="ss">with: </span><span class="s2">"foobar@example.com"</span>
+<span class="o">+</span>      <span class="n">fill_in</span> <span class="s2">"Password"</span><span class="p">,</span> <span class="ss">with: </span><span class="s2">"12345678"</span>
+<span class="o">+</span>    <span class="k">end</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">click_button</span> <span class="s2">"Log in"</span>  <span class="c1"># 点击登入按钮
+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"Signed in successfully"</span><span class="p">)</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">click_link</span> <span class="s2">"登出"</span>  <span class="c1"># 点击主选单的登出超连结
+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"Signed out successfully"</span><span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-6 测试「短期费率」流程
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要操作「短期费率」必须登入。但是登入刚刚已经测试过了，不需要再用 capybara 再走一次。Devise 有提供测试用的 <code>sign_in</code> 方法，请修改 <code>spec/rails_helper.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/rails_helper.rb
+</span></figcaption><div class="highlight"><pre>  RSpec.configure do |config|
+
+<span class="gi">+    config.include Devise::Test::ControllerHelpers, type: :controller
++    config.include Devise::Test::ControllerHelpers, type: :view
++    config.include Devise::Test::IntegrationHelpers, type: :feature
+</span>
+  # (略)
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>spec/features/short_term_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/features/short_term_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="n">feature</span> <span class="s2">"parking"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:feature</span> <span class="k">do</span>
+
+  <span class="n">scenario</span> <span class="s2">"short-term parking"</span> <span class="k">do</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"foobar@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">)</span>
+    <span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="c1"># 这样就可以登入了
+</span>
+
+    <span class="n">visit</span> <span class="s2">"/"</span>
+    <span class="n">choose</span> <span class="s2">"短期费率"</span>  <span class="c1"># 选 radio button
+</span>
+
+    <span class="n">click_button</span> <span class="s2">"开始计费"</span>
+
+    <span class="n">click_button</span> <span class="s2">"结束计费"</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s2">"¥2.00"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>执行 <code>rspec spec/features/short_term_spec.rb</code> 测试通过。</p>
+
+<p>这里用了 <code>choose</code> 来对 Radio 按钮做选择，在 capybara 中还有提供其他方法针对不同表单元件做操作，例如：</p>
+
+<ul>
+<li>check "核选方块名称"</li>
+<li>uncheck "核选方块名称"</li>
+<li>select "选项名称", :from =&gt; "下拉选单名称"</li>
+<li>attach_file 上传档案</li>
+</ul>
+
+<p>详细用法请参考 <a href="https://github.com/teamcapybara/capybara">capybara</a> 文件。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-7 故意修改 Model API
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>做到这里，假设我们想回来修改一下 Model，这个 <code>calculate_amount</code> 其实可以放在回呼(callback)里面，这样只要 <code>save</code> 存进数据库时就会自动计算，不需要手动呼叫<code>calculate_amount</code>，也不需要检查 <code>amount</code> 必填了。然后我们有点故意地顺便改个方法名称：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/parking.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  before_validation :setup_amount
+</span>
+<span class="gd">-  def calculate_amount
+</span><span class="gi">+  def setup_amount
+</span>
+   # (略)
+   def validate_end_at_with_amount
+<span class="gd">-    if ( end_at.present? &amp;&amp; amount.blank? )
+-      errors.add(:amount, "有结束时间就必须有金额")
+-    end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>spec/models/parking_spec.rb</code> 中把所有 <code>calculate_amount</code> 改成 <code>save</code>(有多处请都修改到)：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb`
+</span></figcaption><div class="highlight"><pre><span class="gd">-        @parking.calculate_amount
+</span><span class="gi">+        @parking.save
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>之前提过测试案例跟案例之间是互相独立、不会互相影响的(这样测试失败时，才不用怀疑是不是被别的测试影响到)。每个测试案例，里面需要的物件会重新建立。跑自动化测试用的数据库跟开发用的不一样(在config/database.yml里面会设定<code>test</code>环境用的数据库，并用 <code>db/schema.rb</code> 的定义建立测试用数据库)。另外，如果你有 <code>save</code> 存进数据库的话，Rails 也会在跑完测试案例后，自动复原砍掉该测试案例新增的资料。</p>
+</blockquote>
+
+<p>删除检查 amount 必填的测试：</p>
+
+<figure class="figure-code code"><figcaption><span>spec/models/parking_spec.rb`
+</span></figcaption><div class="highlight"><pre><span class="gd">-     it "is invalid without amount" do
+-       parking = Parking.new( :parking_type =&gt; "guest",
+-                              :start_at =&gt; Time.now - 6.hours,
+-                              :end_at =&gt; Time.now)
+-       expect( parking ).to_not be_valid
+-     end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后再跑一次 <code>rspec spec/models/parking_spec.rb</code> 测试全部通过。</p>
+
+<p>但是呢，这个 Parking model 元件是好的。但是其实跑验收其实是烂的，因为我们改了 Parking model 的 API。</p>
+
+<p>执行 <code>rspec spec/features/guest_spec.rb</code>：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zfQoGpQ9e41sPYmLiFwA_4-3.png" title=""></figure></p>
+
+<p>这告诉我们单元测试的局限性，验收测试帮助我们检查了整个系统整合起来是正常的。</p>
+
+<p>修改 <code>app/controllers/parkings_controller.rb</code>，砍掉 <code>@parking.calculate_amount</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/parkings_controller.rb
+</span></figcaption><div class="highlight"><pre>   def update
+     @parking = Parking.find(params[:id])
+     @parking.end_at = Time.now
+<span class="gd">-    @parking.calculate_amount
+</span>
+     @parking.save!
+
+    redirect_to parking_path(@parking)
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>再跑一次 <code>rspec spec/features/guest_spec.rb</code> 就通过了。</p>
+
+<p>刚刚都是跑单个测试档案，如果要跑全部测试，可以执行 <code>rake spec</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-8 小结
+    </h1><h4>所属章节：4. 用户验收测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>刚刚都是跑单个测试档案，要一次跑全部的测试的话，请执行 <code>rake spec</code></p>
+
+<p>通常我们会在 git push 前，尽量跑过一次全部的测试。实际部署上 production 服务器前，也一定会执行 <code>rake spec</code> 检查所有测试都必须通过。一个项目如果有良好的测试涵盖，那么透过执行自动化测试可以大幅减少人工测试的时间，确保这次的修改一切功能正常，增加成功上线的把握。</p>
+
+<p>至于验收测试什么时候写? 要写多少呢?</p>
+
+<ul>
+<li>相对于单元测试，验收测试通常是在功能完成之后才撰写，主要的目的其实是做「回归测试(Regression Testing」，旨在检验软件原有功能在修改后是否保持正常，每次部署新版本上线前，会跑全部的测试做回归测试检查，看看有没有东西被弄坏了，是一种投资未来的测试。</li>
+<li>单元测试通常是跟该功能一起由开发者完成，验收测试则会另外开任务，并可能由另一个开发者(或专门的测试工程师)来完成会更好。</li>
+<li>撰写验收测试会花额外的时间，而且比较脆弱。因为页面流程一改、或是改个文案，测试就得跟着改。因此通常我们只会针对网站最常用的功能(Happy Path)，来撰写验收测试报资报酬率最高。</li>
+<li>验收测试很难完全取代人工验证，因为有太多东西是很难验证的，例如 CSS、画面颜色、按钮位置等等。如果要做到自动检查画面完全一模一样，会耗费很大的维护成本。</li>
+<li>因此相对于新创公司还在时常变动功能的软件，成熟期的软件比较会投资在完整的验收测试，特别是 B2B 领域，因为软件出错对客户造成的损失是很大的。</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-1 目标
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <blockquote>
+<p>这一章依赖 <a href="https://fullstack.xinshengdaxue.com/courses/38/syllabus">Web API 设计实作</a> 课程，如果你还没有完成，请先回去完成或先跳过。</p>
+</blockquote>
+
+<p>跟上一章讲到验收测试，并且提到了自动化测试 HTML 的局限性。接下来我们来谈谈 Web API 的自动化测试。</p>
+
+<p>和 HTML 不同，Web API 的 JSON 可以完全被程序自动验证(后端工程师欢呼!)。因此写自动化测试，可以完全取代用 Postman 手动测试的过程，连浏览器都不需要打开。</p>
+
+<p>在前后端团队分离的公司里面(前端包括 iOS、Android 或 Web App)，所谓的后端工程师就是专门提供这些 Web API 给前端使用，并透过自动化测试来验证结果和保证质量。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-2 安装 rspec-rails
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来请回到 Web API 设计实作 课程的订票专案。</p>
+
+<p>编辑 Gemfile</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  group :development, :test do
+
+<span class="gi">+   gem 'rspec-rails'
+</span>    gem 'byebug', platform: :mri
+
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>执行 <code>rails g rspec:install</code></p>
+
+<p>执行 <code>rm -rf test</code></p>
+
+<p>执行 <code>git add .</code> 和 <code>git commit -m "Add Rspec"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-3 测试注册 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Web API 测试的重点是：</p>
+
+<ol>
+<li>检查回传的 HTTP 状态码</li>
+<li>检查回传的 JSON</li>
+<li>检查资料真的有被新建、修改或删除</li>
+</ol>
+
+<p>执行 <code>mkdir spec/requests/</code> <br>
+新增 <code>spec/requests/auth_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/auth_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"API_V1::Auth"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:request</span> <span class="k">do</span>
+
+  <span class="n">example</span> <span class="s2">"register"</span> <span class="k">do</span>
+    <span class="n">post</span> <span class="s2">"/api/v1/signup"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test2@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">}</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="c1"># 检查数据库中真的有存进去
+</span>
+    <span class="n">new_user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">last</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">new_user</span><span class="p">.</span><span class="nf">email</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"test2@example.com"</span><span class="p">)</span>
+
+    <span class="c1"># 检查回传的 JSON
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:user_id</span> <span class="o">=&gt;</span> <span class="n">new_user</span><span class="p">.</span><span class="nf">id</span> <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"register failed"</span> <span class="k">do</span>
+    <span class="n">post</span> <span class="s2">"/api/v1/signup"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test2@example.com"</span> <span class="p">}</span>
+
+    <span class="c1"># 测试没有传密码，注册失败的情形
+</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"Failed"</span><span class="p">,</span> <span class="ss">:errors</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:password</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"can't be blank"</span><span class="p">]}</span>  <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<blockquote>
+<p><code>example</code> 和 <code>it</code> 的作用是一样的</p>
+</blockquote>
+
+<p>执行 <code>rspec spec/requests/auth_spec.rb</code> 测试通过。</p>
+
+<p>两个测试案例分别测试成功和失败的情形。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-4 测试登入登出 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>spec/requests/auth_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/auth_spec.rb
+</span></figcaption><div class="highlight"><pre>  <span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+  <span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"API_V1::Auth"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:request</span> <span class="k">do</span>
+
+  <span class="c1"># (略)...
+</span>
+
+<span class="o">+</span>  <span class="n">before</span> <span class="k">do</span>
+<span class="o">+</span>    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+<span class="o">+</span>
+<span class="o">+</span>  <span class="n">example</span> <span class="s2">"valid login and logout"</span> <span class="k">do</span>
+<span class="o">+</span>    <span class="n">post</span> <span class="s2">"/api/v1/login"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span>
+<span class="o">+</span>                                    <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span> <span class="p">}</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="o">+</span>    <span class="c1"># 检查回传的 JSON
+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span>
+<span class="o">+</span>      <span class="p">{</span>
+<span class="o">+</span>        <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"Ok"</span><span class="p">,</span>
+<span class="o">+</span>        <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span>
+<span class="o">+</span>        <span class="ss">:user_id</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">id</span>
+<span class="o">+</span>      <span class="p">}.</span><span class="nf">to_json</span>
+<span class="o">+</span>    <span class="p">)</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">post</span> <span class="s2">"/api/v1/logout"</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="n">post</span> <span class="s2">"/api/v1/logout"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span> <span class="p">}</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="o">+</span>    <span class="n">old_token</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span>
+<span class="o">+</span>    <span class="vi">@user</span><span class="p">.</span><span class="nf">reload</span>
+<span class="o">+</span>    <span class="c1"># 检查登出后 `authentication_token` 会改掉
+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">).</span><span class="nf">not_to</span> <span class="n">eq</span><span class="p">(</span><span class="n">old_token</span><span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+<span class="o">+</span>
+<span class="o">+</span>  <span class="n">example</span> <span class="s2">"invalid auth token login"</span> <span class="k">do</span>
+<span class="o">+</span>    <span class="n">post</span> <span class="s2">"/api/v1/login"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span>
+<span class="o">+</span>                                    <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"xxx"</span> <span class="p">}</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="c1"># 检查登入失败回传 401
+</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+<span class="o">+</span>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span>
+<span class="o">+</span>      <span class="p">{</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"Email or Password is wrong"</span> <span class="p">}.</span><span class="nf">to_json</span>
+<span class="o">+</span>    <span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>两个测试案例测试登入成功和登入失败。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-5 测试查询列车 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>spec/requests/train_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/train_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"API_V1::Trains"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:request</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@train1</span> <span class="o">=</span> <span class="no">Train</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:number</span> <span class="o">=&gt;</span> <span class="s2">"0822"</span><span class="p">)</span>
+    <span class="vi">@train2</span> <span class="o">=</span> <span class="no">Train</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:number</span> <span class="o">=&gt;</span> <span class="s2">"0603"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"GET /api/v1/trains"</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s2">"/api/v1/trains"</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="n">expected_result</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"meta"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"current_page"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"total_pages"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"per_page"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="s2">"total_entries"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"next_url"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+        <span class="s2">"previous_url"</span><span class="p">:</span> <span class="kp">nil</span>
+      <span class="p">},</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s2">"number"</span><span class="p">:</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">number</span><span class="p">,</span>
+          <span class="s2">"logo_url"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_file_size"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_content_type"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"available_seats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"1A"</span><span class="p">,</span><span class="s2">"1B"</span><span class="p">,</span><span class="s2">"1C"</span><span class="p">,</span><span class="s2">"2A"</span><span class="p">,</span><span class="s2">"2B"</span><span class="p">,</span><span class="s2">"2C"</span><span class="p">,</span><span class="s2">"3A"</span><span class="p">,</span><span class="s2">"3B"</span><span class="p">,</span><span class="s2">"3C"</span><span class="p">,</span><span class="s2">"4A"</span><span class="p">,</span><span class="s2">"4B"</span><span class="p">,</span><span class="s2">"4C"</span><span class="p">,</span><span class="s2">"5A"</span><span class="p">,</span><span class="s2">"5B"</span><span class="p">,</span><span class="s2">"5C"</span><span class="p">,</span><span class="s2">"6A"</span><span class="p">,</span><span class="s2">"6B"</span><span class="p">,</span><span class="s2">"6C"</span><span class="p">],</span>
+          <span class="s2">"created_at"</span><span class="p">:</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">created_at</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">"number"</span><span class="p">:</span> <span class="vi">@train2</span><span class="p">.</span><span class="nf">number</span><span class="p">,</span>
+          <span class="s2">"logo_url"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_file_size"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_content_type"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"available_seats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"1A"</span><span class="p">,</span><span class="s2">"1B"</span><span class="p">,</span><span class="s2">"1C"</span><span class="p">,</span><span class="s2">"2A"</span><span class="p">,</span><span class="s2">"2B"</span><span class="p">,</span><span class="s2">"2C"</span><span class="p">,</span><span class="s2">"3A"</span><span class="p">,</span><span class="s2">"3B"</span><span class="p">,</span><span class="s2">"3C"</span><span class="p">,</span><span class="s2">"4A"</span><span class="p">,</span><span class="s2">"4B"</span><span class="p">,</span><span class="s2">"4C"</span><span class="p">,</span><span class="s2">"5A"</span><span class="p">,</span><span class="s2">"5B"</span><span class="p">,</span><span class="s2">"5C"</span><span class="p">,</span><span class="s2">"6A"</span><span class="p">,</span><span class="s2">"6B"</span><span class="p">,</span><span class="s2">"6C"</span><span class="p">],</span>
+          <span class="s2">"created_at"</span><span class="p">:</span> <span class="vi">@train2</span><span class="p">.</span><span class="nf">created_at</span> <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="n">expected_result</span><span class="p">.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"GET /api/v1/trains/{train_number}"</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s2">"/api/v1/trains/0822"</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="n">expected_result</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"number"</span><span class="p">:</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">number</span><span class="p">,</span>
+          <span class="s2">"logo_url"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_file_size"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"logo_content_type"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+          <span class="s2">"available_seats"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"1A"</span><span class="p">,</span><span class="s2">"1B"</span><span class="p">,</span><span class="s2">"1C"</span><span class="p">,</span><span class="s2">"2A"</span><span class="p">,</span><span class="s2">"2B"</span><span class="p">,</span><span class="s2">"2C"</span><span class="p">,</span><span class="s2">"3A"</span><span class="p">,</span><span class="s2">"3B"</span><span class="p">,</span><span class="s2">"3C"</span><span class="p">,</span><span class="s2">"4A"</span><span class="p">,</span><span class="s2">"4B"</span><span class="p">,</span><span class="s2">"4C"</span><span class="p">,</span><span class="s2">"5A"</span><span class="p">,</span><span class="s2">"5B"</span><span class="p">,</span><span class="s2">"5C"</span><span class="p">,</span><span class="s2">"6A"</span><span class="p">,</span><span class="s2">"6B"</span><span class="p">,</span><span class="s2">"6C"</span><span class="p">],</span>
+          <span class="s2">"created_at"</span><span class="p">:</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">created_at</span> <span class="p">}</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="n">expected_result</span><span class="p">.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-6 测试查询订票、修改定票、取消订票 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>spec/requests/reservation_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/reservation_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"API_V1::Reservations"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:request</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@train1</span> <span class="o">=</span> <span class="no">Train</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:number</span> <span class="o">=&gt;</span> <span class="s2">"0822"</span><span class="p">)</span>
+    <span class="vi">@train2</span> <span class="o">=</span> <span class="no">Train</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:number</span> <span class="o">=&gt;</span> <span class="s2">"0603"</span><span class="p">)</span>
+
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span> <span class="p">)</span>
+    <span class="vi">@reservation</span> <span class="o">=</span> <span class="no">Reservation</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:train_id</span> <span class="o">=&gt;</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">:seat_number</span> <span class="o">=&gt;</span> <span class="s2">"1A"</span><span class="p">,</span>
+                                        <span class="ss">:customer_name</span> <span class="o">=&gt;</span> <span class="s2">"foo"</span><span class="p">,</span> <span class="ss">:customer_phone</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"GET /api/v1/reservations/{booking_code}"</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s2">"/api/v1/reservations/</span><span class="si">#{</span><span class="vi">@reservation</span><span class="p">.</span><span class="nf">booking_code</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:booking_code</span> <span class="o">=&gt;</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">booking_code</span><span class="p">,</span>
+                                   <span class="ss">:train_number</span> <span class="o">=&gt;</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">train</span><span class="p">.</span><span class="nf">number</span><span class="p">,</span>
+                                   <span class="ss">:train</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                                     <span class="ss">:number</span> <span class="o">=&gt;</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">number</span><span class="p">,</span>
+                                     <span class="ss">:logo_url</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">,</span>
+                                     <span class="ss">:logo_file_size</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">,</span>
+                                     <span class="ss">:logo_content_type</span> <span class="o">=&gt;</span> <span class="kp">nil</span><span class="p">,</span>
+                                     <span class="ss">:available_seats</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"1B"</span><span class="p">,</span><span class="s2">"1C"</span><span class="p">,</span><span class="s2">"2A"</span><span class="p">,</span><span class="s2">"2B"</span><span class="p">,</span><span class="s2">"2C"</span><span class="p">,</span><span class="s2">"3A"</span><span class="p">,</span><span class="s2">"3B"</span><span class="p">,</span><span class="s2">"3C"</span><span class="p">,</span><span class="s2">"4A"</span><span class="p">,</span><span class="s2">"4B"</span><span class="p">,</span><span class="s2">"4C"</span><span class="p">,</span><span class="s2">"5A"</span><span class="p">,</span><span class="s2">"5B"</span><span class="p">,</span><span class="s2">"5C"</span><span class="p">,</span><span class="s2">"6A"</span><span class="p">,</span><span class="s2">"6B"</span><span class="p">,</span><span class="s2">"6C"</span><span class="p">],</span>
+                                     <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="vi">@train1</span><span class="p">.</span><span class="nf">created_at</span>
+                                   <span class="p">},</span>
+                                   <span class="ss">:seat_number</span> <span class="o">=&gt;</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">seat_number</span><span class="p">,</span>
+                                   <span class="ss">:customer_name</span> <span class="o">=&gt;</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">customer_name</span><span class="p">,</span>
+                                   <span class="ss">:customer_phone</span> <span class="o">=&gt;</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">customer_phone</span>
+                                  <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"DELETE /api/v1/reservations/{booking_code}"</span> <span class="k">do</span>
+    <span class="n">delete</span> <span class="s2">"/api/v1/reservations/</span><span class="si">#{</span><span class="vi">@reservation</span><span class="p">.</span><span class="nf">booking_code</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"已取消定位"</span> <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span> <span class="no">Reservation</span><span class="p">.</span><span class="nf">count</span> <span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"PATCH /api/v1/reservations/{booking_code}"</span> <span class="k">do</span>
+    <span class="n">patch</span> <span class="s2">"/api/v1/reservations/</span><span class="si">#{</span><span class="vi">@reservation</span><span class="p">.</span><span class="nf">booking_code</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:customer_name</span> <span class="o">=&gt;</span> <span class="s2">"bar"</span><span class="p">,</span> <span class="ss">:customer_phone</span> <span class="o">=&gt;</span> <span class="s2">"987654321"</span> <span class="p">}</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"更新成功"</span> <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+
+    <span class="vi">@reservation</span><span class="p">.</span><span class="nf">reload</span>
+
+    <span class="n">expect</span><span class="p">(</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">customer_name</span> <span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span> <span class="vi">@reservation</span><span class="p">.</span><span class="nf">customer_phone</span> <span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"987654321"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-7 测试订票 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>spec/requests/reservation_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/reservation_spec.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  describe "POST /api/v1/reservations" do
++    example "success without auth_token" do
++      post "/api/v1/reservations", :params =&gt; { :train_number =&gt; @train1.number, :seat_number =&gt; "1B",
++                                                :customer_name =&gt; "zoo", :customer_phone =&gt; "55555555"}
++
++      expect(response).to have_http_status(200)
++
++      created_reservation = Reservation.last
++
++      expect(response.body).to eq( { :booking_code =&gt; created_reservation.booking_code,
++                                     :reservation_url =&gt; api_v1_reservation_url(created_reservation.booking_code) }.to_json )
++
++      expect(created_reservation.customer_name).to eq("zoo")
++      expect(created_reservation.customer_phone).to eq("55555555")
++      expect(created_reservation.user_id).to eq(nil)
++    end
++
++    example "success with auth_token" do
++      post "/api/v1/reservations", :params =&gt; { :auth_token =&gt; @user.authentication_token,
++                                                :train_number =&gt; @train1.number, :seat_number =&gt; "1B",
++                                                :customer_name =&gt; "zoo", :customer_phone =&gt; "55555555"}
++
++      expect(response).to have_http_status(200)
++
++      created_reservation = Reservation.last
++
++      expect(response.body).to eq( { :booking_code =&gt; created_reservation.booking_code,
++                                     :reservation_url =&gt; api_v1_reservation_url(created_reservation.booking_code) }.to_json )
++
++      expect(created_reservation.customer_name).to eq("zoo")
++      expect(created_reservation.customer_phone).to eq("55555555")
++      expect(created_reservation.user_id).to eq(@user.id)
++    end
++
++    example "failed" do
++      post "/api/v1/reservations", :params =&gt; { :train_number =&gt; @train1.number, :seat_number =&gt; "1A", :customer_name =&gt; "zoo", :customer_phone =&gt; "55555555"}
++
++      expect(response).to have_http_status(400)
++
++      expect(response.body).to eq( { :message =&gt; "订票失败", :errors =&gt; { :seat_number =&gt; ["has already been taken"] } }.to_json )
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>订票其实有三种情况，分别是 1. 有登入带 <code>auth_token</code> 订票 2. 没登入订票 3. 订票失败(因为座位重复)</p>
+
+<blockquote>
+<p>在 Web API 课程中比较早完成的同学，做到这里你可能会测试失败，因为之前在 <code>app/models/reservation.rb</code> 中是写 <code>belongs_to :user</code> 这表示 <code>user</code> 是必填，需要改成 <code>belongs_to :user, :optional =&gt; true</code> 让 user 是选填。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-8 测试查询我全部的订单 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>spec/requests/reservation_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/reservation_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  describe "GET /api/v1/reservations" do
++    example "failed" do
++      get "/api/v1/reservations", :params =&gt; {  }
++      expect(response).to have_http_status(401)
++    end
++
++    example "success" do
++
++      @reservation1 = Reservation.create!( :user_id =&gt; @user.id, :train_id =&gt; @train1.id, :seat_number =&gt; "1B",
++                                           :customer_name =&gt; "foo", :customer_phone =&gt; "12345678" )
++      @reservation2 = Reservation.create!( :user_id =&gt; @user.id, :train_id =&gt; @train1.id, :seat_number =&gt; "1C",
++                                           :customer_name =&gt; "foo", :customer_phone =&gt; "12345678" )
++
++      get "/api/v1/reservations", :params =&gt; { :auth_token =&gt; @user.authentication_token }
++
++      expect(response).to have_http_status(200)
++      expect(response.body).to eq( { :data =&gt; [
++                                      { :booking_code =&gt; @reservation1.booking_code,
++                                        :train_number =&gt; @reservation1.train.number,
++                                         :train =&gt; {
++                                           :number =&gt; @train1.number,
++                                           :logo_url =&gt; nil,
++                                           :logo_file_size =&gt; nil,
++                                           :logo_content_type =&gt; nil,
++                                           :available_seats =&gt; ["2A","2B","2C","3A","3B","3C","4A","4B","4C","5A","5B","5C","6A","6B","6C"],
++                                           :created_at =&gt; @train1.created_at
++                                         },
++                                         :seat_number =&gt; @reservation1.seat_number,
++                                         :customer_name =&gt; @reservation1.customer_name,
++                                         :customer_phone =&gt; @reservation1.customer_phone
++                                      },
++                                    { :booking_code =&gt; @reservation2.booking_code,
++                                        :train_number =&gt; @reservation2.train.number,
++                                         :train =&gt; {
++                                           :number =&gt; @train1.number,
++                                           :logo_url =&gt; nil,
++                                           :logo_file_size =&gt; nil,
++                                           :logo_content_type =&gt; nil,
++                                           :available_seats =&gt; ["2A","2B","2C","3A","3B","3C","4A","4B","4C","5A","5B","5C","6A","6B","6C"],
++                                           :created_at =&gt; @train1.created_at
++                                         },
++                                         :seat_number =&gt; @reservation2.seat_number,
++                                         :customer_name =&gt; @reservation2.customer_name,
++                                         :customer_phone =&gt; @reservation2.customer_phone
++                                      }
++                                  ] }.to_json )
++
++
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里测试两种情况 1. 没有登入带 <code>auth_token</code> 的话，会失败 2. 成功查询我的订票</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-9 测试查询和更新我的资料 API
+    </h1><h4>所属章节：5. Web API 自动化测试</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>spec/requests/user_spec.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>spec/requests/user_spec.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"API_V1::Users"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="ss">:request</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test@example.com"</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">example</span> <span class="s2">"GET /me"</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s2">"/api/v1/me"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span> <span class="p">}</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">reload</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span>
+       <span class="p">{</span>
+        <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span>
+        <span class="ss">:avatar</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">avatar</span><span class="p">,</span>
+        <span class="ss">:updated_at</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">updated_at</span><span class="p">,</span>
+        <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">created_at</span>
+      <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"PATCH /me"</span> <span class="k">do</span>
+    <span class="c1"># 上传档案，请放一个图档在 spec/fixtures 目录下
+</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">fixture_file_upload</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="si">}</span><span class="s2">/spec/fixtures/rails.png"</span><span class="p">,</span> <span class="s2">"image/png"</span><span class="p">)</span>
+
+    <span class="n">patch</span> <span class="s2">"/api/v1/me"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">:auth_token</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">"test2@example.com"</span><span class="p">,</span> <span class="ss">:avatar</span> <span class="o">=&gt;</span> <span class="n">file</span> <span class="p">}</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_http_status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s2">"OK"</span> <span class="p">}.</span><span class="nf">to_json</span> <span class="p">)</span>
+
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">reload</span>
+
+    <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">.</span><span class="nf">email</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"test2@example.com"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">.</span><span class="nf">avatar</span><span class="p">).</span><span class="nf">not_to</span> <span class="n">eq</span><span class="p">(</span><span class="kp">nil</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      总结与补充
+    </h1><h4>所属章节：6. 总结与补充</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>测试是一门需要长期练习的技能，才能够抓到测试的重点和关键，需要多思考哪些地方要写测试、要测什么案例。总结一下这堂课学会的：</p>
+
+<ol>
+<li>单元测试：可以协助我们在写代码时检查程式的正确性，快速得到反馈，进行重构</li>
+<li>用户验收测试：主要作用是回归测试，投资未来在改代码时，不会搞坏本来的功能</li>
+<li>Web API测试：可以完整测试 API 系统的正确性，免去手动测试的繁琐</li>
+</ol>
+
+<p>关于测试的豆知识非常多，如果你已经能抓到测试的诀窍，可以继续参考以下资源：</p>
+
+<ul>
+<li>
+<a href="https://ihower.tw/rails/testing-cn.html">ihower 老师的 Ruby on Rails 实战圣经</a> (請下載PTT投影片)</li>
+<li><a href="https://www.gitbook.com/book/xdite/rspec-101/details">xdite 老师的 RSpec on Rails 101</a></li>
+<li><a href="https://gumroad.com/l/testing-rails">thoughtbot 的 Testing Rails</a></li>
+<li><a href="https://leanpub.com/everydayrailsrspec">Everyday Rails Testing with RSpec</a></li>
+</ul>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

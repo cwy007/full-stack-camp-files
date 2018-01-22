@@ -1,0 +1,997 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1. 什么是重构？
+    </h1><h4>所属章节：什么是重构？</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <blockquote>
+<p>进行重构教程前，请先完成编程语言系列。</p>
+</blockquote>
+
+<p>重构(Refactoring)是指对软件代码进行更动以增加可读性或者简化结构，但是不影响功能和输出结果。</p>
+
+<p>真正营运的软件都是演进来的，而不是一步到位的作品，需要借由频繁与用户互动得到的回馈来修改设计。与其把软件开发比喻成盖房子，实际上更像是园艺，需要长时间的呵护。我们甚至可以说，所有得软件开发其实都是一种维护，因为绝大部分的时间都在改code，写一点改一点。即使是新项目，也很快需要回头作修改。</p>
+
+<p>因此面对日渐复杂的代码、以及 团队协同开发的需求，维护好代码是一件重要的事情。</p>
+
+<p>不好的代码，会有以下症状：</p>
+
+<ul>
+<li>僵硬 (Rigidity)：难以修改，每改一处牵一发动全身</li>
+<li>脆弱 (Fragility)：一旦修改，别的无关地方也炸到</li>
+<li>固定 (Immobility)：难以分解，让程式再重用</li>
+<li>黏滞 (Viscosity)：弹性不够，把事情做对比做错还难</li>
+<li>不需要的复杂度 (Needless Complexity)：过度设计没直接好处的基础设施</li>
+<li>不需要的重复 (Needless Repetition)：相同概念的代码被复制贴上重复使用</li>
+<li>晦涩 (Opacity)：难以阅读，无法了解意图</li>
+</ul>
+
+<p>好的代码，会有以下特征：</p>
+
+<ul>
+<li>Readability 易读，容易了解</li>
+<li>Flexibility 弹性，容易扩充</li>
+<li>Effective 效率，撰码快速</li>
+<li>Maintainability 维护性，容易找到问题</li>
+<li>Consistency 一致性，循惯例无需死背</li>
+<li>Testability 可测性，元件独立容易测试</li>
+</ul>
+
+<p>很多时候，为了项目时程，我们会在项目初期只专注于尽快完成项目，而妥协于写出不好的代码，这些不好的代码又被叫做<a href="https://zh.wikipedia.org/wiki/%E6%8A%80%E6%9C%AF%E8%B4%9F%E5%80%BA">技术负债</a>。因为就像债务一样，虽然短期可以得到好处，但必须仍在未来偿还，不然之后软件会变成越来越难维护，要新增功能的开发成本也会越来越高。工程师需要付出时间成本才能修复之前的妥协所造成的问题。</p>
+
+<p>透过重构行为，我们希望让不好的代码，变成好的代码，减少技术负债。这份教程，会用实际的范例，说明重构前和重构后的差异。这篇教程没有提及自动化测试，不过一个好的重构，建议搭配自动化的测试，这样才可以确保重构前后的软件行为是一样的，而没有带来新的 bugs。</p>
+
+<blockquote>
+<p>重构不等于重写。重构更像是小地方小地方的不断持续改善，而不是花几个月把代码砍掉重写。</p>
+</blockquote>
+
+<p>重构教程着重在思考为什么这样写比较好，而不是实现功能。照着做是没有意义的，因此这份教程并没有完整的功能实现，而是代码片段(code snippet)。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2. 将代码从 Controller 重构到 Model
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model">Skinny Controller, Fat Model</a> 是一篇在 Rails 社区非常有名的文章，这篇 2006 年 Rails 2 时期的旧文章，定调了 Fat Controller 是一种反模式(anti-pattern)。放在 Controller 的代码一般来说比较难进行重用(re-use)和单元测试，可读性也较差，我们希望将更多代码放在 Model 里面。</p>
+
+<p>一个 Rails 项目如果 controller 代码很多，但是 model 代码打开却没有自定义什么方法，给人的印象上就是这是软件开发初学者所写的项目。</p>
+
+<p>基本上，一段 Controller 的 action 代码如果超过15行以上，很可能这段代码表示太肥大了，应该进行重构。</p>
+
+<p>以下示范几个情境，适合将 Controller 的代码重构到 Model，目的都是在简化 controller 的代码。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3. 善用 Model scope
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：在 action 中需要依照不同条件捞取 Model 数据</p>
+
+<p>重构前：在 action 中用 where 指定不同条件</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@public_posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">:state</span> <span class="o">=&gt;</span> <span class="s1">'public'</span> <span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="s1">'id desc'</span><span class="p">)</span>
+    <span class="vi">@draft_posts</span>  <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">:state</span> <span class="o">=&gt;</span> <span class="err">‘</span><span class="n">draft</span><span class="s1">').limit(10)
+                  .order('</span><span class="nb">id</span> <span class="n">desc</span><span class="err">'</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：把 where 条件搬到 model 的 scope 宣告，这样就可以在 controller 使用已经定义好的 scope。可读性变好，而且可以在不同地方重复沿用这个 scope。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">scope</span> <span class="ss">:published</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">:state</span> <span class="o">=&gt;</span> <span class="err">‘</span><span class="n">published</span><span class="s1">').limit(10)
+                        .order('</span><span class="nb">id</span> <span class="n">desc</span><span class="s1">') }
+  scope :draft, -&gt; { where(:state =&gt; ‘draft'</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="s1">'id desc'</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@published_post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">published</span>
+    <span class="vi">@draft_post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">draft</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4. 善用 Model association
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：新建数据时，想要关联建立的用户</p>
+
+<p>重构前：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:post</span><span class="p">])</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">user_id</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">id</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：由于 User has_many posts 的关系，我们可以用 <code>current_user.posts.build</code> 来取代 <code>@post.user_id = current_user.id</code> 的作用。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">build</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:post</span><span class="p">])</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5. 有关联的权限检查 scope access
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：读取数据时，想要检查用户有没有操作该数据的权限</p>
+
+<p>重构前：需要检查 <code>@post.user</code> 等于 <code>current_user</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">user</span> <span class="o">!=</span> <span class="n">current_user</span>
+      <span class="n">flash</span><span class="p">[</span><span class="ss">:warning</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Access denied'</span>
+      <span class="n">redirect_to</span> <span class="n">posts_url</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：直接用 <code>current_user.posts.find</code> 就可以了。如果该 post 不属于该 user，就会找不到数据。不过，如果权限允许管理员的话，这招就不行了。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="c1"># raise RecordNotFound exception (404 error) if not found
+</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6. 使用 Model 虚拟属性
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：在表单中，操作不是直接对应 Model 属性的字段。例如下述范例，假设 User model 里面有 <code>first_name</code> 和 <code>last_name</code> 字段，但是画面显示时，我们希望改用 <code>full_name</code> 来操作。这个 <code>full_name</code> 并不是数据库中真正的字段，而是 first_name 和 last_name 两个字段合在一起显示而已。</p>
+
+<p>重构前：表单只能用原始的 <code>text_field_tag</code> 方法，并且在 action 中拆开 <code>params[:full_name]</code> 塞进 model 的 first_name 和 last_name 字段</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% form_for @user do |f| %&gt;
+    &lt;%= text_filed_tag :full_name %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">)</span>
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">first_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:full_name</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nf">first</span>
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">last_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:full_name</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nf">last</span>
+    <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：在 model 中新增 <code>full_name</code> 和 <code>full_name=</code> 方法，这样在表单就可以把 <code>full_name</code> 当作一般的 model 字段使用。而 controller action 更是简化到不需要处理 <code>full_name</code>。这个 <code>full_name</code> 并没有实际对应数据库的字段，因此称之虚拟属性。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">full_name</span>
+    <span class="p">[</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">].</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">full_name</span><span class="o">=</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="nb">split</span> <span class="o">=</span> <span class="nb">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">first_name</span> <span class="o">=</span> <span class="nb">split</span><span class="p">.</span><span class="nf">first</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">last_name</span> <span class="o">=</span> <span class="nb">split</span><span class="p">.</span><span class="nf">last</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% form_for @user do |f| %&gt;
+  &lt;%= f.text_field :full_name %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7. 使用 Model 回呼(callback)
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：新增文章时，有一个核选方块 <code>auto_tagging</code>，如果打勾表示想要系统自动下标籤。</p>
+
+<p>重构前：需要在 action 中检查 <code>params[:auto_tagging]</code>，然后调用 model 方法产生标籤(这里假设有一个 AsiaSearch.generate_tags 方法可以自动下标籤)</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% form_for @post do |f| %&gt;
+  &lt;%= f.text_field :content %&gt;
+  &lt;%= check_box_tag 'auto_tagging' %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:post</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="ss">:auto_tagging</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'1'</span>
+      <span class="vi">@post</span><span class="p">.</span><span class="nf">tags</span> <span class="o">=</span> <span class="no">AsiaSearch</span><span class="p">.</span><span class="nf">generate_tags</span><span class="p">(</span><span class="vi">@post</span><span class="p">.</span><span class="nf">content</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="vi">@post</span><span class="p">.</span><span class="nf">tags</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">end</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：新增一个虚拟属性 <code>auto_tagging</code>，以及一个 before_save 回呼来检查要不要自动下标籤。如此在 action 中就可以不必检查和处理 auto_tagging。这段过程会自动在 Post 存储前，自动调用 <code>generate_taggings</code> 方法进行处理。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:auto_tagging</span>
+  <span class="n">before_save</span> <span class="ss">:generate_taggings</span>
+
+  <span class="kp">private</span>
+  <span class="k">def</span> <span class="nf">generate_taggings</span>
+    <span class="k">return</span> <span class="k">unless</span> <span class="n">auto_tagging</span> <span class="o">==</span> <span class="s1">'1'</span> <span class="nb">self</span><span class="p">.</span><span class="nf">tags</span> <span class="o">=</span> <span class="no">Asia</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">content</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% form_for :note, ... do |f| %&gt;
+  &lt;%= f.text_field :content %&gt;
+  &lt;%= f.check_box :auto_tagging %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:post</span><span class="p">])</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8. 将逻辑放到 Model
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：有一个发布文章 publish 的 action 有很多操作的相关步骤，需要设定很多 model 字段。</p>
+
+<p>重构前：所有操作都在 action 之中</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+ <span class="k">def</span> <span class="nf">publish</span>
+   <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="vi">@post</span><span class="p">.</span><span class="nf">is_published</span> <span class="o">=</span> <span class="kp">true</span>
+   <span class="vi">@post</span><span class="p">.</span><span class="nf">approved_by</span> <span class="o">=</span> <span class="n">current_user</span>
+
+   <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">create_at</span> <span class="o">&gt;</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">-</span> <span class="mi">7</span><span class="p">.</span><span class="nf">days</span>
+     <span class="vi">@post</span><span class="p">.</span><span class="nf">popular</span> <span class="o">=</span> <span class="mi">100</span>
+   <span class="k">else</span>
+     <span class="vi">@post</span><span class="p">.</span><span class="nf">popular</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">end</span>
+
+   <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+   <span class="n">redirect_to</span> <span class="n">post_url</span><span class="p">(</span><span class="vi">@post</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：把相关的操作全部搬到 Model 的自定义方法 <code>publish!</code>，这样 action 中只需要调用 <code>@post.publish!</code> 即可，非常可读清楚。这个 <code>publish!</code> 方法也可以在其它各处使用。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">publish!</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">is_published</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">approved_by</span> <span class="o">=</span> <span class="n">user</span>
+    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">create_at</span> <span class="o">&gt;</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="o">-</span><span class="mi">7</span><span class="p">.</span><span class="nf">days</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">popular</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">else</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">popular</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">end</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">save!</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">publish</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">publish!</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span>
+    
+    <span class="n">redirect_to</span> <span class="n">post_url</span><span class="p">(</span><span class="vi">@post</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9. 使用工厂方法(Factory Method)取代复杂的建构过程
+    </h1><h4>所属章节：关于 Controller</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：建立 model 需要复杂的建构过程，例如以下建构 Invoice 需要设定很多属性。</p>
+
+<p>重构前：都在 create action 中完成</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">InvoiceController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@invoice</span> <span class="o">=</span> <span class="no">Invoice</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:invoice</span><span class="p">])</span>
+    <span class="vi">@invoice</span><span class="p">.</span><span class="nf">address</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">address</span>
+    <span class="vi">@invoice</span><span class="p">.</span><span class="nf">phone</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">phone</span>
+    <span class="vi">@invoice</span><span class="p">.</span><span class="nf">vip</span> <span class="o">=</span> <span class="p">(</span> <span class="vi">@invoice</span><span class="p">.</span><span class="nf">amount</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">day</span> <span class="o">&gt;</span> <span class="mi">15</span>
+      <span class="vi">@invoice</span><span class="p">.</span><span class="nf">delivery_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="nf">month</span>
+    <span class="k">else</span>
+      <span class="vi">@invoice</span><span class="p">.</span><span class="nf">delivery_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.</span><span class="nf">month</span>
+    <span class="k">end</span>
+
+    <span class="vi">@invoice</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：在 model 中新写一个类方法 <code>new_by_user</code>，把建构的过程全部搬进来。这样 controller action 里面只需要调用这个方法即可。这一招跟上一节是一样的道理。这种建构用途的方法又叫做工厂方法。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Invoice</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">new_by_user</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+    <span class="n">invoice</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">invoice</span><span class="p">.</span><span class="nf">address</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">address</span>
+    <span class="n">invoice</span><span class="p">.</span><span class="nf">phone</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">phone</span>
+    <span class="n">invoice</span><span class="p">.</span><span class="nf">vip</span> <span class="o">=</span> <span class="p">(</span> <span class="n">invoice</span><span class="p">.</span><span class="nf">amount</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">day</span> <span class="o">&gt;</span> <span class="mi">15</span>
+      <span class="n">invoice</span><span class="p">.</span><span class="nf">delivery_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">+</span> <span class="mi">2</span><span class="p">.</span><span class="nf">month</span>
+    <span class="k">else</span>
+      <span class="n">invoice</span><span class="p">.</span><span class="nf">delivery_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.</span><span class="nf">month</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">invoice</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">InvoiceController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@invoice</span> <span class="o">=</span> <span class="no">Invoice</span><span class="p">.</span><span class="nf">new_by_user</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:invoice</span><span class="p">],</span> <span class="n">current_user</span><span class="p">)</span>
+    <span class="vi">@invoice</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10. 善用 Module 抽取相关代码
+    </h1><h4>所属章节：关于 Model</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：如果将代码从 Controller 重构到 Model 做得不错了，接下来如何进一步重构 Model 代码？</p>
+
+<p>重构前：在 Model 中有一些高度相关的代码，希望能够更清楚他们是一起的，或是希望能在不同 Model 中也能重复使用。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+  <span class="n">validates_presence_of</span> <span class="ss">:cellphone</span>
+  <span class="n">before_save</span> <span class="ss">:parse_cellphone</span>
+
+  <span class="k">def</span> <span class="nf">parse_cellphone</span>
+    <span class="c1"># do something
+</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">foobar</span>
+    <span class="c1"># do something
+</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重构后：善用 Ruby 的 module 语法，可以将这些相关代码抽取出来，放在 <code>app/models/concerns</code> 目录下，包括 model 的 validates 宣告、回呼宣告、关联宣告、对象方法、类方法等等都可抽取出来。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/concerns/has_cellphone.rb
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">HasCellphone</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">validates_presence_of</span> <span class="ss">:cellphone</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">before_save</span> <span class="ss">:parse_cellphone</span>
+    <span class="n">base</span><span class="p">.</span><span class="nf">extend</span> <span class="no">ClassMethods</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">parse_cellphone</span>
+    <span class="c1"># do something
+</span>
+  <span class="k">end</span>
+
+  <span class="k">module</span> <span class="nn">ClassMethods</span>
+    <span class="k">def</span> <span class="nf">foobar</span>
+      <span class="c1"># do something
+</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>或是使用 <a href="http://api.rubyonrails.org/v5.1/classes/ActiveSupport/Concern.html">Rails ActiveSupport::Concern</a> 语法，可以更简洁一点：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/concerns/has_cellphone.rb
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">HasCellphone</span>
+  <span class="kp">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Concern</span>
+
+  <span class="n">included</span> <span class="k">do</span>
+    <span class="n">validates_presence_of</span> <span class="ss">:cellphone</span>
+    <span class="n">before_save</span> <span class="ss">:parse_cellphone</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">parse_cellphone</span>
+    <span class="c1"># do something
+</span>
+  <span class="k">end</span>
+
+  <span class="n">class_methods</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">foobar</span>
+      <span class="c1"># do something
+</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>最后在 model 里面 include 即可。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">HasCellphone</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>其他 model 也可以沿用这段代码，只要 include 即可：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Contact</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="kp">include</span> <span class="no">HasCellphone</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这一招其实 controller 也可以用，在 rails 中 <code>app/controllers/concerns</code> 目录就是拿来放 controller 的 module 档案</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11. 将代码放回 controller
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <blockquote>
+<p>关于 View，最重要的守则就是在 template 中绝对没有商务逻辑。</p>
+</blockquote>
+
+<p>重构前：在 View 出现了 <code>@posts = Post.all</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% @posts = Post.all %&gt;
+
+&lt;% @posts.each do |post| %&gt;
+ &lt;%= post.title %&gt;
+ &lt;%= post.content %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<p>重构后：应该在 controller 中就先读取 @posts</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% @posts.each do |post| %&gt;
+ &lt;%= post.title %&gt;
+ &lt;%= post.content %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12. 将代码重构到 Model
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：在 View 中需要一些条件判断，来决定要不要显示某些内容</p>
+
+<p>重构前：需要检查有登入、该用户是该篇文章作者或是编辑员</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% if current_user &amp;&amp; (current_user == @post.user ||
+                       @post.editors.include?(current_user) %&gt;
+  &lt;%= link_to 'Edit this post', edit_post_url(@post) %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<p>重构后：这一整段条件判断，可以重构到 Model 的一个方法。这样 View 里面只需要调用 <code>@post.editable_by?(current_user)</code> 即可，代码干净又清楚。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% if @post.editable_by?(current_user) %&gt;
+  &lt;%= link_to 'Edit this post', edit_post_url(@post) %&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">def</span> <span class="nf">ediable_by?</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="n">user</span> <span class="o">==</span> <span class="nb">self</span><span class="p">.</span><span class="nf">user</span> <span class="o">||</span> <span class="nb">self</span><span class="p">.</span><span class="nf">editors</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13. 将代码重构到 Helper
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：</p>
+
+<ul>
+<li>HTML 与 Ruby 高度混杂</li>
+<li>该段程式码有很多 if / else</li>
+<li>该段程式码衣服穿很多层 simple_format(truncate(auto_link(@post.content), :length =&gt; 30) )</li>
+</ul>
+
+<p>重构前：我们想要把文章内容自动加超连结、截断只留前30字前、保留换行等等：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;%= simple_format(truncate(auto_link(@post.content), :length =&gt; 30) ) %&gt;
+</pre></div>
+</figure>
+
+<p>重构后：抽取出一个 <code>pretty_content</code> helper 方法，这样在各处 template 都可以重复使用这个 helper，而且也比较清楚。</p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/posts_helper.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="k">module</span> <span class="nn">PostsHelper</span>
+  <span class="k">def</span> <span class="nf">pretty_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">simple_format</span><span class="p">(</span><span class="n">truncate</span><span class="p">(</span><span class="n">auto_link</span><span class="p">(</span><span class="n">content</span><span class="p">),</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;%= pretty_content(@post.content) %&gt;
+</pre></div>
+</figure>
+
+<blockquote>
+<p>那到底什么情境适合把代码重构到 Model? 什么时候用 Helper 呢？如果跟 HTML 画面显示无关，跟商务逻辑有关，则放到 Model 里面。如果跟 HTML 画面显示有关，则适合放在 Helper 里面。一般来说，在 Model 里面是不会处理 HTML 代码的，这是 Helper 的事情。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14. 将代码重构到 Partial 样板
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：Helper 是 Ruby 代码，里面不适合放太多的 HTML。如果你有一整段的 HTML 代码想要抽取出来，应该用 Partial 样板。</p>
+
+<p>重构前：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">render_product_item</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
+  <span class="n">content_tag</span><span class="p">(</span><span class="ss">:div</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"col-md-3"</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">content_tag</span><span class="p">(</span><span class="ss">:div</span><span class="p">,</span> <span class="n">link_to</span><span class="p">(</span><span class="n">product</span><span class="p">.</span><span class="nf">title</span><span class="p">),</span> <span class="n">product_path</span><span class="p">(</span><span class="n">product</span><span class="p">)</span> <span class="p">)</span> <span class="o">+</span>
+    <span class="n">content_tag</span><span class="p">(</span><span class="ss">:p</span><span class="p">,</span> <span class="n">tag</span><span class="p">(</span><span class="ss">:hr</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">content_tag</span><span class="p">(</span><span class="ss">:span</span><span class="p">,</span> <span class="n">product</span><span class="p">.</span><span class="nf">price</span> <span class="o">+</span> <span class="s2">"元"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>  &lt;%= render_product_item(@product) %&gt;
+</pre></div>
+</figure>
+
+<p>重构后：应该改用 partial 而不是 helper。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/products/_item.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span><span class="err">&lt;</span>%=link_to(product.title), product_path(product) %&gt;<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;p&gt;</span>
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="nt">&lt;span&gt;</span><span class="err">&lt;</span>%= product.price %&gt;元<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><div class="highlight"><pre>  &lt;%= render :partial =&gt; "item", :locals =&gt; { :product =&gt; @product } %&gt;
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15. 使用 Partial 尽量用区域变量取代对象变量
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：在使用 Partial 时</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Post &lt; ApplicationController
+  def show
+    @post = Post.find(params[:id)
+  end
+end
+</pre></div>
+</figure>
+
+<p>重构前：在 action 中宣告的对象变量例如 <code>@post</code>，会穿透到这个 template 内所有使用的 partial。虽然很方便，但是如果 partial 内要用到的变量很多，就会搞不清楚到底要准备哪些变量才能使用这个 partial。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;%= render :partial =&gt; "sidebar" %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>_sidebar.html.erb
+</span></figcaption><div class="highlight"><pre><span class="err">&lt;</span>%= @post.title %&gt;
+</pre></div>
+</figure>
+
+<p>重构后：将 @post 传入这个 partial，这样在这个 partial 里面，就会变成区域变量 <code>post</code>。这个好处是可以增加这个 partial 的可重复使用性，也比较清楚要传这些变量才能使用。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;%= render :partial =&gt; "sidebar", :locals =&gt; { :post =&gt; @post } %&gt;
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>_sidebar.html.erb
+</span></figcaption><div class="highlight"><pre><span class="err">&lt;</span>%= post.title %&gt;
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16. 整理 Helper 档案
+    </h1><h4>所属章节：关于 View</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：每次 rails g controller XXX 时，Rails 都会自动新增对应的 XXX_helper.rb 档案</p>
+
+<p>重构前：很多 Helper 档案打开来里面都是空的，没有用到</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>app/helpers/user_posts_helper.rb
+app/helpers/author_posts_helper.rb
+app/helpers/editor_posts_helper.rb
+app/helpers/admin_posts_helper.rb
+</pre></div>
+</figure>
+
+<p>重构后：简化集中到少数的 Helper 档案即可。这些 Helper 档案跟 Controller 并没有对应的关系，所有 Helper 档案里面宣告的方法都是通用的，不会因为放在哪一个 Helper 档案而有差异。因此我们可以重新编排整理。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>app/helpers/posts_helper.rb
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17. 代码分析工具
+    </h1><h4>所属章节：其他补充</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <ul>
+<li>
+<a href="https://github.com/bbatsov/rubocop">Rubocop</a> 是一个 gem 可以分析 Rails 代码，建议一些可以重构的地方</li>
+<li>
+<a href="https://codeclimate.com">CodeClimate</a> 是一个线上的工具，可以为项目评分，并建议哪里需要修改。</li>
+</ul>
+<h2>步驟</h2>
+<h3>Step 1:登录code climate</h3>
+<p><a href="https://codeclimate.com/" rel="nofollow" target="_blank">https://codeclimate.com/</a></p>
+
+<p>可以直接使用GitHub账号登录</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bnODlOSRuHhneuriHvAL_Screen%20Shot%202017-03-10%20at%2015.16.31.png" title=""></figure></p>
+<h3>Step 2:添加GitHub repo</h3>
+<p>点击 Add a repository</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KQaCjcGqQUGmedawEYDM_Screen%20Shot%202017-03-10%20at%2015.20.06.png" title=""></figure></p>
+
+<p>到GitHub复制你的repo名称</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cvGjSqxPRwEPvwoFi0Ng_Screen%20Shot%202017-03-10%20at%2015.27.57.png" title=""></figure></p>
+
+<p>填写到这里</p>
+
+<p>点击 Import Repo from GitHub</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/a4cuIqNCSfyJ4aS9hXLF_Screen%20Shot%202017-03-10%20at%2015.26.43.png" title=""></figure></p>
+
+<p>画面如下，点击complete</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5juThnHxR9OifbosAsNG_Screen%20Shot%202017-03-10%20at%2015.35.01.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/liWeDWuASdCOI1NLOgh1_Screen%20Shot%20on%202017-03-10%20at%2015:32:13.png" title=""></figure></p>
+<h3>Step 3:得到评分</h3>
+<p>GPA是分数，满分为4分</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DH0rS1S7QBnpqWVBQscg_Screen%20Shot%202017-03-10%20at%2015.58.12.png" title=""></figure></p>
+
+<p>点击issues查看代码评估</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Y2aI0g4QQcyZXFrC3Vr8_Screen%20Shot%20on%202017-03-10%20at%2016:00:20.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18. 补充和推荐资源
+    </h1><h4>所属章节：其他补充</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <ul>
+<li>
+<a href="https://book.douban.com/subject/1229923/">重构</a> 这本书是软件开发领域的经典之作，原作使用 Java 代码，但是仍然值得一读。另有 <a href="https://www.amazon.com/Refactoring-Ruby-Addison-Wesley-Professional/dp/0321984137">Ruby 版本</a>但没有中文翻译。</li>
+<li>
+<a href="http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers/">how DHH organizes his rails controllers</a> Rails 发明人 DHH 如何组织 Controller 代码，坚持 RESTful</li>
+<li>
+<a href="https://signalvnoise.com/posts/3372-put-chubby-models-on-a-diet-with-concerns">Put chubby models on a diet with concerns</a> DHH 对于 concerns 用法的看法</li>
+</ul>
+
+<p>当你仍不满足 Rails 的 concerns 机制时，你会需要更多面向对象的知识，在编程语言教程中有介绍到。关于 Rails 的部分推荐以下补充资料：</p>
+
+<ul>
+<li><a href="http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/">7 Patterns to Refactor Fat ActiveRecord Models</a></li>
+<li><a href="https://content.pivotal.io/blog/object-oriented-rails-writing-better-controllers">Object Oriented Rails – Writing better controllers</a></li>
+<li><a href="https://www.viget.com/articles/slimming-down-your-models-and-controllers">Slimming Down Your Models and Controllers with Concerns, Service Objects, and Tableless Models</a></li>
+<li><a href="https://leanpub.com/growing-rails">Growing Rails Applications in Practice</a></li>
+</ul>
+
+<p>这是ihower老师最后一篇教程了，謝謝大家 😘😘😘</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3EPE6XBQtmN4c6iPuwJq_IMG_1024.JPG" title=""></figure></p>
+
+<p>👏👏👏</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

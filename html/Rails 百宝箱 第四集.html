@@ -1,0 +1,1801 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      21-1 需求说明
+    </h1><h4>所属章节：21. 软删除和版本控制</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在实际运作的网站中，用户可能会不小心删除资料，或是修改时不小心改错等等。这时候用户可能会透过客服希望管理员能进行复原的动作。另一方面，针对重要的资料，我们也希望建立追踪和稽核的机制。</p>
+
+<p>这种需求叫做软删除(Soft Deletion)和版本控管(Versions)。</p>
+
+<p>软删除(Soft Deletion)的意思是不要真的删除这一笔资料，常见的作法是增加一个删除的标记字段(例如 <code>deleted_at</code>字段)，如果被标记删除了，那就不要显示出来即可，使用 <a href="http://www.rubydoc.info/gems/paranoia">Paranoia</a> 这个 gem 可以完成这个功能。</p>
+
+<p>至于版本控管的作法，则会另外建立一个 Version Model 来存储编修纪录。如果本来的资料被删除或修改，则会复制资料到这个 Model 去。等会我们示范用 <a href="https://github.com/airblade/paper_trail">paper_trail</a> gem。如果用了 paper_trail 来做版本控管，也就不需要用 paranoia 了。因为前者也可以做删除的复原。</p>
+
+<blockquote>
+<p>不建议用 paranoia 的方式，这种方式有一个严重的数据库问题，会干扰 unique index。例如 User 的 email 是唯一的，如果不真的删除这一笔资料，只是标记被删除的话，那么被删除的用户资料，该 email 依然无法注册。因为数据库认为 email 重复了。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      21-2 安装使用 paper_trail
+    </h1><h4>所属章节：21. 软删除和版本控制</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'paper_trail'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>执行 <code>bundle exec rails generate paper_trail:install --with-changes</code></p>
+
+<p>执行 <code>bundle exec rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre>  class Registration &lt; ApplicationRecord
+
+<span class="gi">+   has_paper_trail
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了，所有的修改和删除，都会纪录在 paper_trail 的 Version model 里面。</p>
+
+<p>在 <a href="https://github.com/airblade/paper_trail">paper_trail</a> 文档上，有完整的版本浏览、比较和复原的作法。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      21-3 编修纪录的 UI 和复原
+    </h1><h4>所属章节：21. 软删除和版本控制</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们可以在后台新增一个 UI 来浏览最近的编修纪录：</p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  namespace :admin do
+    root "events#index"
+
+<span class="gi">+   resources :versions do
++     post :undo
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller admin::versions</code></p>
+
+<p>编辑 <code>app/controllers/admin/versions_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/versions_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  class Admin::VersionsController &lt; ApplicationController
+</span><span class="gi">+  class Admin::VersionsController &lt; AdminController
+</span>
+<span class="gi">+    def index
++      @versions = PaperTrail::Version.order("id DESC").page(params[:page])
++    end
+</span>
+<span class="gi">+    def undo
++      @version = PaperTrail::Version.find(params[:version_id])
++      @version.reify.save!
++
++      redirect_to admin_versions_path
++    end
+</span>
+<span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/versions/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/versions/index.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h2&gt;编修纪录&lt;/h2&gt;
+
+&lt;table class="table"&gt;
+&lt;tr&gt;
+  &lt;td&gt;ID&lt;/td&gt;
+  &lt;td&gt;Model&lt;/td&gt;
+  &lt;td&gt;Model ID&lt;/td&gt;
+  &lt;td&gt;事件&lt;/td&gt;
+  &lt;td&gt;&lt;/td&gt;
+  &lt;td&gt;操作者&lt;/td&gt;
+  &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;% @versions.each do |version| %&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;%= version.id %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= version.item_type %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= version.item_id %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= version.event %&gt;&lt;/td&gt;
+    &lt;td&gt;
+      &lt;ul&gt;
+      &lt;% version.changeset.each do |key, value| %&gt;
+        &lt;li&gt;从 &lt;%= value[0] %&gt; 改成 &lt;%= value[1] %&gt;&lt;/li&gt;
+      &lt;% end %&gt;
+      &lt;/ul&gt;
+    &lt;/td&gt;
+    &lt;td&gt;&lt;%= version.whodunnit &amp;&amp; User.find(version.whodunnit).display_name %&gt;&lt;/td&gt;
+    &lt;td&gt;
+      &lt;% if version.event != 'create' %&gt;
+      &lt;%= link_to "Undo", admin_version_undo_path(version), :data =&gt; { :confirm =&gt; "Are you sure?"}, :method =&gt; :post, class: "btn btn-danger" %&gt;
+      &lt;% end %&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;% end %&gt;
+&lt;/table&gt;
+
+&lt;%= paginate @versions %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/admin/versions</code></p>
+
+<p>你可以试着删除或编辑报名资料看看，可以看到编修纪录，并进行复原(Undo)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/L5cCTA8cSgSfev1RgE2L_19.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      22-1 汇出 CSV 档案
+    </h1><h4>所属章节：22. 数据汇出</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：后台可以汇出报名资料</p>
+
+<p>有时候后台功能做再多，也不如 Microsoft Excel 或 Apple Numbers 试算表软件提供的分析功能，这时候如果有汇出功能，就可以很方便地把资料汇出来，用软件来打开浏览。</p>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E9%80%97%E5%8F%B7%E5%88%86%E9%9A%94%E5%80%BC">CSV 逗号分隔值</a>是一种简单的资料格式，基本上就是单纯的文字档，一行一笔资料，不同字段用逗号隔开。这一节先来做这种。</p>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，在最下方加上汇出按钮，指定 format 格式是 csv</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;%= paginate @registrations %&gt;
+
+<span class="gi">+  &lt;p&gt;
++    &lt;%= link_to "汇出 CSV", admin_event_registrations_path(:format =&gt; :csv), :class =&gt; "btn btn-default" %&gt;
++  &lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/TIrYWOETQ52poAPxUF3p_20-1.png" title=""></figure></p>
+
+<p>编辑 <code>app/controllers/admin/event_registrations_controller.rb</code>，利用 <code>respond_to</code> 针对不同格式的请求，回应不同的输出：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  require 'csv'
+</span>   class Admin::EventRegistrationsController &lt; AdminController
+
+     before_action :find_event
+
+     def index
+       # (略)
+
+<span class="gi">+      respond_to do |format|
++        format.html
++        format.csv {
++          @registrations = @registrations.reorder("id ASC")
++          csv_string = CSV.generate do |csv|
++            csv &lt;&lt; ["报名ID", "票种", "姓名", "状态", "Email", "报名时间"]
++            @registrations.each do |r|
++              csv &lt;&lt; [r.id, r.ticket.name, r.name, t(r.status, :scope =&gt; "registration.status"), r.email, r.created_at]
++            end
++          end
++          send_data csv_string, :filename =&gt; "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
++        }
++      end
+</span>     end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><a href="https://ruby-doc.org/stdlib-2.3.0/libdoc/csv/rdoc/CSV.html">CSV</a> 是 Ruby 内建的库，这里第一行需要先 <code>require</code> 它。使用 <code>CSV.generate</code> 可以产生出 <code>csv_string</code> 字符串，也就是要输出的 CSV 资料，接着透过 <code>send_data</code> 传给浏览器进行档案下载。</p>
+
+<p>用 Apple Number 试算表软件打开：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/8SSJdTDSQPCLV4CP6d29_20-2.png" title=""></figure></p>
+
+<p>但是 CSV 有个缺点，就是用 Microsoft Excel 打开时默认会变成乱码。这是因为汇出的 CSV 的字串编码是 <a href="https://zh.wikipedia.org/zh-tw/UTF-8">UTF-8</a>，但是 Excel 默认会用本地编码，例如中国大陆地区用 <a href="https://zh.wikipedia.org/wiki/GB_2312">GB 2312</a>，台湾地区用 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E4%BA%94%E7%A2%BC">Big5</a>。解决办法有二：</p>
+
+<p>方法一: 以记事本开启后储存，再以 Excel 开启即可正常显示。</p>
+
+<p>方法二: 开启 Excel 软件，新增空白活页簿(Workbook)，然后在上方功能选项中点选「资料(Data)」-&gt;「取得外部资料 Get External Data」-&gt;「从文字档 From Text File...」→「选择汇出的 CSV 档案」→ 选择符号分隔(Delimited)、选择 File origin 编码是 Unicode (UTF-8) → 选择分隔符号是 Comma 逗点，即可正常显示。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YrhK8j7kTh2DVxBmjk5Y_20-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      22-2 汇出 Excel 档案
+    </h1><h4>所属章节：22. 数据汇出</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果上述 Excel 打开 CSV 档案的解法没办法接受的话，那只好想办法汇出 Excel 专用的 xlsx 格式了。这需要额外装 gem，这里示范使用 <a href="https://github.com/straydogstudio/axlsx_rails">axlsx_rails</a> gem。</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'rubyzip'
++  gem 'axlsx'
++  gem 'axlsx_rails'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，加上汇出的按钮，指定 format 格式是 xlsx</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;%= paginate @registrations %&gt;
+
+  &lt;p&gt;
+    &lt;%= link_to "汇出 CSV", admin_event_registrations_path(:format =&gt; :csv), :class =&gt; "btn btn-default" %&gt;
+<span class="gi">+   &lt;%= link_to "汇出 Excel", admin_event_registrations_path(:format =&gt; :xlsx), :class =&gt; "btn btn-default" %&gt;
+</span>  &lt;/p&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/event_registrations_controller.rb</code>，新增 xlsx 格式</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>respond_to do |format|
+  format.html
+  format.csv {
+   # 略
+  }
+<span class="gi">+     format.xlsx
+</span>end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/event_registrations/index.xlsx.axlsx</code> 样板：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.xlsx.axlsx
+</span></figcaption><div class="highlight"><pre><span class="n">wb</span> <span class="o">=</span> <span class="n">xlsx_package</span><span class="p">.</span><span class="nf">workbook</span>
+<span class="n">wb</span><span class="p">.</span><span class="nf">add_worksheet</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Buttons"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">sheet</span><span class="o">|</span>
+  <span class="n">sheet</span><span class="p">.</span><span class="nf">add_row</span> <span class="p">[</span><span class="s2">"报名ID"</span><span class="p">,</span> <span class="s2">"票种"</span><span class="p">,</span> <span class="s2">"姓名"</span><span class="p">,</span> <span class="s2">"状态"</span><span class="p">,</span> <span class="s2">"Email"</span><span class="p">,</span> <span class="s2">"报名时间"</span><span class="p">]</span>
+  <span class="vi">@registrations</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span>
+    <span class="n">sheet</span><span class="p">.</span><span class="nf">add_row</span> <span class="p">[</span><span class="n">r</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="nf">ticket</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">t</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">status</span><span class="p">,</span> <span class="ss">:scope</span> <span class="o">=&gt;</span> <span class="s2">"registration.status"</span><span class="p">),</span> <span class="n">r</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="nf">created_at</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>这样就可以汇出 Excel 格式的档案了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QllzQDiATQ26prDvZLAp_20-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23-1 增加后台管理员权限
+    </h1><h4>所属章节：23. 用户权限控管</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目前只要有登入就可以进入后台，接下来实作基本的权限检查(Authorization)吧，只有管理员才可以进入后台。</p>
+
+<p>基本的原理很简单，我们在 User model 上新增一个字段标记是不是管理员即可。</p>
+
+<p>执行 <code>rails g migration add_role_to_users role:string</code> 增加一个 role 字串符字段到 users table 上。</p>
+
+<blockquote>
+<p>在之前的课程中，是用 <code>is_admin:boolean</code> 字段来表示是不是管理员，在这里改用 <code>role:string</code>，这样的好处是可以有角色扩充的弹性。</p>
+</blockquote>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/controllers/admin_controller.rb</code>，增加权限检查 <code>current_user</code> 的 role (角色)必须是 <code>admin</code>。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin_controller.rb
+</span></figcaption><div class="highlight"><pre>  class AdminController &lt; ApplicationController
+    protect_from_forgery with: :exception
+
+    before_action :authenticate_user!
+<span class="gi">+   before_action :require_admin!
+</span>
+    layout "admin"
+
+<span class="gi">+   protected
+</span>
+<span class="gi">+   def require_admin!
++     if current_user.role != "admin"
++       flash[:alert] = "您的权限不足"
++       redirect_to root_path
++     end
++   end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这时候点选主选单的后台面板，就会出现：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/w9hAiOVeS96PK3ocy3XJ_23-1.png" title=""></figure></p>
+
+<p>这样就进不去后台了。</p>
+
+<p>要设定第一个管理员，只能透过 rails console 了。</p>
+
+<p>执行 <code>rails console</code>，依序输入：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>u = User.find_by_email("admin@example.org")
+u.role = "admin"
+u.save!
+</pre></div>
+</figure>
+
+<p>这样 <code>admin@example.org</code> 就有权限可以进入后台管理。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23-2 增加其他角色
+    </h1><h4>所属章节：23. 用户权限控管</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>用 <code>role</code> 的设计好处是可以扩充不同角色，让我们新设计一个 <code>editor</code> 角色：</p>
+
+<ul>
+<li>
+<code>admin</code> 有全部后台权限</li>
+<li>
+<code>editor</code> 可以进入后台管理活动，但不能管理用户</li>
+</ul>
+
+<p>编辑 <code>app/controllers/admin_controller.rb</code>，拿掉本来后台都套用的 <code>before_action :require_admin!</code> 权限检查。然后新增一个 <code>require_editor!</code> 方法，等会我们得逐个 controllers 一个一个加上权限检查。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin_controller.rb
+</span></figcaption><div class="highlight"><pre>  class AdminController &lt; ApplicationController
+    protect_from_forgery with: :exception
+
+    before_action :authenticate_user!
+<span class="gd">-   before_action :require_admin!
+</span>
+    layout "admin"
+
+    protected
+
+<span class="gi">+   def require_editor!
++     if current_user.role != "editor" &amp;&amp; current_user.role != "admin"
++       flash[:alert] = "您的权限不足"
++       redirect_to root_path
++     end
++   end
+</span>
+    def require_admin!
+      if current_user.role != "admin"
+        flash[:alert] = "您的权限不足"
+        redirect_to root_path
+      end
+    end
+
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑以下档案，需要 editor 权限：</p>
+
+<ul>
+<li><code>app/controllers/admin/event_registrations_controller.rb</code></li>
+<li><code>app/controllers/admin/event_tickets_controller.rb</code></li>
+<li><code>app/controllers/admin/events_controller.rb</code></li>
+</ul>
+
+<figure class="figure-code code"><div class="highlight"><pre>+  before_action :require_editor!
+
+</pre></div>
+</figure>
+
+<p>编辑以下档案，需要 admin 权限：</p>
+
+<ul>
+<li><code>app/controllers/admin/user_profiles_controller.rb</code></li>
+<li><code>app/controllers/admin/users_controller.rb</code></li>
+<li><code>app/controllers/admin/versions_controller.rb</code></li>
+</ul>
+
+<figure class="figure-code code"><div class="highlight"><pre>+  before_action :require_admin!
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>以上这些 controller 都应该继承自 <code>AdminController</code>，例如 <code>class Admin::EventsController &lt; AdminController</code>，这样才会有这两个方法可以调用</p>
+</blockquote>
+
+<p>这样就完成了，每个 <code>app/controllers/admin/</code> 目录下的 controller 都要记得加上权限检查。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23-3 编辑用户角色
+    </h1><h4>所属章节：23. 用户权限控管</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了第一个管理员需要进入 rails console 编辑角色之外，在编辑用户那一页，我们可以实作一个下拉选单来编辑角色。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/c9Uy1XoTSKYyXzfaI08Q_23-2.png" title=""></figure></p>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  class User &lt; ApplicationRecord
+
+<span class="gi">+   ROLES = ["admin", "editor"]
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/users/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;div class="form-group"&gt;
+     &lt;%= f.label :email %&gt;
+     &lt;%= f.text_field :email, :class =&gt; "form-control" %&gt;
+   &lt;/div&gt;
+
+<span class="gi">+  &lt;div class="form-group"&gt;
++    &lt;%= f.label :role %&gt;
++    &lt;%= f.select :role, User::ROLES.map{ |x| [t(x, :scope =&gt; "user.role"), x] }, { :include_blank =&gt; true }, :class =&gt; "form-control" %&gt;
++  &lt;/div&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>注意这里多加了 <code>:include_blank =&gt; true</code> 参数，这会让下拉选单多一个空的 nil 空选项。</p>
+</blockquote>
+
+<p>编辑 <code>config/locales/zh-CN.yml</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/locales/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>  "zh-CN":
+<span class="gi">+   user:
++     role:
++       admin: 超级管理员
++       editor: 活动管理员
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/users_controller.rb
+</span></figcaption><div class="highlight"><pre>   def user_params
+<span class="gd">-    params.require(:user).permit(:email, :group_ids =&gt; [])
+</span><span class="gi">+    params.require(:user).permit(:email, :role, :group_ids =&gt; [])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就可以编辑用户的角色了。请编辑任一个用户变成 editor，然后登出，改用那个帐号登入(假用户的密码是12345678)，就可以测试上一节的权限检查了：可以活动管理，但是点用户管理会跳出权限不足。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23-4 权限重构
+    </h1><h4>所属章节：23. 用户权限控管</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>既然 editor 没有权限可以管理用户，那么在主选单上就不应该出现用户管理的连结，让我们小小改进一下：</p>
+
+<p>编辑 <code>app/views/layouts/admin.html.erb</code>，根据不同权限决定要不要显示连结：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/admin.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;% if current_user %&gt;
+<span class="gi">+   &lt;% if current_user.role == "admin" || current_user.role == "editor" %&gt;
+</span>      &lt;li class="active"&gt;&lt;%= link_to('活动管理', admin_events_path) %&gt;&lt;/li&gt;
+<span class="gi">+   &lt;% end %&gt;
+</span>
+<span class="gi">+   &lt;% if current_user.role == "admin" %&gt;
+</span>      &lt;li&gt;&lt;%= link_to('用户管理', admin_users_path) %&gt;&lt;/li&gt;
+<span class="gi">+    &lt;% end %&gt;
+</span><span class="err">  &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/pixHFFSQViREGemRy8Hg_23-3.png" title=""></figure></p>
+
+<p>不过这个 if 条件跟 <code>admin_controller.rb</code> 里面的权限检查条件，其实逻辑是一样的，也就是 admin 的权限包括 editor 的权限，我们进一步重构一下。</p>
+
+<p>编辑 <code>app/models/user.rb</code>，加上两个方法判断是不是 admin 和 editor</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def is_admin?
++    self.role == "admin"
++  end
++
++  def is_editor?
++    ["admin", "editor"].include?(self.role)  # 如果是 admin 的话，当然也有 editor 的权限
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin_controller.rb</code>，改成用 <code>is_admin?</code> 和 <code>is_editor?</code> 方法</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  protected
+
+  def require_editor!
+-   if current_user.role != "editor" &amp;&amp; current_user.role != "admin"
++   unless current_user.is_editor?
+      flash[:alert] = "您的权限不足"
+      redirect_to root_path
+    end
+  end
+
+  def require_admin!
+-   if current_user.role != "admin"
++   unless current_user.is_admin?
+      flash[:alert] = "您的权限不足"
+      redirect_to root_path
+    end
+  end
+
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layouts/admin.html.erb</code>，改成用 <code>is_admin?</code> 和 <code>is_editor?</code> 方法</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/admin.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;% if current_user %&gt;
+<span class="gd">-   &lt;% if current_user.role == "admin" || current_user.role == "editor" %&gt;
+</span><span class="gi">+   &lt;% if current_user.is_editor? %&gt;
+</span>      &lt;li class="active"&gt;&lt;%= link_to('活动管理', admin_events_path) %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+
+<span class="gd">-   &lt;% if current_user.role == "admin" %&gt;
+</span><span class="gi">+   &lt;% if current_user.is_admin? %&gt;
+</span>      &lt;li&gt;&lt;%= link_to('用户管理', admin_users_path) %&gt;&lt;/li&gt;
+     &lt;% end %&gt;
+  &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了，透过 User model 的 <code>is_admin?</code> 和 <code>is_editor?</code> 方法集中权限检查的逻辑，之后如果新增不同子权限，只要改 model 就可以了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23-5 补充: pundit 和 cancancan
+    </h1><h4>所属章节：23. 用户权限控管</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果权限检查的逻辑比较复杂，有很多角色而且不同 action 又有不同权限，甚至是不同资料有不同权限，这时候我们可以考虑使用专用的权限检查 gem，帮助我们组织代码，也避免忘记加上权限(前几节的实作，如果忘记加上 <code>before_action</code> 你就忘记检查到囉)。最知名的有以下两套：</p>
+
+<ul>
+<li><a href="https://github.com/elabs/pundit">Pundit</a></li>
+<li><a href="https://github.com/CanCanCommunity/cancancan">Cancancan</a></li>
+</ul>
+
+<p>详细用法请自行参考文档。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24-1 安装 letter_opener
+    </h1><h4>所属章节：24. HTML E-mail 寄送</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在本机开发的时候，不需要真的寄出 E-mail，请安装 <a href="https://github.com/ryanb/letter_opener">letter_opener</a>，这样 Rails 会在寄信时，自动打开浏览器进行预览。</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  group :development do
+    gem 'faker'
+<span class="gi">+   gem 'letter_opener'
+</span>
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/environments/development.rb</code> 设定 <code>delivery_method</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/environments/development.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  config.action_mailer.delivery_method = :letter_opener
+</span>   config.action_mailer.default_url_options = { :host =&gt; 'localhost:3000' }
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>要测试 E-mail 的一个简单方式是去测试忘记密码流程：请登出，然后进入登入画面，点选 Forgot your password?</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/BmFako9ZSei1wyIAh6QT_24-1.png" title=""></figure></p>
+
+<p>输入 E-mail 后按下送出，这时候不会真的寄出 E-mail，而是自动跳出浏览器浏览信件内容：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MzLT86PfTbmfFTiWkArc_24-2.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24-2 寄送报名完成的 E-mail
+    </h1><h4>所属章节：24. HTML E-mail 寄送</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>实作目标：完成报名后，寄出通知 E-mail</p>
+
+<p>执行 <code>rails g mailer notification</code></p>
+
+<p>编辑 <code>app/mailers/notification_mailer.rb</code>，新增 confirmed_registration 信</p>
+
+<figure class="figure-code code"><figcaption><span>app/mailers/notification_mailer.rb
+</span></figcaption><div class="highlight"><pre>  class NotificationMailer &lt; ApplicationMailer
+
+<span class="gi">+   def confirmed_registration(registration)
++     @registration = registration
++     @event = registration.event
++
++     mail( :to =&gt; @registration.email, :subject =&gt;   I18n.t("notification.subject.confirmed_registration", :name =&gt; @event.name) )
++   end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/locales/zh-CN.yml</code> 增加 E-mail 标题的翻译</p>
+
+<figure class="figure-code code"><figcaption><span>config/locales/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>  "zh-CN":
+<span class="gi">+   notification:
++     subject:
+</span><span class="err">+       confirmed_registration: "报名成功: %{name}"
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/notification_mailer/confirmed_registration.text.erb</code> 是 E-mail 样板</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>Hi <span class="cp">&lt;%=</span> <span class="vi">@registration</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span>,
+
+您已完成报名 <span class="cp">&lt;%=</span> <span class="vi">@event</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span> <span class="cp">&lt;%=</span> <span class="n">event_url</span><span class="p">(</span><span class="vi">@event</span><span class="p">)</span> <span class="cp">%&gt;</span>
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>在 E-mail 里面的网址都必须要写绝对网址 <code>xxx_url</code>，而不是相对网址 <code>xxx_path</code>。例如 <code>event_url(@event)</code> 会产生 <code>http://localhost:3000/events/fullstack-meetup</code>，而 <code>event_path(@event)</code> 会产生 <code>/events/fullstack-meetup</code>，这样在 E-mail 阅读器中点超连结才能顺利让浏览器打开网址。那 Rails 要怎么知道网站位置呢? 我们曾在 <code>config/environments/development.rb</code> 写过 <code>config.action_mailer.default_url_options = { :host =&gt; 'localhost:3000' }</code> 这就是 E-mail 中产生 <code>xxx_url</code> 网址时，会用的网站位置。之后上 production 你也必须在 <code>config/environments/production.rb</code> 进行设定。</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code> 在报名完成后寄出 E-mail</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def step3_update
+    @registration = @event.registrations.find_by_uuid(params[:id])
+    @registration.status = "confirmed"
+    @registration.current_step = 3
+
+    if @registration.update(registration_params)
+      flash[:notice] = "报名成功"
+
+<span class="gi">+     NotificationMailer.confirmed_registration(@registration).deliver_later
+</span>
+      redirect_to event_registration_path(@event, @registration)
+    else
+      render "step3"
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就会在报名完成后，寄出 E-mail 了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zC0XX8WRBSnNQsyKvPGQ_24-3.png" title=""></figure></p>
+
+<p>你也可以直接在 rails console 中进行测试：</p>
+
+<p>执行 <code>rails console</code>，然后输入</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>NotificationMailer.confirmed_registration( Registration.by_status("confirmed").last ).deliver_now
+</pre></div>
+</figure>
+
+<p>这样就会寄出最后一笔报名成功的信，方便我们反复修改 <code>app/views/notification_mailer/confirmed_registration.text.erb</code> 样板，而不需要离开 rails console，每次改完只要在 rails console 中再寄一次就可以了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24-3 HTML E-mail
+    </h1><h4>所属章节：24. HTML E-mail 寄送</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节中的 E-mail 样板，采用的是纯文字 text 格式，所以副档名是 <code>.text.erb</code>。</p>
+
+<p>纯文字的 E-mail 好处是排版简单，不需要烦恼样式、而且所有的 Email 阅读器都可以顺利打开，不过缺点就是因为没有 HTML，所以不能放超连结，只能直接放网址 (不过大部分的 E-mail 阅读器都能判断这是网址，便会自动帮你加上超连结)、不能放直接放图片(img)、不能放表格(table)等等。</p>
+
+<p>因此如果想要制作漂亮的 E-mail，就需要制作 HTML 格式的 E-mail，要改成寄出 HTML E-mail 很简单：</p>
+
+<p>请将 <code>app/views/notification_mailer/confirmed_registration.text.erb</code> 档名变更为 <code>app/views/notification_mailer/confirmed_registration.html.erb</code>，接着编辑它：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/notification_mailer/confirmed_registration.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-   Hi &lt;%= @registration.name %&gt;,
+</span><span class="gi">+  &lt;p&gt;Hi &lt;%= @registration.name %&gt;,&lt;/p&gt;
+</span>
+<span class="gd">-  您已完成报名 &lt;%= @event.name %&gt; &lt;%= event_url(@event) %&gt;
+</span><span class="gi">+  &lt;p&gt;您已完成报名 &lt;%= link_to @event.name, event_url(@event) %&gt;&lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>再测试寄一次，网址的部分就变成超连结了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/8UtdwuvlSF2RRF8eEIkd_24-4.png" title=""></figure></p>
+
+<blockquote>
+<p>Protip: 由用户触发的系统信比较适合用 HTML E-mail，用户会感觉那是系统自动寄出的信件。但如果是客服回信或意见询问，用纯文字 E-mail 可能反而比较有诚意喔。因为用户会感觉那是人写的信件，而不是系统自动寄出的信。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24-4 E-mail CSS 样式问题：安装 premailer
+    </h1><h4>所属章节：24. HTML E-mail 寄送</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>既然用了 HTML E-mail，接下来会想加一些 CSS 样式上去。不过这就是麻烦的地方，E-mail 阅读软件比起浏览器更多样更古老，例如有 Outlook、iPhone、Apple Mail、Yahoo! Mail、Google Mail、Android、QQ 信箱等等，这些 E-mail 阅读器对 CSS 的支援程度很不一致。详情请参考：</p>
+
+<ul>
+<li><a href="https://blog.othree.net/log/2016/08/25/modern-html-email-develop/">Modern HTML Email Development</a></li>
+<li><a href="https://www.campaignmonitor.com/css/">The Ultimate Guide to CSS</a></li>
+<li><a href="http://templates.mailchimp.com/development/css/">CSS | Email Design Reference</a></li>
+</ul>
+
+<p>基本来说，你不能用 <code>&lt;link&gt;</code> 标籤去加载 CSS 档案、有些 E-mail 阅读器不能用 <code>&lt;style&gt;</code> 标籤写 CSS 样式，当然也不可能写 JavaScript。</p>
+
+<p>保险的作法是需要将 CSS 用 Inline (内联)的方式到 HTML 里面，例如以下的 HTML：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;link rel="stylesheet" media="all" href="/assets/email.css" /&gt;
+&lt;style&gt;
+  p { color: red }
+&lt;/style&gt;
+&lt;body&gt;
+  &lt;p&gt;TEST&lt;/p&gt;
+&lt;/body&gt;
+</pre></div>
+</figure>
+
+<p>在寄出的 E-mail 中需要改成将 CSS 都集中到该标籤的 <code>style</code> 属性，这样 E-mail 阅读器才会套用到 CSS 样式。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;body&gt;
+  &lt;p style="color: red; font-family: 'Helvetica N=
+eue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal;"&gt;
+&lt;/body&gt;
+</pre></div>
+</figure>
+
+<p>这是一个大苦工啊，更何况写成 inline CSS 的话，代码维护性会变成非常差很难改。</p>
+
+<p>好在 Rails 有个 <a href="https://github.com/fphilipe/premailer-rails">premailer-rails</a> gem 可以帮我们自动做好这个转换，就可以用本来的写法，它会自动转换成 inline CSS 👍👍👍</p>
+
+<p>请编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+  gem 'premailer-rails'
+
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器，下一节我们来套版。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24-5 HTML E-mail 套版
+    </h1><h4>所属章节：24. HTML E-mail 寄送</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>因为 E-mail 的 CSS 属性支援程度不一，如果要完全自己写 CSS 测试会很辛苦，好在我们有现成的 Email Responsive Template 样板可以套：</p>
+
+<ul>
+<li><a href="http://blog.mailgun.com/transactional-html-email-templates/">Transactional HTML Email Templates</a></li>
+<li><a href="https://github.com/leemunroe/responsive-html-email-template">Really Simple Responsive HTML Email Template</a></li>
+<li>
+<a href="https://htmlemail.io/">Responsive HTML Email Templates</a> USD $49</li>
+</ul>
+
+<p>请下载第一个 <a href="https://github.com/mailgun/transactional-email-templates/archive/master.zip">Transactional HTML Email Templates 的 zip 压缩档</a>，我们拿它的 <code>templates/action.html</code> 来改。</p>
+
+<blockquote>
+<p>你会发现这个他还有提供 inlined 的版本，把 style inline 进去后的 HTML 代码非常的恶心，很难修改。好在我们有装 <code>premailer-rails</code> gem 了，所以用不到。</p>
+</blockquote>
+
+<p>请把 <code>templates/style.css</code> 复制到我们项目中的 <code>app/assets/stylesheets/email.css</code></p>
+
+<p>编辑 <code>app/views/layouts/mailer.html.erb</code>，把内容全部换成：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/mailer.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Type"</span> <span class="na">content=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;title&gt;</span>Notification<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"email.css"</span> <span class="na">media=</span><span class="s">"all"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/EmailMessage"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"body-wrap"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">width=</span><span class="s">"600"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"main"</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">cellpadding=</span><span class="s">"0"</span> <span class="na">cellspacing=</span><span class="s">"0"</span> <span class="na">itemprop=</span><span class="s">"action"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/ConfirmAction"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"content-wrap"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;meta</span> <span class="na">itemprop=</span><span class="s">"name"</span> <span class="na">content=</span><span class="s">"Confirm Email"</span><span class="nt">/&gt;</span>
+              <span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">"100%"</span> <span class="na">cellpadding=</span><span class="s">"0"</span> <span class="na">cellspacing=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;tr&gt;</span>
+                  <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"content-block"</span><span class="nt">&gt;</span>
+                    <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+                  <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;tr&gt;</span>
+                  <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"content-block"</span> <span class="na">itemprop=</span><span class="s">"handler"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/HttpActionHandler"</span><span class="nt">&gt;</span>
+                    <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="ss">:action</span> <span class="cp">%&gt;</span>
+                  <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;tr&gt;</span>
+                  <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"content-block"</span><span class="nt">&gt;</span>
+                    <span class="ni">&amp;mdash;</span> 你的名字
+                  <span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;/tr&gt;</span>
+              <span class="nt">&lt;/table&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"footer"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;table</span> <span class="na">width=</span><span class="s">"100%"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+              <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"aligncenter content-block"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"https://fullstack.xinshengdaxue.com"</span><span class="nt">&gt;</span>新生大学线上全栈营<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+          <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;/div&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>其中主内容是 <code>&lt;%= yield %&gt;</code>，另外还挖了一个洞是 <code>&lt;%= yield :action %&gt;</code>，等会用 <code>content_for :action</code> 可以填内容进去。</p>
+
+<p>编辑 <code>app/views/notification_mailer/confirmed_registration.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/notification_mailer/confirmed_registration.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;p&gt;Hi &lt;%= @registration.name %&gt;,&lt;/p&gt;
+
+   &lt;p&gt;您已完成报名 &lt;%= link_to @event.name, event_url(@event) %&gt;&lt;/p&gt;
+
+<span class="gi">+  &lt;% content_for :action do %&gt;
++    &lt;%= link_to "浏览报名结果", event_registration_url(@event, @registration), :class =&gt; "btn-primary", :itemprop =&gt; "url" %&gt;
++  &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>多加了一个用途是 Call to Action 的按钮，这样一封漂亮的 E-mail 就完成了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Y6WMipPSD6UbhQVqgdWO_24-5.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      25-1 解析 CSV 档案 (Rake)
+    </h1><h4>所属章节：25. 数据汇入</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们在「百宝箱 20-数据汇出 」实作过汇出 CSV 格式，一个有良心的平台会实作汇出功能，方便用户进行分析或资料转移。或是用 Microsoft Excel 或 Apple Numbers 试算表，可以点选另存新档(Save As...)为 CSV UTF-8 格式来做数据汇出。</p>
+
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%80%97%E5%8F%B7%E5%88%86%E9%9A%94%E5%80%BC">CSV 逗号分隔值</a> 格式除了容易汇出，也是最容易汇入处理的格式，这一章会用 CSV 举例，不需要额外装 gem 就能处理。</p>
+</blockquote>
+
+<p>假设我们拿到这样的 CSV 档案，接下来要如果汇入数据库呢？总不能一笔一笔输入太慢了，当然要用写程序的方式来做汇入。</p>
+
+<p>如果汇入是程序员的一次性的任务，我们可以不需要实作 Web UI，只需要一个 rake 任务可以执行就好了。</p>
+
+<p>请下载这一个 CSV: <a href="https://raw.githubusercontent.com/growthschool/rails-recipes/master/registrations.csv">registrations.csv</a> 放在项目 <code>tmp</code> 目录下（按右键另存新档)</p>
+
+<blockquote>
+<p>这有1000笔报名资料，其中有2笔故意缺少了 E-mail。</p>
+</blockquote>
+
+<p>编辑 <code>lib/tasks/dev.rake</code>，让我们新增一个 <code>import_registration_csv_file</code> 任务</p>
+
+<figure class="figure-code code"><figcaption><span>lib/tasks/dev.rake
+</span></figcaption><div class="highlight"><pre><span class="gi">+ require 'csv'
+</span>  namespace :dev do
+
+<span class="gi">+   task :import_registration_csv_file =&gt; :environment do
++     event = Event.find_by_friendly_id("fullstack-meetup")
++     tickets = event.tickets
++
++     success = 0
++     failed_records = []
++
++     CSV.foreach("#{Rails.root}/tmp/registrations.csv") do |row|
++       registration = event.registrations.new( :status =&gt; "confirmed",
++                                    :ticket =&gt; tickets.find{ |t| t.name == row[0] },
++                                    :name =&gt; row[1],
++                                    :email =&gt; row[2],
++                                    :cellphone =&gt; row[3],
++                                    :website =&gt; row[4],
++                                    :bio =&gt; row[5],
++                                    :created_at =&gt; Time.parse(row[6]) )
++
++       if registration.save
++         success += 1
++       else
++         failed_records &lt;&lt; [row, registration]
++       end
++     end
++
++     puts "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
++
++     failed_records.each do |record|
++       puts "#{record[0]} ---&gt; #{record[1].errors.full_messages}"
++     end
++
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake dev:import_registration_csv_file</code> 就会执行了汇入的操作到 <code>fullstack-meetup</code> 这个活动。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FQqv602eRrGiC0mVt6qa_25-1.png" title=""></figure></p>
+
+<p>解说:</p>
+
+<ol>
+<li>和汇出 CSV 一样，Ruby 内建了 CSV 库可以解析 CSV，所以第一行先 <code>require 'csv'</code>
+</li>
+<li>
+<code>CSV.foreach</code> 会打开这个 CSV 档案跑循环，每笔资料就是一行 <code>row</code>，那一行的第一列是 <code>row[0]</code>、第二列是 <code>row[1]</code>。只要依序塞给 <code>event.registrations.new</code> 即可。</li>
+<li>CSV 中的票种是字符串，但是转进我们的数据库中需要转换成 Ticket model，因此这里写成 <code>tickets.find{ |t| t.name == row[0] }</code> 用票种名称去找是哪一个对象。</li>
+<li>时间也是一样，透过 <code>Time.parse</code> 转成时间对象</li>
+<li>因为汇入会一次汇入非常多笔，我们希望不管每笔资料 save 成功或失败，都能跑完全部资料，最后印出一个总结：告诉我们总共几笔成功，总共几笔失败，是哪些笔失败又是什么原因。</li>
+</ol>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      25-2 解析 CSV 档案 (Web UI 接口)
+    </h1><h4>所属章节：25. 数据汇入</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需要 Web UI 可以上传档案的话，让我们来实作一下：</p>
+
+<p>请编辑 <code>config/routes.rb</code>，新增一个 import 路由</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   namespace :admin do
+     # 略
+     resources :events do
+<span class="gd">-      resources :registrations, :controller =&gt; "event_registrations"
+</span><span class="gi">+      resources :registrations, :controller =&gt; "event_registrations" do
++        collection do
++          post :import
++        end
++      end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code> 加上档案上传的输入框：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;%= link_to "汇出 CSV", admin_event_registrations_path(:format =&gt; :csv), :class =&gt; "btn btn-default" %&gt;
+   &lt;%= link_to "汇出 Excel", admin_event_registrations_path(:format =&gt; :xlsx), :class =&gt; "btn btn-default" %&gt;
+ &lt;/p&gt;
+<span class="gi">+
++ &lt;hr&gt;
++
++ &lt;%= form_tag import_admin_event_registrations_path(@event), :multipart =&gt; true do %&gt;
++   &lt;p&gt;&lt;%= file_field_tag "csv_file" %&gt;&lt;/p&gt;
++   &lt;p&gt;&lt;%= submit_tag "汇入CSV", :class =&gt; "btn btn-danger" %&gt;&lt;/p&gt;
++ &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/event_registrations_controller.rb</code> 新增一个 import action，内容基本上跟 rake 的版本差不多</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def import
++    csv_string = params[:csv_file].read.force_encoding('utf-8')
++
++    tickets = @event.tickets
++
++    success = 0
++    failed_records = []
++
++    CSV.parse(csv_string) do |row|
++      registration = @event.registrations.new( :status =&gt; "confirmed",
++                                   :ticket =&gt; tickets.find{ |t| t.name == row[0] },
++                                   :name =&gt; row[1],
++                                   :email =&gt; row[2],
++                                   :cellphone =&gt; row[3],
++                                   :website =&gt; row[4],
++                                   :bio =&gt; row[5],
++                                   :created_at =&gt; Time.parse(row[6]) )
++
++      if registration.save
++        success += 1
++      else
++        failed_records &lt;&lt; [row, registration]
++        Rails.logger.info("#{row} ----&gt; #{registration.errors.full_messages}")
++      end
++    end
++
++    flash[:notice] = "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
++    redirect_to admin_event_registrations_path(@event)
++  end
++
+</span>   protected
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 <code>csv_string</code> 就是从上传的档案中读取内容，接着用 <code>CSV.parse</code> 进行解析循环。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YE9m2o1cSwu0nsTPa5Bb_25-2.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/NrcLkD5gSPW82NN7xD1t_25-3.png" title=""></figure></p>
+
+<p>注意本来的 admin layout 中的 flash 样式有点问题，请修改 <code>app/views/layouts/admin.html.erb</code> 修正一下：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/admin.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-    &lt;div class="container"&gt;
+</span><span class="gi">+    &lt;div class="container" style="padding-top: 60px"&gt;
+</span>
+<span class="gd">-      &lt;p class="notice"&gt;&lt;%= notice %&gt;&lt;/p&gt;
+-      &lt;p class="alert"&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</span>
+<span class="gi">+      &lt;% if notice %&gt;
++        &lt;p class="notice alert-success"&gt;&lt;%= notice %&gt;&lt;/p&gt;
++      &lt;% end %&gt;
+</span>
+<span class="gi">+      &lt;% if alert %&gt;
++        &lt;p class="alert alert-danger"&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</span><span class="err">+      &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      25-3 把汇入档案存下来纪录过程
+    </h1><h4>所属章节：25. 数据汇入</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节的方式比较简略，我们并没有把上传的档案存下来，而是直接读取档案内容进行处理。</p>
+
+<p>如果这是一个面向终端用户的功能，会需要实作的更完整，例如：</p>
+
+<ol>
+<li>把上传的档案先存下来，先给用户预览字段顺序是否正确、有多少数据要汇入、哪些数据有问题</li>
+<li>确认后，才开始汇入数据库</li>
+<li>可以浏览过往的汇入历史纪录</li>
+</ol>
+
+<p>接下来我们示范如何新增一个 Model 把档案存下来处理，以及新增一个 RegistrationImports controller 显示汇入的历史纪录。</p>
+
+<p>执行 <code>rails g model registration_import</code>，这个 Model 会存下上传的 CSV 档案，并记录汇入的结果。</p>
+
+<p>编辑 <code>db/migrate/2017XXXXXX4512_create_registration_imports.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/2017XXXXXX4512_create_registration_imports.rb
+</span></figcaption><div class="highlight"><pre>  class CreateRegistrationImports &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :registration_imports do |t|
+<span class="gi">+       t.string :status
++       t.string :csv_file
++       t.integer :event_id, :index =&gt; true
++       t.integer :user_id
++       t.integer :total_count
++       t.integer :success_count
++       t.text :error_messages
+</span>        t.timestamps
+      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>执行 <code>rails g uploader registration_import_csv</code></p>
+
+<p>编辑 <code>app/models/registration_import.rb</code>，其中的 <code>process!</code> 方法就是要执行的汇入操作。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration_import.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ require 'csv'
+</span>  class RegistrationImport &lt; ApplicationRecord
+
+<span class="gi">+   mount_uploader :csv_file, RegistrationImportCsvUploader
++
++   validates_presence_of :csv_file
++
++   belongs_to :event
++   belongs_to :user
++
++   serialize :error_messages, JSON
++
++   def process!
++     csv_string = self.csv_file.read.force_encoding('utf-8')
++     tickets = self.event.tickets
++
++     success = 0
++     failed_records = []
++
++     CSV.parse(csv_string) do |row|
++       registration = self.event.registrations.new( :status =&gt; "confirmed",
++                                    :ticket =&gt; tickets.find{ |t| t.name == row[0] },
++                                    :name =&gt; row[1],
++                                    :email =&gt; row[2],
++                                    :cellphone =&gt; row[3],
++                                    :website =&gt; row[4],
++                                    :bio =&gt; row[5],
++                                    :created_at =&gt; Time.parse(row[6]) )
++
++       if registration.save
++         success += 1
++       else
++         failed_records &lt;&lt; [row, registration.errors.full_messages]
++       end
++     end
++
++     self.status = "imported"
++     self.success_count = success
++     self.total_count = success + failed_records.size
++     self.error_messages = failed_records
++
++     self.save!
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>   has_many :registrations, :dependent =&gt; :destroy
+<span class="gi">+  has_many :registration_imports, :dependent =&gt; :destroy
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  namespace :admin do
+     # (略)
+     resources :events do
+<span class="gi">+      resources :registration_imports
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code> 加上一个按钮</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;p class="text-right"&gt;
+    &lt;%= link_to "New Registration", new_admin_event_registration_path(@event), :class =&gt; "btn btn-primary" %&gt;
+<span class="gi">+   &lt;%= link_to "Import Registration", admin_event_registration_imports_path(@event), :class =&gt; "btn btn-primary" %&gt;
+</span>   &lt;/p&gt;
+
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Y1o2zIdOTzyKQwJbTcLf_25-4.png" title=""></figure></p>
+
+<p>执行 <code>rails g controller admin::registration_imports</code></p>
+
+<p>编辑 <code>app/controllers/admin/registration_imports_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/registration_imports_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">- class Admin::RegistrationImportsController &lt; ApplicationController
+</span><span class="gi">+ class Admin::RegistrationImportsController &lt; AdminController
+</span>
+<span class="gi">+   before_action :require_editor!
++   before_action :find_event
++
++   def index
++     @imports = @event.registration_imports.order("id DESC")
++   end
++
++   def create
++     @import = @event.registration_imports.new(registration_import_params)
++     @import.status = "pending"
++     @import.user = current_user
++
++     if @import.save
++       @import.process!
++       flash[:notice] = "汇入完成"
++     end
++
++     redirect_to admin_event_registration_imports_path(@event)
++   end
++
++   protected
++
++   def find_event
++     @event = Event.find_by_friendly_id!(params[:event_id])
++   end
++
++   def registration_import_params
++     params.require(:registration_import).permit(:csv_file)
++   end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中在 <code>@import.save</code> 之后，随即呼叫 <code>process!</code> 开始汇入。</p>
+
+<p>新增 <code>app/views/admin/registration_imports/index.html.erb</code> 显示档案上传的输入框，以及历史汇入纪录。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/registration_imports/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@event</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span> / Registrations Import<span class="nt">&lt;/h1&gt;</span>
+
+
+<span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="vi">@event</span><span class="p">,</span> <span class="no">RegistrationImport</span><span class="p">.</span><span class="nf">new</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">label</span> <span class="ss">:csv_file</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">file_field</span> <span class="ss">:csv_file</span><span class="p">,</span> <span class="ss">:required</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"form-control"</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"送出"</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"btn btn-primary"</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;tr&gt;</span>
+  <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>状态<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>CSV档案<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>总笔数<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>汇入成功笔数<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>错误讯息<span class="nt">&lt;/th&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+<span class="cp">&lt;%</span> <span class="vi">@imports</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">import</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">import</span><span class="p">.</span><span class="nf">id</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">import</span><span class="p">.</span><span class="nf">status</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">import</span><span class="p">.</span><span class="nf">csv_file</span><span class="p">.</span><span class="nf">url</span><span class="p">,</span> <span class="n">import</span><span class="p">.</span><span class="nf">csv_file</span><span class="p">.</span><span class="nf">url</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">import</span><span class="p">.</span><span class="nf">total_count</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">import</span><span class="p">.</span><span class="nf">success_count</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>
+      <span class="nt">&lt;ul&gt;</span>
+      <span class="cp">&lt;%</span> <span class="no">Array</span><span class="p">(</span><span class="n">import</span><span class="p">.</span><span class="nf">error_messages</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="cp">%&gt;</span>
+       <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="cp">%&gt;</span> ----&gt; <span class="nt">&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;&lt;/li&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>这样就完工啦。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/wy7rA3aRrSGT7BtGhFlF_25-5.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26-1 前言和安装 sidekiq
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>所谓的异步处理任务，就是在用户送出操作后，Rails 不会立即执行这个任务，而是交由另一个进程(process)在背景进行处理执行。</p>
+
+<p>使用的场景是：当任务要执行很久的时候，例如汇出大笔数据、汇入大笔数据等，当数据量上万笔的时候，可能会需要好几分钟才能执行完成。这时候如果不做异步处理，用户的浏览器就会像卡住一样，需要等服务器完成任务才有回应。</p>
+
+<p>等待时间太久除了让用户感受不佳之外，对于服务器效能上的影响也很巨大。用户可能等不及又重新整理一次，于是相同的任务又在重头执行一遍。而一个 HTTP Request 如果长时间执行，也会让 Rails 服务器无法服务其他用户。</p>
+
+<p>因此，这类型的任务我们会改成异步处理，第一时间用户会先看到「操作正在执行中，请稍候再回来」或是「完成后会 E-mail 通知您」的讯息。</p>
+
+<p>常用的异步处理有两套 gem:</p>
+
+<ul>
+<li>
+<a href="https://github.com/collectiveidea/delayed_job">delayed_job</a>: 使用关联式数据库，容易安装使用</li>
+<li>
+<a href="http://sidekiq.org">Sidekiq</a>: 使用高效能的 <a href="https://redis.io">Redis</a> 数据库，执行效率极好，业界较常用</li>
+</ul>
+
+<p>这两套 gem 的作用都是让 Rails 可以存下要执行的异步处理任务，然后启动进程(process)在背景进行处理执行。</p>
+
+<p>这一章将用 Sidekiq 举例，本机 Mac 需要安装 Redis 数据库：</p>
+
+<p>执行 <code>brew install redis</code></p>
+
+<p>另开一个 Termonal 视窗，执行 <code>redis-server /usr/local/etc/redis.conf</code> 就会跑起来 Redis 服务器</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dGmddzyTTdqGfcvYuom0_26-2.png" title=""></figure></p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  gem 'sidekiq'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>编辑 <code>config/environments/development.rb</code> 和 <code>config/environments/production.rb</code> 告诉 Rails 要用 sidekiq 来做异步处理</p>
+
+<figure class="figure-code code"><figcaption><span>config/environments/development.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ config.active_job.queue_adapter = :sidekiq
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>config/sidekiq.yml</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>---
+:queues:
+  - default
+  - mailers
+
+</pre></div>
+</figure>
+
+<p>重启服务器</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26-2 异步汇入
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>就拿上一章的数据汇入来改吧，本来的汇入有1000笔其实就要跑一阵子了，这是个标准情况需要改成异步处理。</p>
+
+<p>执行 <code>rails g job import_worker</code> 这会产生一种异步处理任务，叫做 <code>ImportWorkerJob</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/jobs/import_worker_job.rb
+</span></figcaption><div class="highlight"><pre>  class ImportWorkerJob &lt; ApplicationJob
+    queue_as :default
+
+<span class="gd">-   def perform(*args)
+-     # Do something later
+-   end
+</span>
+<span class="gi">+   def perform(import_id)
++     import = RegistrationImport.find(import_id)
++     import.process!
++   end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这个异步处理要怎么调用呢？接着修改 <code>app/controllers/admin/registration_imports_controller.rb</code>，改成异步处理：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/registration_imports_controller.rb
+</span></figcaption><div class="highlight"><pre>  def create
+    @import = @event.registration_imports.new(registration_import_params)
+    @import.status = "pending"
+    @import.user = current_user
+
+    if @import.save
+<span class="gd">-     @import.process!
+</span><span class="gi">+     ImportWorkerJob.perform_later(@import.id)
+</span>
+<span class="gd">-     flash[:notice] = "汇入完成"
+</span><span class="gi">+     flash[:notice] = "汇入已在背景执行，请稍候再来看结果"
+</span>    end
+
+    redirect_to admin_event_registration_imports_path(@event)
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>本来是直接调用 <code>@import.process!</code>，现在改成调用 <code>ImportWorkerJob.perform_later(@import.id)</code> 就会变成异步。</p>
+
+<p>你可以回到 25-3 实作的数据汇入，上传一个档案看看，你会发现服务器立即就回传了「汇入已在背景执行，请稍候再来看结果」讯息。之所以这么快，是因为它没有执行汇入，它只是跟 Sidekiq 说有一个任务要执行而已。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zsarmhrZSnu7WEV9A3E0_26-1.png" title=""></figure></p>
+
+<p>那到底谁去执行这个异步任务呢? 我们需要另外启动 Sidekiq 进程，请再开一个新个 Terminal 视窗，执行</p>
+
+<p><code>bundle exec sidekiq</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/jZluYz6RS7ClcZCrD7UA_26-4.png" title=""></figure></p>
+
+<p>只要有异步任务进来，这个 Sidekiq 会去去执行它。</p>
+
+<blockquote>
+<p>如果进 rails console 想要单纯测试这个任务，可以不需要异步，改用 <code>.perform_now</code> 方法就会马上执行</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26-3 Sidekiq 管理 UI
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Sidekiq 有提供一个漂亮的管理 UI，可以欣赏有多少待执行的异步任务、有多少执行成功和失败(失败sidekiq会重试)，也可以删除任务。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fu5NgA99TySIWr2WHeYR_26-5.png" title=""></figure></p>
+
+<p>修改 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  Rails.application.routes.draw do
+
+<span class="gi">+   require 'sidekiq/web'
++   authenticate :user, lambda { |u| u.is_admin? } do
++     mount Sidekiq::Web =&gt; '/sidekiq'
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>其中 authenticate 方法会检查权限，利用我们之前写的 User#is_admin? 方法</p>
+</blockquote>
+
+<p>浏览器浏览 <code>http://localhost:3000/sidekiq</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26-4 异步汇出
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据汇出也是一个常用异步来处理的任务，流程和汇入其实87分像：</p>
+
+<ul>
+<li>建立 RegistraionExport model，这个 model 会纪录是那个 user 做汇出、是哪个 event 要汇出，以及存储最后汇出的档案</li>
+<li>建立一个 RegistrationExports controller，这个 controller 让用户可以新增汇出纪录，以及浏览汇出纪录</li>
+<li>建立 ExportWorkerJob，这个异步任务会执行汇出操作，并将汇出的档案放到 RegistraionExport model 上</li>
+<li>异步任务最后完成时，可以寄 E-mail 通知用户汇出的档案已经准备好了</li>
+</ul>
+
+<p>这里就不示范实做了。</p>
+
+<p>最后，汇出和汇入的功能要完整实做的话，还需要考虑档案存储的位置。我们用 carrierwave 上传的档案，默认是公开的。但是汇出和汇入的档案，应该也必须要检查有没有权限才行。这部分的实作牵扯到我们使用哪种档案服务器：</p>
+
+<ul>
+<li>存储在本机的话，请参考 <a href="https://github.com/carrierwaveuploader/carrierwave/wiki/how-to:-secure-upload">How To: Secure Upload</a>
+</li>
+<li>存储在七牛云，请参考 <a href="https://developer.qiniu.com/kodo/manual/1202/download-token">下载凭证</a>
+</li>
+<li>存储在 AWS S3，请参考 <a href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html">Serving Private Content</a>
+</li>
+</ul>
+
+<p>在之后的进阶部署课程中，会再进一步示范如何使用。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26-5 报名15分钟内没完成自动取消
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>异步处理可以设定延迟时间，例如我们来实作一个小功能：如果报名15分钟内没有完成，系统会自动取消</p>
+
+<p>执行 <code>rails g job check_registration</code></p>
+
+<p>编辑 <code>app/jobs/check_registration_job.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/jobs/check_registration_job.rb
+</span></figcaption><div class="highlight"><pre>  class CheckRegistrationJob &lt; ApplicationJob
+    queue_as :default
+
+<span class="gd">-   def perform(*args)
+</span><span class="gi">+   def perform(registration_id)
++     registration = Registration.find(registration_id)
++
++     unless registration.status == "confirmed"
++       registration.status = "cancalled"
++       registration.save!
++     end
++
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  STATUS = ["pending", "confirmed"]
+</span><span class="gi">+  STATUS = ["pending", "confirmed", "cancalled"]
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/locales/zh-CN.yml</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/locales/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>   registration:
+     status:
+       pending: 报名尚未完成
+       confirmed: 报名成功
+<span class="gi">+      cancalled: 报名已取消
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code>，在新建报名之后，增加这个异步任务，并用 <code>set</code> 方法指定延迟时间。另外，重构了 <code>before_action :set_pending_registration</code> 检查如果是 cancalled 状态就不能继续填写报名资料。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>  class RegistrationsController &lt; ApplicationController
+
+    before_action :find_event
+<span class="gi">+   before_action :set_pending_registration, :only =&gt; [:step1, :step1_update, :step2, :step2_update, :step3, :step3_update]
+</span>
+    def create
+      @registration = @event.registrations.new(registration_params)
+      @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
+      @registration.status = "pending"
+      @registration.user = current_user
+      @registration.current_step = 1
+
+      if @registration.save
+<span class="gi">+        CheckRegistrationJob.set( wait: 15.minutes ).perform_later(@registration.id)
+</span>
+    # 略...
+
+    def step1
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>    end
+
+    def step1_update
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>
+      # 略
+
+    def step2
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>    end
+
+    def step2_update
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>
+      # 略
+
+    def step3
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>    end
+
+    def step3_update
+<span class="gd">-     @registration = @event.registrations.find_by_uuid(params[:id])
+</span>
+    # 略
+
+    protected
+
+<span class="gi">+   def set_pending_registration
++     @registration = @event.registrations.find_by_uuid(params[:id])
++
++     if @registration.status == "cancalled"
++       flash[:alert] = "请重新报名"
++       redirect_to event_path(@event)
++     end
++   end
+</span>
+<span class="err">    # 略
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>可以暂时改成用 <code>1.minute</code> 进行测试</p>
+</blockquote>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      异步 E-mail 寄信
+    </h1><h4>所属章节：26. 异步处理任务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Rails 的 E-mail 寄信功能，其实也用了异步处理任务，因为寄信会调用第三方的寄信 SMTP 服务器，执行速度上比较慢，因此也适合用异步处理来做。</p>
+
+<p>回想在 24-2 寄送报名完成的 E-mail 是如何寄送的：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>NotificationMailer.confirmed_registration(@registration).deliver_later
+</pre></div>
+</figure>
+
+<p>这里的 <code>deliver_later</code> 方法，就会用这一章设定的异步处理机制去寄信。</p>
+
+<p>如果不要用异步处理，例如我们在 rails console 测试的时候：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>NotificationMailer.confirmed_registration( Registration.by_status("confirmed").last ).deliver_now
+</pre></div>
+</figure>
+
+<p>这里的 <code>deliver_now</code> 方法，就会立即寄出。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

@@ -1,0 +1,2373 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-1 前言
+    </h1><h4>所属章节：1. 前言与案例准备</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>本课程收集各种常用的 Ruby on Rails 锦囊妙计，第一集的内容包括:</p>
+
+<ul>
+<li>自定义Model网址</li>
+<li>多语言设置</li>
+<li>时区设置</li>
+<li>格式化日期时间</li>
+<li>表单单选 UI (固定选项无 Model)</li>
+<li>表单单选 UI 和 Select2 Plugin</li>
+<li>表单多选 UI 和 Select2 Plugin</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-2 案例准备
+    </h1><h4>所属章节：1. 前言与案例准备</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来几堂的百宝箱课程，会基于一个活动(Event)报名系统的情境：</p>
+
+<ul>
+<li>用户可以在前台看到活动信息</li>
+<li>管理员可以在后台管理活动资料</li>
+<li>管理员可以在后台管理用户资料</li>
+<li>用户可以在前台进行报名</li>
+<li>管理员可以在后台管理报名资料</li>
+</ul>
+
+<p>为了让大家可以快速开始练习重点，请直接 clone 这个项目：<a href="https://github.com/growthschool/rails-recipes" rel="nofollow" target="_blank">https://github.com/growthschool/rails-recipes</a></p>
+
+<p>请依序执行：</p>
+
+<p><code>git clone git@github.com:growthschool/rails-recipes.git</code><br>
+<code>cd rails-recipes</code><br>
+<code>bin/setup</code><br>
+<code>bundle exec rake dev:fake</code></p>
+
+<p>在这个项目中，已经装好了 Devise、Bootstrap、RSpec，并且建立好了 User 和 Event models，以及前后台的 events controller。</p>
+
+<p><code>rails server</code></p>
+
+<p>接着打开浏览器 <a href="http://localhost:3000" rel="nofollow" target="_blank">http://localhost:3000</a></p>
+
+<p>登入帐号 <code>admin@example.org</code><br>
+登入密码 <code>12345678</code></p>
+
+<p>请浏览看看前台活动页面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/unZW4RSZTEafctYYtQrw_0-front.png" title=""></figure></p>
+
+<p>请进入后台操作看看新增、编辑和删除活动资料：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9iRtvIRXSuG1A6xBWjBD_0-admin.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 适用情境
+    </h1><h4>所属章节：2. 自定义 Model 网址</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在做 model 的 CRUD 时，一个 <code>resources :events</code> 这样的路由，它的 show 页面的网址总是这样：</p>
+
+<p><code>/events/123</code></p>
+
+<p>这样的网址有几个缺点:</p>
+
+<ol>
+<li>SEO(Search Engine Optimization、搜寻引擎优化) 不够好。只有数字，而不是有意义的文字。</li>
+<li>洩露了数据库中的资料量，聪明的用户可以透过修改网址，就可以猜到数据库有多少笔资料。</li>
+</ol>
+
+<p>让我们依序解决这个问题，这里提供三种层次的解决方案：</p>
+
+<ul>
+<li>方案一：网址上除了数字ID，可以再加上文字</li>
+<li>方案二：不要用数据库的递增数字ID，而是用一个乱数产生的 ID</li>
+<li>方案三：除了用乱数ID，也可以让用户自定义 ID</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 方案一：网址ID+文字
+    </h1><h4>所属章节：2. 自定义 Model 网址</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h4>方案一：网址上除了数字ID，可以再加上文字</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/PQl2OYQQ2qenoxfYqDZA_1-to-param.png" title=""></figure></p>
+
+<p>修改 <code>app/models/event.rb</code>，加上一个 <code>to_param</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+
+    validates_presence_of :name
+
+<span class="gi">+   def to_param
++     "#{self.id}-#{self.name}"
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>这样就好了，出来的网址就会变成 <code>/events/123-活动名称</code>。</p>
+<h4>解说一：</h4>
+<p>在调用路由方法时，Rails 默认都会用 to_param 方法来转换 ID，例如：</p>
+
+<p><code>event_path(@event)</code> 等同于 <code>event_path(@event.to_param)</code></p>
+
+<p>而这个 <code>to_param</code> 方法其实是一个 Rails 默认就有的方法，它本来是这样的：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>def to_param
+  self.id
+end
+</pre></div>
+</figure>
+
+<p>这就是为什么你不需要特地写 <code>event_path(@event.id)</code>，因为 Rails 默认调用了 <code>to_param</code></p>
+<h4>解说二：</h4>
+<p>在 controller 中的 <code>@event = Event.find(params[:id])</code> 为什么不需要修改呢?<br>
+因为 Rails 在 <code>find</code> 的时候，会先调用 <code>to_i</code> 转成纯数字的 ID。</p>
+
+<p>而任意字串 <code>to_i</code> 之后，只会留下前面的数字，后面非数字的字串都会忽略掉。</p>
+
+<p>于是 <code>"123-XXXXX".to_i</code> 就变成 <code>123</code> 了，和本来的数字ID是一致的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 方案二: 乱数 ID
+    </h1><h4>所属章节：2. 自定义 Model 网址</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h4>方案二：不要用数据库的递增数字ID，而是用一个乱数产生的 ID</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/s3WwGlg9StXVn6Z5P5hX_1-uuid.png" title=""></figure></p>
+
+<p>如果不要显示数据库的递增整数 ID 的话，我们需要在 events 上新增另一个字段来做识别。</p>
+
+<p>执行 <code>rails g migration add_friendly_id_to_events</code></p>
+
+<p>编辑 <code>201704XXXXXXXX_add_friendly_id_to_events.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>201704XXXXXXXX_add_friendly_id_to_events
+</span></figcaption><div class="highlight"><pre>  class AddFriendlyIdToEvents &lt; ActiveRecord::Migration[5.0]
+
+    def change
+<span class="gi">+     add_column :events, :friendly_id, :string
++     add_index :events, :friendly_id, :unique =&gt; true
+</span>
+<span class="gi">+     Event.find_each do |e|
++       e.update( :friendly_id =&gt; SecureRandom.uuid )
++     end
+</span>    end
+
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>在终端运行 <code>rake db:migrate</code></p>
+
+<p>记得这个字段需要加上唯一索引。</p>
+
+<p>编辑 <code>app/controllers/events_controller</code>，改成用 <code>friendly_id</code> 这个字段来找 event：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def show
+<span class="gd">-    @event = Event.find(params[:id])
+</span><span class="gi">+    @event = Event.find_by_friendly_id!(params[:id])
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/events_controller</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def show
+<span class="gd">-    @event = Event.find(params[:id])
+</span><span class="gi">+    @event = Event.find_by_friendly_id!(params[:id])
+</span>   end
+
+   def edit
+<span class="gd">-    @event = Event.find(params[:id])
+</span><span class="gi">+    @event = Event.find_by_friendly_id!(params[:id])
+</span>
+   def update
+<span class="gd">-    @event = Event.find(params[:id])
+</span><span class="gi">+    @event = Event.find_by_friendly_id!(params[:id])
+</span>
+   def destroy
+<span class="gd">-    @event = Event.find(params[:id])
+</span><span class="gi">+    @event = Event.find_by_friendly_id!(params[:id])
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code>，修改 <code>to_param</code> 改成用 <code>friendly_id</code>，並在新增的时候自动产生乱数的 <code>friendly_id</code>。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Event</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+
+    <span class="n">validates_presence_of</span> <span class="ss">:name</span>
+
+<span class="o">+</span>   <span class="n">before_validation</span> <span class="ss">:generate_friendly_id</span><span class="p">,</span> <span class="ss">:on</span> <span class="o">=&gt;</span> <span class="ss">:create</span>
+
+    <span class="k">def</span> <span class="nf">to_param</span>
+<span class="o">-</span>     <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">+</span>     <span class="nb">self</span><span class="p">.</span><span class="nf">friendly_id</span>
+    <span class="k">end</span>
+
+<span class="o">+</span>   <span class="kp">protected</span>
+
+<span class="o">+</span>   <span class="k">def</span> <span class="nf">generate_friendly_id</span>
+<span class="o">+</span>     <span class="nb">self</span><span class="p">.</span><span class="nf">friendly_id</span> <span class="o">||=</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">uuid</span>
+<span class="o">+</span>   <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-4 方案三: 用户可以自定义 ID
+    </h1><h4>所属章节：2. 自定义 Model 网址</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h4>方案三：不要用数据库的递增数字ID，并且用户可以自定义 ID</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IinpjOeQXiOYn5MdL0Zk_1-edit2.png" title=""></figure></p>
+
+<p>基于方案二，我们只要让管理员可以编辑 friendly_id 字段即可：</p>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+&lt;div class="form-group"&gt;
++  &lt;%= f.label :friendly_id %&gt;
++  &lt;%= f.text_field :friendly_id, :required =&gt; true, :class =&gt; "form-control" %&gt;
++  &lt;p class="help-block"&gt;限小写英数字及横线，将作为网址的一部分&lt;/p&gt;
++&lt;/div&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def event_params
+<span class="gd">-    params.require(:event).permit(:name, :description)
+</span><span class="gi">+    params.require(:event).permit(:name, :description, :friendly_id)
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样在后台就可以编辑 <code>friendly_id</code> 了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IdNhclcrSoaWp2PY4SiD_1-edit.png" title=""></figure></p>
+
+<p>由于这个字段输入的资料，会出现在网址上，所以最好加上一些资料验证：</p>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  validates_presence_of :name
+</span><span class="gi">+  validates_presence_of :name, :friendly_id
++
++  validates_uniqueness_of :friendly_id
++  validates_format_of :friendly_id, :with =&gt; /\A[a-z0-9\-]+\z/
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里不但要检查必填，还检查了必须唯一，而且格式只限小写英数字及横线。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 配置中文语系
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Rails 支持多语言化(Internationalization，简称I18n)，默认的语系是英文，请先修改 <code>config/application.rb</code> 将默认改为中文：</p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb
+</span></figcaption><div class="highlight"><pre>  class Application &lt; Rails::Application
+
+<span class="gi">+   config.i18n.default_locale = "zh-CN"
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>所谓的多国语系的功能，是指网站中的句子和单字，可以根据用户的需求进行切换。实际的作法就是准备翻译词汇档，然后将样板中本来写死的文字，置换成调用 I18n 方法。</p>
+
+<p>例如，请新增 <code>config/locales/zh-CN.yml</code> 这个词汇 YAML 档：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>"zh-CN":
+  event_list: 活动列表
+  admin:
+    event_list: 活动列表管理
+
+</pre></div>
+</figure>
+
+<p>修改 <code>config/locales/en.yml</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  "en":
++   event_list: Event List
++   admin:
+      event_list: Admin Event List
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>注意 YAML 格式的缩排必须使用两个空格，Tab 是不允许的。直接复制贴上可能会有问题，请小心检查缩排。</p>
+</blockquote>
+
+<p>修改 <code>app/views/events/index.html</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>-  &lt;h1&gt;Event List&lt;/h1&gt;
++  &lt;h1&gt;&lt;%= t("event_list") %&gt;&lt;/h1&gt;
+
+</pre></div>
+</figure>
+
+<p>修改  <code>app/views/admin/events/index.html</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>-  &lt;h1&gt;Admin Event List&lt;/h1&gt;
++  &lt;h1&gt;&lt;%= t("admin.event_list") %&gt;&lt;/h1&gt;
+
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>也可以写成 <code>t("event_list", :scope =&gt; "admin")</code> 结果是一样的</p>
+</blockquote>
+
+<p>其中 <code>t</code> 等同于 <code>I18n.t</code>，是个 Helper 方法，会根据语系来做字符串的替换。</p>
+
+<p>重启服务器，浏览看看就会发现这个单字被替换成中文了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DNWlSEeASnOGuVjenZci_3-1.png" title=""></figure></p>
+
+<blockquote>
+<p>新增词汇档案需要重启服务器，修改词汇不需要。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 词汇中内嵌变量
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>有些句子可能会需要内嵌变量，可以使用 <code>%{variable_name}</code> 的语法，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>config/locales/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>  "zh-CN":
+<span class="gi">+   hello: "亲～ %{name} 你好："
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>config/locales/en.yml
+</span></figcaption><div class="highlight"><pre>  "en":
+<span class="gd">-   hello: "Hello world"
+</span><span class="gi">+   hello: "Hi %{name},"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/layouts/application.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= current_user.display_name %&gt;
+</span><span class="gi">+ &lt;%= t( "hello", :name =&gt; current_user.display_name) %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/iA5DTesQRqyZfZ75h80t_3-2.png" title=""></figure></p>
+
+<p>如果我们的网站不需要支援多国语系，你可能会觉得这样做有点辛苦，直接将中文写在样板上就好了。</p>
+
+<p>但这个功能对于团队协作开发网站仍然非常有帮助，因为写程式的时候不一定会先确定文案规格，用 I18n 来处理的话，最后只需要让 PM 统一修改翻译词汇档即可。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-3 安装 Rails 中文翻译词汇档
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Rails 本身就有用到 I18n 的功能，可以安装 rails-i18n 这个 gem 有开源社区做好的中文翻译：</p>
+
+<p>编辑 Gemfile，加上</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>gem "rails-i18n"
+
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>重启服务器。会被翻译的词汇请参考 <a href="https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/zh-CN.yml" rel="nofollow" target="_blank">https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/zh-CN.yml</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/g9htQj2OQtO3N7zyURYI_3-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-4 安装 Devise 翻译档
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Devise 也有用到 I18n，可以安装 devise-i18n 这个 gem 有开源社区做好的中文翻译：</p>
+
+<p>请编辑 Gemfile，加上</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>gem "devise-i18n"
+
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>重启服务器。会被翻译的词汇请参考 <a href="https://github.com/tigrish/devise-i18n/blob/master/rails/locales/zh-CN.yml" rel="nofollow" target="_blank">https://github.com/tigrish/devise-i18n/blob/master/rails/locales/zh-CN.yml</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vQClOiWGQHKTa0DsNzaq_3-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-5 Model 字段翻译
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在套用上述的翻译词汇档之后，你可能会注意到 Model 验证错误讯息会变成如 Name不能为空字符，如果需要进一步中文化字段名称，你可以新增 <code>config/locales/events.yml</code> 内容如下：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   zh-CN:
+<span class="gi">+    activerecord:
++      attributes:
++        event:
++          name: "活动名称"
+</span><span class="err">+          description: "描述"
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rr2PKKwRRzyGjmkGPk7u_3-5.png" title=""></figure></p>
+
+<p>其实，翻译档档名叫 events.yml、zh-TW.yml、en.yml 什么都无所谓，重要的是 YAML 结构中第一层要对应locale的名称，也就是 <code>zh-CN</code>，Rails 会加载 <code>config/locales</code> 下所有的YAML词汇档案。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-6 如何让使用者可以切换多语系
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>刚刚我们准备了中文和英文翻译档案，但是并没有提供切换的机制。</p>
+
+<p>接下来请编辑 <code>app/controllers/application_controller.rb</code> 中加入:</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/application_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+ before_action :set_locale
++
++ def set_locale
++   if params[:locale] &amp;&amp; I18n.available_locales.include?( params[:locale].to_sym )
++     session[:locale] = params[:locale]
++   end
++
++   I18n.locale = session[:locale] || I18n.default_locale
++ end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改前台的 layout <code>app/views/layouts/application.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+   &lt;%= link_to "中文版", :controller =&gt; controller_name, :action =&gt; action_name, :locale =&gt; "zh-CN" %&gt;
++   &lt;%= link_to "English", :controller =&gt; controller_name, :action =&gt; action_name, :locale =&gt; "en" %&gt;
+</span>
+    &lt;/div&gt;
+  &lt;/body&gt;
+<span class="err">  
+</span></pre></div>
+</figure>
+
+<p>浏览前台 <code>http://localhost:3000</code> 并点选中文版、English 就会进行切换了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-7 语系样板
+    </h1><h4>所属章节：3. 多语言设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了上述一个单字一个单字的翻译词汇替换之外，如果样板内大多是属于较为静态的内容，Rails 也提供了不同语系可以有不同样板，你只要将样板命名加上语系附档名即可，例如我们来产生 FAQ 页面：</p>
+
+<p>执行 <code>rails g controller pages</code></p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+  get "/faq" =&gt; "pages#faq"
+
+</pre></div>
+</figure>
+
+<p>新增 <code>app/views/pages/faq.zh-CN.html.erb</code></p>
+
+<p>新增 <code>app/views/pages/faq.en.html.erb</code></p>
+
+<p>如此在英文版的时候就会使用 <code>faq.en.html.erb</code> 这个样板，中文版时使用 <code>faq.zh-CN.html.erb</code> 这个样板。</p>
+
+<p>最后，编辑 <code>app/views/layouts/application.html.erb</code> 放上 FAQ 页面的连结：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;%= yield %&gt;
+
+<span class="gi">+  &lt;%= link_to "FAQ", faq_path %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 配置北京时区
+    </h1><h4>所属章节：4. 时区设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在 Rails 中，数据库里面的时间(datetime)字段一定都是储存成 UTC 时间。这样设计的理由是在多国时区的网站中，数据库比较时间大小需要一致的标准。</p>
+
+<p>编辑 <code>app/views/events/index.html.erb</code> 加上显示时间：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= link_to event.name, event_path(event) %&gt;
+</span><span class="err">+ &lt;%= link_to event.name, event_path(event) %&gt; &lt;%= event.created_at %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/m3jE0XN4RmPnM5q7cXjD_4-0.png" title=""></figure></p>
+
+<p>而 Rails 提供的机制是让你从数据库拿资料时，自动帮你转换时区。例如，请设置 Rails 默认为北京 +8 时区：</p>
+
+<p>修改 <code>config/application.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb
+</span></figcaption><div class="highlight"><pre>config.i18n.default_locale = "zh-CN"
+<span class="gi">+   config.time_zone = "Beijing"
+</span><span class="err">  
+</span></pre></div>
+</figure>
+
+<p>重启服务器，就是改成北京时间显示了。Rails 会帮你自动转换时区：从数据库取出来时会加八小时，存回数据库时会减八小时。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1Oq7dAnqRtmq1cW7GzuE_4-1.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 根据用户配置切换时区
+    </h1><h4>所属章节：4. 时区设置</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>常见的做法是在 Users 上新增一个字段 <code>time_zone:string</code>，储存该用户的偏好时区。</p>
+
+<p>执行 <code>rails g migration add_time_zone_to_users</code></p>
+
+<p>编辑 <code>20XXXXXX083439_add_time_zone_to_users.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/20XXXXXX083439_add_time_zone_to_users.rb
+</span></figcaption><div class="highlight"><pre>  class AddTimeZoneToUsers &lt; ActiveRecord::Migration[5.0]
+    def change
+<span class="gi">+     add_column :users, :time_zone, :string
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  resource :user
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>注意，这里的路由设计使用单数 <code>resource<br>
+:user</code>，跟 <code>resources :users</code> 相比，单数的路由少了 <code>index action</code>，并且网址上不会有 ID，路由方法也皆为单数不需要参数，例如 <code>user_path</code>、<code>edit_user_path</code>。会这样设计的原因是对前台用户而言，编辑用户资料就是编辑自己的资料，所以这个单数的用意是指唯一自己，用户也不能修改其他人的资料，因此在controller 里面是写<code>@user = current_user</code>，而不是根据<code>params[:id]</code> 去捞不同用户。另一个附带的好处是网址列上不会出现ID，即使你没有实作第一章去改 Model 网址，用户也不会知道 User ID。</p>
+</blockquote>
+
+<p>执行 <code>rails g controller users</code></p>
+
+<blockquote>
+<p>不管单复数 <code>resource</code> 或 <code>resources</code> 默认的 controller 命名一律是复数型。</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/users_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span>
+
+  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">current_user</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">current_user</span>
+
+    <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+      <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"修改成功"</span>
+      <span class="n">redirect_to</span> <span class="n">edit_user_path</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s2">"edit"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">user_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:time_zone</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>新增 <code>app/views/users/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h2&gt;</span>Edit User<span class="nt">&lt;/h2&gt;</span>
+
+<span class="err">&lt;</span>%= form_for @user do |f| %&gt;
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :time_zone %&gt;
+    <span class="err">&lt;</span>%= f.time_zone_select :time_zone %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.submit "Save", :class =&gt; "btn btn-primary" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="err">&lt;</span>% end %&gt;
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layouts/application.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb`
+</span></figcaption><div class="highlight"><pre>   &lt;ul class="dropdown-menu"&gt;
+     &lt;li&gt;&lt;%= link_to('管理员面板', admin_events_path) %&gt;&lt;/li&gt;
+<span class="err">+    &lt;li&gt;&lt;%= link_to('修改个人资料', edit_user_path) %&gt;&lt;/li&gt;
+</span></pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/user/edit</code> 就可以编辑用户偏好的时区了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1R50uWgQ5epjsXNiyzbT_4-2.png" title=""></figure></p>
+
+<p>不过，真正重点是要在 <code>app/controllers/application_controller.rb</code> 中加入:</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/application_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  before_action :set_timezone
+</span>
+<span class="gi">+  def set_timezone
++    if current_user &amp;&amp; current_user.time_zone
++      Time.zone = current_user.time_zone
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样才会设置 Rails 目前要使用哪个时区。请试着编辑用户为不同时区，然后观察看看 <a href="http://localhost:3000/events" rel="nofollow" target="_blank">http://localhost:3000/events</a> 上面的时间。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-1 strftime 格式化时间
+    </h1><h4>所属章节：5. 格式化日期时间</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在修改默认时区后，Rails 默认的时间显示格式例如 <code>2017-04-10 17:53:55 +0800</code> 包含了时区资讯，通常我们不会显示给用户，那要如何修改时间的显示方式呢？</p>
+
+<p>Ruby 内建了 <a href="https://ruby-doc.org/core-2.3.4/Time.html#strftime-method">strftime</a> 这个方法来格式化输出，请修改 <code>app/views/events/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  &lt;%= event.created_at %&gt;
+</span><span class="gi">+  &lt;%= event.created_at.strftime("%Y/%m/%d %I:%M %p") %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就会输出成例如 <code>2017/04/10 05:53 PM</code> 了</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/czw8o9IUT4a6crhEdjUZ_5-1.png" title=""></figure></p>
+
+<p>这个 <code>strftime</code> 方法接受了一个字符串参数是格式。详细这个格式代表什么意义，请参考 <a href="https://ruby-doc.org/core-2.3.4/Time.html#strftime-method">strftime</a> 文档上的说明，例如 <code>%m</code> 就代表月份(会补零)，而 <code>%M</code> 代表分钟。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-2 Rails 时间 to_s 方法
+    </h1><h4>所属章节：5. 格式化日期时间</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在一个 Rails 项目中，会有很多地方会显示时间，我们希望采用一致的方式输出。</p>
+
+<p>除了使用上一节的 strftime 方法，Rails 也可以直接呼叫 to_s 来转换输出格式，例如</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>datetime = Time.now
+
+datetime.to_s(:db)            # =&gt; "2007-12-04 00:00:00"
+datetime.to_s(:number)        # =&gt; "20071204000000"
+datetime.to_s(:short)         # =&gt; "04 Dec 00:00"
+datetime.to_s(:long)          # =&gt; "December 04, 2007 00:00"
+datetime.to_s(:long_ordinal)  # =&gt; "December 4th, 2007 00:00"
+datetime.to_s(:rfc822)        # =&gt; "Tue, 04 Dec 2007 00:00:00 +0000"
+datetime.to_s(:iso8601)       # =&gt; "2007-12-04T00:00:00+00:00"
+</pre></div>
+</figure>
+
+<p>另外，也可以自行配置项目常用的格式。例如，请编辑 <code>config/application.rb</code>，在最后新增一行：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+Time::DATE_FORMATS.merge!(:default =&gt; '%Y/%m/%d %I:%M %p', :ymd =&gt; '%Y/%m/%d')
+
+</pre></div>
+</figure>
+
+<p>这样就会 1. 修改默认的时间显示格式 2. 注册一个新的格式是 <code>ymd</code> 只有日期</p>
+
+<p>重启 rails s 服务器。</p>
+
+<p>修改 <code>app/views/events/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  &lt;%= event.created_at.strftime("%Y/%m/%d %I:%M %p") %&gt;
+</span><span class="gi">+  &lt;%= event.created_at.to_s %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>就会得到一样的结果 <code>2017/04/10 05:53 PM</code> 了。</p>
+
+<p>如果只想显示日期，可以改成 <code>&lt;%= event.created_at.to_s(:ymd) %&gt;</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-1 情境准备
+    </h1><h4>所属章节：6. 表单单选 UI (固定选项无 Model)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章我们要示范如何在表单实作一个单选的 UI，单选的选项是固定的，不需要额外建立 Model 来存选项。例如活动(Event)需要一个状态字段，有多少种「状态」是固定的、有限的。在后台可以编辑，前台可以显示。或是活动可以选择固定种类的分类等等，都属于这种 UI。</p>
+
+<p>首先，在数据库新增一个字段来存这个状态，我们会用字符串代号来代表不同状态，而不直接存给用户看的中文：</p>
+
+<ul>
+<li>draft 代表草稿活动</li>
+<li>public 代表公开活动</li>
+<li>private 代表私密活动</li>
+</ul>
+
+<blockquote>
+<p>这个范例使用字符串来代表不同状态，有些程序员喜欢用数字。用字符串的优点是一目了然，可读性高。用数字的优点是数据库佔的空间较少效能较高一些，但是缺点是光看数字是不懂意义的。</p>
+</blockquote>
+
+<p>这是因为：</p>
+
+<ol>
+<li>要显示给用户的的中文，可能会因为需求而改变。但是数据库的资料不会改。</li>
+<li>多国语系的支援，实际显示给用户的会依照用户语系而改变 </li>
+<li>程序可能会依赖这个代码，写程序时一律写英文比较一致，例如 <code>if event.status == 'draft'</code>
+</li>
+</ol>
+
+<p>请执行 <code>rails g migration add_status_to_events</code></p>
+
+<p>编辑 <code>20170414072940_add_status_to_events.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>20170414072940_add_status_to_events.rb
+</span></figcaption><div class="highlight"><pre>  class AddStatusToEvents &lt; ActiveRecord::Migration[5.0]
+    def change
+<span class="gi">+     add_column :events, :status, :string, :default =&gt; "draft"
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>可以编辑 <code>app/models/event.rb</code>，加上资料验证</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+
+<span class="gi">+   STATUS = ["draft", "public", "private"]
+</span><span class="err">+   validates_inclusion_of :status, :in =&gt; STATUS
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-2 显示输出
+    </h1><h4>所属章节：6. 表单单选 UI (固定选项无 Model)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据库存的是代码而已，实际显示给用户时，需要转换成中文，作法有两种：</p>
+<h4>方法一：用 Helper</h4>
+<p>编辑 <code>app/helpers/events_helper.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/events_helper.rb
+</span></figcaption><div class="highlight"><pre>  module EventsHelper
+
+<span class="gi">+   def display_event_status(event)
++     case event.status
++       when "draft"
++         "草稿"
++       else
++         ""
++     end
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;h2&gt;&lt;%= display_event_status(@event) %&gt;&lt;/h2&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+<h4>方法二：用 I18n</h4>
+<p>如果已经配置了多国语系，可以改用 i18n，以下我们会用这种做法。</p>
+
+<p>编辑 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;h2&gt;&lt;%= t(@event.status, :scope =&gt; "event.status") %&gt;&lt;/h2&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/locals/zh-CN.yml</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/locals/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>  "zh-CN":
+<span class="gi">+   event:
++     status:
++       draft: 草稿
++       public: 公开
++       private: 私密
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>如果只做中文版，就不编辑 en.yml 也没关系。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-3 使用 Select 下拉选单
+    </h1><h4>所属章节：6. 表单单选 UI (固定选项无 Model)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着我们编辑后台的表单，加一个下拉选单来选择状态：</p>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+   &lt;div class="form-group"&gt;
++     &lt;%= f.label :status %&gt;
++
++     &lt;%= f.select :status, Event::STATUS.map{ |s| [t(s, :scope =&gt; "event.status"), s] }, {}, :class =&gt; "form-control" %&gt;
+</span>
+<span class="err">+   &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<p>其中第二个参数 <code>Event::STATUS.map{ |s| [t(s, :scope =&gt; "event.status"), s] }</code> 是一个二维数组，表示下拉的选项、第三个和第四个参数都是 Hash，为了顺利让第四个参数(设置 Bootstrap 样式需要的 class)传进去，所以要补一个空的 Hash 在第三个参数。详见 <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-select">Rails select 文档</a>。</p>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   def event_params
+<span class="gd">-    params.require(:event).permit(:name, :description, :friendly_id)
+</span><span class="gi">+    params.require(:event).permit(:name, :description, :friendly_id, :status)
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>这样就可以选择状态了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fBfxWAGBSv3nUQRPu2mz_6-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-4 改用 Radio Button UI
+    </h1><h4>所属章节：6. 表单单选 UI (固定选项无 Model)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果选项是 3 个以下，可以考虑改用 Radio Button，对用户会更方便(鼠标只要点一次就可以选择)：</p>
+
+<p>再次编辑 <code>app/views/admin/events/_form.html.erb</code>，把 <code>f.select :status</code> 改成：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  &lt;% Event::STATUS.each do |status| %&gt;
+    &lt;label&gt;
+      &lt;%= f.radio_button :status, status %&gt;
+      &lt;%= t(status, :scope =&gt; "event.status") %&gt;
+    &lt;/label&gt;
+  &lt;% end %&gt;
+</pre></div>
+</figure>
+
+<blockquote>
+<p>用 label 标籤包起来的话，点选文字才会有选 radio 的效果</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DqVMfDauRESYyGbUvtAR_6-1.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-5 使用 Radio Button 加上 Bootstrap Button 样式
+    </h1><h4>所属章节：6. 表单单选 UI (固定选项无 Model)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Radio Button UI 也可以考虑搭配 Bootstrap 按钮样式，请修改成：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  &lt;div class="btn-group" data-toggle="buttons"&gt;
+    &lt;% Event::STATUS.each do |status| %&gt;
+      &lt;label class="btn btn-default &lt;%= (status == f.object.status)? 'active' : '' %&gt;"&gt;
+        &lt;%= f.radio_button :status, status %&gt;
+        &lt;%= t(status, :scope =&gt; "event.status") %&gt;
+      &lt;/label&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/nSSfXRJZSd6I4aHKzWhK_6-2.png" title=""></figure></p>
+
+<p>这样就很漂亮了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-1 情境和 Model 准备
+    </h1><h4>所属章节：7. 表单单选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章我们同样示范如何在表单实作一个单选的 UI，例如活动(Event)需要一个分类，但是跟上一章是固定有限的选项不同，我们希望分类是可以持续编辑的，因此需要再新增一个 Category Model，然后让 Category has_many Event 来建立数据关系。</p>
+
+<p>执行 <code>rails g model category name:string</code></p>
+
+<p>编辑 <code>db/migrate/20170414082617_create_categories.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>20170414082617_create_categories.rb
+</span></figcaption><div class="highlight"><pre>  class CreateCategories &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :categories do |t|
+        t.string :name
+
+        t.timestamps
+      end
+
+<span class="gi">+     add_column :events, :category_id, :integer
++     add_index :events, :category_id
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/category.rb</code> 加上关联：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/category.rb
+</span></figcaption><div class="highlight"><pre>  class Category &lt; ApplicationRecord
+<span class="gi">+   has_many :events
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code> 加上关联：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+
+<span class="gi">+   belongs_to :category, :optional =&gt; true
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>针对 Category model 的 CRUD 介面这里就省略了，你可以透过 <code>rails g controller admin::categories</code> 盖一个后台去编辑。</p>
+
+<p>请直接进 <code>rails console</code> 手动加一些分类：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>10.times{ |i| Category.create!( :name =&gt; "#{i} Category" ) }
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-2 使用 Select 下拉选单
+    </h1><h4>所属章节：7. 表单单选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着来编辑后台表单，在编辑活动时，可以选择分类。</p>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+  &lt;div class="form-group"&gt;
++    &lt;%= f.label :category_id %&gt;
++    &lt;%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class =&gt; "form-control" %&gt;
++  &lt;/div&gt;
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>如果你用 <a href="https://github.com/plataformatec/simple_form">simple_form</a> 而不是 Rails 内建的 <code>form_for</code> 来制作表单的话，是写 <code>&lt;%= f.association :category %&gt;</code> 效果是一样的。</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def event_params
+<span class="gd">-    params.require(:event).permit(:name, :description, :friendly_id, :status)
+</span><span class="gi">+    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id)
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KNg5wgZfSXuz9E33iUXY_7.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-3 显示分类并避免 nil 错误
+    </h1><h4>所属章节：7. 表单单选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在前台的活动页面，需要显示该活动的分类。</p>
+
+<p>编辑 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;h2&gt;&lt;%= @event.category.name %&gt;&lt;/h2&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7TK0GEpHTrCYVlQCoA4x_7-2.png" title=""></figure></p>
+
+<p>活动的 <code>category_id</code> 是后来才增加的字段，因此有些活动是没有 <code>category_id</code> 资料的。这时如果我们去点其他还没有选分类的活动，会发现出现以下的错误：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/I9REGyVTFuUSphShorVA_7-3.png" title=""></figure></p>
+
+<p>这是因为 <code>@event.category</code> 是 <code>nil</code>，再调用 <code>nil.name</code> 就会出现 <code>NoMethodError</code> 了。</p>
+
+<p>针对这种情况，Rails 提供了一个 <code>try</code> 方法，参数就是要调用的方法名称。透过 <code>try</code> 不管是不是 <code>nil</code>，都不会报错：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">- &lt;h2&gt;&lt;%= @event.category.name %&gt;&lt;/h2&gt;
+</span><span class="gi">+ &lt;h2&gt;&lt;%= @event.category.try(:name) %&gt;&lt;/h2&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就算没有选 Cateogry 也不会报错了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OJ8U8dTQhiccRoYnEKBJ_7-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-4 使用 jQuery Select2 Plugin
+    </h1><h4>所属章节：7. 表单单选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>当选项非常多时，单纯的下拉选单，可能就不好选了。例如，请进 <code>rails console</code> 手动再多加一些分类：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>100.times{ |i| Category.create!( :name =&gt; "#{i+100} Category" ) }
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/P0mxuMAaTXObEXmbLRnr_7-5.png" title=""></figure></p>
+
+<p>这种情况，可以安装 jQuery Plugin: <a href="https://select2.github.io/">Select2</a> 是一个非常好用的单选、多选选单，非常适合选项非常多的情境。</p>
+
+<p>这个 jQuery Plugin 有包好的 gem: <a href="https://github.com/argerim/select2-rails">select2-rails</a>，请编辑 Gemfile，加上</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>gem "select2-rails"
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器。</p>
+
+<p>编辑 <code>app/assets/javascripts/application.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>   //= require jquery
+   //= require jquery_ujs
+   //= require turbolinks
+   //= require bootstrap-sprockets
+<span class="gi">+  //= require select2
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/asssets/stylesheets/application.scss</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/asssets/stylesheets/application.scss
+</span></figcaption><div class="highlight"><pre>   @import "bootstrap-sprockets";
+   @import "bootstrap";
+<span class="gi">+  @import "select2";
++  @import "select2-bootstrap";
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>这个 Select2 有提供配合 Bootstrap 的样式</p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code>，在最下方加入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;script&gt;
+  $("#event_category_id").select2( { theme: "bootstrap"} );
+<span class="err">&lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>其中 <code>event_category_id</code> 是这个 select 下拉选单的 HTML ID。</p>
+
+<p>以下是最后的成果，你可以打一些关键字 Select2 就会帮你做过滤来减少选项。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kXdlWgIZQRuHfq67pXK7_7-6.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-1 情境准备
+    </h1><h4>所属章节：8. 表单多选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章我们示范如何在表单实作多选 UI。示范的情境是后台可以管理用户资料，针对每个用户可以编辑属于哪一个分组(Group)。</p>
+
+<p>首先制作后台可以编辑用户资料：</p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  namespace :admin do
+    root "events#index"
+    resources :events
+<span class="gi">+    resources :users
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller admin::users</code></p>
+
+<p>编辑 <code>app/controllers/admin/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/users_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  class Admin::UsersController &lt; ApplicationController
+</span><span class="gi">+  class Admin::UsersController &lt; AdminController
+</span>
+<span class="gi">+   def index
++     @users = User.all
++   end
+</span>
+<span class="gi">+   def edit
++     @user = User.find(params[:id])
++   end
+</span>
+<span class="gi">+   def update
++     @user = User.find(params[:id])
+</span>
+<span class="gi">+     if @user.update(user_params)
++       redirect_to admin_users_path
++     else
++       render "edit"
++     end
++   end
+</span>
+<span class="gi">+   protected
+</span>
+<span class="gi">+   def user_params
++     params.require(:user).permit(:email)
++   end
+</span>
+<span class="err">end
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>Rails 的 controller 默认会继承自 ApplicationController，这里改成继承自 AdminController，这样定义在 app/controllers/admin_controller.rb 的所有方法都会被继承下来，包括 <code>layout "admin"</code></p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/users/index.html.erb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;h1&gt;Admin Users&lt;/h1&gt;
+
+&lt;table class="table"&gt;
+&lt;tr&gt;
+  &lt;th&gt;ID&lt;/th&gt;
+  &lt;th&gt;Email&lt;/th&gt;
+  &lt;th&gt;Actions&lt;/th&gt;
+&lt;/tr&gt;
+&lt;% @users.each do |user| %&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;%= user.id %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= user.email %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= link_to "Edit", edit_admin_user_path(user), :class =&gt; "btn btn-default" %&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;% end %&gt;
+&lt;/table&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/C7SDF6J3R4SB7HbxDGtv_8.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/admin/users/edit.html.erb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;h1&gt;Edit User&lt;/h1&gt;
+
+&lt;% if @user.errors.any? %&gt;
+  &lt;div id="error_explanation"&gt;
+    &lt;ul&gt;
+    &lt;% @user.errors.full_messages.each do |msg| %&gt;
+      &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+
+&lt;%= form_for [:admin, @user] do |f| %&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :email %&gt;
+    &lt;%= f.text_field :email, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.submit "Update", :class =&gt; "btn btn-primary" %&gt;
+    &lt;%= link_to "Cancel", admin_users_path %&gt;
+  &lt;/div&gt;
+
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layout/admin.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/admin.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;% if current_user %&gt;
+    &lt;li class="active"&gt;&lt;%= link_to('活动管理', admin_events_path) %&gt;&lt;/li&gt;
+<span class="gi">+   &lt;li&gt;&lt;%= link_to('用户管理', admin_users_path) %&gt;&lt;/li&gt;
+</span><span class="err">  &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hrgRNCMRONbgbs7pES0w_8-2.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-2 建立 Model
+    </h1><h4>所属章节：8. 表单多选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>针对每个用户可以编辑属于哪一个分组(Group)，因此需要建立 Group model。</p>
+
+<p>执行 <code>rails g model group name:string</code></p>
+
+<p>一个 User 可以属于很多 Group、一个 Group 可以有很多 User，这是多对多的关系，因此需要一个关联的 Model，可以命名为 Membership</p>
+
+<p>执行 <code>rails g model membership</code></p>
+
+<p>编辑 <code>db/migrate/20170415120527_create_memberships.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/20170415120527_create_memberships.rb
+</span></figcaption><div class="highlight"><pre>class CreateMemberships &lt; ActiveRecord::Migration[5.0]
+  def change
+    create_table :memberships do |t|
+      t.integer :user_id, :index =&gt; true
+      t.integer :group_id, :index =&gt; true
+      t.timestamps
+    end
+  end
+<span class="err">end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :memberships
++  has_many :groups, :through =&gt; :memberships
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/membership.rb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Membership &lt; ApplicationRecord
+
+  belongs_to :user
+  belongs_to :group
+
+end
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/models/group.rb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Group &lt; ApplicationRecord
+
+  has_many :memberships
+  has_many :users, :through =&gt; :memberships
+
+end
+</pre></div>
+</figure>
+
+<p>建立一些假资料，进入 <code>rails c</code></p>
+
+<p><code>100.times{ |i| Group.create!( :name =&gt; "No.1 #{i} Group") }</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-3 用 checkbox 可以多选分组
+    </h1><h4>所属章节：8. 表单多选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>用核选方块是最常见的多选 UI 方式</p>
+
+<p>编辑 <code>app/views/admin/users/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;div class="form-group"&gt;
++    &lt;%= f.label :group_ids %&gt;
++    &lt;%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %&gt;
+</span><span class="err">+  &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>如果你用 <a href="https://github.com/plataformatec/simple_form">simple_form</a> 而不是 Rails 内建的 <code>form_for</code> 来制作表单的话，写 <code>&lt;%= f.association :groups, :as =&gt; :check_boxes %&gt;</code> 效果是一样的。</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/admin/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/users_controller.rb
+</span></figcaption><div class="highlight"><pre>   def user_params
+<span class="gd">-    params.require(:user).permit(:email)
+</span><span class="gi">+    params.require(:user).permit(:email, :group_ids =&gt; [])
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/NNDs23ZQxK2KboiVZHWp_8-3.png" title=""></figure></p>
+
+<p>显示的部分，可以修改 <code>app/views/admin/users/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/users/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;th&gt;Email&lt;/th&gt;
+<span class="gi">+  &lt;th&gt;Groups&lt;/th&gt;
+</span>
+   # 略
+
+     &lt;td&gt;&lt;%= user.email %&gt;&lt;/td&gt;
+<span class="gi">+    &lt;td&gt;
++      &lt;% user.groups.each do |g| %&gt;
++        &lt;%= g.name %&gt;&lt;br&gt;
++      &lt;% end %&gt;
+</span><span class="err">+    &lt;/td&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ouSpofS7QWuN1Kp6aYLJ_8-5.png" title=""></figure></p>
+
+<p>为了避免 N+1 Query 效能问题，可以再修改 <code>app/controllers/admin/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>`app/controllers/admin/users_controller.rb`
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @users = User.all
+</span><span class="gi">+    @users = User.includes(:groups).all
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>改之前，很多针对 groups 的数据库查询：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7vNZ7WWrS2iDuTr3Ssxu_8-6.png" title=""></figure></p>
+
+<p>改之后，只剩下一个针对 groups 的数据库查询：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1ERoTp8CTwmJ2LXVgHoy_8-7.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-4 用 Select multiple 加上 Select2 Plugin
+    </h1><h4>所属章节：8. 表单多选 UI 和 Select2 Plugin</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>当多选的选项太多时，也可以用 Select2 来改进 UI。</p>
+
+<blockquote>
+<p>请先完成上一章的单选 Select2 的安装</p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/users/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;div class="form-group"&gt;
+     &lt;%= f.label :group_ids %&gt;
+<span class="gd">-    &lt;%= f.collection_check_boxes(:group_ids, Group.all, :id, :name) %&gt;
+</span><span class="gi">+    &lt;%= f.select :group_ids, Group.all.map{ |g| [g.name, g.id] }, {}, :multiple =&gt; true, :class =&gt; "form-control" %&gt;
+</span><span class="err">  &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<p>同一页最下方补上：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;script&gt;
+  $("#user_group_ids").select2()
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/49w1uSJXSY6tuM9CqfX1_8-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-1 情境准备
+    </h1><h4>所属章节：9. 嵌套表单(1-to-1)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Model 和 Model 之间的数据关联，除了一对多(1-to-many)之外，还有一种是 一对一(1-to-1)，一对一关联算是一对多关联的一种特例情况。</p>
+
+<p>例如，一个常见的设计是让 User 拥有 Profile，并且一个 User 用户只会有一个 Profile 资料。</p>
+
+<p>什么时候会需要一对一的关联设计呢？既然是一对一对应，那么直接合并 profiles 的所有字段在 users table 上，只用一个 User Model 也是可以啊。</p>
+
+<p>会这样设计的主要原因是为了节省数据库查询量，例如用户的 Profile 储存了用户的详细资料，一来很可能只有进到用户详细页面(例如users#show)才会用到、二来可能不是每一个用户都有这个 Profile 细节资料，所以拆表之后可以让绝大部分的操作都不需要去碰到 profiles table。对 User 来说尤其重要，因为登入之后，每一次的浏览，Rails 都会去数据库捞出 User 资料设定 <code>current_user</code></p>
+
+<p>好，那让我们来制作用户 Profile：</p>
+
+<p>执行 <code>rails g model profile</code></p>
+
+<p>编辑 <code>db/migrate/201XXXXXXXX2545_create_profiles.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>201XXXXXXXX2545_create_profiles.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateProfiles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:profiles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:index</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:legal_name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">date</span> <span class="ss">:birthday</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:location</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:education</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:occupation</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:bio</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:specialty</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  class User &lt; ApplicationRecord
+<span class="gi">+    has_one :profile
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/profile.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/profile.rb
+</span></figcaption><div class="highlight"><pre>  class Profile &lt; ApplicationRecord
+<span class="gi">+   belongs_to :user
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>接下来示范两种表单 UI 的设计：</p>
+
+<ul>
+<li>方案一：单独的 resource 编辑 UI</li>
+<li>方案二：嵌套(Nested)表单 UI</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-2 单独的 resource 编辑 UI
+    </h1><h4>所属章节：9. 嵌套表单(1-to-1)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>针对 Profile 设计单独的 CRUD，是之前就学过的设计，让我们复习一下如何后台编辑 Profile：</p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   namespace :admin do
+     root "events#index"
+     resources :events
+<span class="gd">-    resources :users
+</span><span class="gi">+    resources :users do
++      resource :profile, :controller =&gt; "user_profiles"
++    end
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>注意：这里用单数 <code>resource :profile</code>，关于单数 resource 的说法请参考 4-2 根据用户配置切换时区 一节。另外，因为默认的 controller 的命名是 <code>profiles</code>，这里我们偏好自定义命名改为 <code>user_prorfiles</code>。</p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/users/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/users/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;td&gt;&lt;%= link_to "Edit", edit_admin_user_path(user), :class =&gt; "btn btn-default" %&gt;&lt;/td&gt;
+<span class="gi">+ &lt;td&gt;&lt;%= link_to "Edit Profile", edit_admin_user_profile_path(user), :class =&gt; "btn btn-default" %&gt;&lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kQLtxdHtQXSG6w755Ma3_9-1.png" title=""></figure></p>
+
+<p>执行 <code>rails g controller admin::user_profiles</code></p>
+
+<p>编辑 <code>app/controllers/admin/user_profiles_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/user_profiles_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  class Admin::UserProfilesController &lt; ApplicationController
+</span><span class="gi">+  class Admin::UserProfilesController &lt; AdminController
++
++    before_action :find_user_and_profile
++
++    def edit
++    end
++
++    def update
++      if @profile.update(profile_params)
++        redirect_to admin_users_path
++      else
++        render "edit"
++      end
++    end
++
++    protected
++
++    def find_user_and_profile
++      @user = User.find(params[:user_id])
++      # 因为新建的用户并没有 profile，所以这里先检查是否有 @user.profile，如果没有的话就用 @user.create_profile 新建进数据库
++      @profile = @user.profile || @user.create_profile
++    end
++
++    def profile_params
++      params.require(:profile).permit(:legal_name, :birthday, :location, :education, :occupation, :bio, :specialty)
++    end
++
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/user_profiles/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/user_profiles/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h2&gt;</span>Edit User Profile<span class="nt">&lt;/h2&gt;</span>
+<span class="err">&lt;</span>%= form_for @profile, :url =&gt; admin_user_profile_path(@user) do |f| %&gt;
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :legal_name %&gt;
+    <span class="err">&lt;</span>%= f.text_field :legal_name, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :birthday %&gt;
+    <span class="err">&lt;</span>%= f.date_field :birthday, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :location %&gt;
+    <span class="err">&lt;</span>%= f.text_field :location, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :education %&gt;
+    <span class="err">&lt;</span>%= f.text_field :education, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :occupation %&gt;
+    <span class="err">&lt;</span>%= f.text_field :occupation, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :bio %&gt;
+    <span class="err">&lt;</span>%= f.text_area :bio, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.label :specialty %&gt;
+    <span class="err">&lt;</span>%= f.text_area :specialty, :class =&gt; "form-control" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.submit "Submit", :class =&gt; "btn btn-primary" %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="err">&lt;</span>% end %&gt;
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DYXRAc4KQreML4AYBzQI_9-2.png" title=""></figure></p>
+
+<p>这样就可以在后台编辑 User Profile 了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-3 嵌套(Nested)表单 UI
+    </h1><h4>所属章节：9. 嵌套表单(1-to-1)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来的重头戏是将编辑 User 和编辑 Profile 的表单合并在一起。很多时候这样对用户的操作会更方便，一次就可以编辑两个 Model 的资料。接下来示范如何在前台做这个 UI。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/UTAwvoVLQQWmXchavBT4_9-3.png" title=""></figure></p>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>has_one :profile
+<span class="gi">+  accepts_nested_attributes_for :profile
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/users_controller.rb
+</span></figcaption><div class="highlight"><pre>   def edit
+     @user = current_user
+     # 跟刚才后台情况一样，如果没有 @user.profile，要先新建一个
+     # unless @user.profile 等同于 if !@user.profile 或 if @user.profile.nil?
+<span class="gi">+    @user.create_profile unless @user.profile
+</span>   end
+
+   # (略)
+
+   def user_params
+<span class="gd">-    params.require(:user).permit(:time_zone)
+</span><span class="gi">+    params.require(:user).permit(:time_zone, :profile_attributes =&gt; [:id, :legal_name, :birthday, :location, :education, :occupation, :bio, :specialty] )
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>Rails 的 <a href="http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html">accepts_nested_attributes_for</a> 作用是可以在更新 User 时，也顺便可以更新 Profile 资料。</p>
+
+<p>编辑 <code>app/views/users/edit.html.erb</code> 把 Profile 的表单加在本来的 User 表单里面：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;h2&gt;Edit User&lt;/h2&gt;
+
+  &lt;%= form_for @user do |f| %&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;%= f.label :time_zone %&gt;
+      &lt;%= f.time_zone_select :time_zone %&gt;
+    &lt;/div&gt;
+
+<span class="gi">+   &lt;%= f.fields_for :profile do |ff| %&gt;
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :legal_name %&gt;
++       &lt;%= ff.text_field :legal_name, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :birthday %&gt;
++       &lt;%= ff.date_field :birthday, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :location %&gt;
++       &lt;%= ff.text_field :location, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :education %&gt;
++       &lt;%= ff.text_field :education, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :occupation %&gt;
++       &lt;%= ff.text_field :occupation, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :bio %&gt;
++       &lt;%= ff.text_area :bio, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :specialty %&gt;
++       &lt;%= ff.text_area :specialty, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++   &lt;% end %&gt;
+</span>
+    &lt;div class="form-group"&gt;
+      &lt;%= f.submit "Save", :class =&gt; "btn btn-primary" %&gt;
+    &lt;/div&gt;
+
+<span class="err">&lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p>这样就完成了，你可以送出编辑看看。</p>
+
+<blockquote>
+<p>用这种嵌套(Nested)表单 UI 的话，我们不需要编辑 routes.rb 加上 profile 路由，也不需要 profiles_controller，因为透过 users_controller 就可以完成了。</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hVbc3UaTKiYblYJtmGHn_9-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-4 Profile 的显示
+    </h1><h4>所属章节：9. 嵌套表单(1-to-1)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着增加显示页面看看。</p>
+
+<p>修改 <code>app/controllers/users_controller.rb</code>，新增 <code>show</code> action，顺便重构一下都先调用 <code>find_user</code> 方法。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/users_controller.rb
+</span></figcaption><div class="highlight"><pre>  class UsersController &lt; ApplicationController
+
+    before_action :authenticate_user!
+<span class="gi">+   before_action :find_user
+</span>
+<span class="gi">+   def show
++   end
+</span>
+    def edit
+<span class="gd">-     @user = current_user
+</span>    end
+
+   def update
+<span class="gd">-    @user = current_user
+</span>     if @user.update(user_params)
+       flash[:notice] = "修改成功"
+       redirect_to edit_user_path
+     else
+       render "edit"
+     end
+   end
+
+   # (略)
+
+   protected
+
+<span class="gi">+  def find_user
++    @user = current_user
++    @user.create_profile unless @user.profile
++  end
+</span>
+<span class="err">   # (略)
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/users/show.html.erb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;h1&gt;我的个人资料&lt;/h1&gt;
+
+&lt;p&gt;Email: &lt;%= @user.email %&gt;&lt;/p&gt;
+&lt;p&gt;Timezone: &lt;%= @user.time_zone %&gt;&lt;/p&gt;
+&lt;p&gt;Birthday: &lt;%= @user.profile.birthday %&gt;&lt;/p&gt;
+&lt;p&gt;Bio: &lt;%= simple_format @user.profile.bio %&gt;&lt;/p&gt;
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layout/application.html.erb</code> 修改主选单加上这个连结，</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+   &lt;li&gt;&lt;%= link_to('我的个人资料', user_path) %&gt;&lt;/li&gt;
+</span>    &lt;li&gt;&lt;%= link_to('修改个人资料', edit_user_path) %&gt;&lt;/li&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bzROdUTR9ulky9ZwNdLf_9-6.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-1 情境准备
+    </h1><h4>所属章节：10. 嵌套表单(1-to-many)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：管理员在后台可以编辑活动有不同票种(Ticket)，一个活动会有很多个票种。</p>
+
+<p>我们需要新增一个 Ticket model，并让 Event has_many tickets。</p>
+
+<p>执行 <code>rails g model ticket</code></p>
+
+<p>编辑 <code>db/migrate/20170423111008_create_tickets.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/20170423111008_create_tickets.rb
+</span></figcaption><div class="highlight"><pre>  class CreateTickets &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :tickets do |t|
+<span class="gi">+       t.integer :event_id, :index =&gt; true
++       t.string :name
++       t.text :description
++       t.integer :price
++       t.timestamps
+</span>      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :tickets, :dependent =&gt; :destroy
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/ticket.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/ticket.rb
+</span></figcaption><div class="highlight"><pre>  class Ticket &lt; ApplicationRecord
+<span class="gi">+   validates_presence_of :name, :price
++   belongs_to :event
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>接下有两种 UI 方案：</p>
+
+<ul>
+<li>方案一：单独的 resources 编辑 UI</li>
+<li>方案二：嵌套(Nested)表单 UI</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-2 嵌套(Nested)表单 UI
+    </h1><h4>所属章节：10. 嵌套表单(1-to-many)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们直接进入重点，制作嵌套(Nested)表单 UI。将编辑 Event 和编辑 Ticket 的表单合并在一起。因为一个活动会有的 Ticket 票种也不是很多，而 Ticket 的字段也不是很多，合并在一起编辑对用户的操作会更方便，一次就可以编辑两个 Model 的资料。</p>
+
+<p>再次编辑 <code>app/models/event.rb</code>，加上 <code>accepts_nested_attributes_for</code> 宣告：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  has_many :tickets, :dependent =&gt; :destroy
+</span><span class="gi">+  has_many :tickets, :dependent =&gt; :destroy, :inverse_of  =&gt; :event
++  accepts_nested_attributes_for :tickets, :allow_destroy =&gt; true, :reject_if =&gt; :all_blank
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>某些版本的Rails 有个accepts_nested_attributes_for 的<a href="https://github.com/rails/rails/issues/18672">bug</a> 让has_many 故障了，需要额外补上<code>inverse_of</code> 参数，不然存储时会找不到tickets</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def new
+     @event = Event.new
+<span class="gi">+    @event.tickets.build
++    @event.tickets.build
+</span>   end
+
+   # (略)
+
+   def edit
+     @event = Event.find_by_friendly_id!(params[:id])
+<span class="gi">+    @event.tickets.build
++    @event.tickets.build
+</span>   end
+
+   # (略)
+
+   def event_params
+<span class="gd">-    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id)
+</span><span class="gi">+    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id, :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>这里 <code>@event.tickets.build</code> 两次，等会表单中就有两笔空的 Ticket 可以编辑。Strong Parameters 的部分，新增了 <code>tickets_attributes</code> 数组包含要修改的 ticket 属性，并且额外多了一个 <code>:id</code> 和 <code>:_destroy</code> 是为了配合 <code>accepts_nested_attributes_for</code> 可以编辑和删除。</p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;%= f.fields_for :tickets do |ff| %&gt;
++    &lt;fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;"&gt;
++      &lt;legend&gt;Ticket&lt;/legend&gt;
++      &lt;div class="form-group"&gt;
++        &lt;%= ff.label :name %&gt;
++        &lt;%= ff.text_field :name, :class =&gt; "form-control" %&gt;
++      &lt;/div&gt;
++
++      &lt;div class="form-group"&gt;
++        &lt;%= ff.label :price %&gt;
++        &lt;%= ff.number_field :price, :class =&gt; "form-control" %&gt;
++      &lt;/div&gt;
++
++      &lt;div class="form-group"&gt;
++        &lt;%= ff.label :description %&gt;
++        &lt;%= ff.text_area :description, :class =&gt; "form-control" %&gt;
++      &lt;/div&gt;
++    &lt;/fieldset&gt;
+</span><span class="err">+  &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0lkrbRHWSU2ZU6VcCWwx_10-1.png" title=""></figure></p>
+
+<p>这个 UI 做到这里，我们写死了固定新增两笔，似乎美中不足啊 :(</p>
+
+<p>有没有办法可以在 UI 上动态一直新增? 这会需要 JavaScript 的协助，这里我们直接安装一个 <a href="https://github.com/ncri/nested_form_fields">nested_form_fields</a> gem：</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem "nested_form_fields"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 bundle 然后重启服务器</p>
+
+<p>编辑 <code>app/assets/javascripts/application.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre><span class="gi">+  //= require nested_form_fields
+</span><span class="err">   //= require_tree .
+</span></pre></div>
+</figure>
+
+<p>再次编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def new
+     @event = Event.new
+     @event.tickets.build
+<span class="gd">-    @event.tickets.build
+</span>   end
+     # (略)
+   def edit
+     @event = Event.find_by_friendly_id!(params[:id])
+<span class="gd">-    @event.tickets.build
+-    @event.tickets.build
+</span><span class="gi">+    @event.tickets.build if @event.tickets.empty?
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>再次编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= f.fields_for :tickets do |ff| %&gt;
+</span><span class="gi">+  &lt;%= f.nested_fields_for :tickets do |ff| %&gt;
+</span>     &lt;fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px;  padding: 10px;"&gt;
+       &lt;legend&gt;Ticket&lt;/legend&gt;
+       &lt;div class="form-group"&gt;
+         &lt;%= ff.label :name %&gt;
+         &lt;%= ff.text_field :name, :class =&gt; "form-control" %&gt;
+       &lt;/div&gt;
+
+       &lt;div class="form-group"&gt;
+         &lt;%= ff.label :price %&gt;
+         &lt;%= ff.number_field :price, :class =&gt; "form-control" %&gt;
+       &lt;/div&gt;
+
+       &lt;div class="form-group"&gt;
+         &lt;%= ff.label :description %&gt;
+         &lt;%= ff.text_area :description, :class =&gt; "form-control" %&gt;
+       &lt;/div&gt;
+     &lt;/fieldset&gt;
+<span class="gi">+    &lt;%= ff.remove_nested_fields_link "移除这个票种", :class =&gt; "btn btn-danger" %&gt;
+</span>   &lt;% end %&gt;
+<span class="gi">+  &lt;p class="text-right"&gt;
++    &lt;%= f.add_nested_fields_link :tickets, "新增票种", :class =&gt; "btn btn-default" %&gt;
++  &lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后成果，是个很漂亮的 UI 可以动态新增和删除：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JrE4AMxsQwSLhMWmWCIx_10-2.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-3 单独的 resources 编辑 UI
+    </h1><h4>所属章节：10. 嵌套表单(1-to-many)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果 has_many 的资料非常多、字段又多的话，就不适合用嵌套(Nested)表单 UI。独立的 CRUD 你应该已经有能力可以完成了，做为复习，这里还是快速示范一下：</p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  namespace :admin do
+    # (略)
+<span class="gd">-   resources :events
+</span><span class="gi">+   resources :events do
++     resources :tickets, :controller =&gt; "event_tickets"
+</span><span class="err">+   end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller admin::event_tickets</code></p>
+
+<p>编辑 <code>app/controllers/admin/event_tickets_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_tickets_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  class Admin::EventTicketsController &lt; ApplicationController
+</span><span class="gi">+  class Admin::EventTicketsController &lt; AdminController
++
++   before_action :find_event
++
++   def index
++     @tickets = @event.tickets
++   end
++
++   def new
++     @ticket = @event.tickets.new
++   end
++
++   def create
++     @ticket = @event.tickets.new(ticket_params)
++     if @ticket.save
++       redirect_to admin_event_tickets_path(@event)
++     else
++       render "new"
++     end
++   end
++
++   def edit
++     @ticket = @event.tickets.find(params[:id])
++   end
++
++   def update
++     @ticket = @event.tickets.find(params[:id])
++
++     if @ticket.update(ticket_params)
++       redirect_to admin_event_tickets_path(@event)
++     else
++       render "edit"
++     end
++   end
++
++   def destroy
++     @ticket = @event.tickets.find(params[:id])
++     @ticket.destroy
++
++     redirect_to admin_event_tickets_path(@event)
++   end
++
++   protected
++
++   def find_event
++     @event = Event.find_by_friendly_id!(params[:event_id])
++   end
++
++   def ticket_params
++     params.require(:ticket).permit(:name, :price, :description)
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;%= link_to "Tickets", admin_event_tickets_path(event), :class =&gt; "btn btn-default" %&gt;
+</span>   &lt;%= link_to "Edit", edit_admin_event_path(event), :class =&gt; "btn btn-default" %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/wbYnS6uKQaCySRBX2wO9_10-4.png" title=""></figure></p>
+
+<p>新增 <code>app/views/admin/event_tickets/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_tickets/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span><span class="err">&lt;</span>%= @event.name %&gt; / Tickets<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+<span class="err">&lt;</span>%= link_to "New Ticket", new_admin_event_ticket_path(@event), :class =&gt; "btn btn-primary" %&gt;
+<span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;tr&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Price<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Description<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Actions<span class="nt">&lt;/th&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+<span class="err">&lt;</span>% @tickets.each do |ticket| %&gt;
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= ticket.name %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= ticket.price %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= simple_format ticket.description %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>
+      <span class="err">&lt;</span>%= link_to "Edit", edit_admin_event_ticket_path(@event, ticket), :class =&gt; "btn btn-default" %&gt;
+      <span class="err">&lt;</span>%= link_to "Delete", admin_event_ticket_path(@event, ticket), :method =&gt; "delete", :data =&gt; { :confirm =&gt; "Are you sure?" }, :class =&gt; "btn btn-danger" %&gt;
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/table&gt;</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Lz8BXuYBQhmEpfojL5uS_10-3.png" title=""></figure></p>
+
+<p>新增 <code>app/views/admin/event_tickets/new.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_tickets/new.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>New Ticket<span class="nt">&lt;/h1&gt;</span>
+
+<span class="err">&lt;</span>%= form_for [:admin, @event, @ticket] do |f| %&gt;
+
+  <span class="err">&lt;</span>%= render :partial =&gt; "form", :locals =&gt; { :f =&gt; f } %&gt;
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.submit "Create", :class =&gt; "btn btn-primary" %&gt;
+    <span class="err">&lt;</span>%= link_to "Cancel", admin_event_tickets_path(@event) %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+<span class="err">&lt;</span>% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/event_tickets/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_tickets/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Edit Ticket<span class="nt">&lt;/h1&gt;</span>
+
+<span class="err">&lt;</span>%= form_for [:admin, @event, @ticket] do |f| %&gt;
+
+  <span class="err">&lt;</span>%= render :partial =&gt; "form", :locals =&gt; { :f =&gt; f } %&gt;
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="err">&lt;</span>%= f.submit "Update", :class =&gt; "btn btn-primary" %&gt;
+    <span class="err">&lt;</span>%= link_to "Cancel", admin_event_tickets_path(@event) %&gt;
+  <span class="nt">&lt;/div&gt;</span>
+
+<span class="err">&lt;</span>% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/event_tickets/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_tickets/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="err">&lt;</span>% if @ticket.errors.any? %&gt;
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"error_explanation"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+    <span class="err">&lt;</span>% @ticket.errors.full_messages.each do |msg| %&gt;
+      <span class="nt">&lt;li&gt;</span><span class="err">&lt;</span>%= msg %&gt;<span class="nt">&lt;/li&gt;</span>
+    <span class="err">&lt;</span>% end %&gt;
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="err">&lt;</span>% end %&gt;
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="err">&lt;</span>%= f.label :name %&gt;
+  <span class="err">&lt;</span>%= f.text_field :name, :class =&gt; "form-control" %&gt;
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="err">&lt;</span>%= f.label :price %&gt;
+  <span class="err">&lt;</span>%= f.number_field :price, :class =&gt; "form-control" %&gt;
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="err">&lt;</span>%= f.label :description %&gt;
+  <span class="err">&lt;</span>%= f.text_area :description, :class =&gt; "form-control" %&gt;
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kNZDEaLWR8mI9iVEVILB_10-5.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

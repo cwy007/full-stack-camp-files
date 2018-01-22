@@ -1,0 +1,1957 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-1 实作目标
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>串接 <a href="https://www.juhe.cn/docs/api/id/39/aid/167">聚合数据 全国天气预报</a> 的 API，存下所有城市资料，并更新指定城市的天气信息。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-2 抓天气资讯
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果要用程序抓天气资讯，要怎么抓呢? 我们可能先想到气象局，那先去 <a href="http://www.cma.gov.cn/2011qxfw/2011qtqyb/" rel="nofollow" target="_blank">http://www.cma.gov.cn/2011qxfw/2011qtqyb/</a> 逛逛，找到 <a href="http://www.weather.com.cn/weather1d/101010100.shtml">北京</a> 天气这一页有气温资料，让我们写个程序来抓吧：</p>
+
+<p>首先安装 <a href="https://github.com/rest-client/rest-client">rest-client</a> 这个 gem，可以让我们用 Ruby 发送 HTTP 请求：</p>
+
+<p>在 Terminal 里面执行：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>gem install rest-client
+</pre></div>
+</figure>
+
+<p>你应该会看到 <code>Successfully installed rest-client-2.0.1</code> 的讯息。</p>
+
+<p>接着开一个 irb 实验看看，执行 <code>irb</code> 后，输入以下 ruby 程序(请一行一行输入)：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>require 'rest-client'
+response = RestClient.get "http://www.weather.com.cn/weather1d/101010100.shtml"
+response.body
+</pre></div>
+</figure>
+
+<p>哇，头晕了，这资料怎么这么乱。这是因为回传的内容 HTML 是给浏览器显示用的，包括各种排版颜色字号的等等资料。而我们只想到气温，在这里面比对出单纯的气温资料，是个苦逼工啊。让我们努力看看：</p>
+<figure class="figure-code code"><div class="highlight"><pre>require 'nokogiri'
+doc = Nokogiri::HTML.parse(response.body)
+doc.css(".today .tem").map{ |x| x.text }  # 得到 ["\n13°C\n", "\n2°C\n", "\n"] 
+</pre></div>
+</figure>
+<p>透过 Nokogiri 这个库可以帮助我们解析 HTML，透过 CSS selector 从文件中比对出想要的资讯。</p>
+
+<p>以上这种方式就叫做网络爬虫(web crawler)，但是这种方式不但辛苦，而且如果万一对方改了网址、调整了 HTML 结构，这段程式就很容易坏掉。那怎么办？</p>
+
+<p>我们希望能够用 API 来存取资料。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-3 什么是 API?
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>API(Application Programming Interface)讲的就是程序跟程序的接口，定义接口叫什么名字、要传什么参数进去、它会回传什么东西回来、可能会发生的错误等等。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/061Wqy2SOyMlZVP5jR4e_Snip20170319_3.png" title=""></figure></p>
+
+<p>在写 Ruby 程序的时候，我们会呼叫库(library)的方法，这时候 API 指的是方法(method)的名字、参数、回传值等等，例如 Ruby Hash 的 <a href="https://ruby-doc.org/core-2.4.0/Hash.html">API 文件</a>。</p>
+
+<p>对 Web 应用来说，客户端和服务器之间是用 HTTP 通讯协定：抓资料的一方叫做 Client 客户端，送出 HTTP request，在之前的课程中，这个角色就是浏览器，在这堂课中，我们会自己撰写 Ruby 程序作为客户端。回传资料的一方叫做 server 服务端，回传 HTTP response，服务端例如我们已经学过的 Ruby on Rails。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zxQd8ZHcQAamNAba9cuu_Snip20170319_4.png" title=""></figure></p>
+
+<p>Web 应用的 API 就是在定义网址 URL 长怎样、请求的 HTTP 方法(GET或POST等)是什么、要传什么参数过去、返回的资料格式又是什么。这份教材要示范的，就是属于这一种 API。</p>
+
+<p>其中返回格式最常用的是 JSON 或 XML。这两种是最常见的资料交换格式，专门用来让机器之间交换资料用的，只有纯粹的资料，不像 HTML 有没有杂七杂八的排版资讯。一个 JSON 字串例如：</p>
+
+<p><code>{ "id": 123, "name": "foobar"}</code></p>
+
+<p>就是在描述一个哈希，不同程式语言都可以产生和解析这一个字串，让我们在 <code>irb</code> 中实验看看，我们可以把任意的 Ruby 资料，转成 JSON 字串：</p>
+<figure class="figure-code code"><div class="highlight"><pre>require 'json'
+{ :id =&gt; 123, :name =&gt; "foobar" }.to_json       # =&gt; "{\"id\":123,\"name\":\"foobar\"}"
+</pre></div>
+</figure>
+<p>你可以再开另一个 Terminal，再进入 <code>irb</code>，把刚刚的 JSON 字串贴上来</p>
+<figure class="figure-code code"><div class="highlight"><pre>require 'json'
+JSON.parse( "{\"id\":123,\"name\":\"foobar\"}" )   # =&gt; {"id"=&gt;123, "name"=&gt;"foobar"}
+</pre></div>
+</figure>
+<p>这样就又把 JSON 字串又转回 Ruby 了。</p>
+
+<p>所以如果能有 Web API 提供 JSON 资料的话，就可以透过程式语言直接解析拿到纯粹的资料，非常方便又可靠。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-4 注册聚合数据，拿到 API Key
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们找找看有没有提供天气 API 的服务商，找到了由聚合数据提供的 <a href="https://www.juhe.cn/docs/api/id/39">全国天气预报 API</a>，请先注册，然后申请天气预报数据：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3N4ptrBtQou8bQd3HC8G_juhe-1.png" title=""></figure></p>
+
+<p>然后就可以拿到 API Key，请记下这个凭证，等会呼叫 API 时会用到:</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/g8UMx1n4TmGjo8qLXcle_juhe-2.png" title=""></figure></p>
+
+<p>API 服务商都会要求你先注册，然后呼叫 API 时需要带着这个 API Key 参数，用来记录呼叫者和使用次数。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-5 安装 Postman 进行初步测试
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要怎么对 Web API 进行手动的测试呢? 我们来装一个 Chrome Extension 叫做 Postman，这就是一个万用的表单工具。</p>
+
+<p>首先进入 Chrome 选单上的 Windows &gt; Extensions，然后安装 <a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop">Postman</a>：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/d9mQ5DsMTQGyCbD5Qanp_postman-1.png" title=""></figure></p>
+
+<p>透过这个工具，我们可以指定 URL 地址、HTTP 方法和要传递的参数。让我们实验看。<br>
+根据 <a href="https://www.juhe.cn/docs/api/id/39/aid/167">全国天气预报 文档</a> 的说明，让我们试试看来抓「支持城市列表」</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rGflGS1RW9TTFYKJy6Cg_juhe-3.png" title=""></figure></p>
+
+<p>在 Postman 中输入接口的 URL 地址和参数：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6clHopJQ9mC4pFOlsXGZ_postman-2.png" title=""></figure></p>
+
+<p>点击 Send 就可以看到结果了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kcdttGIlSr69qbKrEHTK_postman-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-6 用 rest-client 抓下来观察看看
+    </h1><h4>所属章节：1. 抓取第三方资料</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来实验 Ruby 客户端，用 Ruby 程序来抓取上述的资料。</p>
+
+<p>进入 <code>irb</code>：</p>
+<figure class="figure-code code"><div class="highlight"><pre>require 'rest-client'
+require 'json'
+response = RestClient.get "http://v.juhe.cn/weather/citys", :params =&gt; { :key =&gt; "請換成你的Key" }    
+data = JSON.parse(response.body)
+</pre></div>
+</figure>
+<p>这个 data 变量就是单纯的 Ruby 哈希资料了，是全部的城市。接下来我们可以观察一下这个资料的样子，文档上面也有范例：</p>
+<figure class="figure-code code"><div class="highlight"><pre>data.keys          # =&gt; ["resultcode", "reason", "result", "error_code"]
+data["result"][0]  # =&gt; {"id"=&gt;"1", "province"=&gt;"北京", "city"=&gt;"北京", "district"=&gt;"北京"}
+</pre></div>
+</figure>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cuUrauvKQEq5RXgdJFnA_rest-client.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 目标
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章我们已经可以用 Ruby 程序抓到资料了，这一章我们将整合进 Rails，将抓到的资料存进数据库，并且可以更新天气资讯。</p>
+
+<ol>
+<li>建立一个 City model，然后把 API 抓取回来的城市资料存进数据库</li>
+<li>新增 cities controller 和页面，让用户可以浏览城市资料</li>
+<li>用户可以更新指定城市的气温资讯</li>
+</ol>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 初始专案，建立 City Model
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在 Terminal 下输入：</p>
+<figure class="figure-code code"><div class="highlight"><pre> rails new api_exercise
+ cd api_exercise
+ git init 
+</pre></div>
+</figure>
+<p>编辑 <code>Gemfile</code> 加上 <code>gem 'rest-client'</code>，然后执行 <code>bundle</code></p>
+
+<p>执行 <code>rails g model city</code></p>
+
+<p>编辑 city 的 migration 档案 <code>db/migrate/201703XXXXXXXX_create_cities.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201703XXXXXXXX_create_cities.rb
+</span></figcaption><div class="highlight"><pre> class CreateCities &lt; ActiveRecord::Migration[5.0]
+   def change
+     create_table :cities do |t|
+<span class="gi">+      t.string :juhe_id
++      t.string :province
++      t.string :city
++      t.string :district
++      t.string :current_temp
+</span>       t.timestamps
+     end
+
+<span class="gi">+    add_index :cities, :juhe_id
+</span>   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>接着执行 <code>rake db:migrate</code> 建立数据库 table。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 抓取城市资料储存下来
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>lib/tasks/dev.rake</code>，放在这个目录下的 rake 档案是用来编写任务脚本，让我们在 Terminal 中可以执行它：</p>
+
+<figure class="figure-code code"><figcaption><span>lib/tasks/dev.rake
+</span></figcaption><div class="highlight"><pre>namespace :dev do
+  task :fetch_city =&gt; :environment do
+    puts "Fetch city data..."
+    response = RestClient.get "http://v.juhe.cn/weather/citys", :params =&gt; { :key =&gt; "你申请的key放这里" }
+    data = JSON.parse(response.body)
+
+    data["result"].each do |c|
+      existing_city = City.find_by_juhe_id( c["id"] )
+      if existing_city.nil?
+        City.create!( :juhe_id =&gt; c["id"], :province =&gt; c["province"],
+                      :city =&gt; c["city"], :district =&gt; c["district"] )
+      end
+    end
+
+    puts "Total: #{City.count} cities"
+  end
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle exec rake dev:fetch_city</code> 就会执行这个任务，把 2574 笔城市存进数据库。</p>
+
+<blockquote>
+<p><code>juhe_id</code> 这个栏位的目的是存下第三方那边的 id，这样我们之后在更新数据的时候，就可以进行比对、避免重复新增。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+       2-4 在画面上显示出来
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>config/routes.rb</code> 新增一行 <code>resources :cities</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   Rails.application.routes.draw do
+<span class="gi">+   resources :cities
+</span>   end
+<span class="err">   
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller cities</code></p>
+
+<p>编辑 <code>app/controllers/cities_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/cities_controller.rb
+</span></figcaption><div class="highlight"><pre> class CitiesController &lt; ApplicationController
+
+<span class="gi">+  def index
++    @cities = City.all
++  end
+</span>
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/cities/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/cities/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;tr&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Juhe ID<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Province<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>City<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>District<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Temp<span class="nt">&lt;/th&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+<span class="cp">&lt;%</span> <span class="vi">@cities</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">city</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">city</span><span class="p">.</span><span class="nf">juhe_id</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">city</span><span class="p">.</span><span class="nf">province</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">city</span><span class="p">.</span><span class="nf">city</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">city</span><span class="p">.</span><span class="nf">district</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>启动服务器 <code>rails s</code>，打开浏览器 <code>http://localhost:3000/cities</code> 就会看到城市资料了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Kvf2rOxSq6BMaSPaquww_rails-city.png" title=""></figure></p>
+
+<blockquote>
+<p>这里省略了安装 <a href="https://github.com/twbs/bootstrap-sass">Bootstrap</a> 的步骤，如果没安装也没关系，画面会有差异而已。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-5 更新城市天气
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们希望存下来当前温度。根据 <a href="https://www.juhe.cn/docs/api/id/39">文档</a> 的说明，可以找到气温的 API 说明。</p>
+
+<p>首先修改 <code>config/routes.rb</code>，新增一个操作：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  resources :cities
+</span><span class="gi">+  resources :cities do
++    member do
++      post :update_temp
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>在画面上放一个按钮，编辑 <code>app/views/cities/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/cities/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">- &lt;td&gt;&lt;/td&gt;
+</span><span class="gi">+ &lt;td&gt;
++   &lt;%= city.current_temp %&gt;
++   &lt;%= link_to "更新温度", update_temp_city_path(city), :method =&gt; :post %&gt;
++ &lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增一个 action，编辑 <code>app/controller/cities_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controller/cities_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">update_temp</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="no">City</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://v.juhe.cn/weather/index"</span><span class="p">,</span> 
+                              <span class="ss">:params</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:cityname</span> <span class="o">=&gt;</span> <span class="n">city</span><span class="p">.</span><span class="nf">juhe_id</span><span class="p">,</span> <span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s2">"你申请的key放这里"</span> <span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+
+    <span class="n">city</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span> <span class="ss">:current_temp</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="p">[</span><span class="s2">"result"</span><span class="p">][</span><span class="s2">"sk"</span><span class="p">][</span><span class="s2">"temp"</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="n">redirect_to</span> <span class="n">cities_path</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+    
+
+<p>这样点击「更新温度」后，就会更新气温了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-6 保护 API Key
+    </h1><h4>所属章节：2. 串接第三方 API 服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在串接第三方应用时，第三方的 API Key 我们不希望写死在程式码里面，一来是因为我们不想把这些敏感的 keys 放到版本控制系统里面。二来是因为将来布署的时候，在 production 环境下，api key 会另外申请一个不一样，因此我们希望容易抽换。</p>
+
+<p>新增 <code>config/juhe.yml</code> 作为设定档，内容如下：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>development:
+  api_key: "你申请的key放这里"
+production:
+  api_key: "之后布署上production的话，key放这里"
+
+</pre></div>
+</figure>
+      
+
+<p>编辑 <code>config/application.rb</code>，在最下面插入一行：</p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb
+</span></figcaption><div class="highlight"><pre># (略)
+
+JUHE_CONFIG = Rails.application.config_for(:juhe)
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controller/cities_controller.rb</code> 和 <code>lib/tasks/dev.rake</code>，把 <code>"你申请的key放这里"</code> 置换成 <code>JUHE_CONFIG["api_key"]</code> 即可。</p>
+
+<p>(以上操作完成后要重启rails s才会生效)</p>
+
+<p>要注意：</p>
+
+<ul>
+<li>YAML 格式使用空白缩排来表达资料的阶层关系，请务必缩排整齐</li>
+<li>YAML 格式会区分数字和字串，例如 <code>01234</code> 会看成 <code>1234</code>，如果要确保被解析成字串，请加上引号，例如<code>"01234"</code> </li>
+<li>读出来的 Hash 是用字串 key，不是 symbol key。是 <code>JUHE_CONFIG["api_key"]</code>而不是 <code>JUHE_CONFIG[:api_key]</code>
+</li>
+</ul>
+
+<p>接着我们要告诉 Git 不要 commit 这个档案，这样就不用担心 git push 会把 api key 洩漏出去。</p>
+
+<p>编辑 <code>.gitignore</code>，插入一行</p>
+
+<figure class="figure-code code"><figcaption><span>.gitignore
+</span></figcaption><div class="highlight"><pre>config/juhe.yml
+<span class="err">
+</span></pre></div>
+</figure>
+    
+
+<p>依照惯例，你可以复制一个 <code>juhe.yml.example</code> 档案放进版本控制系统里面，这可以给你同事当作范例参考，内容例如：</p>
+
+<figure class="figure-code code"><figcaption><span>config/juhe.yml.example
+</span></figcaption><div class="highlight"><pre><span class="s">development:</span><span class="err">
+</span>
+  <span class="s">api_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&lt;juhe</span><span class="nv"> </span><span class="s">api</span><span class="nv"> </span><span class="s">key&gt;"</span><span class="err">
+</span>
+<span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 目标
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要实作一个订票系统 API 服务器，可以提供给手机 iOS, Android 应用程式，或是一个开放平台给别的开发者串接使用。</p>
+
+<p>功能包括：</p>
+
+<ul>
+<li>可以查询有哪些列车</li>
+<li>可以查询特定列车有哪些空位</li>
+<li>可以订票，并得到一组订票号码(乱数产生)</li>
+<li>根据订票号码，可以查询订票资料</li>
+<li>根据订票号码，可以修改订票资料</li>
+<li>根据订票号码，可以取消订票</li>
+</ul>
+
+<p>Models 会有 Train 和 Reservation。 <br>
+<figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/U6TR7wLQt6iIOjD4b5Zs_Snip20170319_5.png" title=""></figure></p>
+
+<p>根据上述的需求，我们需要设计对应的 Web API，首先需要决定网址和 HTTP 方法：</p>
+
+<ul>
+<li><code>GET /trains</code></li>
+<li><code>GET /trains/{列车编号}</code></li>
+<li><code>POST /reservations/{订票号码}</code></li>
+<li><code>GET /reservations/{订票号码}</code></li>
+<li><code>PATCH /reservations/{订票号码}</code></li>
+<li><code>DELETE /reservations/{订票号码}</code></li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 什么是 REST API
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在 Rails 的路由中，我们已经学过 RESTful 的概念：</p>
+
+<ul>
+<li>GET 读取资料</li>
+<li>POST 新增资料</li>
+<li>PATCH 修改资料</li>
+<li>DELETE 删除资料</li>
+</ul>
+
+<p>在设计Web API 的时候，我们也是用一样的大原则进行设计，这种设计原则就叫做REST：围绕在Model(在REST中叫做Resource 资源)来建构CRUD 的操作，其中网址会是名词，用不同的HTTP 方法来区分CRUD 操作。</p>
+
+<p>不过，有时候有些操作也不完全是 CRUD 的概念，例如批次更新的操作，可能就会设计成</p>
+
+<p><code>POST /topics/bulk_update</code></p>
+
+<p>这种风格叫做 RPC(remote procedure call: 远端程序呼叫)，网址是动词，POST 表示呼叫。</p>
+
+<p>又例如订阅可以有两种设计风格，第一种是 REST 风格，</p>
+
+<p><code>POST /topics/{topic_id}/subscription 和 DELETE /topics/{topic_id}/subscription/{id}</code></p>
+
+<p>其中 subscription 是名词，用 POST 表示新增、用 DELETE 表示删除。</p>
+
+<p>或第二种 RPC (remote procedure call: 远端程序呼叫) 风格：</p>
+
+<p><code>POST /topics/{topic_id}/subscribe 和 POST /topics/{topic_id}/unsubscribe</code></p>
+
+<p>subscribe 和 unsubscribe 是动词，用 POST 表示执行。</p>
+
+<p>RPC 风格也是常见的设计，目前设计 Web API 的主流是以 REST 风格为主。但无论是 REST 或 RPC 风格，切记 HTTP GET 和 POST 方法不能用错：GET 只能单纯读取资料，不应该修改资料。而 POST 则是执行某个操作，会修改到服务器的资料。</p>
+
+<blockquote>
+<p>这是因为互联网都会假设 GET 是可以重复读取并缓存的，而 POST 不行。因此搜寻引擎只会用 GET 抓资料，像<a href="https://www.puritys.me/docs-blog/article-204-%E6%88%91%E8%A2%AB-Google-%E9%AA%87%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%86.html">这篇文章</a>就闹了笑话，这个人用 GET 来删除资料，造成Google 爬虫一爬就不小心删除了，他还以为是 Google 故意骇他...lol 另外，像浏览器的表单送出是用POST，如果我们在action 中不redirect (也就是让浏览器去GET 另一页)，而是直接render 返回，那么如果用户重新整理画面的话，浏览器会跳出以下的警告视窗，要求用户确认是否再POST 一次，因为这可能会造成重复操作(重复新增)。如果是 GET 的话，重新整理就不会有这种警告了。</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/S2hCzQITYORTVc6vEveP_post-confirm.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-3 建立 Models
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>执行 <code>rails g model train</code></p>
+
+<p>修改 <code>db/migrate/201703XXXXXXXX_create_trains.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201703XXXXXXXX_create_trains.rb
+</span></figcaption><div class="highlight"><pre>
+ class CreateTrains &lt; ActiveRecord::Migration[5.0]
+   def change
+     create_table :trains do |t|
+<span class="gi">+      t.string :number, :index =&gt; true # 列车号码
+</span>       t.timestamps
+     end
+   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g model reservation</code></p>
+
+<p>修改 <code>db/migrate/201703XXXXXXXX_create_reservations.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201703XXXXXXXX_create_reservations.rb
+</span></figcaption><div class="highlight"><pre>
+ class CreateReservations &lt; ActiveRecord::Migration[5.0]
+   def change
+     create_table :reservations do |t|
+<span class="gi">+      t.string :booking_code, :index =&gt; true
++      t.integer :train_id, :index =&gt; true
++      t.string :seat_number, :index =&gt; true # 座位号码
++      t.integer :user_id, :index =&gt; true
++      t.string :customer_name
++      t.string :customer_phone
+</span>       t.timestamps
+     end
+   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code> 建立数据表。</p>
+
+<p>修改 <code>app/models/train.rb</code> 加上关联和资料验证，以及一个 <code>available_seats</code> 方法回传可以被预订的座位号码：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/train.rb
+</span></figcaption><div class="highlight"><pre>   class Train &lt; ApplicationRecord
+<span class="gi">+    validates_presence_of :number
++    has_many :reservations
++
++    def available_seats
++      # TODO: 回传有空的座位，这里先暂时固定回传一个数组，等会再来处理
++      ["1A", "1B", "1C", "1D", "1F"]
++    end
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>以及修改 <code>app/models/reservation.rb</code> 针对每笔 Reservation 在新建的时候，随机数产生一个 <code>booking_code</code> 这是订票号码，订好票之后，可以用这个号码来做修改或取消订票：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/reservation.rb
+</span></figcaption><div class="highlight"><pre>
+ class Reservation &lt; ApplicationRecord
+<span class="gi">+  validates_presence_of :train_id, :seat_number, :booking_code
++  validates_uniqueness_of :seat_number, :scope =&gt; :train_id
++
++  belongs_to :train
++
++  before_validation :generate_booking_code, :on =&gt; :create
++
++  def generate_booking_code
++    self.booking_code = SecureRandom.uuid
++  end
+</span> end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>db/seeds.rb</code> 加入种子资料：</p>
+
+<figure class="figure-code code"><figcaption><span>db/seeds.rb
+</span></figcaption><div class="highlight"><pre>Train.create!( :number =&gt; "0822")
+Train.create!( :number =&gt; "0603")
+Train.create!( :number =&gt; "0826")
+Train.create!( :number =&gt; "0642")
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:seed</code> 就有这些种子列车资料了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-4 配置路由
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>根据上述的 API 设计，我们来设置 <code>config/routes.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre> Rails.application.routes.draw do
+<span class="gi">+ namespace :api, :defaults =&gt; { :format =&gt; :json } do
++   namespace :v1 do
++     get "/trains"  =&gt; "trains#index", :as =&gt; :trains
++     get "/trains/:train_number" =&gt; "trains#show", :as =&gt; :train
++
++     get "/reservations/:booking_code" =&gt; "reservations#show", :as =&gt; :reservation
++     post "/reservations" =&gt; "reservations#create", :as =&gt; :create_reservations
++     patch "/reservations/:booking_code" =&gt; "reservations#update", :as =&gt; :update_reservation
++     delete "/reservations/:booking_code" =&gt; "reservations#destroy", :as =&gt; :cancel_reservation
++   end
++ end
+</span>
+ # (略)
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中两层的namespace 会让网址前增加<code>/api/v1/</code>、Controller 的目录多两层放在<code>app/controllers/api/v1/</code> 下、Controller 类的名字前面增加<code>Api::V1</code>，变成<code>Api::V1::ReservationsController</code>、路由方法变成<code>api_v1_XXXXX_path</code> 和<code>api_v1_XXXXX_url</code></p>
+
+<p>而其中<code>post "/reservations" =&gt; "reservations#create", :as =&gt; :create_reservations</code>的意思是</p>
+
+<p>客户端送出 <code>POST /api/v1/reservations</code> 时，会进入 Api::V1::ReservationsController 的 <code>create</code> 方法，而 <code>as</code> 参数的意思是产生这个地址的路由方法叫做 <code>api_v1_create_reservations_path</code>。</p>
+
+<p>最后，<code>:defaults =&gt; { :format =&gt; :json }</code> 意思是默认客户端要求的是 <code>JSON</code> 格式，本来的默认值是 <code>HTML</code>。如果没有改这个的话，你必须在网址最后面加上 <code>.json</code> 来指定客户端要求的格式，例如 <code>GET /api/v1/trains.json</code>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-5 产生 Api controller
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着来制作 Controller，首先产生 <code>ApiController</code>。在 Terminal 输入：</p>
+<figure class="figure-code code"><div class="highlight"><pre>rails g controller api --no-assets
+</pre></div>
+</figure>
+<p>修改 <code>api_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">- class ApiController &lt; ApplicationController
+</span><span class="gi">+ class ApiController &lt; ActionController::Base
+</span>end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>我们会把 API 用途的 controller 都继承自 <code>ApiController</code>，而不是<code>ApplicationController</code>。这是因为 API 不需要 <code>protect_from_forgery with: :exception</code> 这一行的 CSRF 浏览器安全检查。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-6 实作 GET /trains
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>执行</p>
+<figure class="figure-code code"><div class="highlight"><pre>rails g controller api::v1::trains --no-assets
+</pre></div>
+</figure>
+<p>编辑 <code>app/controllers/api/v1/trains_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/trains_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">- class Api::V1::TrainsController &lt; ApplicationController
+</span><span class="gi">+ class Api::V1::TrainsController &lt; ApiController
+</span>
+<span class="gi">+  def index
++    @trains = Train.all
++    render :json =&gt; {
++      :data =&gt; @trains.map{ |train|
++        { :number =&gt; train.number,
++            :train_url =&gt; api_v1_train_url(train.number)
++        }
++      }
++    }
++  end
++
++  def show
++    @train = Train.find_by_number!( params[:train_number] )
++
++    render :json =&gt; {
++      :number =&gt; @train.number,
++      :available_seats =&gt; @train.available_seats
++    }
++  end
+</span>
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 <code>render :json =&gt; 某个变量</code> 的语法，会把变量转成 JSON 字串输出。这里也不需要准备 View .erb 档案。</p>
+
+<p>因为这两个 API 都是用 HTTP GET 读取，我们可以直接打开浏览器，浏览 <code>http://localhost:3000/api/v1/trains</code> 就是用 GET 读取资料。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0bOHrDtpT4WbTUaKQyXX_trains-api.png" title=""></figure></p>
+
+<blockquote>
+<p>请先装 Chrome extension <a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa">JSON Formatter</a>，就会有排版整齐的输出。</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/V1sBwq4EQQqn1lAjAbeP_json-formatter.png" title=""></figure></p>
+
+<p>浏览其中一笔列车的话 <code>http://localhost:3000/api/v1/trains/0822</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/gxFaK88qSXuBlW5F3IBd_train-api.png" title=""></figure></p>
+
+<p>你也可以用 Postman 来看：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/brbSfvIR8a9Pge8LhPQR_trains-api-postman.png" title=""></figure></p>
+
+<blockquote>
+<p>如果程序出错的话，在Postman会看到HTML原始码，反而很难看出错误的地方，这个时候可以再点 Preview 就能看到错误网页，或者是回到 Terminal 看服务器的log。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-7 实作 reservations 定位
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来实作订位：</p>
+
+<p>执行 <code>rails g controller api::v1::reservations --no-assets</code></p>
+
+<p>编辑 <code>app/controller/api/v1/reservations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controller/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">- class Api::V1::ReservationsController &lt; ApplicationController
+</span><span class="gi">+ class Api::V1::ReservationsController &lt; ApiController
+</span>
+<span class="gi">+  def create
++    @train = Train.find_by_number!( params[:train_number] )
++    @reservation = Reservation.new( :train_id =&gt; @train.id,
++                                    :seat_number =&gt; params[:seat_number],
++                                    :customer_name =&gt; params[:customer_name],
++                                    :customer_phone =&gt; params[:customer_phone] )
++
++    if @reservation.save
++      render :json =&gt; { :booking_code =&gt; @reservation.booking_code,
++                        :reservation_url =&gt; api_v1_reservation_url(@reservation.booking_code) }
++    else
++      render :json =&gt; { :message =&gt; "订票失败", :errors =&gt; @reservation.errors }, :status =&gt; 400
++    end
++  end
+</span>
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了，要怎么测试呢? 如果直接浏览 <code>http://localhost:3000/api/v1/reservations</code> 的话，浏览器会用 GET 而不是 POST，这时候必须用 Postman 的表单进行测试，输入网址，方法选 POST，在 Body 中输入参数，按下送出之后，得到下面的结果就表示完成了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/839SaMI3SWeSe1JSM6CW_reservation-api.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-8 完成其他部分
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来让我们在 <code>Api::V1::ReservationsController</code> 完成其他 API：</p>
+<h5>查询</h5>
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+ def show
++   @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
++
++   render :json =&gt; {
++     :booking_code =&gt; @reservation.booking_code,
++     :train_number =&gt; @reservation.train.number,
++     :seat_number =&gt; @reservation.seat_number,
++     :customer_name =&gt; @reservation.customer_name,
++     :customer_phone =&gt; @reservation.customer_phone
++   }
++ end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>用 Postman 测试，用 <code>GET http://localhost:3000/api/v1/reservations/订票号码</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cjTm6E32TpaeY7SZ8NvH_reservation-show.png" title=""></figure></p>
+<h5>修改</h5>
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+ def update
++   @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
++   @reservation.update( :customer_name =&gt; params[:customer_name],
++                        :customer_phone =&gt; params[:customer_phone] )
+</span>
+<span class="gi">+   render :json =&gt; { :message =&gt; "更新成功" }
++ end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>用 Postman 测试，用 <code>PATCH http://localhost:3000/api/v1/reservations/订票号码</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zT6GtjSdKKXE2qnIqYgD_reservation-patch.png" title=""></figure></p>
+<h5>取消</h5>
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+ def destroy
++   @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
++   @reservation.destroy
+</span>
+<span class="gi">+   render :json =&gt; { :message =&gt; "已取消定位" }
++ end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>用 Postman 测试，用 <code>DELETE http://localhost:3000/api/v1/reservations/订票号码</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/X1BqrKsCSCiE1NrywHw4_reservation-delete.png" title=""></figure></p>
+<h5>完成 Train#availale_seats 方法</h5>
+<p>在前述步骤中的 Train#available_seats 让我们完成它：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/train.rb
+</span></figcaption><div class="highlight"><pre> class Train &lt; ApplicationRecord
+
+   validates_presence_of :number
+   has_many :reservations
+
+<span class="gi">+  # 产生所有位置从 1A~6C
++  # ["1A", "1B", "1C", "2A", "2B", "2C", "3A", "3B", "3C", 
++  #  "4A", "4B", "4C", "5A", "5B", "5C", "6A", "6B", "6C"]
++  SEATS = begin
++    (1..6).to_a.map do |series|
++      ["A","B","C"].map do |letter|
++       "#{series}#{letter}"
++      end
++    end
++  end.flatten
+</span>
+   def available_seats
+<span class="gd">-    # TODO: 回传有空的座位，这里先暂时固定回传一个数组，等会再来处理
+-    ["1A", "1B", "1C", "1D", "1F"]
+</span>
+<span class="gi">+    # 所有 SEATS 扣掉已经订位的资料
++    return SEATS - self.reservations.pluck(:seat_number)
+</span>   end
+
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-9 解说
+    </h1><h4>所属章节：3. 建立 API 服务器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>以下补充说明设计的缘由：</p>
+<h4>HTTP response code</h4>
+<p>HTTP 的 response 都会有一个 HTTP 状态码，最基本常见会用到的有：</p>
+
+<ul>
+<li>200 成功(这是默认值)</li>
+<li>400 客户端参数错误，例如资料验证失败，必填的资料没有填等等</li>
+<li>401 Unauthorized 要求登入</li>
+<li>403 有登入但是权限不够</li>
+<li>404 找无此资源</li>
+<li>500 服务器错误</li>
+</ul>
+
+<p>例如我们在订位失败的时候，多指定了 <code>:status =&gt; 400</code></p>
+<h4>拆开 URL 和 controller</h4>
+<p>在路由中我们使用了 <code>namespace :api</code> 和 <code>namespace :v1</code>，让 API 使用的 controller，和网页用户的 controller 拆开，网址用 <code>api/v1</code> 也表示这是 API 专用的版本。</p>
+
+<p>原因是 </p>
+
+<ol>
+<li>API 的操作流程，和网页用户的操作流程是迥异的，拆开来有助于维护</li>
+<li>
+<code>api/v1</code> 是因为需要保持向下相容性。我们不能随意变更 API 格式，不然客户端的程序会坏掉。不像 Web 程式可以随时升级，行动装置的 App 上架需要时间，因此需要保持 API 的向下相容性。</li>
+</ol>
+
+<p>怎样叫做破坏向下相容的变更呢? 例如修改网址、修改 JSON key 的名称、变更 value 的型态等等。如果只是新增 key 是相容的。也因此不是每次有改 API 一定都需要递增版本。只有破坏性的变更才需要改成 v2。</p>
+<h4>router.rb 写法</h4>
+<p>我们也可以改用大家原本熟悉的 <code>resources</code> 写法：</p>
+<figure class="figure-code code"><div class="highlight"><pre>namespace :api, :defaults =&gt; { :format =&gt; :json } do
+  namespace :v1 do
+    resources :trains, :only =&gt; [:index, :show]
+    resources :reservations, :only =&gt; [:show, :create, :update, :destroy]        
+  end
+end
+</pre></div>
+</figure>
+<p>不过，<code>resources</code> 写法是 Rails 独有的，因此在撰写 API 说明文件的时候，我们会逐条每个 API 都列出来，这样跟我们合作的 iOS 、Android 工程师或第三方工程师才看得懂怎么呼叫 Web API。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 目标
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章的 API 操作都不需要任何认证，接下来我们想要多加一个功能来示范需要认证的情况：</p>
+
+<ul>
+<li>使用者可以在网页上注册、登入，拿到 API Key</li>
+<li>如果在有登入的情况下进行订票的话，则可以查询该用户下的所有订票</li>
+</ul>
+
+<p>本章会实作的 API 是查询该用户的所有订票：</p>
+
+<p><code>GET /api/v1/reservations</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 装 Devise 产生 User Model
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>Gemfile</code> 加上 <code>gem "devise"</code></p>
+
+<p>执行 <code>bundle</code>，然后重启服务器</p>
+
+<p>执行 <code>rails g devise:install</code></p>
+
+<p>执行 <code>rails g devise user</code></p>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>执行 <code>rails g controller welcome</code></p>
+
+<p>新增 <code>app/views/welcome/index.html.erb</code> 档案</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/welcome/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;h2&gt;订票系统&lt;/h2&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>routes.rb</code>，插入一行：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+   root "welcome#index"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layout/application.html.erb</code>，插入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre>
+ &lt;body&gt;
+<span class="gi">+  &lt;% if current_user %&gt;
++     &lt;%= link_to('登出', destroy_user_session_path, :method =&gt; :delete) %&gt;
++    &lt;%= link_to('修改密码', edit_registration_path(:user)) %&gt;
++  &lt;% else %&gt;
++    &lt;%= link_to('注册', new_registration_path(:user)) %&gt; |
++    &lt;%= link_to('登入', new_session_path(:user)) %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+  
+
+<p>编辑 <code>app/models/user.rb</code>，加上 reservations 关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>
+ class User &lt; ApplicationRecord
+
+<span class="gi">+ has_many :reservations
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/reservation.rb</code>，加上 user 关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/reservation.rb
+</span></figcaption><div class="highlight"><pre>
+ class Reservation &lt; ApplicationRecord
+
+<span class="gi">+ belongs_to :user, :optional =&gt; true
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-3 产生 API 用的 token
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们在第二章使用天气 API 时，会用到 api key 来做凭证。这里我们也想要一样的机制。首先会新增一个字段 <code>authentication_token</code> 字段(这里命名成 token，跟 API Key 是一样意思)，并且乱数产生一个凭证：</p>
+
+<p>执行 <code>rails g migration add_token_to_users</code></p>
+
+<p>修改这个 migration，内容如下</p>
+
+<figure class="figure-code code"><figcaption><span>201703XXXXXXXX_add_token_to_users.rb
+</span></figcaption><div class="highlight"><pre> class AddTokenToUsers &lt; ActiveRecord::Migration
+   def change
+<span class="gi">+    add_column :users, :authentication_token, :string
++    add_index :users, :authentication_token, :unique =&gt; true
++
++    User.find_each do |u|
++      puts "generate user #{u.id} token"
++      u.generate_authentication_token
++      u.save!
++    end
+</span>   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/models/user.rb</code> 加上 <code>generate_authentication_token</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  class User &lt; ApplicationRecord
+
+<span class="gi">+   before_create :generate_authentication_token
++
++   def generate_authentication_token
++     self.authentication_token = Devise.friendly_token
++   end
+</span>
+  ...(略)
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/views/welcome/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/welcome/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h2&gt;订票系统&lt;/h2&gt;
+
+<span class="gi">+  &lt;% if current_user %&gt;
++    &lt;p&gt;已经登入：你的 API token 是 &lt;code&gt;&lt;%= current_user.authentication_token  %&gt;&lt;/code&gt;&lt;/p&gt;
++  &lt;% else %&gt;
++    &lt;p&gt;尚未登入&lt;/p&gt;
++  &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000</code> 并注册一个帐号，就可以在画面上看到该用户的 API token 了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/UQ1mIfZoTW27cY0g05NQ_api-token.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-4 设置 current_user
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着我们在 ApiController 上实作 <code>before_action :authenticate_user_from_token!</code> 方法，如果客户端的 HTTP request 请求有带 <code>auth_token</code> 参数的话，就会进行登入(但这里没有强制一定要登入)：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api_controller.rb
+</span></figcaption><div class="highlight"><pre>
+ class ApiController &lt; ActionController::Base
+
+<span class="gi">+  before_action :authenticate_user_from_token!
++
++  def authenticate_user_from_token!
++
++    if params[:auth_token].present?
++      user = User.find_by_authentication_token( params[:auth_token] )
++
++      # sign_in 是 Devise 的方法，会设定好 current_user
++      sign_in(user, store: false) if user
++    end
++  end
+</span>
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>只要呼叫 API 的时候，有多带 <code>auth_token</code>，就会设定好 <code>current_user</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-5 修改订票 API
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>app/controller/api/v1/reservations_controller.rb</code> 的 <code>create</code> 方法，插入一行 <code>@reservation.user = current_user</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controller/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+ def create
+   @train = Train.find_by_number!( params[:train_number] )
+   @reservation = Reservation.new( :train_id =&gt; @train.id,
+                                   :seat_number =&gt; params[:seat_number],
+                                   :customer_name =&gt; params[:customer_name],
+                                   :customer_phone =&gt; params[:customer_ phone] )
+
+<span class="gi">+  @reservation.user = current_user
+</span>
+   if @reservation.save
+     render :json =&gt; { :booking_code =&gt; @reservation.booking_code,
+                       :reservation_url =&gt;  api_v1_reservation_url(@reservation.booking_code) }
+   else
+     render :json =&gt; { :message =&gt; "订票失败", :errors =&gt; @reservation.errors  }, :status =&gt; 400
+   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样如果是登入的情况，这张定票就会关联到该用户。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-6 可以查询所有我的订票
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+ namespace :api, :defaults =&gt; { :format =&gt; :json } do
+   namespace :v1 do
+<span class="gi">+     get "/reservations" =&gt; "reservations#index", :as =&gt; :reservations
+</span>     # ...(略)
+<span class="err">
+</span></pre></div>
+</figure>
+        
+
+<p>修改 <code>app/controller/api/v1/reservations_controller.rb</code>，新增 index 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controller/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+ class Api::V1::ReservationsController &lt; ApiController
+
+<span class="gi">+  before_action :authenticate_user!, :only =&gt; [:index] # 这会检查 index +这个操作一定要登入
++
++  def index
++    @reservations = current_user.reservations
++
++    render :json =&gt; {
++      :data =&gt; @reservations.map { |reservation|
++        {
++          :booking_code =&gt; reservation.booking_code,
++          :train_number =&gt; reservation.train.number,
++          :seat_number =&gt; reservation.seat_number,
++          :customer_name =&gt; reservation.customer_name,
++          :customer_phone =&gt; reservation.customer_phone
++        }
++      }
++    }
++  end
+</span>
+  # ...(略)
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>用 Postman 进行测试，首先新增订票，记得多传 <code>auth_token</code> 参数表示这是登入的用户：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4U7vFWL2T9e15V4QfMEj_postman-api-token.png" title=""></figure></p>
+
+<p>接着查询</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DjTW4ZWTgWNF0jnw9ElZ_postman-my-reservations.png" title=""></figure></p>
+
+<blockquote>
+<p>GET 方法是没有 HTTP Body 的，它的参数会直接接在网址后面。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-7 解说
+    </h1><h4>所属章节：4. 实作认证 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>对 API 客户端来说，所有需要登入的操作，都必须带入 <code>auth_token</code> 这个参数，这样服务器才能识别是哪一个使用者。你可能会觉得为什么需要这样的 api key 的机制，每个用户不是已经有帐号密码了吗? 为什么不能每个操作干脆带着帐号密码参数即可?</p>
+
+<p>这是因为用 api key 的机制，我们可以：</p>
+
+<ul>
+<li>安全性，乱数产生的强度比密码高，甚至可以设计有效时间</li>
+<li>独立性，使用者改密码不会影响 api key，这样客户端就不需要重新设定过</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-1 目标
+    </h1><h4>所属章节：5. 实作注册、登入、登出 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章中是直接在网页上看到 <code>auth_token</code> 让用户使用，但这个前提是用户本身就是开发者，就像第一章我们使用数据聚合一样，我们直接在后台就看到了 <code>api key</code>。</p>
+
+<p>另一种常见情境是我们自己开发客户端 App，例如 iOS 或 Android，这时候就不能让小白用户自己去网页上复制贴上 api key 了。这时候我们就得做登入的 API，好让用户输入帐号密码登入，拿到 API Key 存在客户端 App 上来使用。</p>
+
+<p>这一章我们将实作以下 API，包括注册、登入和登出：</p>
+<figure class="figure-code code"><div class="highlight"><pre>POST /api/v1/signup
+POST /api/v1/login
+POST /api/v1/logout
+</pre></div>
+</figure>
+    </div>
+  </div></div><div class='frame'><h1>
+      5-2 实作 AuthController
+    </h1><h4>所属章节：5. 实作注册、登入、登出 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>config/routes.rb</code> 加上路由：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+ namespace :api, :defaults =&gt; { :format =&gt; :json } do
+   namespace :v1 do
+
+<span class="gi">+    post "/signup" =&gt; "auth#signup"
++    post "/login" =&gt; "auth#login"
++    post "/logout" =&gt; "auth#logout"
+</span>
+     # ...(略)
+   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+      
+
+<p>输入 <code>rails g controller api::v1::auth --no-assets</code> 产生 controller，编辑它：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/auth_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">- class Api::V1::AuthController &lt; ApplicationController
+</span><span class="gi">+ class Api::V1::AuthController &lt; ApiController
+</span>
+<span class="gi">+   before_action :authenticate_user!, :only =&gt; [:logout]
++ 
++   def signup
++     user = User.new( :email =&gt; params[:email], :password =&gt; params[:password] )
++ 
++     if user.save
++       render :json =&gt; { :user_id =&gt; user.id }
++     else
++       render :json =&gt; { :message =&gt; "Failed", :errors =&gt; user.errors }, :status =&gt; 400
++     end
++   end
++ 
++   def login
++     if params[:email] &amp;&amp; params[:password]
++       user = User.find_by_email( params[:email] )
++     end
++ 
++     if user &amp;&amp; user.valid_password?( params[:password] )
++       render :json =&gt; { :message =&gt; "Ok",
++                         :auth_token =&gt; user.authentication_token,
++                         :user_id =&gt; user.id }
++     else
++       render :json =&gt; { :message =&gt; "Email or Password is wrong" }, :status =&gt; 401
++     end
++   end
++ 
++   def logout
++     current_user.generate_authentication_token # 重新产生一组，本来的 token 就失效了
++     current_user.save!
++ 
++     render :json =&gt; { :message =&gt; "Ok"}
++   end
++ 
+</span>end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>记得改继承自 <code>ApiController</code>，不然 POST 时会有 <code>ActionController::InvalidAuthenticityToken</code> 的错误</p>
+</blockquote>
+
+<p>用 Postman 进行测试，首先是注册 <code>POST /api/v1/signup</code>：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/R49ZIWDdTzGNcidY3mXl_postman-signup.png" title=""></figure></p>
+
+<p>接着登入 <code>POST /api/v1/login</code>，客户端用帐号密码，来换得 <code>auth_token</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/TOXUOuhtQGyomAdo9v9r_postman-login.png" title=""></figure></p>
+
+<p>最后是登出 <code>POST /api/v1/logout</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ag14jJpeQGF0MWi9sNbS_postman-logout.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-3 解说
+    </h1><h4>所属章节：5. 实作注册、登入、登出 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这两章比较繁琐一点，但是同学们不需要担心写不出来，因为没有任何两年内新手可以自己写出认证 API，一定都是抄的，例如抄 <a href="https://github.com/plataformatec/devise/wiki/How-To:-Simple-Token-Authentication-Example" rel="nofollow" target="_blank">https://github.com/plataformatec/devise/wiki/How-To:-Simple-Token-Authentication-Example</a> 反正也只会做一次，而且都长一样，各位同学不用担心。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-1 目标
+    </h1><h4>所属章节：6. 实作用户更新资料 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章我们实作两个有关用户的 API：</p>
+
+<ul>
+<li>
+<code>PATCH /me</code> 更新自己的资料，包括修改 E-mail、密码和上传照片</li>
+<li>
+<code>GET /me</code> 查询自己的资料</li>
+</ul>
+
+<p>目的是处理档案上传的情况。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-2 修改个人资料(照片档案上传)
+    </h1><h4>所属章节：6. 实作用户更新资料 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>Gemfile</code>，加上</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>
+# ...(略)
+
+<span class="gi">+  gem 'carrierwave'
++  gem 'mini_magick'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code> 然后重启服务器</p>
+
+<p>执行 <code>rails g uploader avatar</code><br>
+执行 <code>rails g migration add_avatar_to_users avatar:string</code><br>
+执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/uploaders/avatar_uploader.rb</code> 增加不同缩图的情况：</p>
+
+<figure class="figure-code code"><figcaption><span>app/uploaders/avatar_uploader.rb
+</span></figcaption><div class="highlight"><pre>
+  class AvatarUploader &lt; CarrierWave::Uploader::Base
+<span class="gi">+
++   include CarrierWave::MiniMagick
++
+</span>    storage :file
+<span class="gi">+
++   process resize_to_fit: [800, 800]
++
++   version :thumb do
++     process resize_to_fill: [200,200]
++   end
++
++   version :medium do
++     process resize_to_fill: [400,400]
++   end
++
+</span>    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
+
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/user.rb</code>，新增一行：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+   mount_uploader :avatar, AvatarUploader
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/routes.rb</code>，加入</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+ namespace :api, :defaults =&gt; { :format =&gt; :json } do
+   namespace :v1 do
+
+<span class="gi">+    get "/me" =&gt; "users#show", :as =&gt; :user
++    patch "/me" =&gt; "users#update", :as =&gt; :update_user
+</span>     # ...(略)
+<span class="err">
+</span></pre></div>
+</figure>
+        
+
+<p>执行 <code>rails g controller api::v1::users --no-assets</code></p>
+
+<p>编辑 <code>app/controllers/api/v1/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/users_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">- class Api::V1::UsersController &lt; ApplicationController
+</span><span class="gi">+ class Api::V1::UsersController &lt; ApiController
+</span>
+<span class="gi">+   before_action :authenticate_user!
++
++   def update
++     if current_user.update(user_params)
++       render :json =&gt; { :message =&gt; "OK" }
++     else
++       render :json =&gt; { :message =&gt; "Failed", :errors =&gt; current_user.errors }, :status =&gt; 400
++     end
++   end
++
++   protected
++
++   def user_params
++     params.permit(:email, :password, :avatar)
++   end
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>用 Postman 上传照片看看</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mAFYqDMqTpqRqymZI2vk_user-update.png" title=""></figure></p>
+
+<blockquote>
+<p>注意到 Postman 选用 POST 时，还可以选 request 的资料格式。虽然我们讲 Web API 常用 JSON 格式，但这只是说 response 的资料格式用 JSON。客户端的 HTTP request 资料格式不一定是 JSON。而 request 也是有不同种资料格式，其中只有 <code>form-data</code> 才能上传档案。详细的原理可以参考 <a href="https://imququ.com/post/four-ways-to-post-data-in-http.html">四种常见的 POST 提交数据方式</a></p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-3 查询个人资料
+    </h1><h4>所属章节：6. 实作用户更新资料 API</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>/api/v1/users_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/users_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  # ...(略)
+
+<span class="gi">+ def show
++   render :json =&gt; {
++     :email =&gt; current_user.email,
++     :avatar =&gt; current_user.avatar,
++     :updated_at =&gt; current_user.updated_at,
++     :created_at =&gt; current_user.created_at
++   }
++ end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>浏览器浏览 <code>http://localhost:3000/api/v1/me?auth_token=FYN27sLKKCNt4LhTH5or</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vrTfGYgtS3G9tzsktNmB_user-show.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-1 前言
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>通常在 Web API 中，这几个 POST/PATCH/DELETE 操作的回传值都很简单，我们可以在 controller 里面用 <code>render :json</code> 就解决了。但是 GET 拿资料可能会很复杂，因为资料字段很多。这里介绍使用 <a href="https://github.com/rails/jbuilder">JBuilder</a> 来定义 JSON 格式的作法，这是一个 Rails 默认就安装的 gem，你可以在 <code>Gemfile</code> 中看到它。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-2 修改 train API 
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>app/views/api/v1/trains/show.json.jbuilder</code> 档案，这就是 JBuilder 样板，用来定义 JSON 长什么样子：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/show.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.number @train.number
+json.available_seats @train.available_seats
+json.created_at @train.created_at
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/api/v1/trains_controller.rb</code>，拿掉 <code>render :json</code> 的部分：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/trains_controller.rb
+</span></figcaption><div class="highlight"><pre>
+ def show
+   @train = Train.find_by_number!( params[:train_number] )
+
+<span class="gd">-    render :json =&gt; {
+-      :number =&gt; @train.number,
+-      :available_seats =&gt; @train.available_seats
+-    }
+</span> end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>用浏览器浏览 <code>http://localhost:3000/api/v1/trains/0822</code> 确认正常。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-3 修改 trains API 输出 array 资料
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>app/views/api/v1/trains/index.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/index.json.jbuilder
+</span></figcaption><div class="highlight"><pre>json.data do
+  json.array! @trains do |train|
+    json.number train.number
+    json.train_url api_v1_train_url(train.number)
+  end
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/api/v1/trains_controller.rb</code>，拿掉 <code>render :json</code> 的部分：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/trains_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+     @trains = Train.all
+<span class="gd">-    render :json =&gt; {
+-      :data =&gt; @trains.map{ |train|
+-        { :number =&gt; train.number,
+-            :train_url =&gt; api_v1_train_url(train.number)
+-        }
+-      }
+-    }
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>用浏览器浏览 <code>http://localhost:3000/api/v1/trains</code> 确认正常。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-4 可以使用 partial 样板
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们发现上述的 <code>index.json.jbuilder</code> 和 <code>show.json.jbuilder</code> 非常相像，因为都是描述 <code>train</code>，这时候我们可以来使用 partial 样板的功能。</p>
+
+<p>新增 <code>app/views/api/v1/trains/_item.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/_item.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.number train.number
+json.available_seats train.available_seats
+json.created_at train.created_at
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/api/v1/trains/show.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/show.json.jbuilder
+</span></figcaption><div class="highlight"><pre><span class="gd">- json.number @train.number
+- json.available_seats @train.available_seats
+- json.created_at @train.created_at
+</span>
+<span class="gi">+ json.partial! 'item', train: @train
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/api/v1/trains/index.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/index.json.jbuilder
+</span></figcaption><div class="highlight"><pre> json.data do
+<span class="gd">-  json.array! @trains do |train|
+-    json.number train.number
+-    json.train_url api_v1_train_url(train.number)
+-  end
+</span>
+<span class="gi">+  json.array! @trains, :partial =&gt; "item", :as =&gt; :train
+</span>
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>用浏览器浏览 <code>http://localhost:3000/api/v1/trains</code> 和 <code>http://localhost:3000/api/v1/trains/0822</code> 依旧正常。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-5 输出分页资料
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><code>GET /api/v1/trains</code> 这个 API 我们并没有做分页，如果资料量很多的话，会需要一个分页的机制，不然客户端会一次下载太多资料。</p>
+
+<p>首先让我们加上分页的 Gem，请修改 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>
+   # ...(略)
+<span class="gi">+  gem 'will_paginate'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code> 然后重启服务器。</p>
+
+<p>修改 <code>app/controllers/api/v1/trains_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/trains_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def index
+<span class="gd">-   @trains = Train.all
+</span><span class="gi">+   @trains = Train.paginate( :page =&gt; params[:page] )
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+    
+
+<p>修改 <code>app/views/api/v1/trains/index.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/index.json.jbuilder
+</span></figcaption><div class="highlight"><pre><span class="gi">+ json.meta do
++   json.current_page @trains.current_page
++   json.total_pages @trains.total_pages
++   json.per_page @trains.per_page
++   json.total_entries @trains.total_entries
+</span>
+<span class="gi">+   if @trains.current_page == @trains.total_pages
++     json.next_url nil # 最后一页就没有下一页了
++   else
++     json.next_url api_v1_trains_url( :page =&gt; @trains.next_page )
++   end
+</span>
+<span class="gi">+   if @trains.current_page == 1
++     json.previous_url nil # 第一页就没有上一页
++   else
++     json.previous_url api_v1_trains_url( :page =&gt; @trains.previous_page )
++   end
++ end
+</span>
+json.data do
+  json.array! @trains, :partial =&gt; "item", :as =&gt; :train
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里新增了一个 meta 哈希，来描述总共有多少页、多少笔、下一页、上一页等等资讯。</p>
+
+<blockquote>
+<p>因为列车资料不够多，我们可以进 <code>rails c</code> 输入 <code>100.times { |i| Train.create( :number =&gt; "T#{i}" ) }</code> 就会产生一百笔资料。  </p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FoUNnrWRcS4MegVf8HuM_trains-paging.png" title=""></figure></p>
+
+<p>继续浏览 <code>http://localhost:3000/api/v1/trains?page=2</code> 就会到第二页。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-6 新增 Train Logo 图片
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在继续下一节之前，我们希望 train 能有 Logo 图片</p>
+
+<p>执行 <code>rails g uploader train_logo</code></p>
+
+<p>执行 <code>rails g migration add_train_logo_to_trains train_logo:string</code></p>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/train.rb</code>，插入一行：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/train.rb
+</span></figcaption><div class="highlight"><pre># ...(略)
+<span class="gi">+   mount_uploader :train_logo, TrainLogoUploader
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>因为现有的 train 资料并没有图片，我们可以进 <code>rails console</code>，然后执行 </p>
+<figure class="figure-code code"><div class="highlight"><pre>t = Train.first
+t.train_logo = open("https://ihower.tw/ruby.jpg")
+# 或是你本机电脑上的一张图片 t.train_logo = open("/Users/your_username/Pictures/your_image.png")
+t.save
+</pre></div>
+</figure>
+<p>就会存一张图片了。 </p>
+
+<p>编辑 <code>app/views/api/v1/trains/_item.json.jbuilder</code> 加入图片资讯：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/_item.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+  json.number train.number
+ 
+<span class="gi">+ if train.train_logo.present?
++   json.logo_url asset_url( train.train_logo.url )
++   json.logo_file_size train.train_logo.size
++   json.logo_content_type train.train_logo.content_type
++ else
++   json.logo_url nil
++   json.logo_file_size nil
++   json.logo_content_type nil
++ end
+</span> 
+ json.available_seats train.available_seats
+ json.created_at train.created_at
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/api/v1/trains</code> 会得到：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/uwowLKxHS4abcr30CVrH_train-with-logo.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-7 修改 reservations API
+    </h1><h4>所属章节：7. Jbuilder 用法</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>延续上一节，假设客户端手机App上我的订票页面，除了显示我的订票之外，也想要显示 train 的 logo。那么根据目前的 Web API 设计，会需要发送多个 HTTP request 请求才能显示 train 图片，例如：</p>
+<figure class="figure-code code"><div class="highlight"><pre>GET /api/v1/reserveations   # 假设拿到三张票分别是 0822, 0606, 0826 
+GET /api/v1/train/0822      # 拿 train logo
+GET /api/v1/train/0606      # 拿 train logo
+GET /api/v1/train/0826      # 拿 train logo
+</pre></div>
+</figure>
+<p>手机的网络速度是不快的，每多发送一次请求，就很耗时间。因此我们会希望减少需要请求的次数。因此我们要修改 <code>GET /api/v1/reservations</code> 的回传 JSON，顺便回传完整 train 资料就好了：</p>
+
+<p>修改 <code>app/controllers/api/v1/reservations_controller.rb</code>，把 <code>render :json</code> 拆除</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/api/v1/reservations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+   def index
+     @reservations = current_user.reservations
+
+<span class="gd">-    render :json =&gt; {
+-      :data =&gt; @reservations.map { |reservation|
+-        {
+-          :booking_code =&gt; reservation.booking_code,
+-          :train_number =&gt; reservation.train.number,
+-          :seat_number =&gt; reservation.seat_number,
+-          :customer_name =&gt; reservation.customer_name,
+-          :customer_phone =&gt; reservation.customer_phone
+-        }
+-      }
+-    }
+</span>
+   end
+
+  def show
+    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+
+<span class="gd">-   render :json =&gt; {
+-     :booking_code =&gt; @reservation.booking_code,
+-     :train_number =&gt; @reservation.train.number,
+-     :seat_number =&gt; @reservation.seat_number,
+-     :customer_name =&gt; @reservation.customer_name,
+-     :customer_phone =&gt; @reservation.customer_phone
+-   }
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/api/v1/reservations/_item.json.jbuilder</code> </p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/reservations/_item.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.booking_code reservation.booking_code
+json.train_number reservation.train.number
+json.train do
+  json.partial! 'api/v1/trains/item', train: reservation.train
+end
+json.seat_number reservation.seat_number
+json.customer_name reservation.customer_name
+json.customer_phone reservation.customer_phone
+<span class="err">
+</span></pre></div>
+</figure>
+    
+
+<p>新增 <code>app/views/api/v1/reservations/show.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/reservations/show.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.partial! 'item', reservation: @reservation
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/api/v1/reservations/index.json.jbuilder</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/reservations/index.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.data do
+  json.array! @reservations, :partial =&gt; "item", :as =&gt; :reservation
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后的结果会是：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hSHIbBaORibT8ElX6Afw_reservation-with-train.png" title=""></figure></p>
+
+<p>这样客户端就只需要一个 request 就能拿到需要的资料了。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

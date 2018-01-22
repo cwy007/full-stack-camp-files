@@ -1,0 +1,2406 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-1 什么是 jQuery 和 DOM
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://jquery.com">jQuery</a>是一套最多人使用的 JavaScript 函式库，可以撰写各种网页效果，有丰富的社区和各种 Plugins 外挂。</p>
+
+<p>它的主要作用是操纵网页的 DOM(Document Object Model)：浏览器会解析 HTML 然后显示在画面上，这个解析出来的结构就叫做 DOM，在浏览器内部这是一个树状的资料结构：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>html
+  - head
+    - title
+     - a web page
+  - body class="home"
+    - h1 id="header"
+     - a headline
+    - p
+     - some
+     - span
+      - text
+     - text
+</pre></div>
+</figure>
+
+<p>浏览器提供了 DOM API 让开发者可以操纵这些结构，透过 jQuery 我们可以很方便地从 HTML 取得要操纵的 HTML 元素，并在 DOM 里面进行插入、修改、删除元素，这样浏览器的画面就会跟着变化了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-2 新增练习网页
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>jQuery 在 Rails 5.0 以前的版本默认就有安装，你可以在 Gemfile 里面看到 <code>gem 'jquery-rails'</code> 以及在 <code>app/assets/javascripts/application.js</code> 里面看到 <code>//= require jquery</code>。</p>
+
+<blockquote>
+<p>在 Gemfile 前几行可以看到你 Rails 的版本。如果你是 Rails 5.1，请在 Gemfile 补上 <code>gem 'jquery-rails'</code>，然后执行 <code>bundle</code>，接着在 <code>app/assets/javascripts/application.js</code> 里面拿掉  <code>//= require rails-ujs</code> 换成 <code>//= require jquery</code> 跟 <code>//= require jquery_ujs</code></p>
+</blockquote>
+
+<p>让我们新增一个专案，并新增一些页面来进行示范：</p>
+
+<p><code>rails new ajax-posting-app</code></p>
+
+<p><code>cd ajax-posting-app</code></p>
+
+<p><code>git init</code></p>
+
+<p><code>rails g controller pages</code></p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="n">get</span> <span class="s2">"/jquery-1"</span> <span class="o">=&gt;</span> <span class="s2">"pages#jquery_1"</span>
+<span class="n">get</span> <span class="s2">"/jquery-2"</span> <span class="o">=&gt;</span> <span class="s2">"pages#jquery_2"</span>
+<span class="n">get</span> <span class="s2">"/jquery-3"</span> <span class="o">=&gt;</span> <span class="s2">"pages#jquery_3"</span>
+<span class="n">get</span> <span class="s2">"/jquery-4"</span> <span class="o">=&gt;</span> <span class="s2">"pages#jquery_4"</span>
+<span class="n">get</span> <span class="s2">"/jquery-5"</span> <span class="o">=&gt;</span> <span class="s2">"pages#jquery_5"</span>
+
+<span class="n">root</span> <span class="s2">"pages#jquery_1"</span>
+
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/layouts/application.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;body&gt;
+<span class="gi">+    &lt;%= link_to "jQuery 练习一", jquery_1_path %&gt; |
++    &lt;%= link_to "jQuery 练习二", jquery_2_path %&gt; |
++    &lt;%= link_to "jQuery 练习三", jquery_3_path %&gt; |
++    &lt;%= link_to "jQuery 练习四", jquery_4_path %&gt; |
++    &lt;%= link_to "jQuery 练习五", jquery_5_path %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>安装 <a href="https://github.com/twbs/bootstrap-sass">bootstrap-sass</a> (步骤省略，之后的截图是有安装 Bootstrap，画面比较漂亮，没做不影响功能)</p>
+
+<p>启动服务器 <code>rails server</code></p>
+
+<p>(请接着做下一节再打开浏览器)</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-3 如何动态增加内容到网页上
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：点击一个 HTML 元素后，动态置换一段内容</p>
+
+<p>新增 <code>app/views/pages/jquery_1.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;p&gt;
+  &lt;a id="my-click"&gt;Click Me&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo" style="border: 1px solid red;"&gt;
+  &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  $("#my-click").click(function(){
+    $("#foo").html('&lt;h1&gt;zoo&lt;/h1&gt;');
+  })
+&lt;/script&gt;
+
+</pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/jquery-1</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6MKTXNchSfSt6YMinFiK_1.png" title=""></figure></p>
+
+<p>点击 Click Me 连结的话，你会发现 <code>&lt;p&gt;bar&lt;/p&gt;</code> 就动态置换成 <code>&lt;h1&gt;zoo&lt;/h1&gt;</code> 了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/X6DsK83eQqOrdYTjXuH9_2.png" title=""></figure></p>
+
+<p>解说：</p>
+
+<ul>
+<li>
+<code>&lt;script&gt;...&lt;/script&gt;</code> 包起来的部分就是写 JavaScript 的地方</li>
+<li>这个钱号 $ 等同于 jQuery</li>
+<li>
+<code>$("#my-click")</code> 是 jQuery 的选择器用法，会挑出 id 是 <code>my-click</code> 的元素，在这里就是指 Click Me 的超连结。在 HTML 上 id 是唯一的，不能有重复的 id。</li>
+<li>
+<code>.click( function(){...} )</code> 会绑订一个点击(click)事件在该元素上面，当用户点击这个元素时，就会执行里面的 function</li>
+<li>
+<code>$("#foo").html('&lt;h1&gt;zoo&lt;/h1&gt;')</code> 会把 #foo 这个元素的内容置换成 <code>&lt;h1&gt;zoo&lt;/h1&gt;</code>
+</li>
+</ul>
+
+<p>请试试看把 <code>html</code> 换成以下用法，观察看看有什么差别：</p>
+
+<ul>
+<li>
+<code>text</code> 文字替换</li>
+<li>
+<code>prepend</code> 把内容插在指定元素里面的最前面</li>
+<li>
+<code>append</code> 把内容插在指定元素里面的最后面</li>
+<li>
+<code>before</code> 把内容插在指定元素的前面</li>
+<li>
+<code>after</code> 把内容插在指定元素的后面</li>
+</ul>
+
+<p>请先搭配看下一节如何除错。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-4 如何除错?
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>请使用 Chrome 开发者工具：在 HTML 画面上按右键，点 Inspect，就会看到以下画面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9qkFqQi5QMKpl8xwKxpY_3-debug.png" title=""></figure></p>
+
+<p>如果 JavaScript 写错的话，在 Console 可以看到错误，例如我们把 <code>click</code> 拼错成 <code>clickk</code> 的话：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qgWeEcpRdK8tHhTxh5KA_4-debug.png" title=""></figure></p>
+
+<blockquote>
+<p>从错误的地方开始，以下的 JavaScript 程序都不会执行喔</p>
+</blockquote>
+
+<p>想在 JavaScript 程序中观察变量的话，可以用 <code>alert</code> 或 <code>console.log</code> 语法，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="nx">$</span><span class="p">(</span><span class="s2">"#my-click"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"test"</span><span class="p">);</span>
+  <span class="p">})</span>
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/PNwSIeZqRE2uQYM2EgvY_5-debug.png" title=""></figure></p>
+
+<p>不过跳 alert 有时候太恼人了，可以改用 <code>console.log</code> 就会出现在开发者工具的 Console 里面：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"checkpoint A"</span><span class="p">);</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s2">"#my-click"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"checkpoint C"</span><span class="p">);</span>
+  <span class="p">})</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"checkpoint B"</span><span class="p">);</span>
+
+</pre></div>
+</figure>
+
+<p>就会出现：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/J3Eu05hHSgSSTIiZfuR5_6-debug.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-5 document.ready 事件解说
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在用 <code>$("xxxx")</code> jQuery 选择器的时候，HTML 必须先加载完，jQuery 才能够找得到元素。因此我们刚刚是先写 HTML 在上，把 <code>script</code> 写在下面。如果倒过来的话：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;script&gt;
+  $("#my-click").click(function(){
+    $("#foo").html('&lt;h1&gt;zoo&lt;/h1&gt;');
+  })
+&lt;/script&gt;
+
+&lt;p&gt;
+  &lt;a id="my-click"&gt;Click Me&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo" style="border: 1px solid red;"&gt;
+  &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+</pre></div>
+</figure>
+
+<p>你会发现没有效果，点了没反应，因为 <code>click</code>事件并没有顺利绑在超连结上。</p>
+
+<p>但是传统上我们习惯将 JavaScript 放在 HTML 上方加载，例如写在 <code>app/assets/javascripts/application.js</code> 里面，因此这时候我们需要用 <code>$(document).ready</code> 把程序包起来，也就是改成：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+<span class="gi">+ // 这是 javascript 注解
++ // 也可以缩写成 $(function() {
++ $(document).ready(function(){
+</span>    $("#my-click").click(function(){
+      $("#foo").html('&lt;h1&gt;zoo&lt;/h1&gt;');
+    })
+<span class="gi">+ })
+</span>  &lt;/script&gt;
+
+  &lt;p&gt;
+    &lt;a id="my-click"&gt;Click Me&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;div id="foo" style="border: 1px solid red;"&gt;
+    &lt;p&gt;bar&lt;/p&gt;
+<span class="err">  &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<p><code>$(document).ready</code> 是一个浏览器的事件，会在加载 HTML 完成之后，才执行里面的 function，就可以解决这个问题。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-6 如何隐藏和打开内容
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：点击一个元素后，动态隐藏和打开一段内容</p>
+
+<p>新增 <code>app/views/pages/jquery_2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;p&gt;
+  &lt;a id="my-open-click"&gt;Open&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo" style="border: 1px solid red;"&gt;
+  &lt;a id="my-hide-click"&gt;Hide&lt;/a&gt;
+  &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+  $("#foo").hide();
+
+  $("#my-open-click").click(function(){
+    $("#foo").show();
+  })
+
+  $("#my-hide-click").click(function(){
+    $("#foo").hide();
+  })
+&lt;/script&gt;
+
+</pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/jquery-2</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/A8kZpbE2RhuU8Abav4Ol_7-hide.png" title=""></figure></p>
+
+<p>点击 Open</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Dj5ejPATbSZslH3EGwnV_8-show.png" title=""></figure></p>
+
+<p>再点击 Hide 就会隐藏起来了。</p>
+
+<p>请试试看把 <code>hide</code> 和 <code>show</code> 分别改成</p>
+
+<ul>
+<li>
+<code>fadeOut</code> 和 <code>fadeIn</code>
+</li>
+<li>
+<code>slideUp</code> 和 <code>slideDown</code>
+</li>
+</ul>
+
+<p>会有不同的动画效果。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-7 鼠标移过去自动打开和隐藏内容
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：鼠标移过去，就会自动打开和隐藏一段内容</p>
+
+<p>新增 <code>app/views/pages/jquery_3.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;p&gt;
+  &lt;a id="my-toggle-click"&gt;Toggle&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo" style="border: 1px solid red;"&gt;
+  &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  $("#foo").hide();   // 先马上藏起来
+
+  $("#my-toggle-click").hover(function(){
+    $("#foo").toggle();   // 移过去会有开关的效果
+  })
+
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/jquery-3</code></p>
+
+<p>鼠标移过去就会打开内容，鼠标移走内容就会隐藏起来。</p>
+
+<p>解说：</p>
+
+<p>这里我们改用 <code>hover</code> 事件，这会在鼠标移过去和移出去的时候，都会触发。然后搭配 <code>toggle</code> 方法就可以一开一关了。</p>
+
+<p>jQuery 支援了非常多的<a href="https://www.w3schools.com/jquery/jquery_events.asp">浏览器事件</a>，从鼠标单点、双点、移过去、移出去，到键盘输入哪一个按键等等，在浏览器里面发生的事情都可以绑事件上去。</p>
+
+<p>最后，请试试看把 <code>toggle</code> 改成</p>
+
+<ul>
+<li><code>slideToggle</code></li>
+<li><code>fadeToggle</code></li>
+</ul>
+
+<p>会有不同的动画效果。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-8 如何替换和移除内容
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：点击一个元素后，动态替换和删除内容</p>
+
+<p>新增 <code>app/views/pages/jquery_4.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;p&gt;
+  &lt;a id="my-replace-click"&gt;Replace&lt;/a&gt;
+  &lt;a id="my-remove-click"&gt;Remove&lt;/a&gt;
+  &lt;a id="my-remove-all-click"&gt;Remove All&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo" style="border: 1px solid red;"&gt;
+  &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="zoo"&gt;&lt;p&gt;a&lt;/p&gt;&lt;/div&gt;
+&lt;div class="zoo"&gt;&lt;p&gt;b&lt;/p&gt;&lt;/div&gt;
+&lt;div class="zoo"&gt;&lt;p&gt;c&lt;/p&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  $("#my-replace-click").click(function(){
+    $("#foo").replaceWith('&lt;div id="foo" style="border:1px solid green"&gt;&lt;p&gt;foo&lt;/p&gt;&lt;/div&gt;');
+  })
+
+  $("#my-remove-click").click(function(){
+    $("#foo").remove();
+  })
+
+  $("#my-remove-all-click").click(function(){
+    $(".zoo").remove();
+  })
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/jquery-4</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cDDCsqm5TKWHX7uAAvGY_9.png" title=""></figure></p>
+
+<p>点击 Replace</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2oVKMzN0R7uPSqLZTXAf_10-replace.png" title=""></figure></p>
+
+<p>解说：<code>replaceWith</code> 会连同指定元素一起置换掉，因此整个 <code>#foo</code> 包含 <code>&lt;div&gt;</code> 都一起被换掉了。</p>
+
+<p>点击 Remove 移除一个元素：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zITaXYjRoKS2XHZbVwlr_11-remove.png" title=""></figure></p>
+
+<p>点击 Remove All 移除 a,b,c 三个元素：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hFLME8DwR8O04ETxfyJg_12-remove-all.png" title=""></figure></p>
+
+<p>解说：这里我们改用 <code>$(".zoo")</code> 选择器来挑选出所有 class 里面有 <code>zoo</code> 的元素。跟 id 不同，一份 HTML 上可以有多个重复的 class。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-9 如何改变 class 属性
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：点击一个元素后，动态替换元素的 class，这样就会套用不同的 CSS 来改变外观</p>
+
+<p>新增 <code>app/views/pages/jquery_5.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;style&gt;
+  .error {
+    color: red;
+  }
+  .success {
+    color: green;
+  }
+&lt;/style&gt;
+
+&lt;p&gt;
+  &lt;a id="my-add-class-click"&gt;Add Class&lt;/a&gt;
+
+  &lt;a id="my-remove-class-click"&gt;Remove Class&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="foo"&gt;
+  &lt;h1&gt;bar&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  $("#my-add-class-click").click(function(){
+    $("#foo").removeClass('error');
+    $("#foo").addClass('success');
+  })
+
+  $("#my-remove-class-click").click(function(){
+    $("#foo").removeClass('success');
+    $("#foo").addClass('error');
+  })
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>浏览 <code>http://localhost:3000/jquery-5</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KSyQmOkRmey4nBZmdQSR_13-class.png" title=""></figure></p>
+
+<p>点击 Add Class</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/EiAAw6KTJuJF31ns3B2H_14.png" title=""></figure></p>
+
+<p>点击 Remove Class</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mLwXUn7HQh28w0aHqlLF_15.png" title=""></figure></p>
+
+<p>jQuery 也有 API 可以<a href="http://api.jquery.com/css/">直接改 CSS</a>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-10 jQuery 小结
+    </h1><h4>所属章节：1. jQuery 101</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这章示范的就是最常见的 jQuery 使用套路了，包括：</p>
+
+<ul>
+<li>用选择器 Selector 选取出目标元素，我们学到最简单的可以用 id 或 class 来选，例如 <code>$("#某个ID")</code> 和 <code>$(".某个class")</code>。</li>
+<li>绑定一个事件(Event)上去，例如 <code>click</code> 和 <code>hover</code> 事件</li>
+<li>当事件被触发的时候，执行某个 DOM 操作来改变 HTML，可能是改变元素的属性、插入新内容、新增或移除 class 属性等等。目前学到的用法有：
+
+<ul>
+<li><code>html</code></li>
+<li><code>append</code></li>
+<li><code>prepend</code></li>
+<li><code>before</code></li>
+<li><code>after</code></li>
+<li><code>remove</code></li>
+<li><code>replaceWith</code></li>
+<li><code>toggle</code></li>
+<li>
+<code>addClass</code> 和 <code>removeClass</code>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>其实大部分的 jQuery 代码的工作就是去新增内容、改变 HTML、调整 CSS 等方式操控网页，例如跳出选单、轮播广告、滑动标题图片等等，这些就是执行上述步骤。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 Ajax 简介
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>回想之前的超连结或是表单送出，浏览器会整页替换：</p>
+
+<p>例如点超连结时，浏览器会用 GET 送出，然后整个浏览器刷新到下一页：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cfoF9h32Qp6KLN3oXxsb_1.png" title=""></figure></p>
+
+<p>如果用表单送出的话，浏览器会先用 POST 送出，Rails 服务器处理完之后，通常我们会用 <code>redirect</code> 语法来回传 HTTP 状态码 301，当浏览器看到 301 后就会送 GET 去抓下一页。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OUlDWbULTz5PwYLf5YO6_2.png" title=""></figure></p>
+
+<blockquote>
+<p>为何这样设计? 这是因为互联网的惯例是用 GET 来单纯读取资料，不会修改资料。而 POST 则是执行某个操作，会修改到服务器的资料。互联网也会假设 GET 是可以重复读取并缓存的，而 POST 不行。因此搜寻引擎只会用 GET 抓资料，像<a href="https://www.puritys.me/docs-blog/article-204-%E6%88%91%E8%A2%AB-Google-%E9%AA%87%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%86.html">这篇文章</a>就闹了笑话，这个人用 GET 来删除资料，造成Google 爬虫一爬就不小心删除了，他还以为是 Google 故意骇他...lol 另外，像浏览器的表单送出是用POST，如果我们在action 中不 redirect (也就是不让浏览器去 GET 另一页)，而是直接render 返回，那么如果用户重新整理画面的话，浏览器会跳出以下的警告视窗，要求用户确认是否再POST 一次，因为这可能会造成重复操作(重复新增)。如果是 GET 的话，重新整理就不会有这种警告了。  <figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/S2hCzQITYORTVc6vEveP_post-confirm.png" title=""></figure></p>
+</blockquote>
+
+<p>接下来要介绍的 Ajax(Asynchronous JavaScript and XML) 异步的JavaScript与XML技术，则可以不需要整页替换，只更新部分网页，这可以大大的改进 UI 反应速度。目前已经不流行用 XML 了，因此常见的回传会用 JSON 和 Script 格式：</p>
+
+<p>用 JSON 格式，必须写自定义的 JavaScript 去处理 Ajax 的发送和接收处理。JavaScript 强者或团队中有前端工程师会偏好这种方式。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IlmXqvNRTOKY0dR53iiA_3.png" title=""></figure></p>
+
+<p>另一种是用 Script 格式，服务器回传 JavaScript，浏览器拿到后直接执行即可。这种方式 Rails 有内建 <a href="https://github.com/rails/jquery-ujs">jquery-ujs</a> gem，会帮我们绑好事件去处理 Ajax 发送和接收。这是比较简单的作法，对 jQuery 技能的要求也比较低。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9inQIiFTXKrjJ6vDFXT6_4.png" title=""></figure></p>
+
+<p>这一章我们会示范用 Script 的方式来做 Ajax。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 目标
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>制作一个可以分享内容，用户可以按讚的的网站。User Story 包括：</p>
+
+<ul>
+<li>用户可以贴文</li>
+<li>用户可以浏览所有贴文</li>
+<li>用户可以删除自己的贴文</li>
+<li>用户可以针对贴文按讚，每篇贴文只能按讚一次</li>
+</ul>
+
+<p>非功能性的要求是，利用 Ajax 技术改善 UI，让操作的反应变成神速。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 建立 Models
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>首先来安装 Devise 产生 User Model</p>
+
+<p>编辑 <code>Gemfile</code> 加上 <code>gem "devise"</code></p>
+
+<p>执行 <code>bundle</code>，然后重启服务器</p>
+
+<p>执行 <code>rails g devise:install</code></p>
+
+<p>执行 <code>rails g devise user</code></p>
+
+<p>编辑 <code>app/views/layouts/application.html.erb</code>，插入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;body&gt;
+<span class="gi">+   &lt;% if flash[:notice] %&gt;
++     &lt;%= flash[:notice] %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="gi">+   &lt;% if flash[:alert] %&gt;
++     &lt;%= flash[:alert] %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="gi">+  &lt;% if current_user %&gt;
++     &lt;%= link_to('登出', destroy_user_session_path, :method =&gt; :delete) %&gt;
++    &lt;%= link_to('修改密码', edit_registration_path(:user)) %&gt;
++  &lt;% else %&gt;
++    &lt;%= link_to('注册', new_registration_path(:user)) %&gt; |
++    &lt;%= link_to('登入', new_session_path(:user)) %&gt;
++   &lt;% end %&gt;
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g model post content:text user_id:integer</code></p>
+
+<p>编辑 <code>app/models/user.rb</code>，加上 posts 关联，以及一个 <code>display_name</code> 方法来显示用户名称。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  class User &lt; ApplicationRecord
+
+<span class="gi">+   has_many :posts
+</span>
+<span class="gi">+   def display_name
++     # # 取 email 的前半来显示，如果你也可以另开一个字段是 nickname 让用户可以自己编辑显示名称
++     self.email.split("@").first
++   end
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/post.rb</code>，加上 user 关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre>  class Post &lt; ApplicationRecord
+<span class="gi">+   validates_presence_of :content
++   belongs_to :user
+</span>
+<span class="err">...(略)
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-4 浏览贴文和产生假资料
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+ resources :posts
+</span>
+<span class="gd">- root "pages#jquery_1"
+</span><span class="gi">+ root "posts#index"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller posts</code></p>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  def index
++    @posts = Post.order("id DESC").all    # 新贴文放前面
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;% @posts.each do |post| %&gt;
+
+&lt;div class="panel panel-default"&gt;
+  &lt;div class="panel-heading"&gt;&lt;%= post.user.display_name %&gt;&lt;/div&gt;
+  &lt;div class="panel-body"&gt;
+    &lt;%= post.content %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>没有资料就不好玩了，除了进 <code>rails console</code> 自己新增之外，我们也可以自己写一个小程序来产生一堆假资料。</p>
+
+<p><a href="https://github.com/stympy/faker">Faker</a> 这个 gem 可以随机产生假文，编辑 Gemfile 加上：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  group :development do
++   gem 'faker'
+
+  # (略)
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle install</code></p>
+
+<p>写个 rake 程序来产生假资料，新增 <code>lib/tasks/dev.rake</code>，放在这个目录下的 rake 档案是用来编写任务脚本，让我们在 Terminal 中可以执行它：</p>
+
+<figure class="figure-code code"><figcaption><span>lib/tasks/dev.rake
+</span></figcaption><div class="highlight"><pre>
+<span class="n">namespace</span> <span class="ss">:dev</span> <span class="k">do</span>
+
+  <span class="n">task</span> <span class="ss">:fake</span> <span class="o">=&gt;</span> <span class="ss">:environment</span> <span class="k">do</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="mi">10</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
+      <span class="n">users</span> <span class="o">&lt;&lt;</span> <span class="no">User</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Internet</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span> <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"12345678"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="mi">50</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+      <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span> <span class="ss">:content</span> <span class="o">=&gt;</span> <span class="no">Faker</span><span class="o">::</span><span class="no">Lorem</span><span class="p">.</span><span class="nf">paragraph</span><span class="p">,</span>
+                            <span class="ss">:user_id</span> <span class="o">=&gt;</span> <span class="n">users</span><span class="p">.</span><span class="nf">sample</span><span class="p">.</span><span class="nf">id</span> <span class="p">)</span>
+
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>执行 <code>rake dev:fake</code> 就会执行这个任务，产生 10 笔假用户和 50 笔文章。</p>
+
+<p>浏览 <code>http://localhost:3000</code> 可以看到贴文一览了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dlQZRTQCT3WrW16fq5ql_16-posts.png" title=""></figure></p>
+
+<blockquote>
+<p>请自行安装 Bootstrap 画面才会漂亮喔，不装也没关系不影响学习 Ajax</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-5 新增和删除贴文
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在做 Ajax 效果之前，请先完成基本功能，接下来制作新增和删除。</p>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>  class PostsController &lt; ApplicationController
+
+<span class="gi">+   before_action :authenticate_user!, :only =&gt; [:create, :destroy]
+</span>
+<span class="gi">+   def create
++     @post = Post.new(post_params)
++     @post.user = current_user
++     @post.save
++
++     redirect_to posts_path
++   end
++
++   def destroy
++     @post = current_user.posts.find(params[:id]) # 只能删除自己的贴文
++     @post.destroy
++
++     redirect_to posts_path
++   end
++
++   protected
++
++   def post_params
++     params.require(:post).permit(:content)
++    end
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+ &lt;%= form_for Post.new do |f| %&gt;
++   &lt;div class="form-group"&gt;
++     &lt;%= f.text_area :content, :class =&gt; "form-control" %&gt;
++   &lt;/div&gt;
++   &lt;div class="form-group"&gt;
++     &lt;%= f.submit :class =&gt; "btn btn-primary" %&gt;
++   &lt;/div&gt;
++ &lt;% end %&gt;
+
+  &lt;% @posts.each do |post| %&gt;
+
+  &lt;div class="panel panel-default"&gt;
+    &lt;div class="panel-heading"&gt;&lt;%= post.user.display_name %&gt;&lt;/div&gt;
+    &lt;div class="panel-body"&gt;
+      &lt;%= post.content %&gt;
+
++     &lt;% if current_user &amp;&amp; post.user == current_user %&gt;
++       &lt;p class="text-right"&gt;
++         &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :class =&gt; "btn btn-danger" %&gt;
++       &lt;/p&gt;
++     &lt;% end %&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;% end %&gt;
+</pre></div>
+</figure>
+
+<p>测试看看新增贴文和删除，要先注册登入才能贴文喔：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0a4AgJKBRdiduR13OMku_17-new.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-6 Ajax 删除
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来是本课程的重点戏 Ajax。首先我们要让 Delete 删除的超连结变成 Ajax 送出。</p>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>-  &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :class =&gt; "btn btn-danger" %&gt;
++  &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :remote =&gt; true, :class =&gt; "btn btn-danger" %&gt;
+</pre></div>
+</figure>
+
+<p>透过 <code>:remote =&gt; true</code> 就会变成 Ajax 送出了，不需要自己写 <code>$("xxx").click</code> 去绑事件。</p>
+
+<p>接着编辑 <code>app/controllers/posts_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
+
+<span class="gd">-   redirect_to posts_path
+</span><span class="gi">+   render :js =&gt; "alert('ok');"
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里改成返回一段 JavaScript 字串代码，内容是 <code>alert('ok');</code>，实际测试看看，点删除：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QylsbXhJQqKgPNZsUqlo_18-ajax-delete.png" title=""></figure></p>
+
+<p>服务器回传了 <code>alert('ok');</code> 字串，浏览器拿到之后就去执行，于是跳出一个 alert 视窗。</p>
+
+<blockquote>
+<p>这一招又叫做 Remote JavaScript (RJS)，把远端的 JavaScript 代码抓回来执行。</p>
+</blockquote>
+
+<p>做到这里，那一笔贴文虽然在数据库中已经被删除了，但因为是 Ajax 没有整页重新整理，所以那一笔贴文看起来还在网页上面，如果你重新整理画面的话，那一笔才会不见。</p>
+
+<p>我们希望的 UI 效果是立即移除画面上的那一笔贴文，这时候得用到上一章 jQuery 学到的 <code>$("xxxx").remove()</code> 用法：</p>
+
+<p>因为要在 controller 里面放 JavaScript 字串是很痛苦的，接下来改成用 erb 样板的方式来写 JavaScript：</p>
+
+<p>再次编辑 <code>app/controllers/posts_controller.rb</code>，把 <code>render :js</code> 砍掉：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
+
+<span class="gd">-   render :js =&gt; "alert('ok');"
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code>，针对每一笔贴文 div 补上一个 id 来做定位：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>-  &lt;div class="panel panel-default"&gt;
++  &lt;div id="post-&lt;%= post.id %&gt;" class="panel panel-default"&gt;
+</pre></div>
+</figure>
+
+<p>新增 <code>app/views/posts/destroy.js.erb</code> 样板：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  $("#post-&lt;%= @post.id %&gt;").remove();
+
+</pre></div>
+</figure>
+
+<p>解说：</p>
+
+<ul>
+<li>针对要被移除的 <code>&lt;div&gt;</code> 区块，我们补上了一个 id，例如 <code>&lt;div id="post-123"&gt;</code>，这样等会 jQuery 要移除的时候，就可以直接抓到要移除哪一个元素了</li>
+<li>一个 action 如果没有写明 <code>redirect</code> 或 <code>render</code> 的话，就会默认去找 action 名称的样板。于是这里就会去找 <code>destroy.js.erb</code>
+</li>
+<li>
+<code>destroy.js.erb</code> 里面要写回传的 JavaScript 代码，这个档案也是 erb 样板，所以可以用 <code>&lt;%= XXX %&gt;</code> 内嵌 Ruby 语法</li>
+</ul>
+
+<p>再次测试看看删除，你会发现删除的操作变成超级神速。</p>
+<h4>Ajax 要如何除错?</h4>
+<p>由于前端没有换页，所以就算代码写错了，按钮按下去也不会有任何反应。这时候请看 <code>rails server</code> 的 log，或是打开 Chrome 开发者模式的 Network 进行观察：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Qhr7AlW0QcUQup9OBG46_19.png" title=""></figure></p>
+
+<p>这截图说明了服务器回传 <code>$("#post-76").remove();</code> JavaScript 字串，浏览器去执行这个字串就把 id post-76 这个 div 给移除了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-7 Ajax 新增
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了 <code>link_to</code>、<code>button_to</code> 可以加上 <code>:remote =&gt; true</code> 变成 Ajax 之外。<code>form_for</code> 也可以用这招。接下来做做看新增贴文：</p>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= form_for Post.new do |f| %&gt;
+</span><span class="gi">+  &lt;%= form_for Post.new, :remote =&gt; true do |f| %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code>，把 <code>redirect_to</code> 砍掉：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def create
+    @post = Post.new(post_params)
+    @post.user = current_user
+    @post.save
+
+<span class="gd">-   redirect_to posts_path
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>这时候如果你新增的话，按下送出网页看起来没有反应，其实数据库已经插入这一笔，重新整理就会出现。</p>
+
+<p>我们希望的 UI 效果是在 HTML 上插入一整个新贴文的内容，也就是得在 <code>app/views/posts/create.js.erb</code> 用 <code>$("XXX").prepend("YYY")</code> 的语法来达成。问题是 XXX 跟 YYY 要填什么？</p>
+
+<p>先来解决 XXX，我们预期新的贴文放在本来贴文的上方，所以要在 HTML 上定位出本来的贴文区块，请编辑 <code>app/views/posts/index.html.erb</code> 用一个 div 整个包起来</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;div id="post-list"&gt;
+</span>  &lt;% @posts.each do |post| %&gt;
+    # 略...
+  &lt;% end %&gt;
+<span class="gi">+ &lt;/div&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>接着是 YYY，这个要插入的 HTML 字串跟目前在 <code>index.html.erb</code> 样板上面的贴文 HTML 是一模一样的，这时候想到来用 partial 样板，再次编辑 <code>app/views/posts/index.html.erb</code>，把整块贴文的部分搬去 partial:</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;div id="post-list"&gt;
+   &lt;% @posts.each do |post| %&gt;
+<span class="gd">-    &lt;div id="post-&lt;%= post.id %&gt;" class="panel panel-default"&gt;
+-      &lt;div class="panel-heading"&gt;&lt;%= post.user.display_name %&gt;&lt;/div&gt;
+-      &lt;div class="panel-body"&gt;
+-      &lt;%= post.content %&gt;
+-
+-        &lt;% if current_user &amp;&amp; post.user == current_user %&gt;
+-        &lt;p class="text-right"&gt;
+-          &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :class =&gt; "btn btn-danger", :remote =&gt; true %&gt;
+-        &lt;/p&gt;
+-        &lt;% end %&gt;
+-      &lt;/div&gt;
+-   &lt;/div&gt;
+</span>
+<span class="gi">+   &lt;%= render :partial =&gt; "post", :locals =&gt; { :post =&gt; post } %&gt;
+</span>  &lt;% end %&gt;
+&lt;/div&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/posts/_post.html.erb</code> 这个 Partial 样板：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;div id="post-&lt;%= post.id %&gt;" class="panel panel-default"&gt;
+  &lt;div class="panel-heading"&gt;
+    &lt;%= post.user.display_name %&gt;
+  &lt;/div&gt;
+  &lt;div class="panel-body"&gt;
+    &lt;%= post.content %&gt;
+
+    &lt;% if current_user &amp;&amp; post.user == current_user %&gt;
+      &lt;p class="text-right"&gt;
+        &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :class =&gt; "btn btn-danger", :remote =&gt; true %&gt;
+      &lt;/p&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</pre></div>
+</figure>
+
+<p>重新整理 index 画面应该还是正常的。</p>
+
+<p>接着可以写 <code>app/views/posts/create.js.erb</code> 了</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>$("#post-list").prepend("&lt;%=j render :partial =&gt; "post", :locals =&gt; { :post =&gt; @post } %&gt;");
+
+</pre></div>
+</figure>
+
+<p>就一行，这样就可以重复利用 partial 样板，把整个 partial 变成一个 JavaScript 字串，然后塞入 <code>&lt;div id="#post-list"&gt;</code> 里。</p>
+
+<p>其中 <code>j</code> 等同于 <code>escape_javascript</code>，这会做逸出好让 partial 字串可以变成合法的 JavaScript 字串：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QcmYyZxnQg2RZJYbrcHL_20-create.png" title=""></figure></p>
+
+<p>如果你把 j 拿掉，会变成以下这样，浏览器是无法正确执行这段 JavaScript 代码的：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ZE9qr5mR1mMrWK7kU2ag_21.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-8 Ajax 新增: 清空表单和错误处理
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来还有两个小地方可以改进，第一是送出后，输入框应该清空。</p>
+
+<p>修改<code>app/views/posts/create.js.erb</code>，新增一行 <code>$("#post_content").val("");</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   $("#post-list").prepend("&lt;%=j render :partial =&gt; "post", :locals =&gt; { :post =&gt; @post } %&gt;");
++  $("#post_content").val("");
+
+</pre></div>
+</figure>
+
+<p>用 <code>.val("")</code> 就可以把输入框的值设定为空。</p>
+
+<p>第二是储存失败的情况处理，假设贴文是空的，那么 @post 会储存失败，这时候应该有错误讯息提示。修改<code>app/views/posts/create.js.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+ &lt;% if @post.valid? %&gt;
+  $("#post-list").prepend("&lt;%=j render :partial =&gt; "post", :locals =&gt; { :post =&gt; @post } %&gt;");
+  $("#post_content").val("");
++ &lt;% else %&gt;
++   alert("贴文失败");
++ &lt;% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>增加一个 if else 的情况区分，当 <code>valid?</code> 成功时，插入新贴文，当储存失败时，跳一个 alert 视窗。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-9 制作按赞功能
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来制作用户可以针对贴文按讚，先来做一个基本版没有 Ajax 效果的版本：</p>
+
+<p>一个用户可以针对很多贴文按讚，一篇贴文可以有很多用户按讚，这是一个多对多的模型，让我们新增一个 Like model：</p>
+
+<p>执行 <code>rails g model like</code></p>
+
+<p>编辑 <code>db/migrate/201703XXXXXXXX_create_likes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201703XXXXXXXX_create_likes.rb
+</span></figcaption><div class="highlight"><pre>  class CreateLikes &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :likes do |t|
+<span class="gi">+       t.integer :user_id, :index =&gt; true
++       t.integer :post_id, :index =&gt; true
+</span>        t.timestamps
+      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>在终端执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/like.rb</code>，加上关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/like.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  belongs_to :user
++  belongs_to :post
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/post.rb</code>，加上关联和一个 <code>find_like</code> 方法：由于一个用户只能针对一篇贴文按一个讚，所以透过用户ID和贴文ID，就可以找到唯一的 Like，等会我们会用这个方法来判断一个用户不能重复按讚。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre>   belongs_to :user
+
+<span class="gi">+  has_many :likes, :dependent =&gt; :destroy
++  has_many :liked_users, :through =&gt; :likes, :source =&gt; :user
+</span>
+<span class="gi">+  def find_like(user)
++    self.likes.where( :user_id =&gt; user.id ).first
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/user.rb</code>，加上关联</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>
+   has_many :posts
+
+<span class="gi">+  has_many :likes, :dependent =&gt; :destroy
++  has_many :liked_posts, :through =&gt; :likes, :source =&gt; :post
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>因为已经有了 <code>has_many :posts</code>，所以这里要取不同名称 <code>:liked_posts</code>，也因为取了不同名称，需要额外指定 source。这个 source 指的 <code>:post</code> 是在 Like model 里面的 <code>belongs_to :post</code>。</p>
+</blockquote>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  resources :posts
+</span><span class="gi">+  resources :posts do
++    member do
++      post "like" =&gt; "posts#like"
++      post "unlike" =&gt; "posts#unlike"
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/_post.html.erb</code> 加上按讚的按钮：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;div class="panel-body"&gt;
+     &lt;%= post.content %&gt;
+
+<span class="gi">+    &lt;div class="text-right"&gt;
++
++      &lt;% if post.liked_users.any? %&gt;
++        &lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt; 点了赞
++      &lt;% end %&gt;
++
++      &lt;% if current_user # 有登入才可以按讚 %&gt;
++        &lt;% if post.find_like(current_user) %&gt;
++          &lt;%= link_to "-1", unlike_post_path(post), :method =&gt; :post, :class =&gt; "btn btn-primary" %&gt;
++        &lt;% else %&gt;
++          &lt;%= link_to "+1", like_post_path(post), :method =&gt; :post, :class =&gt; "btn btn-primary" %&gt;
++        &lt;% end %&gt;
++      &lt;% end %&gt;
+</span>
+      # (略，删除按钮在这里)
+
+<span class="gi">+    &lt;/div&gt;
+</span>  &lt;/div&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后是 controller，请编辑 <code>app/controllers/posts_controller.rb</code>，加上 like 和 unlike 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  def like
++    @post = Post.find(params[:id])
++    unless @post.find_like(current_user)  # 如果已经按讚过了，就略过不再新增
++      Like.create( :user =&gt; current_user, :post =&gt; @post)
++    end
++
++    redirect_to posts_path
++  end
++
++  def unlike
++    @post = Post.find(params[:id])
++    like = @post.find_like(current_user)
++    like.destroy
++
++    redirect_to posts_path
++  end
+</span><span class="err">+
+</span></pre></div>
+</figure>
+
+<p>实际测试看看按讚 +1 和取消按讚 -1</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4khabC9NTb5cK0xvJQpR_21-like.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-10 Ajax 按讚
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着改进为神速 Ajax 按讚，流程是：</p>
+
+<ol>
+<li>把本来的 +1 和 -1 按钮，改成 <code>:remote =&gt; true</code> 用 Ajax 送出</li>
+<li>服务器会新建或删除 Like 资料进数据库</li>
+<li>服务器回传的 JavaScript 要替换掉整块按讚的 HTML 部分，包括 XXX 按了讚，以及把 +1 改成 -1 按钮或 -1 改成 +1 按钮。</li>
+</ol>
+
+<p>这里又需要用到 Partial 样板了，这样才能在一开始显示 HTML 时，以及在 Ajax 中去重复使用同一份 erb 代码。</p>
+
+<p>编辑 <code>app/views/posts/_post.html.erb</code> 把本来整块的按讚 HTML 搬到 Partial 去，并用一个 span 包起来，方便等会定位：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-   &lt;% if post.liked_users.any? %&gt;
+-     &lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt; 点了赞
+-   &lt;% end %&gt;
+-
+-   &lt;% if current_user # 有登入才可以按讚 %&gt;
+-     &lt;% if post.find_like(current_user) %&gt;
+-       &lt;%= link_to "-1", unlike_post_path(post), :method =&gt; :post, :class =&gt; "btn btn-primary" %&gt;
+-     &lt;% else %&gt;
+-       &lt;%= link_to "+1", like_post_path(post), :method =&gt; :post, :class =&gt; "btn btn-primary" %&gt;
+-     &lt;% end %&gt;
+-   &lt;% end %&gt;
+</span>
+<span class="gi">+    &lt;span id="post-like-&lt;%= post.id %&gt;"&gt;
++      &lt;%= render :partial =&gt; "like", :locals =&gt; { :post =&gt; post } %&gt;
++    &lt;/span&gt;
+</span>
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/posts/_like.html.erb</code>，并在本来的 like 和 unlike 按钮上加上 <code>:remote =&gt; true</code> 变成 Ajax：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;% if post.liked_users.any? %&gt;
+  &lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt; 点了赞
+&lt;% end %&gt;
+
+&lt;% if current_user # 有登入才可以按讚 %&gt;
+  &lt;% if post.find_like(current_user) %&gt;
+    &lt;%= link_to "取消讚", unlike_post_path(post), :method =&gt; :post, :remote =&gt; true, :class =&gt; "btn btn-primary" %&gt;
+  &lt;% else %&gt;
+    &lt;%= link_to "讚", like_post_path(post), :method =&gt; :post, :remote =&gt; true, :class =&gt; "btn btn-primary" %&gt;
+  &lt;% end %&gt;
+&lt;% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code>，把 like 和 unlike 里面的 <code>redirect_to</code> 拿掉：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def like
+    # (略)
+<span class="gd">-   redirect_to posts_path
+</span>  end
+
+  def unlike
+    # (略)
+<span class="gd">-   redirect_to posts_path
+</span><span class="gi">+   render "like"
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>不管 like 或 unlike，反正我们都会把整块 <code>&lt;span id="post-like-XXX"&gt;</code> 替换掉。因此 unlike 里面我们用 <code>render "like"</code> 重复使用同一个 <code>like.js.erb</code> 样板。</p>
+
+<p>新增 <code>app/views/posts/like.js.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>str = "&lt;%=j render :partial =&gt; "like", :locals =&gt; { :post =&gt; @post } %&gt;";
+$("#post-like-&lt;%= @post.id %&gt;").html(str);
+
+</pre></div>
+</figure>
+
+<p>测试看看，现在可以神速按讚了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-11 显示和更新多少人按讚
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来我们想额外在画面上显示总共有多少人按讚，像这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Q7XdZvNSTFue1STvg67N_22.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/posts/_post.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   &lt;div class="panel-body"&gt;
++    &lt;span id="post-thumbsup-&lt;%= post.id %&gt;" class="label label-success"&gt;&lt;%= post.likes.count %&gt; 👍&lt;/span&gt;
+
+</pre></div>
+</figure>
+
+<p>修改 <code>app/views/posts/like.js.erb</code> 除了替换按讚的区块，也需要同时更新上述的 👍 数量：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   str = "&lt;%=j render :partial =&gt; "like", :locals =&gt; { :post =&gt; @post } %&gt;";
+   $("#post-like-&lt;%= @post.id %&gt;").html(str);
+
++  $("#post-thumbsup-&lt;%= @post.id %&gt;").html("&lt;%= @post.likes.count %&gt;" + " 👍");
+
+</pre></div>
+</figure>
+
+<p>这样就可以同时更新 HTML 上的两个地方。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-12 Ajax 小结
+    </h1><h4>所属章节：2. Ajax on Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Ajax 是一种增强 UI 的方式，我们会先把基本功能完成，再根据需要改成 Ajax 效果。</p>
+
+<p>这一章练习了删除、按讚、新增贴文，画面上比较单纯的按钮型操作，最适合用 Ajax 效果，例如删除、按讚、收藏、加入购物车等等。<br>
+如果是比较复杂的填表单操作，要做 Ajax 效果就会比较费工，因为需要考虑错误处理(储存失败)的情况。</p>
+
+<p>Rails 内建透过 <code>:remote =&gt; true</code> 的方式，就可以很快制作出 Ajax 效果。<br>
+再稍后的章节中，我们会示范进阶的用法：在一些情况下，我们必须手写 jQuery 去绑事件送 Ajax，取得 JSON 回传并更新 DOM。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 Turbolinks 坑
+    </h1><h4>所属章节：3. Turbolinks 解说</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://github.com/turbolinks/turbolinks">Turbolinks</a> 是一个 Rails 内建的页面加速工具，在 <code>Gemfile</code> 和 <code>application.js</code> 可以发现它的踪迹。这是一个 Javascript 套件会在换页的时候，不重新载入 HTML 的 <code>head</code>，只载入新的 <code>body</code>，来加速换页。</p>
+
+<p>虽然有加速的效果，但是却很干扰其他 <code>javascript</code> 源码的载入：</p>
+<h4>第一个坑</h4>
+<p>网上所有 jQuery 的教学文章，都是用<code>$(document).ready(function(){...})</code> 或<code>$(function(){...})</code>，在 HTML 载入完毕后执行 js 源码。但是用了 Turbolink 只会触发第一次而已，换页时不会再执行。</p>
+
+<p>在 1-4 中我们示范了 <code>$(document).ready</code> 用法，如果你点超连结去别的页面，然后再点回来，会发现那段 JavaScript 就不会执行了。</p>
+
+<p>解法：有用到 <code>$(document).ready(function(){...})</code> 的地方都要改成用 <code>$(document).on("turbolinks:load", function(){...})</code></p>
+<h4>第二个坑</h4>
+<p>单页(page-specific)才用到的 javascript 代码，如果写在 <code>body</code> 里面，跳页回来时，会触发两次。某些 js code 重复执行两次没关系，但有些会有问题。</p>
+
+<p>解法一：关掉 Turbolinks 的缓存功能，把 <code>&lt;meta name="turbolinks-cache-control" content="no-cache"&gt;</code> 放到 layout 的 <code>head</code> 里面。</p>
+
+<p>解法二：把layout 的<code>&lt;body&gt;</code> 改成<code>&lt;body id="&lt;%= "#{controller_name}-#{action_name}"%&gt;"&gt;</code>，这样就可以在全局载入的<code>application.js</code> 中指定只有这一页才执行的js code，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  $(document).on("turbolinks:load", function() {
+    if ( $("#products-show").length &gt; 0 ) {
+      console.log("product-show");
+    }
+  })
+</pre></div>
+</figure>
+
+<p>如果同学们还没有写到 jQuery 效果或用到 jQuery Plugins 的话，可能还没感觉。</p>
+
+<p>如果你不想处理或无法理解这两个坑的原因，我建议你拆除 Turbolinks 来回避这些坑。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 拆除 Turbolinks
+    </h1><h4>所属章节：3. Turbolinks 解说</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果你的 JavaScript 有以下症状：</p>
+
+<p>症状一: 重新整理 JavaScript 就正常，点别页再点回来，就不正常(没加载执行或重复执行两遍)</p>
+
+<p>症状二: 照「Refactor &amp; 效能提升」教程，把将 CSS 放在最顶层，将 JavaScript 放在最底层的话，这会跟 Turbolinks 的设计冲突。造成如<a href="https://forum.qzy.camp/t/turbolink-js/1016">这篇讨论</a>的问题：重新整理后，JavaScript 会不正常。</p>
+
+<p>请进行拆除 Turbolinks 的步骤：</p>
+
+<p>修改 <code>Gemfile</code>，拿掉 turbolinks：</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+-  gem 'turbolinks', '~&gt; 5'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/assets/javascripts/application.js</code>，拿掉 turbolinks 的加载：</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  //= require turbolinks
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/layout/application.html.erb</code>，拿掉 turbolinks 属性：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="gi">+  &lt;%= javascript_include_tag 'application' %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 前言
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章将示范直接用 jQuery 的 Ajax 功能，而不使用 Rails 的 <code>:remote =&gt; true</code> 方法来做 Ajax 效果。</p>
+
+<p>这是因为 Rails 的 <code>:remote =&gt; true</code> 功能只能放在超连结或表单上，因此不属于这两种情形的需求，就需要自行绑事件上去，触发时送 Ajax Request 到服务器。</p>
+
+<p>这一章将示范：</p>
+
+<ul>
+<li>将删除改成自行绑事件</li>
+<li>贴文无限捲轴</li>
+<li>使用核选方块(checkbox)做开关</li>
+<li>使用下拉选单(select)分类贴文</li>
+</ul>
+
+<p>另外，搭配 jQuery Plugin 的话，也必须自己写 Ajax 代码。这章最后也会示范使用 jQuery Raty - A Star Rating Plugin 来做评等。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 把删除改成自行绑事件
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章我们用 Rails 内建的 <code>:remote =&gt; true</code> 来帮我们送 Ajax，这背后的原理其实就是自己去绑定事件，然后送 Ajax。</p>
+
+<p>接下来我们来改写看看如何自行绑事件送 Ajax，首先修改 <code>_post.html.erb</code>，删掉本来的 :method 和 :remote 行为，补上一个 delete-post class 让我们等会绑事件上去：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">- &lt;%= link_to "Delete", post_path(post), :method =&gt; :delete, :class =&gt; "btn btn-danger", :remote =&gt; true %&gt;
+</span><span class="gi">+ &lt;%= link_to "Delete", post_path(post), :class =&gt; "delete-post btn btn-danger" %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后在 <code>app/views/posts/index.html.erb</code> 下方加入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+<span class="gi">+   // 这会绑 click 事件到所有有 `.delete-post` class 的元素上，也就是所有的删除按钮
++   $(".delete-post").click(function(evt){
++     // `evt` 是浏览器的事件物件，evt.preventDefault(); 会终止这个元素的默认行为：
++     // 超连结 a 的默认行为是跳到下一页，如果没有这行的话，送出 ajax 后会跳去 show page
++     evt.preventDefault();
++     // this 是个特别的变量，代表触发事件的元素。使用 attr 可以读取元素的属性，这里要拿到超连结的网址
++     var url = $(this).attr("href");
++
++     // 送出 Ajax
++     $.ajax({
++       url: url,
++       method: 'DELETE',
++       dataType: 'script' // 要求服务器回传 javascript
++     })
++   })
+</span><span class="err">  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>一但需要自己在前端绑事件，就会觉得把 JavaScript 代码集中在前端的话，责任区分会比较清楚。因此我们来改成用 JSON 格式吧，把 <code>dataType</code> 改成 JSON，然后加一个 success 的回呼，服务器回传资料后，就会触发 success 的函式：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+    $(".delete-post").click(function(evt){
+      evt.preventDefault();
+      var url = $(this).attr("href");
+
+      // 送出 Ajax
+      $.ajax({
+        url: url,
+        method: 'DELETE',
+<span class="gd">-       dataType: 'script'
+</span><span class="gi">+       dataType: 'json', // 要求服务器回传 json
++       success: function(data){   // data 就是服务器回传的 JSON 资料
++         $("#post-" + data["id"]).remove();
++       }
+</span>      })
+    })
+<span class="err">  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/posts_controller.rb</code> 改成直接回传 JSON</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>   def destroy
+     @post = current_user.posts.find(params[:id])
+     @post.destroy
+
+<span class="gi">+    render :json =&gt; { :id =&gt; @post.id }
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>接着删除 <code>app/views/posts/destroy.js.erb</code> 样板，我们不需要 Remote JavaScript 了。</p>
+
+<p>如果团队中有专门的前端工程师，也会偏好这种方式。这样前后端的工作可以拆分的比较清楚。<br>
+后端处理数据库和回传 JSON 资料即可，页面怎么变化全由前端工程师负责。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-3 贴文无限捲轴
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：实作贴文的无限捲轴 (Endless Page)，当用户捲到画面最下方时，自动加载更早的资料。</p>
+
+<p>这个任务需要侦测浏览器捲轴的行为，没办法用 <code>:remote =&gt; true</code> 了，需要自己去绑定事件，侦测用户捲到视窗最下面。</p>
+
+<p>编辑<code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+<span class="gi">+  // 记下目前画面最小的贴文 ID
++  var current_post_id = &lt;%= @posts.last.id %&gt;;
++
++  // 当捲轴动的时候，会触发这个事件
++  $(window).scroll(function(){
++    // 当捲到最下面的时候
++    if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight) {
++      var url = "/posts?max_id=" + current_post_id;
++      if (url) {
++        $.ajax({
++          method: "GET",
++          url: url,
++          dataType: "script"
++        })
++      } else {
++        console.log("data ended")
++      }
++    }
++  })
+</span><span class="err">  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/posts_controller.rb</code>，跟之前做分页一样，我们继续沿用了 index action，只是会根据 <code>params[:max_id]</code> 回传更早的资料：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+   def index
+<span class="gd">-    @posts = Post.order("id DESC").all
+</span><span class="gi">+    @posts = Post.order("id DESC").limit(20)
++
++    if params[:max_id]
++      @posts = @posts.where( "id &lt; ?", params[:max_id])
++    end
++
++    respond_to do |format|
++      format.html  # 如果客户端要求 HTML，则回传 index.html.erb
++      format.js    # 如果客户端要求 JavaScript，回传 index.js.erb
++    end
+</span><span class="err">   end
+</span></pre></div>
+</figure>
+
+<p><code>respond_to</code> 可以让 Rails 根据 request 请求的格式(在 $ajax 中我们有指定了 dataType)，来回传不同格式。</p>
+
+<p>新增 <code>app/views/posts/index.js.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>&lt;% @posts.each do |post| %&gt;
+  $("#post-list").append("&lt;hr&gt;")
+  $("#post-list").append("&lt;%=j render :partial =&gt; "post", :locals =&gt; { :post =&gt; post } %&gt;");
+&lt;% end %&gt;
+
+&lt;% if @posts.any? %&gt;
+var current_post_id = &lt;%= @posts.last.id %&gt;;
+&lt;% end %&gt;
+
+</pre></div>
+</figure>
+
+<p>这样画面捲到最下方时，就会自动加载，并且更新 <code>current_post_id</code> 的值，这样下次再抓就会抓到更早的资料。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DUUZhNl4QhGQ2m9qFxFN_endless-page.gif" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-4 使用核选方块(checkbox)做开关
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：做一个勾选的核选方块，管理员可以打勾标记成垃圾。</p>
+
+<p>执行 <code>rails g migration add_flag_to_posts</code></p>
+
+<p>编辑 <code>db/migrate/201704XXXXXXXX_add_flag_to_posts.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>201704XXXXXXXX_add_flag_to_posts.rb
+</span></figcaption><div class="highlight"><pre> class AddFlagToPosts &lt; ActiveRecord::Migration[5.0]
+   def change
+<span class="gi">+    add_column :users, :role, :string
++    add_column :posts, :flag_at, :datetime
+</span>   end
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def is_admin?
++    role == "admin"
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails console</code> 新增一个管理员帐号</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  User.create!( :email =&gt; "admin@example.org", :password =&gt; "123456", :role =&gt; "admin" )
+</pre></div>
+</figure>
+
+<p>然后改用这个帐号登入。</p>
+
+<p>编辑 <code>config/routes.rb</code> 新增一个 <code>toggle_flag</code> 路由：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   resources :posts do
+     member do
+       post "like" =&gt; "posts#like"
+       post "unlike" =&gt; "posts#unlike"
+<span class="gi">+      post "toggle_flag" =&gt; "posts#toggle_flag"
+</span>     end
+<span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/_post.html.erb</code> 加上 checkbox 核选方块，以及显示标记时间：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre>
+  &lt;div class="panel-body"&gt;
+    # (略)
+  &lt;/div&gt;
+
+<span class="gi">+  &lt;div class="panel-footer"&gt;
++    &lt;% if current_user &amp;&amp; current_user.is_admin? %&gt;
++      &lt;label&gt;
++      &lt;%= check_box_tag "mark_flag[#{post.id}]", 1, post.flag_at.present?,
++            :data =&gt; { :url =&gt; toggle_flag_post_path(post) }, :class =&gt; "toggle-flag" %&gt; 标记为垃圾
++        &lt;span id="post-flag-&lt;%= post.id %&gt;"&gt;&lt;%= post.flag_at %&gt;&lt;/span&gt;
++      &lt;/label&gt;
++    &lt;% end %&gt;
+</span><span class="err">+  &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code> 绑上 click 事件送出 Ajax 请求：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;script&gt;
+<span class="gi">+  $(".toggle-flag").on('change', function(){
++    var url = $(this).data("url");
++
++    $.ajax({
++      url: url,
++      method: "POST",
++      dataType: "json",
++      success: function(data){
++        if ( data["flag_at"] ) {
++          $("#post-flag-" + data["id"]).html(data["flag_at"]);
++        } else {
++          $("#post-flag-" + data["id"]).html("");
++        }
++      }
++    });
++  });
+</span><span class="err">   &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>解说:</p>
+
+<ul>
+<li>
+<code>$("XXXX").on</code> 是绑事件的语法，之前学过的 <code>$("XXX").click(function(){...}</code> 可以改写成 <code>$("XXX").on("click", function(){...})</code> 是一样的。这里用的事件名称是 <code>change</code>，表示输入框有变动的话，就会触发。</li>
+<li>在 HTML 元素属性上的 <code>data-XXX</code>，在 jQuery 中可以用 <code>.data("XXX")</code> 去读取到它的值</li>
+</ul>
+
+<p>最后编辑 <code>app/controllers/posts_controller.rb</code> 新增一个 toggle_flag action 接收处理：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def toggle_flag
++    @post = Post.find(params[:id])
++
++    if @post.flag_at
++      @post.flag_at = nil
++    else
++      @post.flag_at = Time.now
++    end
++
++    @post.save!
++
++    render :json =&gt; { :message =&gt; "ok", :flag_at =&gt; @post.flag_at, :id =&gt; @post.id }
+</span><span class="err">+  end
+</span></pre></div>
+</figure>
+
+<p>最后成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/m2mG2tXHQgqSgNClVM0X_ajax-checkbox.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-5 浏览器 Bubble Up 事件模型
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>前述的删除和打勾的例子，有个大 Bug，就是刚新增的贴文没作用。你可以试试看先新增一笔贴文，然后点点看删除和打勾，会发现竟然没作用。</p>
+
+<p>这是怎么回事呢? 这是因为浏览器并不会为新增的元素自动绑事件上去。所以后来 Ajax 新增上去的贴文是没有事件的。</p>
+
+<p>那要怎么解决呢? 我们需要了解一下浏览器的事件机制，假设有以下 HTML:</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+     <span class="nt">&lt;p&gt;</span>
+        <span class="nt">&lt;a&gt;</span>XXX<span class="nt">&lt;/a&gt;</span>
+     <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+</figure>
+
+<p>当我们 click 点击 XXX 时，浏览器不只会触发 a 元素的 click 事件，也会往外层一路触发，包括 p 的 click 事件、div 的 click 事件、body 的 click 事件。这叫做  Bubble Up 事件模型。</p>
+
+<p>了解这个模型之后，我们就可以将事件绑在可靠的上一层元素上，这里也就是 #post-list 的 div 上，反正点击里面的元素，最终都会 Bubble Up 上来触发。</p>
+
+<p>请修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  $(".delete-post").click(function(evt){
+</span><span class="gi">+  $("#post-list").on('click', ".delete-post", function(evt){
+</span>
+   // 略
+
+<span class="gd">-  $(".toggle-flag").on('change', function(){
+</span><span class="gi">+  $("#post-list").on('change', ".toggle-flag", function(){
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>一样是用 <code>on</code> 语法，但是改成绑在 <code>#post-list</code> 上，以及重点是多了第二个参数可以过滤出真正触发的元素，在这里也就是 <code>.delete-post</code> 和 <code>.toggle-flag</code>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-6 使用 jQuery Traversing 走访元素
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上述的范例中，有用到 <code>this</code> 可以知道是哪一个元素被点击了，所以我们才可以用 <code>$(this).data("url")</code> 去读取到该元素的 data 属性。</p>
+
+<p>既然已经知道是哪一个元素被点击了，那其实可以利用 jQuery 的 <a href="https://api.jquery.com/category/traversing/">Traversing</a> API，就可以进行定位：</p>
+
+<p>例如我们可以这样修改删除：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  $("#post-list").on('click', ".delete-post",function(evt){
+    evt.preventDefault();
+    var url = $(this).attr("href");
+<span class="gi">+   var that = this;
+</span>
+    $.ajax({
+      url: url,
+      method: 'DELETE',
+      dataType: 'json',
+      success: function(data){
+<span class="gd">-       $("#post-" + data["id"]).remove();
+</span><span class="gi">+       $(that).closest(".panel").remove();
+</span>      }
+    })
+    //return false;
+<span class="err">  })
+</span></pre></div>
+</figure>
+
+<p>解说：</p>
+
+<ul>
+<li>由于 success 是个异步的回呼，里面的 <code>this</code> 不等同于外层的 <code>this</code>。所以我们得先在外层记下 <code>that</code> 是触发事件的元素。</li>
+<li>
+<code>closest</code> 会找最近的上一层元素，这里就会找到包住整个贴文的 class 是 panel 的 div 区块。</li>
+</ul>
+
+<p>继续修改 checkbox 开关：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  $("#post-list").on('change', ".toggle_flag",function(){
+    var url = $(this).data("url");
+<span class="gi">+   var that = this;
+</span>
+    $.ajax({
+      url: url,
+      method: "POST",
+      dataType: "json",
+      success: function(data){
+        if ( data["flag_at"] ) {
+<span class="gd">-         $("#post-flag-" + data["id"]).html(data["flag_at"]);
+</span><span class="gi">+         $(that).closest("label").find("span").html(data["flag_at"]);
+</span>        } else {
+<span class="gd">-         $("#post-flag-" + data["id"]).html("");
+</span><span class="gi">+         $(that).closest("label").find("span").html("");
+</span>        }
+      }
+    });
+<span class="err">  });
+</span></pre></div>
+</figure>
+
+<p>解说：</p>
+
+<p><code>find</code> 会找下层的元素。一个常见的技巧是，先往上层找到共同的祖先是<code>label</code>，然后往里层找目标<code>span</code>。</p>
+
+<p>这样做的好处是什么呢? 这样写我们就不需要额外塞 post id 到 div 上来定位了。透过点击的元素，我们就可以走访到要操作的 DOM 上。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-7 使用下拉选单(select)分类贴文
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标：做一个下拉选单可以分类，选了就立即生效，不需要再点送出</p>
+
+<p>让我们产生一个分类 Category model，让 Post 贴文属于一种分类：</p>
+
+<p>执行 <code>rails g model category</code></p>
+
+<p>编辑 <code>db/migrate/201704XXXXXXXX_create_categories.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201704XXXXXXXX_create_categories.rb
+</span></figcaption><div class="highlight"><pre>  class CreateCategories &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :categories do |t|
+<span class="gi">+       t.string :name
+</span>        t.timestamps
+      end
+
+<span class="gi">+     add_column :posts, :category_id, :integer
++     add_index :posts, :category_id
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/post.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre>
+  class Post &lt; ApplicationRecord
+<span class="gi">+   belongs_to :category, :optional =&gt; true
+</span>
+    # (略)
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/category.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/category.rb
+</span></figcaption><div class="highlight"><pre>  class Category &lt; ApplicationRecord
+
+<span class="gi">+   has_many :posts
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails c</code> 新增一些分类资料：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre> Category.create!( :name =&gt; "Ruby" )
+ Category.create!( :name =&gt; "JavaScript" )
+ Category.create!( :name =&gt; "PHP" )
+ Category.create!( :name =&gt; "Java" )
+ Category.create!( :name =&gt; "Python" )
+</pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/_post.html.erb</code> 加上下拉选单：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;div class="panel-footer"&gt;
+    &lt;% if current_user &amp;&amp; current_user.is_admin? %&gt;
+<span class="gi">+      &lt;%= select_tag "category_id[#{post.id}]", options_for_select(Category.all.map{ |x| [x.name, x.id]}, post.category_id),
++                     :data =&gt; { :url =&gt; post_path(post) }, :prompt =&gt; "请选择分类", :class =&gt; "select_category" %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code> 绑上事件：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+<span class="gi">+   $("#post-list").on('change', ".select_category", function(){
++     var url = $(this).data("url");
++
++     $.ajax({
++       url: url,
++       method: "PATCH",
++       dataType: "json",
++       data: {
++         post: {
++           category_id: $(this).val()
++         }
++       }
++     });
++   });
+</span><span class="err">  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>其中 <code>$ajax</code> 里面的 <code>data</code> 就是要送出去的参数，透过 <code>$(this).val()</code> 可以抓到选单的值。</p>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code> 加上 <code>update</code> action：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  def update
++    @post = Post.find(params[:id])
++    @post.update!( post_params )
++
++    render :json =&gt; { :id =&gt; @post.id, :message =&gt; "ok"}
++  end
+</span>
+   #(略)
+
+   def post_params
+<span class="gd">-    params.require(:post).permit(:content)
+</span><span class="gi">+    params.require(:post).permit(:content, :category_id)
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DxAxOgKVQgibPeGaUjsH_ajax-select0.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-8 Ajax 动画效果
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节的下拉选单送出 Ajax 后，虽然数据库已经更新了，但是并没有任何视觉回馈，用户可能会感到疑惑到底成功了没有。所以通常我们还会制作一些动画效果，好告诉用户操作确实完成了。</p>
+
+<p>让我们找一张动画图片，在 <a href="http://loading.io" rel="nofollow" target="_blank">http://loading.io</a> 可以产生和下载git 图片，或用这张动图 <figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cuin0cnOSEeorE6v3jlp_ajax-loader.gif" title=""></figure> （请按右键另存新档)，请将动图请放在<code>public/images/</code> 目录下，并命名为 <code>ajax-loader.gif</code>。</p>
+
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+  $("#post-list").on('change', ".select_category",function(){
+    var url = $(this).data("url");
+<span class="gi">+   var that = this;
+</span>
+    $.ajax({
+        url: url,
+        method: "PATCH",
+        dataType: "json",
+        data: {
+          post: {
+            category_id: $(this).val()
+          }
+<span class="gd">-       }
+</span><span class="gi">+       },
++       beforeSend: function(){
++         $(that).after( $(' &lt;img src="/images/ajax-loader.gif" id="ajax-loading"&gt; ') );
++       },
++       complete: function(){
++         $("#ajax-loading").remove();
++       }
+</span>      });
+    });
+<span class="err">  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>其中 <code>beforeSend</code> 会在 Ajax 送出前触发，而<code>complete</code> 会在完成后触发。分别是插入这张动画 gif 图片，以及在 Ajax 完成后移除图片。</p>
+
+<p>因为是本地开发，感觉可能会一闪而过，我们可以暂时故意地在 action 做延迟：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>  def update
+<span class="gi">+   sleep(1)
+</span>    # (略 )
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>但这只是看看效果，试完请移除掉。</p>
+
+<p>最后成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0tbJNgwpTFSNHaWpskQH_ajax-select.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-9 jQuery Plugin 整合示范
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>目标: 使用 <a href="http://www.sahmeran.nl/nieuw/modules/rating_raty/">jQuery Raty</a> 这个 jQuery Plugin，进行贴文的星星评等，并计算平均分数。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/uGSkOAIFR3C0UZz0PXeY_star-rating.png" title=""></figure></p>
+
+<p>前往 <a href="https://github.com/wbotelhos/raty" rel="nofollow" target="_blank">https://github.com/wbotelhos/raty</a> 点选 "Clone or download" 按钮，然后点 Download ZIP 下载回来。</p>
+
+<p>解压缩后：</p>
+
+<ul>
+<li>将 lib/jquery.raty.css 放到 vendor/assets/stylesheets/ 目录下</li>
+<li>将 lib/jquery.raty.js 放到 vendor/assets/javascripts/ 目录下</li>
+<li>将 images 下的图片，放在 public/images 目录下</li>
+</ul>
+
+<p>修改 <code>app/assets/javascript/application.js</code>，</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascript/application.js
+</span></figcaption><div class="highlight"><pre><span class="gi">+    //= require jquery.raty
+</span><span class="err">     //= require_tree .
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/assets/stylesheets/application.scss</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  @import "bootstrap-sprockets";
+  @import "bootstrap";
++ @import "jquery.raty";
+</pre></div>
+</figure>
+
+<blockquote>
+<p>如果你没装 Bootstrap 的话，这里是 application.css 写 <code>//=require jquery.raty</code></p>
+</blockquote>
+
+<p>修改 <code>app/views/posts/_post.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   &lt;div class="panel-body"&gt;
+     &lt;span id="post-thumbsup-&lt;%= post.id %&gt;" class="label label-success"&gt;&lt;%= post.likes.count %&gt; 👍&lt;/span&gt;
+
++    &lt;div class="raty"&gt;&lt;/div&gt;
+
+</pre></div>
+</figure>
+
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
++   $(".raty").raty( { path: '/images/' } );
+  &lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>浏览画面，应该就会看看星星了，也可以点点看。但是目前还没串好数据库。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/HyCmuNYERxy3hmfIU5V1_rating1.png" title=""></figure></p>
+
+<p>接下来希望点了星星评等，会实际纪录进数据库。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-10 jQuery Plugin 整合示范(cont)
+    </h1><h4>所属章节：4. Ajax on Rails (进阶篇)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>一个用户可以针对很多贴文评分，一篇贴文也可以有多人评分，让我们新增一个 PostScore model 来纪录分数：</p>
+
+<p>执行 <code>rails g model post_score</code></p>
+
+<p>修改 `db/migrate/201704XXXXXXXX_create_post_scores.rb</p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201704XXXXXXXX_create_post_scores.rb
+</span></figcaption><div class="highlight"><pre>  class CreatePostScores &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :post_scores do |t|
+<span class="gi">+       t.integer :post_id, :index =&gt; true
++       t.integer :score
++       t.integer :user_id
+</span>        t.timestamps
+      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/post_score.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post_score.rb
+</span></figcaption><div class="highlight"><pre>  class PostScore &lt; ApplicationRecord
+<span class="gi">+
++   belongs_to :post
++   belongs_to :user
++
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/post.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :scores, :class_name =&gt; "PostScore"
++
++  def find_score(user)
++    user &amp;&amp; self.scores.where( :user_id =&gt; user.id ).first
++  end
++
++
++  def average_score
++    self.scores.average(:score)
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   resources :posts do
+     member do
+       post "like" =&gt; "posts#like"
+       post "unlike" =&gt; "posts#unlike"
+       post "toggle_flag" =&gt; "posts#toggle_flag"
+<span class="gi">+      post "rate" =&gt; "posts#rate"
+</span>     end
+<span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>再次修改 <code>app/views/posts/_post.html.erb</code>，加上平均分数，以及 data 属性包括用户给的分数 score 和打分的 url，好让 jQuery 可以处理。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>   &lt;div class="panel-body"&gt;
+     &lt;span id="post-thumbsup-&lt;%= post.id %&gt;" class="label label-success"&gt;&lt;%= post.likes.count %&gt; 👍&lt;/span&gt;
+
+-    &lt;div class="raty"&gt;&lt;/div&gt;
++    &lt;span class="average-score"&gt;&lt;%= post.average_score %&gt;&lt;/span&gt;
++    &lt;div class="raty" data-score="&lt;%= post.find_score(current_user).try(:score) || 0 %&gt;" data-score-url="&lt;%= rate_post_path(post) %&gt;"&gt;&lt;/div&gt;
++
+
+</pre></div>
+</figure>
+
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+-   $(".raty").raty( { path: '/images/' } );
++   $(".raty").raty({
++     path: '/images/',
++     score: function() { return $(this).data('score'); },
++     click: function(score) {
++       var that = this;
++       $.ajax({
++         url: $(this).data("score-url"),
++         method: "POST",
++         data: { score: score },
++         dataType: "json",
++         success: function(data){
++           $(that).closest(".panel-body").find(".average-score").html( data["average_score"] );
++         }
++       })
++     }
++   });
+  &lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>根据 raty 的文档，其中：</p>
+
+<ul>
+<li>
+<code>score</code> 是初始函式，我們已經用 <code>data-score</code> 属性将用户之前的评分放上去，這裡再用 <code>$(this).data('score');</code> 抓到值。</li>
+<li>
+<code>click</code> 是当用户点击星星时，会触发的函式。这里就是会送出 Ajax 请求。</li>
+</ul>
+
+<p>编辑 <code>app/controllers/posts_controller.rb</code> 加上接收的 action：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def rate
++    @post = Post.find(params[:id])
++
++    existing_score = @post.find_score(current_user)
++    if existing_score
++      existing_score.update( :score =&gt; params[:score] )
++    else
++      @post.scores.create( :score =&gt; params[:score], :user =&gt; current_user )
++    end
++
++    render :json =&gt; { :average_score =&gt; @post.average_score }
+</span><span class="err">+  end
+</span></pre></div>
+</figure>
+
+<p>最后成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/sDFUTBQNqNwgUTm91xgI_rating2.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      jquery-ujs
+    </h1><h4>所属章节：5. Unobtrusive JavaScript 解说</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Rails 的 <code>:remote =&gt; true</code> 的这个功能，在 Rails 是透过 <a href="https://github.com/rails/jquery-ujs">jquery-ujs</a> 这个 gem 所提供的，你可以在 <code>Gemfile</code> 中找到它，以及在 <code>app/assets/javascripts/application.js</code> 里面加载了 <code>//= require jquery_ujs</code>。</p>
+
+<p>之所以叫 UJS 是因为全名叫做 Unobtrusive JavaScript。那么什么是 Unobtrusive 呢？用个范例来说吧，以下代码会将超连结改成用表单DELETE送出，并且用一个提示视窗来作确认：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>link_to 'Remove', post_path(1), :method =&gt; :delete, :data =&gt; { :confirm =&gt; "Sure?" }
+</pre></div>
+</figure>
+
+<p>在 Rails 3 以前的版本，会输出：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;a onclick="if (confirm('Sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;" href="/events/1"&gt;Remove&lt;/a&gt;
+</pre></div>
+</figure>
+
+<p>看起来有点复杂，其实只是透过 onclick 属性把 JavaScript 代码写在里面。</p>
+
+<p>在 Rails 3 之后，则会输出：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;a rel="nofollow" data-confirm="Sure?" data-method="delete" class="delete" href="/events/1"&gt;Remove&lt;/a&gt;
+</pre></div>
+</figure>
+
+<p>然后在 jquery_ujs 的 JavaScript 库里面会检查 DOM 里面有 <code>data-confirm</code> 和 <code>data-method</code> 的超连结，再去绑订事件。</p>
+
+<p>Unobtrusive 的概念就是将 JavaScript 代码与 HTML 分开，除了可以让 HTML 码干净之外，也可以支援更换不同的 JavaScript 库。</p>
+
+<p>jquery-ujs 的功能包括了：</p>
+
+<ul>
+<li>让超连结可以用 :method 参数支援非 GET 方法</li>
+<li>用超连结、按钮和表单可以用 <code>:remote =&gt; true</code> 支援 Ajax</li>
+<li>超连结、按钮和表单可以用 <code>:data =&gt; { :confirm =&gt; "Are you sure? }</code> 参数，跳出确认对话视窗</li>
+<li>送出按钮可以用 <code>:data =&gt; { :disable_with =&gt; "Please wait..." }</code> 参数在送出表单时暂时关闭按钮避免重复送出</li>
+<li>在 Layout 的 head 中有输出一段 <code>&lt;%= csrf_meta_tag %&gt;</code> 的作用也是搭配给 UJS 使用的，这会让 jQuery 的 $ajax 送出时附带 CSRF 表单安全验证码，我们会在之后的网络安全一章讨论到什么是CSRF。</li>
+</ul>
+
+<p>总之，如果 jquery-ujs 没有顺利加载的话，不只 <code>:remote =&gt; true</code> 不能用，所有非 GET 方法的超连结会坏掉，会变成 GET 出去。另外还有 Devise 的登出按钮因为用了 <code>:method =&gt; :delete</code> 也会无法作用。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

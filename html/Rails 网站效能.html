@@ -1,0 +1,1533 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1. 网站效能基础概念
+    </h1><h4>所属章节：Part 1: 前言</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>网站效能为什么重要呢？因为人的注意力是有限的，人对时间的感知是这样的：</p>
+
+<ul>
+<li>0.1 秒，感觉是马上</li>
+<li>1.0 秒，思绪开始飘移</li>
+<li>10 秒，会感觉这东西是不是坏掉了</li>
+</ul>
+
+<p>根据研究，Amazon 的网页加载时间每多一秒，该公司的年度营收就减少 16 亿美元。Google 的搜寻时间每多 0.4 秒，每天的搜寻次数就会减少 8 百万。KISSmetric 研究指出，网页的加载时间超过4秒，网页的跳出率就会增加 25%。</p>
+
+<p>网站效能也会影响 SEO，搜寻引擎 Google 会针对慢速的网站降低权重。</p>
+
+<blockquote>
+<p>顺道一提，没加密的 HTTP 网站也会降低 SEO 权重，正式上线的网站建议要上 HTTPS 安全连线</p>
+</blockquote>
+
+<p>网站效能可以分成两个部分来看：</p>
+
+<ul>
+<li>后端效能，也就是网站服务器运行代码(Ruby/Rails/数据库)所需的时间</li>
+<li>前端效能，包括网络传输的时间，以及浏览器运行代码(HTML/CSS/Javascript)渲染出画面所需的时间</li>
+</ul>
+<h3>后端效能</h3>
+<p>更精确的说，指的是当网站服务器接收到一个 HTTP Request 时，需要花多少时间去处理。HTTP Requests 如果是要求静态档案(例如CSS/JavaScript/图档)，那么网站服务器(例如 Nginx)可以非常高速地回应，这不会是问题。要探讨的是那些需要 Rails 进行动态处理的 HTTP Request，这些会需要执行 Ruby 代码、经过 MVC 层层架构、从数据库捞出数据、用 erb 样板产生出 HTML 然后回应给浏览器。</p>
+
+<p>这个处理的时间称之为 Response Time，你在 Rails 的 log 中可以看到这个时间。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/s40Jgg8wSQelBAAuimG7_0.png" title=""></figure></p>
+
+<blockquote>
+<p>本机开发时，Rails 是 development 模式，效能会比较差。部署在服务器上会用 production 模式，效能才会好的。这是因为本机开发时会一直改代码，所以每次 Request 都会重新编译过修改的代码。但是在 production 模式中，所有代码会被一次编译后就缓存在内存了，不需要每次都重新编译，也因此在 production 模式如果修改代码，是不会生效的除非重开 Rails。你可以观察 <code>config/environments/development.rb</code> 和 <code>config/environments/production.rb</code> 的第一个设定 <code>config.cache_classes</code> 的说明</p>
+</blockquote>
+<h3>网络传输</h3>
+<p>网络传输时间取决用户距离服务器的距离，以及用户上网的品质。我们无法决定用户的上网品质，有可能是企业光纤上网专线，也可能只是 3G 行动上网。但我们可以决定网站服务器要放在哪里，这会考量主要用户的物理位置。</p>
+
+<p>中国大陆的用户，如果要读取日本的服务器，数据包的 RTT 时间(Round-Trip Time)就是70ms起跳，如果要去美国就是 200ms 起跳。这是光速和光纤的物理限制，因此我们都会希望把服务器放的离主要用户群比较近。</p>
+<h3>前端效能</h3>
+<p>浏览器运行代码(HTML/CSS/Javascript)渲染出画面的时间，这个时间称之为网页加载时间(Page Load Time)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6pdGYtVYTqSvna05iEVJ_1.png" title=""></figure></p>
+
+<p>前端的 Page Load Time 相较于后端的 Response Time 复杂许多，这是因为要渲染出一个 HTML 并不是单一 HTTP Request 的事情，还包括 HTML 上的 CSS、JavaScript、图片等等，这些都需外额外的 HTTP Requests 去下载和解析这些资源。</p>
+
+<p>根据 <a href="http://httparchive.org/trends.php">HTTP Archive</a> 的统计，当今的一个网页，平均需要 108 个 HTTP Requests 才可以完成！很惊人吧。</p>
+
+<p>因此前端效能的优化，就是希望用户尽量只下载必要的资源、尽量提早让用户看到画面，而不需要等待全部的资源都下载执行完成才能看到画面。</p>
+<h3>提速的大方向</h3>
+<p>后端效能的 Response Time 通常是毫秒等级来看的，基本上如果不犯错，就算不做什么优化，也可以在 250ms 左右完成，如果真的数据量或计算量很大，需要到几秒以上，这时候也应该用异步处理(在百宝箱第四集我们教过使用 sidekiq)。因此对终端用户来说，就算后端的优化很努力从 250ms 改进到 100ms 快了一倍的话，实际上也没有什么感觉，因为只差 0.15 秒。</p>
+
+<p>因此在后端效能还OK的情况下，我们会更着重要前端效能的改进。前端效能的 Page Load Time 的是几秒等级，透过一些前端效能最佳化技巧，我们可以做到从 3.5s 降到 1.5s，这对用户感受会比较明显，差了 2 秒，比改进后端更有效益。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2.前端效能分析
+    </h1><h4>所属章节：Part 2: 前端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要做效能最佳化，首先需要知道怎么科学化量测。需要数据支持，我们才可以知道最佳化有没有效果。</p>
+
+<p>Chrome 除错器提供了详尽的报表，最基本我们可以观察 Network，其中的 Load 就是 Page Load Time 页面加载时间：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MPy8843pRJGpc2zu2WZw_1.png" title=""></figure></p>
+
+<p>对前端来说，看重的是 Page Load Time，而不是单一 Request 的时间。因为网页的组成除了 HTML 之外，还有 CSS/JavaScript/图片等等。</p>
+
+<p>Chrome 也提供了进阶的 Performance 详细报告，包括解析 HTML、CSS、JavaScript 各花了多少时间，等会也会介绍如何使用：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QndFVIERPKSBsBECDip7_2.png" title=""></figure></p>
+
+<p>Google 也提供了一些分析工具，并提供分数报告，包括：</p>
+
+<p>线上分析工具 <a href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/esW64f0FTcymZ3BNZly5_4.png" title=""></figure></p>
+
+<blockquote>
+<p><a href="https://developers.google.com/speed/docs/insights/rules">PageSpeed Insights 的评分标准</a>，基本上就是本教程会说明的内容</p>
+</blockquote>
+
+<p>Chrome 外挂 <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/UhhPWVFJS1ag7FP6vrca_13.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/z2JPzyRaTR2pMFXonaTR_12.png" title=""></figure></p>
+
+<p>稍后的作业会请各位安装这个 Lighthouse 工具。</p>
+<h3>模拟低网速</h3>
+<p>由于开发者的网络线速度通常蛮快的，不能反应实际用户的连线情况，特别是用手机行动上网的情境，因此 Chrome 有提供模拟限速的功能。<br>
+在截图中的 No throttling 的地方，我们可以将速度模拟成行动 3G 网络。另外在测试的时候，也需要把浏览器的缓存功能关闭。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ryBFzDx4StK3SNalpvPb_15.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3. 减少 Requests 数量和大小
+    </h1><h4>所属章节：Part 2: 前端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要完整加载一个网页，除了 HTML 之外，还会需要加载 CSS、JavaScript 和图片等资源。每一次的 HTTP Request 都需要耗费时间，因此减少 Requests 的请求数量，以及减少这些档案的大小，就是一个最佳化的方向。</p>
+
+<p>Rails 在本机开发时，CSS 和 JavaScript 是分开加载的：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rpDosAfJTLKTyjK1z65V_6.png" title=""></figure></p>
+
+<p>在部署上 Production 环境时，Asset Pipeline 会执行 <code>rake assets:precompile</code> 将 CSS 和 Javascript 进行合并压缩，变成这个样子：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0UH1AU0fQpqL0BfkwXFu_5.png" title=""></figure></p>
+
+<p>仔细观察 CSS 内容压缩后会变成这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fOHcu4rpTByamIfAc7Ux_7.png" title=""></figure></p>
+
+<p>JavaScript 内容压缩后会变成这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Y1Nsk341QgyFe3ihYa8C_8.png" title=""></figure></p>
+
+<blockquote>
+<p>CSS 压缩是透过 sass-rails gem，而 JavaScript 压缩是透过 uglifier gem</p>
+</blockquote>
+<h3>本机如何跑 production 模式？</h3>
+<p>也因为这个原因，在本机用 development 模式进行前端效能测试是不准的。如果想在本机跑 production 模式的话，可以这样做：</p>
+
+<ol>
+<li>修改 <code>config/database.yml</code> 设定 production 模式要用哪一个数据库，例如把 production 改成用  development 模式的数据库，例如</li>
+</ol>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  development:
+    &lt;&lt;: *default
+    database: db/development.sqlite3
+
+  production:
+    &lt;&lt;: *default
+<span class="gd">-    database: db/production.sqlite3
+</span><span class="gi">+    database: db/development.sqlite3
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<ol>
+<li><p>执行 <code>bundle exec rake assets:precompile</code>，这会在本机执行 Asset Pipleline 的编译</p></li>
+<li><p>暂时修改 <code>config/environments/production.rb</code> 打开 <code>public_file_server</code>，这会允许 Rails 服务器可以回传静态档案(在正式部署的服务器上，静态档案会由 Nginx 处理，所以默认是关闭的)</p></li>
+</ol>
+
+<figure class="figure-code code"><figcaption><span>config/environments/production.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+</span><span class="err">+  config.public_file_server.enabled = true
+</span></pre></div>
+</figure>
+
+<ol>
+<li><p>改用 <code>rails s -e production</code> 来启动 Rails，就会是用 production 模式</p></li>
+<li><p>Asset Pipleline 的编译出来的档案放在 <code>public/assets</code> 下，这些档案是不需要 commit 的，实验完之后需要砍掉。执行 <code>bundle exec rake assets:clobber</code> 或 <code>rm -rf public/assets</code> 可以砍掉这个目录。</p></li>
+</ol>
+
+<p>不过在 production 模式下，修改任何 Ruby 代码，都需要重启 Rails。修改任何前端代码，都需要重新编译 Asset Pipleline，是很麻烦的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4. HTTP 最佳化
+    </h1><h4>所属章节：Part 2: 前端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>HTTP 通讯协议本身，也有一些可以提速的功能：</p>
+<h3>HTTP 压缩</h3>
+<p>网站服务器和浏览器之间，支援了 <a href="https://zh.wikipedia.org/wiki/Gzip">gzip</a> 压缩，我们在部署教程中，就有设定 Nginx 打开这个功能：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>gzip on;
+gzip_disable "msie6";
+
+gzip_comp_level    5;
+gzip_min_length    256;
+gzip_proxied       any;
+gzip_vary          on;
+gzip_types application/atom+xml application/javascript application/x-javascript application/json application/rss+xml application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/svg+xml image/x-icon text/css text/xml text/plain text/javascript text/x-component;
+
+</pre></div>
+</figure>
+
+<p>一旦启用这个功能，Nginx 就会针对这些纯文字的档案，进行 gzip 压缩之后再传给浏览器，在 HTTP Response 标头上会标明这个有 gzip 压缩，那么浏览器就会知道要进行解压缩</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MJtSZw4qTeCBe2AftjU8_9.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/yoMXb14QmGL24TAuEIdS_10.png" title=""></figure></p>
+
+<p>档案有没有压缩差别很大，截图中 JavaScript 压缩前是 1.1 MB，压缩后是 322KB，CSS 压缩前是 142KB，压缩后是 22.7KB。所以这个功能务必在服务器上要开启。</p>
+
+<blockquote>
+<p>图片不需要 gzip 压缩，因为图片本身已经是压缩过后的格式(PNG或JPG)</p>
+</blockquote>
+<h3>HTTP 缓存</h3>
+<p>在 HTTP 标头中，也有定义一些缓存功能。我们之前在部署教程中，在 Nginx 服务器有这样的设定：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  location ~ ^/assets/ {
+    expires 1y;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+   }
+</pre></div>
+</figure>
+
+<p>这会针对 <code>/assets/</code> 目录下的静态档案，在 HTTP Response 加入以下的 Headers：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/n2g5dKaTTiYrq7efJgjQ_11.png" title=""></figure></p>
+
+<ul>
+<li>
+<code>cache-control: public</code> 指定这个资源是可以被浏览器缓存</li>
+<li>
+<code>cache-control: max-age=31536000</code> 和 <code>expire</code> 告诉浏览器这个资源可以被缓存多久</li>
+</ul>
+
+<p>于是浏览器就知道这些资源可以被缓存，当你重新整理页面，或是浏览下一页的时候：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qpjhi8rrRYeOiofZrRd8_18.png" title=""></figure></p>
+
+<p>这些资源就从浏览器的缓存拿出来，而不需要发出 HTTP Requests 到服务器。</p>
+
+<p>为什么可以将缓存时间拉到一年这么久呢? 这是因为 Rails asset pipleline 的 digest 功能会修改档名加上编码。每次部署上线进行 <code>rake assets:precompile</code> 编译时，如果 CSS/JS/图片 内容有变动的话，那这个档名就会变，浏览器就会下载新的档案。因此我们可以放心告诉浏览器这些资源可以被缓存，而不用担心用户继续使用旧的档案。</p>
+<h3>HTTP/2</h3>
+<p>HTTP/2 是 2015 年制定的最新 HTTP 标准，语意和功能都与 HTTP 1.1 是相容的，主要是改善加载网页的效能，详细请参考老师之前写的一篇文章 <a href="https://ihower.tw/blog/archives/8489">更快更安全: 每个网站都应该升级到 HTTP/2</a>。</p>
+
+<p>HTTP/2 在图片很多的场景，使用 HTTP/2 会改善非常多。不过 HTTP/2 要求 HTTPS，这是部署上会比较麻烦的地方。</p>
+
+<blockquote>
+<p>HTTPS 安全宣导：自 2017 年 10 月起，如果用户使用 Chrome (62版) 时，在使用 HTTP 的网页表单中输入文字，Chrome 将显示「不安全」警告</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5. 关键渲染路径
+    </h1><h4>所属章节：Part 2: 前端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了网页加载时间(Page Load Time)之外，另一个前端效能注重的数据是首次渲染页面的时间。</p>
+
+<p>首先我们来了解一下浏览器渲染画面(Browser Rendering)的过程：</p>
+
+<ul>
+<li>浏览器下载 HTML</li>
+<li>浏览器针对 HTML 上的外部资源(CSS/JavaScript/图片)发送 HTTP Requests 去获取，在 HTTP 1.1 时代只能同时抓取六个资源、在 HTTP/2 之后则可以同时平行抓取。</li>
+<li>同一时间浏览器也从 HTML 源码上到下开始解析进行渲染：
+
+<ul>
+<li>用 HTML 建立 Document Object Model (DOM)</li>
+<li>用 CSS 建立 CSS Object Model (CSSOM)，如果 CSS 还没下载完成，会等待</li>
+<li>执行 JavaScript 来操作 DOM 和 CSSOM，如果 JavaScript 还没下载完成，会等待</li>
+<li>建立 Render Tree</li>
+<li>计算每个元素在画面上的位置 Layout</li>
+<li>实际画上(Paint)每一画素(pixels)</li>
+</ul>
+</li>
+</ul>
+
+<p>这个过程其实可以是一个渐进的过程，我们希望尽快让用户看到有个画面，也就是去缩短首次渲染页面的时间，而不是完全的空白画面。因此希望找出所谓的关键渲染路径(Critical Rendering Path)：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/iD6BP5fYQTuHyC6vntDW_progressive-rendering.png" title=""></figure></p>
+
+<p>这张图出自 <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/">Google 文档</a>，上图是经过关键渲染路径优化的版本、下图是没有经过优化的版本。你可以看到经过优化的版本，用户可以更早就看到画面，在感受上可以更早就开始阅读和操作网页。</p>
+
+<p>这要怎么办到呢? 关键就在思考首次渲染页面时，只加载必要的 CSS，以及延后 JavaScript 加载。这是因为显示画面只需要 HTML/CSS，暂时不需要 JavaScript。</p>
+<h3>如何量测？</h3>
+<p>让我们用 Chrome 除错器的 Performance 功能，可以观察加载的看时间轴：</p>
+
+<p>首先限速一下，这样比较好观察效果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3QwYnPAwSisSLPGAsddg_15.png" title=""></figure></p>
+
+<p>点到 Performance tab，打开 Screenshots，按下重新整理就会开始量测：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KdfNJARLR02g8i01Unp7_14.png" title=""></figure></p>
+
+<p>首先让我们测试一个没有优化的版本 <a href="https://www.rails-recipes.win" rel="nofollow" target="_blank">https://www.rails-recipes.win</a>，你会发现要到 3.5  秒的时候，第一个画面才会出来：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Yxy9BtkeRXyN5l6yLYZw_16.png" title=""></figure></p>
+
+<p>接来下测试一个优化之后的版本 <a href="https://www.rails-recipes.win/?js=async" rel="nofollow" target="_blank">https://www.rails-recipes.win/?js=async</a>，你会发现大约 1.6 秒时，第一个画面就出来了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/e3L8DGG1RdaBCZQ3u6dR_17.png" title=""></figure></p>
+
+<p>这是怎么办到的，最重要的技巧是延后 JavaScript 的加载：</p>
+<h3>JavaScript 加载最佳化</h3>
+<p>JavaScript 的加载对浏览器来说是 rendering blocking 的，当浏览器在 <code>&lt;head&gt;</code> 里面看到 <code>&lt;script&gt;</code> 标籤时，浏览器会等待下载完成，并执行这个 JavasSript 后，才会继续 rendering HTML 画面。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bXYxHpzGRUCaujHdxWzA_j1.png" title=""></figure></p>
+
+<p>图例中绿色是 HTML 渲染、紫色是 JavaScript 下载、红色是 JavaScript 执行。浏览器看到 <code>&lt;script&gt;</code> 会暂停 HTML 渲染，来下载和执行 JavaScript。</p>
+
+<p>在 Rails 的 <code>layout/application.html.erb</code> 中，JavaScript 就被放在 <code>&lt;head&gt;</code> 里面，优化的办法有几种：</p>
+<h3>传统做法：将 script 移到底部</h3>
+<p>传统做法是将 <code>&lt;script&gt;</code> 加载移出 <code>&lt;head&gt;</code>，放在 HTML 底部，<code>&lt;/body&gt;</code> 上一行。</p>
+
+<p>这个做法的优点是所有浏览器都支援，但是缺点是与 Rails 的 Turbolinks 功能是冲突不相容的(请复习 "Ajax 交互式网页应用" 教程 "3-1 Turbolinks 坑")，因为 Turbolinks 的作用就是保留 <code>&lt;head&gt;</code> 用 Ajax 替换 <code>&lt;body&gt;</code> 区块，如果把 JavaScript 移出 <code>&lt;head&gt;</code> 那 Turbolinks 就会不正常运作。</p>
+<h3>新标准做法：async 和 defer 属性</h3>
+<p>新的浏览器标准可以透过 async 或 defer 属性，告诉浏览器这个 JavaScript 加载可以是异步的，不要阻挡 HTML 的 rendering。</p>
+
+<p>修改 <code>app/views/layout/application.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="err">+  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :async =&gt; true %&gt;
+</span></pre></div>
+</figure>
+
+<p>或是</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="err">+  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :defer =&gt; true %&gt;
+</span></pre></div>
+</figure>
+
+<p>async 和 defer 的差别是：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FZORLUTLSa2E1qyqEonf_j2.png" title=""></figure></p>
+
+<p>async 的话，浏览器不会阻挡 HTML 的渲染，当 JavaScript 下载完成时就会直接执行 JavaScript，不会等 HTML DOM 加载。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/aSQOmTAPQfyNkl2Es0ih_j3.png" title=""></figure></p>
+
+<p>defer 的话，浏览器也不会阻挡 HTML 的渲染，但是当 JavaScript 下载完成后，会等 HTML 加载完成，才会执行 JavaScript。如果 JavaScript 里面有依赖 DOM 的话，适合用这个方式。</p>
+
+<p>async 和 defer 是浏览器的新标准，优点是可以比传统做法效果更好。但是缺点是旧的浏览器支援不好，IE&lt;=9 的版本不支援。</p>
+<h3>Inline 型式的 JavaScript 问题</h3>
+<p>无论是底部或 async/defer 做法，JavaScript 执行的顺序都需要注意不然会出错。之前在百宝箱教程中都假设 JavaScript 是放在 head，因此放在 HTML 内的 JavaScript 会出错。例如在 <code>app/views/events/_form.html.erb</code> 中，我们在 HTML 写了：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;script&gt;
+  $("#event_category_id").select2( { theme: "bootstrap"} );
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>这段代码无论是把 JavaSript 改放在下方，或是用 async/defer，会因为找不到 jQuery 的 <script type="math/tex"></script> 而出错，因为它的执行顺序跑在 jQuery 加载之前了 :(</p>
+
+<p>那要怎么调整呢？</p>
+<h4>JavaScript 放底部的调整方式：</h4>
+<p>解决方式是我们在 <code>javascript_include_tag</code> 下再多加一行 <code>yield :handwrite_javascript</code>。（多一个区块）</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4xvqB5IUTKWzIQOCPbCS_js_solution.png" title=""></figure></p>
+
+<p>然后再将原先写的 JavaScript 代码，用 <code>content_for</code> 把原先的网页包起来。那么这一段  JavaScript 就会在<code>javascript_include_tag</code> 以下执行了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ICPtH9rTQA2kzyBctMms_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-16%20%E4%B8%8B%E5%8D%889.12.08.png" title=""></figure></p>
+<h4>defer 的调整方式：</h4>
+<p>将原本写的 JavaScript 代码，延后到 DOMContentLoaded 事件后才触发：</p>
+
+<p>例如百宝箱的 <code>app/views/admin/events/_form.html.erb</code> 本来有一段使用 select2 的代码：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.er
+</span></figcaption><div class="highlight"><pre>  &lt;script&gt;
+<span class="gi">+   window.addEventListener('DOMContentLoaded', function() {
+</span>      $("#event_category_id").select2( { theme: "bootstrap"} );
+<span class="gi">+   })
+</span>&lt;/script&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+<h4>async 的调整方式：</h4>
+<p>HTML 中不能有 inline 形式的 JavaScript 了，因为我们不知道那些 async 的 JavaScript 到底什么时候会被加载，因此所有代码都必须放在打包后的 <code>application.js</code> 中。请将把 layout 的 <code>&lt;body&gt;</code> 改成 <code>&lt;body id="&lt;%= "#{controller_name}-#{action_name}"%&gt;"&gt;</code>，这样就可以在全局载入的 <code>application.js</code> 中指定只有这一页才执行的js code，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>$(document).ready(function(){
+  if ( $("#events-edit").length &gt; 0 ) {
+    $("#event_category_id").select2( { theme: "bootstrap"} );
+  }
+})
+</pre></div>
+</figure>
+<h3>实地测试</h3>
+<p>由于需要用 Rails 的 Production 模式才能正确的测试效果，为了方便大家实地看看效果，在以下网址提供了不同做法，你可以用 Chrome 除错器的 Performacne 功能测试看看：</p>
+
+<ul>
+<li>
+<a href="https://www.rails-recipes.win/" rel="nofollow" target="_blank">https://www.rails-recipes.win/</a> JS 放 head</li>
+<li>
+<a href="https://www.rails-recipes.win/?js=bottom" rel="nofollow" target="_blank">https://www.rails-recipes.win/?js=bottom</a> JS 放底部</li>
+<li>
+<a href="https://www.rails-recipes.win/?js=async" rel="nofollow" target="_blank">https://www.rails-recipes.win/?js=async</a> 用 async 加载</li>
+<li>
+<a href="https://www.rails-recipes.win/?js=defer" rel="nofollow" target="_blank">https://www.rails-recipes.win/?js=defer</a> 用 defer 加载</li>
+</ul>
+<h3>CSS 加载最佳化</h3>
+<p>CSS 也被浏览器视为一种 render blocking 的资源，当浏览器解析 HTML 看到 <code>&lt;link href="style.css" rel="stylesheet"&gt;</code> 时，就会等待完整解析这个 CSS 后，才会继续渲染画面。</p>
+
+<p>要渲染 HTML 画面，加载 CSS 是必要的，但是 Rails 默认的 <code>application.css</code> 是将全部的 CSS 打包，我们可以拆出一些关键的 CSS 包成一个档案，这个档案比较小，因此可以加速首次渲染页面的时间。然后将其他没这个重要的 CSS 包在另一个档案，透过异步加载的方式。详细可以参考这篇的做法 <a href="https://icook.engineering/optimize-css-delivery-in-rails-app-16a7727cc984">Optimize CSS delivery in Rails app<br>
+</a>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6. CDN
+    </h1><h4>所属章节：Part 2: 前端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>前面我们提到服务器如果离用户比较近，网络传输的时间就会比较快。不过如果用户散布是世界各地的话，那么服务器放哪里都会有人距离比较远。这种情况怎么办呢？</p>
+
+<p>这时候我们就会使用 CDN (Content delivery network) 这种服务来加速静态档案的下载。我们这里用张图来解释：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/q6Nn9L8ERcyvAAJKfaES_Rocketbook-2017-02-17-134659-053.png" title=""></figure></p>
+
+<p>CDN 就是专门用来提供静态档案的服务器，用户从距离最近的 CDN 服务器下载静态档案，如果 CDN 上面没有需要的档案，那么 CDN 会从我们的服务器上下载一份回去缓存起来。</p>
+
+<blockquote>
+<p>只有静态档案例如 CSS/JavaScript和图片等等会放在 CDN 上，如果是动态内容用户一定要访问我们自己的服务器</p>
+</blockquote>
+
+<p>首先我们需要将 HTML 网页上静态档案网址分开，改成 CDN 的网址：</p>
+
+<ul>
+<li>例如服务器网站是 <code>www.jd.com</code>，你会从这个网址先下载 HTML</li>
+<li>但是 HTML 上的图片网址则是不同的，例如是 <code>cdn.jd.com</code> 好了，这个是 CDN 的网址
+
+<ul>
+<li>CDN 技术做的是针对不同地区的用户，自动提供他们最近的点下载档案</li>
+</ul>
+</li>
+<li>不同地区的用户，针对 <code>cdn.jd.com</code> 会解析出不同的 IP 地址，选择用最近的服务器</li>
+<li>如果 CDN 上有档案快取，就直接从 CDN 上吐给用户</li>
+<li>如果 CDN 上没有档案快取，就从原站拉一份，快取在 CDN 上</li>
+</ul>
+<h3>如何在 Rails 上实现</h3>
+<p>你不需要去改网站上的 image_tag 一个一个处理。</p>
+
+<p>只要在 Rails 上改全站的图片来源，只要修改 <code>config/enviorments/production.rb</code> 里的这一行就可以了。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>config.action_controller.asset_host = "https://cdn.jd.com"
+</pre></div>
+</figure>
+
+<p>这样全站的 image/css/js 网址，就会全部变成</p>
+
+<ul>
+<li>cdn.jd.com/images/demo.jpg</li>
+<li>cdn.jd.com/assets/admin.css</li>
+<li>cdn.jd.com/assets/admin.js</li>
+</ul>
+<h3>我在哪可以找到 CDN 服务</h3>
+<p>中国境内 CDN 服务(网站需要备案才能申请使用)</p>
+
+<ul>
+<li><a href="https://su.baidu.com/">百度云加速</a></li>
+<li><a href="https://www.alibabacloud.com/zh/product/cdn">阿里云</a></li>
+<li><a href="https://www.qiniu.com/products/fusion">七牛云</a></li>
+<li><a href="https://www.upyun.com/">又拍云</a></li>
+</ul>
+
+<p>国外 CDN (随时申请随时使用，但是中国境内没有 CDN 节点)</p>
+
+<ul>
+<li><a href="https://aws.amazon.com/cloudfront/">Amazon Cloudfront</a></li>
+<li><a href="https://www.cloudflare.com/">Cloudflare</a></li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7. 项目准备
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>为了让大家可以练习改进后端效能，请 Fork 这个项目：<a href="https://github.com/growthschool/speedup-app" rel="nofollow" target="_blank">https://github.com/growthschool/speedup-app</a>，然后 Clone 回去。</p>
+
+<blockquote>
+<p>因为等会交作业用 Pull Request，所以你需要用 Fork 把项目复制在你的 Github 帐号下，这样修改后才可以 Push 上去，最后用 Pull Request 交作业。</p>
+</blockquote>
+
+<p>Fork 后，请依序执行：</p>
+
+<p><code>git clone git@github.com:你的帐号/speedup-app.git</code><br>
+<code>cd speedup-app</code><br>
+<code>bundle install</code><br>
+<code>bundle exec rake db:migrate</code><br>
+<code>bundle exec rake fake</code></p>
+
+<p>在这个项目中，已经装好了 Devise、Bootstrap、RSpec，并且建立好了以下功能：</p>
+
+<ul>
+<li>用户登入、登出</li>
+<li>用户可以浏览贴文列表(posts index 页面)</li>
+<li>用户可以浏览贴文的留言(posts show 页面)</li>
+</ul>
+
+<p>执行 <code>rails server</code></p>
+
+<p>接着打开浏览器 <a href="http://localhost:3000" rel="nofollow" target="_blank">http://localhost:3000</a></p>
+
+<p>数据库中已经有一个用户：</p>
+
+<p>帐号: <code>admin@example.org</code><br>
+密码: <code>12345678</code></p>
+
+<p>请浏览看看前台的首页(文章列表)，以及文章页面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dwpCg5iSMi8Tc3HDHOQe_31.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ZwmdfE3sSiJYJErfUp2f_32.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8. 后端效能分析
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p></p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">For Basecamp 3, which is the biggest version now by load, our median response time is ~30ms, mean is ~120ms, and 90th percentile is ~180ms.</p>— DHH (@dhh) <a href="https://twitter.com/dhh/status/885600491224346624">July 13, 2017</a>
+</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote>
+<p>DHH 是 Rails 的发明人，这是他分享他们产品 Basecamp 的 response time 数据</p>
+</blockquote>
+
+<p>后端效能要关注的是个别 HTTP Request 的反应时间，也就是 Response Time。这个时间在 Rails log 中可以看到：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/yx097gUGQB6KPcgFFPVH_33.png" title=""></figure></p>
+
+<p>或是可以安装 <a href="https://github.com/MiniProfiler/rack-mini-profiler">rack-mini-profiler</a> 这个 gem，就可以在画面上直接看到这个数据：</p>
+
+<p>编辑 Gemile</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="err">+  gem 'rack-mini-profiler'
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重开 Rails。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/l0IjWnqIRj2WL8PW8SXS_34.png" title=""></figure></p>
+
+<p>这样网页左上角就会出现 Response Time 的数据，点开来后还可以进到进一步的分析。</p>
+<h3>安装第三方效能分析服务</h3>
+<p>80/20法则：会拖慢整体效能的程式，只佔全部程式的一小部分而已，所以我们只最佳化会造成问题的程式。接下来的问题就是，如何找到那一小部分的效能瓶颈，如果用猜的去找那3%造成效能问题的程式，再用感觉去比较改过之后的效能好像有比较快，这种作法一点都不科学而且浪费时间。善用分析工具找效能瓶颈，最佳化前需要测量，最佳化后也要测量比较。</p>
+
+<p>透过以下的效能分析服务，可以收集网站实际营运的数据，找出哪些部分是效能不好的地方加以改善：</p>
+
+<ul>
+<li><a href="https://newrelic.com">New Relic</a></li>
+<li><a href="https://www.skylight.io">Skylight</a></li>
+<li><a href="https://scoutapp.com">Scout</a></li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JMcDpIAdTlW9Im1ohABn_40.png" title=""></figure></p>
+
+<p>如果你有实际营运的网站，请挑一家注册试用，根据它的说明会需要安装它的 gem。</p>
+<h3>后端效能提速的方向</h3>
+<p>对后端来说，一个方向是提供 Rails 和 Ruby 代码的效能，一个方向是提供数据库方面的效能。</p>
+
+<p>根据实务经验，很大的机率会慢在数据库的读取上，这是因为 Rails 开发者很容易沉浸在 ActiveRecord 带来的开发高效率上，而忽略了 ActiveRecord 很容易不小心就产生了效能差劲的 SQL 查询。存取数据库是一种相对于 CPU 运算很慢的 I/O 硬盘操作：每一条 SQL 查询都得耗上时间、执行回传的结果也会被转成 ActiveRecord 对象然后放进内存。因此了解背后产生的 SQL 是其中的硬知识，我们会花比较多的篇幅在调整 ActievRecord 数据库取数据的方式，以改善网站效能。</p>
+
+<blockquote>
+<p>还没看数据库教程的话，建议您先完成该教程。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9. 避免 N+1 SQL 查询
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>N+1 queries 是数据库效能头号杀手。ActiveRecord 的关联功能功能很方便，但很容易发出过多的 SQL 查询。在示范项目中，每篇贴文(Post) <code>belongs_to</code> 作者(User)，请打开示范项目的首页 <a href="http://localhost:3000" rel="nofollow" target="_blank">http://localhost:3000</a>，观察一下 Rails Log：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WP0WedEcSz2B5CFLdBvS_41.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/g2ldmJCATsWXbNMY4jHL_42.png" title=""></figure></p>
+
+<p>发现到很多很类似的 <code>SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?  [["id", XXX], ["LIMIT", 1]]</code>，而且根据 rack-mini-profiler 的数据，这一页总共发出了 26 个 SQL 查询，怎么会这么多?</p>
+
+<p>关键在出在 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% @posts.each do |post| %&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;%= link_to post.title, post_path(post) %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+
+<p>这个循环中，每一次都需要读取 <code>post.user</code>，造成了所谓的 N+1 问题，当一页 Post 有 25 笔时，总共发出了 26 个 SQL 查询，一笔是 <code>SELECT * FROM posts</code>，另外 25 笔是一笔一笔去 <code>SELECT * FROM users WHERE users.id = XXX</code>，严重拖慢了效能。</p>
+
+<blockquote>
+<p>Rails 针对重复的 SQL 查询有做缓存，所以截图中有的是 CACHE User Load。截图中最后一个 SQL 查询 <code>SELECT COUNT(*) FROM posts</code> 是计算分页的总页数用到的。</p>
+</blockquote>
+
+<p>解决方法也不难，我们需要在捞 posts 数据的时候，就要先告诉 ActiveRecord 我们也需要 posts 的 user 数据，这样 ActiveRecord 就会预先捞出所有需要的 users 数据。</p>
+
+<p>用到的语法是加上 <code>includes</code>，请修改 <code>app/controllers/posts_controller.rb</code>，把需要一起捞出来的关联 model 加上去即可：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @posts = Post.page(params[:page])
+</span><span class="gi">+    @posts = Post.includes(:user).page(params[:page])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>在观察一次 Log，SQL 查询就只剩下两条了。一条捞 Posts，一条捞 Users。速度从 1173ms 提升到 117ms，快了十倍!</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2C2EIoqFS3Slb5G1Dnxq_43.png" title=""></figure></p>
+<h3>改进 posts#show 的 N+1</h3>
+<p>接下来点进任一篇文章，文章有许多留言，留言的作者也有一样的 N+1 问题，让我们处理一下：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def show
+    @post = Post.find(params[:id])
+<span class="gd">-   @comments = @post.comments
+</span><span class="gi">+   @comments = @post.comments.includes(:user)
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+<h3>includes 多个关联</h3>
+<p><code>includes</code> 也可以一次捞多个关联的数据，首先让我们增加一个情境是 posts#index 页面显示每篇贴文的浏览用户，以及按讚的用户：</p>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;table class="table"&gt;
+    &lt;tr&gt;
+      &lt;th&gt;标题&lt;/th&gt;
+      &lt;th&gt;作者&lt;/th&gt;
+<span class="gi">+     &lt;th&gt;留言用户&lt;/th&gt;
++     &lt;th&gt;按讚用户&lt;/th&gt;
+</span>    &lt;/tr&gt;
+    &lt;% @posts.each do |post| %&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;%= link_to post.title, post_path(post) %&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td&gt;
+<span class="gi">+       &lt;td&gt;&lt;%= post.comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
++       &lt;td&gt;&lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt;&lt;/td&gt;
+</span>      &lt;/tr&gt;
+    &lt;% end %&gt;
+<span class="err">  &lt;/table&gt;
+</span></pre></div>
+</figure>
+
+<p>再次浏览 <a href="http://localhost:3000" rel="nofollow" target="_blank">http://localhost:3000</a> 看看 log，果然 N+1 又冒出来了，吓死人的多：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/HSZIDYiTR7SZVk74FCEw_44.png" title=""></figure></p>
+
+<p>让我们加上 includes，修改 <code>app/controllers/posts_controller.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @posts = Post.includes(:user).page(params[:page])
+</span><span class="gi">+    @posts = Post.includes(:user, :liked_users, { :comments =&gt; :user } ).page(params[:page])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 <code>{ :comments =&gt; :user }</code> 这个 Hash 表示除了捞 comments 之外，还包括它的下一层 user 关联。</p>
+<h3>includes 有条件怎么办?</h3>
+<p>这个范例项目的 Comment model 有一个字段是 status 状态，表示这个留言可以是公开(public)或私密留言(private)，因此在 posts index 页面上我们希望不要显示状态是私密的留言作者：</p>
+
+<p>编辑 <code>app/models/comment.rb</code> 加上一个 scope:</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/comment.rb
+</span></figcaption><div class="highlight"><pre>  class Comment &lt; ApplicationRecord
+
+    belongs_to :user
+    belongs_to :post
+
+<span class="gi">+   scope :visible, -&gt; { where( :status =&gt; "public") }
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>接下来你可能会直接修改 <code>app/views/posts/index.html.erb</code> 套用这个 scope：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;td&gt;&lt;%= post.comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+</span><span class="gi">+  &lt;td&gt;&lt;%= post.comments.visible.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>观察一下 rails log，很不幸的 N+1 又出现了，ActiveRecord 没这么聪明，它认为事先 includes 的 <code>post.comments</code> 跟这里的 <code>post.comments.visible</code> 是不一样的，所以发出了 N+1 Queries。</p>
+
+<p>我们需要在 Post model 增加一个有条件的关联，修改 <code>app/models/post.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre>   has_many :comments
+<span class="gi">+  has_many :visible_comments, -&gt; { visible }, :class_name =&gt; "Comment"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后修改 <code>app/controllers/posts_controller.rb</code> 改用这个新的有条件的关联：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @posts = Post.includes(:user, :liked_users, { :comments =&gt; :user } ).page(params[:page])
+</span><span class="gi">+    @posts = Post.includes(:user, :liked_users, { :visible_comments =&gt; :user } ).page(params[:page])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;td&gt;&lt;%= post.comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+</span><span class="err">+  &lt;td&gt;&lt;%= post.visible_comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+</span></pre></div>
+</figure>
+
+<p>这样就大功告成了，观察 Rails log 可以看到 N+1 Queries 不见了。</p>
+<h3>用工具自动侦测 N+1 Queries</h3>
+<p>Bullet 这个 gem <a href="https://github.com/flyerhzm/bullet" rel="nofollow" target="_blank">https://github.com/flyerhzm/bullet</a> 可以在开发时协助侦测 N+1 queries 问题</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10. ActiveRecord 优化技巧
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了 N+1 之外，还有一些使用 ActiveRecord 要注意的地方，其中一个最重要的观念就是内存的使用：数据库的数据放在硬盘，当我们使用 ActiveRecord 读取数据时，会将数据从硬盘读出，变成 Ruby 对象放在内存中，这是会耗费内存资源的，我们需要优化内存的使用。</p>
+<h3>避免 .all 查询</h3>
+<p>硬盘的空间比内存大得多，放在数据库的数据可能成千上万笔。因此当你用例如 <code>Post.all</code> 查询时，会将所有的 Post 数据读进内存，当数据很多时就会非常慢。</p>
+
+<p>解决方法我们都很熟悉了，就是使用分页的机制，使用 <a href="https://github.com/mislav/will_paginate">will_paginate</a> 或 <a href="https://github.com/kaminari/kaminari">kaminari</a>来做分页功能。</p>
+<h3>find_each 技巧</h3>
+<p>如果真的需要捞出全部的数据做处理，就需要分次捞才不会一次把内存吃光。Rails 针对这个情境提供了<a href="http://api.rubyonrails.org/classes/ActiveRecord/Batches.html">批次方法</a>。</p>
+
+<p>一个常见的情境是修理数据，假设我们想要在 Post 上新增一个字段是 <code>date</code>，但是刚新增的字段没有数据，我们需要走访所有的 Post 贴文去补上这个数据：</p>
+
+<p>执行 <code>rails g migration add_date_to_posts</code></p>
+
+<p>编辑 <code>db/migrate/2017XXXXXXXXXX_add_date_to_posts.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/2017XXXXXXXXXX_add_date_to_posts.rb
+</span></figcaption><div class="highlight"><pre>   class AddDateToPosts &lt; ActiveRecord::Migration[5.1]
+     def change
+<span class="gi">+      add_column :posts, :date, :date
++
++      Post.find_each do |post|
++        post.date = post.created_at.to_date
++        post.save( :validate =&gt; false )
++      end
+</span>     end
+<span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code> 就会新增 <code>date</code> 字段，然后用 <code>Post.find_each</code> 走访所有贴文补上 <code>date</code> 数据，这个方法会每一千笔每一千笔去捞出 Posts 数据，而不是一次全部捞出来。</p>
+<h3>预加载(Preload)概念</h3>
+<p>留言有分公开(Public)和私密(Private)状态，让我们修改 Post show 页面来反应这个需求：改成显示全部公开的留言，以及我自己的私密留言。</p>
+
+<p>修改 <code>app/controllers/posts_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  def show
+    @post = Post.find(params[:id])
+<span class="gd">-   @comments = @post.comments.includes(:user)
+</span><span class="gi">+   @comments = @post.comments.visible.includes(:user)
+</span>
+<span class="gi">+   if current_user
++     @my_comments = @post.comments.where( :status =&gt; "private", :user_id =&gt; current_user.id ).includes(:user)
++   end
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/posts/show.html.erb</code> 加上我们私密留言</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/show.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;/table&gt;
+
+<span class="gi">+ &lt;% if current_user %&gt;
++   &lt;h2&gt;My Comments&lt;/h2&gt;
++
++   &lt;table class="table"&gt;
++     &lt;% @my_comments.each do |comment| %&gt;
++       &lt;tr&gt;
++         &lt;td&gt;&lt;%= comment.content %&gt;&lt;/td&gt;
++         &lt;td&gt;&lt;%= comment.user.display_name %&gt;&lt;/td&gt;
++       &lt;/tr&gt;
++     &lt;% end %&gt;
++   &lt;/table&gt;
++ &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/gKIXd6ArTOaVaXE3pH4G_51.png" title=""></figure></p>
+
+<blockquote>
+<p>记得登入，然后不是每篇贴文都有我的留言，因为是乱数产生的，你可以试试别的贴文</p>
+</blockquote>
+
+<p>看看 log 可以看到捞 comments 捞了两次，一次是捞公开留言，一次是捞我的留言。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7ZyNgiuIRQkgKdNhFys2_47.png" title=""></figure></p>
+
+<p>不过，如果你仔细想想，这两个查询根本就可以一次就捞出来，修改 <code>app/controllers/posts_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>
+   def show
+     @post = Post.find(params[:id])
+<span class="gd">-    @comments = @post.comments.visible.includes(:user)
+</span>
+     if current_user
+<span class="gd">-      @my_comments = @post.comments.where( :status =&gt; "private", :user_id =&gt; current_user.id ).includes(:user)
+</span>
+<span class="gi">+      all_comments = @post.comments.where("status = ? OR (status = ? AND user_id = ?)", "public", "private", current_user.id).includes(:user)
++      @comments = all_comments.select{ |x| x.status == "public" }
++      @my_comments = all_comments.select{ |x| x.status == "private" }
+</span>
+<span class="gi">+    else
++      @comments  = @post.comments.visible.includes(:user)
+</span>     end
+   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><code>all_comments</code> 就是我们预先捞出来的 comments，利用了 SQL 条件 <code>"status = ? OR (status = ? AND user_id = ?)"</code> 捞出所有公开或我的私密留言。然后 <code>@comment</code> 和 <code>@my_comments</code> 是用 <code>select</code> 这个数组方法，从内存中再分别过滤出公开留言和我的私密留言。</p>
+
+<p>这就是预先加载(Preload)概念: 我们尽可能合并 SQL 查询一次捞出，然后再用数组方法 <code>select</code> 过滤出需要的结果。</p>
+
+<p>再次看一下 log，只捞了一次 comments 了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/X837gtaJROCoDXfGvzVS_48.png" title=""></figure></p>
+<h3>count 和 size 方法</h3>
+<p>count 和 size 方法都可以查询数量，这两个方法有什么差异吗？我们在 posts show 页面上显示一下留言的数量，请<br>
+编辑 <code>app/views/posts/show.html.erb</code>，在最下方加入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/show.html.erb
+</span></figcaption><div class="highlight"><pre>Total: &lt;%= @comments.count %&gt;
+Total: &lt;%= @comments.count %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>这里故意放两行来示范效果</p>
+</blockquote>
+
+<p>然后看一下 log:</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7GIqmWpMR328ngsgDjLA_45.png" title=""></figure></p>
+
+<p>会看到有两条 COUNT 的 SQL。让我们改成 <code>.size</code> 方法看看：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">- Total: &lt;%= @comments.count %&gt;
+- Total: &lt;%= @comments.count %&gt;
+</span><span class="gi">+ Total: &lt;%= @comments.size %&gt;
++ Total: &lt;%= @comments.size %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Yzltta1ZTy234VikD2gW_46.png" title=""></figure></p>
+
+<p>会发现竟然没有 COUNT SQL 了。</p>
+
+<ul>
+<li>调用 <code>count</code> 方法是对数据库送出一次 COUNT 的 SQL 查询</li>
+<li>而<code>size</code> 是数组的方法，因为 <code>@comments</code> 这个对象已经在内存了，调用 <code>size</code> 是去计算这个 <code>@comments</code>里面元素的数量，因此不需要再发出 COUNT 的 SQL 查询。</li>
+</ul>
+
+<p>在这个范例中，因为画面中已经显示了 <code>@comments</code>，表示这个数据已经从数据库中捞出，所以适合用 <code>.size</code> 方法，而不需要用 <code>.count</code> 重复再问一次数据库。</p>
+
+<p>让我们换一个情境，在 posts index 页面上显示留言的数量，请修改 <code>app/views/posts/index.html.erb</code>，加上留言数：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;table class="table"&gt;
+    &lt;tr&gt;
+      &lt;th&gt;标题&lt;/th&gt;
+      &lt;th&gt;作者&lt;/th&gt;
+<span class="gi">+     &lt;th&gt;留言数&lt;/th&gt;
+</span>      &lt;th&gt;留言用户&lt;/th&gt;
+      &lt;th&gt;按讚用户&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;% @posts.each do |post| %&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;% if current_user &amp;&amp; current_user.like_post?(post) %&gt;
+            👍👍👍
+          &lt;% end %&gt;
+          &lt;%= link_to post.title, post_path(post) %&gt;
+        &lt;/td&gt;
+        &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td&gt;
+<span class="gi">+       &lt;td&gt;&lt;%= post.visible_comments.count %&gt;&lt;/td&gt;
+</span>        &lt;td&gt;&lt;%= post.visible_comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;% end %&gt;
+<span class="err">  &lt;/table&gt;
+</span></pre></div>
+</figure>
+
+<p>看一下 log，发现 N+1 又出来了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WOBKRd5yQNCJbGgUCbD3_61.png" title=""></figure></p>
+
+<p>这个情境下用 <code>count</code> 就不对了，因为 <code>post.visible_comments</code> 我们其实已经捞出来了，应该用 <code>size</code> 方法去算即可，不需要再问一次数据库：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>-       &lt;td&gt;&lt;%= post.visible_comments.count %&gt;&lt;/td&gt;
+-       &lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;/td&gt;
+</pre></div>
+</figure>
+
+<p>再看一次 log，多的 SQL queries 现在都没了。</p>
+<h3>避免重复 SQL 查询</h3>
+<p>情境是我们想在 posts index 页面上显示我是否有按过讚：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2RiBB3ZeRNCQ2Vd4OGpK_50.png" title=""></figure></p>
+
+<p>修改 <code>app/models/user.rb</code>，让我们新增一个方法判断 User 有没有针对一篇 Post 按过 Like：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  def like_post?(post)
+    # 或是写 self.likes.where( :post_id =&gt; post.id ).first.present? 也可以
+    self.likes.where( :post_id =&gt; post.id ).exists?
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-      &lt;td&gt;&lt;%= link_to post.title, post_path(post) %&gt;&lt;/td&gt;
+</span><span class="gi">+      &lt;td&gt;
++        &lt;% if current_user &amp;&amp; current_user.like_post?(post) %&gt;
++          👍👍👍
++        &lt;% end %&gt;
++        &lt;%= link_to post.title, post_path(post) %&gt;
++      &lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>代码看起来很简单，一下就写好了，让我看看对效能有没有影响：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mag9f6VOT5C3MVsopDLF_49.png" title=""></figure></p>
+
+<p>吓死人，怎么多出这么多多 <code>SELECT  "likes".* FROM "likes" WHERE "likes"."user_id" = ? AND "likes"."post_id" = ? ORDER BY "likes"."id" ASC LIMIT ?</code>，每篇贴文都去查询一次有没有 Like。</p>
+
+<p>如果你已经有了上一节预加载(Preload)观念，就会联想到这个 <code>likes</code> 数据，我们在上一章其实已经捞出来了，也就是 <code>liked_users</code>，我们应该去检查贴文的 <code>liked_users</code> 里面有没有我自己，就可以判断我有没有按过讚了。</p>
+
+<p>修改 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>   def like_post?(post)
+<span class="gd">-    self.likes.where( :post_id =&gt; post.id ).exists?
+</span>     # post.liked_users 实际上在 controler 中已经被取出放进内存了，这里用数组的 include? 方法去检查里面有没有我自己
+<span class="gi">+    post.liked_users.include?(self)
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>再次看一下 log，发现多的 SQL 都不见了 👍👍👍</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/z2W27XsMQhSViGStPOQR_52.png" title=""></figure></p>
+
+<p>不过请放心：你是很难有先见之明知道要这样写的，因为不同页面会加载的数据不同，需要因地制宜的优化。</p>
+<h3>pluck 技巧</h3>
+<p>使用 ActiveRecord 从数据库中取出数据时，会形成 ActiveRecord 对象放进内存，而这个 ActiveRecord 类其实有点肥大，因为它本身包含很多操作方法等等。因此在只需要取出单纯数据，而不需要 ActiveRecord 任何功能的时候，可以用 <code>pluck</code> 方法，例如我们只想要取出所有用户的 email 数据：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  emails = User.all.map{ |u| u.email }
+</pre></div>
+</figure>
+
+<p>和</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  emails = User.pluck(:email)
+</pre></div>
+</figure>
+
+<p>两者的速度差了非常多：前者需要将所有用户捞出来变成 ActiveRecord 对象，然后再转成 email 的数组。后者直接就是 email 数组。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11. 数据库 SQL 优化
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>越了解 SQL，使用 ActiveRecord 就越得心应手。浏览 <code>http://localhost:3000/posts/report</code> 这一页：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/XB5jNBwQyqNSgZA8RRfK_70.png" title=""></figure></p>
+
+<p>这一页会显示哪些 Post 的订阅数(Subscription)最多，依照留言数排序：</p>
+
+<p>看一下 log，不太妙：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/AwhURHeNQJypiqGt0bgo_71.png" title=""></figure></p>
+
+<p>本来的实作有什么问题呢？打开 <code>app/controllers/posts_controller.rb</code> 这个档案进行优化：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>def report
+<span class="gd">-  @posts = Post.all.include(:user).sort_by{ |post| post.subscriptions.size }.reverse[0,10]
+</span><span class="gi">+  @posts = Post.includes(:user).joins(:subscriptions).group("posts.id").select("posts.*, COUNT(subscriptions.id) as subscriptions_count").order("subscriptions_count DESC").limit(10)
+</span>end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>接着修改 <code>app/views/posts/report.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/report.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;/td&gt;
+</span><span class="gi">+  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>优化之后的结果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2N6XMfMHQb675xtdIb0O_72.png" title=""></figure></p>
+
+<p>解说：因为订阅数并不是 Post 的一个字段，我们不能直接写 <code>Post.order("subscriptions_count DESC").limit(10)</code>，需要想办法去计算订阅数：</p>
+
+<ul>
+<li>本来的做法需要捞出所有的 Post 贴文到内存中，每篇贴文计算订阅数，然后数组排序之后，取出前十名</li>
+<li>新的做法是 SQL 的 <code>group</code> 语法，交由数据库的引擎来计算，最后刚刚好取出 10 笔数据成为 Ruby 对象放入内存</li>
+</ul>
+
+<blockquote>
+<p>在购物网站中，这个其实就是购物车分析的功能：你可以分析哪些商品最常被加入购物车但是没有结帐。</p>
+</blockquote>
+
+<p>像这种计算报表类型的应用，如果你把数据从数据库都取出用 Ruby 来计算的话，效能会非常差。你需要利用 SQL 来让数据库引擎来做内部运算，效能才会快。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12. 计数缓存 (Counter Cache)
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在数据库教程中，我们提过逆规范化(Denormalized)的概念，这一章让我们来实际实作看看。</p>
+
+<p>想要做的情境是 posts index 页面上，我们想要显示订阅数(Subscriptions)。首先编辑 <code>app/views/posts/index.html.erb</code> 加上订阅数：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;th&gt;留言数&lt;/th&gt;
+<span class="gi">+   &lt;th&gt;订阅数&lt;/th&gt;
+</span>
+# 略
+
+&lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;/td&gt;
+<span class="gi">+   &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3ZEcs8ZhTnqM5Br6cvHT_80.png" title=""></figure></p>
+
+<p>不意外的，这样写造成了很多 SQL 查询：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/O6S2vpFLQoCmmLWGLNbK_81.png" title=""></figure></p>
+
+<p>跟显示 <code>visible_comments</code> 留言数不同，订阅的数据并没有被预先加载，所以需要一笔一笔去 COUNT。要怎么改善呢？</p>
+
+<p>如果你熟悉 SQL 的话，可以用 SQL 解决，编辑 <code>app/controllers/posts_controller.rb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>  def index
+    @posts = Post.includes(:user, :liked_users, { :visible_comments =&gt; :user } ).page(params[:page])
+
+<span class="gi">+   post_ids = @posts.map{ |p| p.id }
++   @subscriptions_count = Post.where( :id =&gt; post_ids).joins(:subscriptions).group("posts.id").count
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-   &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;/td&gt;
+</span><span class="gi">+   &lt;td&gt;&lt;%= @subscriptions_count[post.id] %&gt;&lt;/td&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>观察一下 log，我们只用一条 SQL 就可以计算这一页贴文的所有订阅数:</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dFzT3NEQxmOJfB2w91cz_82.png" title=""></figure></p>
+
+<blockquote>
+<p><code>@subscriptions_count</code> 这个变量是个 Hash，键是 post ID，值是订阅数，例如 <code>{403=&gt;59, 404=&gt;89, 405=&gt;10, 406=&gt;93, 407=&gt;10, 408=&gt;47, 409=&gt;90, 410=&gt;78, 411=&gt;79, 412=&gt;43, 413=&gt;58, 414=&gt;13, 415=&gt;61, 416=&gt;76, 417=&gt;97, 418=&gt;59, 419=&gt;41, 420=&gt;68, 421=&gt;44, 422=&gt;44, 423=&gt;85, 424=&gt;95, 425=&gt;12, 426=&gt;54, 427=&gt;78}</code></p>
+</blockquote>
+
+<p>不过，这一页是流量最高的首页，有没有办法可以更快更简单？</p>
+<h3>计数缓存 (Counter Cache)</h3>
+<p>像这种 <code>Post has_many subscriptions</code> 的一对多关系，如果经常要显示有多少笔数据，与其每次都用 SQL 计算，我们可以用逆规范化的概念，直接新增一个 posts 的字段把订阅的数字存下来，这样显示的时候直接就可以显示了，不需要再计算。然后每次新增或删除 Subscription 时，需要记得去更新这个值即可。</p>
+
+<p>Rails 内建就有计数缓存 (Counter Cache) 的功能：</p>
+
+<p>执行 <code>rails g migration add_subscriptions_to_posts</code></p>
+
+<p>编辑 <code>db/migrate/2017XXXXXXXXXX_add_subscriptions_to_posts.rb</code>，新增一个字段 <code>subscriptions_count</code> 到 posts 上，表示这篇贴文有多少订阅数：</p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/2017XXXXXXXXXX_add_subscriptions_to_posts.rb
+</span></figcaption><div class="highlight"><pre>  class AddSubscriptionsToPosts &lt; ActiveRecord::Migration[5.1]
+    def change
+
+<span class="gi">+    add_column :posts, :subscriptions_count, :integer, :default =&gt; 0
+</span>
+<span class="gi">+    Post.pluck(:id).each do |i|
++      Post.reset_counters(i, :subscriptions) # 刚新增的字段都是 0，需要将计数全部重算一次
++    end
+</span>    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/subscription.rb</code>，加上 <code>counter_cache</code>，这会告诉 Rails 如果有新增或删除 Subscription 时，自动去更新 Post 的 <code>subscriptions_count</code> 数字：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/subscription.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-   belongs_to :post
+</span><span class="gi">+   belongs_to :post, :counter_cache =&gt; true
+</span>
+<span class="err">    # 或 belongs_to :post, :counter_cache =&gt; "subscriptions_count"
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>修改 <code>app/views/posts/index.html.erb</code>，直接显示这个数字：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;td&gt;&lt;%= @subscriptions_count[post.id] %&gt;&lt;/td&gt;
+</span><span class="err">+  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td&gt;
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/posts_controller.rb</code>，不需要再计算订阅数了：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre>  def index
+    @posts = Post.includes(:user, :liked_users, { :visible_comments =&gt; :user } ).page(params[:page])
+
+<span class="gd">-   post_ids = @posts.map{ |p| p.id }
+-   @subscriptions_count = Post.where( :id =&gt; post_ids).joins(:subscriptions).group("posts.id").count
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>Rails 内建的 Counter Cache 功能比较简单，如果你需要更多功能，请参考 <a href="https://github.com/magnusvk/counter_culture" rel="nofollow" target="_blank">https://github.com/magnusvk/counter_culture</a> 这个 gem。</p>
+</blockquote>
+<h3>再一个逆规范化的例子</h3>
+<p>需求情境：在 posts index 页面上，显示每篇贴文的最后订阅的时间</p>
+
+<p>逆规范化解法：</p>
+
+<ol>
+<li>在 posts table 上新增一个一个 last_subscribed_at 时间字段</li>
+<li>在有人订阅时，例如 subscriptions controller 的 create action 中，去更新该篇 post 的 last_subscribed_at 值</li>
+<li>在有人取消订阅时，例如 subscriptions controller 的 destroy action 中，去更新该篇 post 的 last_subscribed_at 值</li>
+</ol>
+
+<p>跟 Counter Cache 概念一样，只是实作麻烦一点，我们需要手动在正确的时机去维护 <code>last_subscribed_at</code> 的值</p>
+<h3>小结论：什么时候用逆规范化做优化？</h3>
+<p>如果不常显示该数据，而且你会写 SQL 做计算的话，我们可以用纯 SQL 的方式来解决。但是如果需要经常显示该数据，就可以考虑用逆规范化的方式，将数据缓存下来。这样效能可以更好。但是缺点就是需要维护该数据的正确性，要写的 Ruby 代码也比较多。</p>
+
+<p>考量：读取的频率 v.s. 更新缓存数据的成本</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13. 改进 Render Partial 的效能
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>看 SQL 头晕了吗？这一章让我们看一个 Rails View 的效能改善，情境是当同一个 partial 需要不断 render 时，可以改用 collection 的写法，效能会更好。</p>
+
+<p>例如我们将 index 页面中每一笔 post 改成用 partial 处理：</p>
+
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;% @posts.each do |post| %&gt;
+<span class="gd">-    &lt;tr&gt;
+-      &lt;td&gt;
+-        &lt;% if current_user &amp;&amp; current_user.like_post?(post) %&gt;
+-          👍👍👍
+-        &lt;% end %&gt;
+-        &lt;%= link_to post.title, post_path(post) %&gt;
+-      &lt;/td&gt;
+-      &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td&gt;
+-      &lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;/td&gt;
+-      &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td&gt;
+-      &lt;td&gt;&lt;%= post.visible_comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+-      &lt;td&gt;&lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt;&lt;/td&gt;
+-    &lt;/tr&gt;
+</span><span class="gi">+    &lt;%= render :partial =&gt; "post", :locals =&gt; { :post =&gt; post } %&gt;
+</span>  &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/posts/_post.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/_post.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;tr&gt;
+  &lt;td&gt;
+    &lt;% if current_user &amp;&amp; current_user.like_post?(post) %&gt;
+      👍👍👍
+    &lt;% end %&gt;
+    &lt;%= link_to post.title, post_path(post) %&gt;
+  &lt;/td&gt;
+  &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;%= post.visible_comments.map{ |c| c.user.display_name }.join(",") %&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;%= post.liked_users.map{ |u| u.display_name }.join(",") %&gt;&lt;/td&gt;
+<span class="err">&lt;/tr&gt;
+</span></pre></div>
+</figure>
+
+<p>看一下 log，其中不断调用 <code>Rendered posts/_post.html.erb</code> 这个 partial 样板：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/H7YiBr8vQGGMAP4RXZkn_90.png" title=""></figure></p>
+
+<p>怎么改进呢？Rails 针对这种情况，有提供一个优化的写法，再次编辑 <code>app/views/posts/index.html.erb</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;% @posts.each do |post| %&gt;
+-    &lt;%= render :partial =&gt; "post", :locals =&gt; { :post =&gt; post } %&gt;
+-  &lt;% end %&gt;
+</span>
+<span class="gi">+  &lt;%= render :partial =&gt; "post", :collection =&gt; @posts, :as =&gt;
+</span>  :post %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>整个 <code>@posts.each</code> 循环都拿掉了，新的 <code>:collection</code> 参数就会帮你做循环。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ALFhu8HnS3aJssEhWx6O_91.png" title=""></figure></p>
+
+<p>为什么这种用法会比较快呢？本来的写法 Rails 需要针对每个 partial 都做一次编译处理，新的写法 Rails 知道这些 partial 原来是同一个 partial，因此只需要编译处理一次。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14. 数据库索引
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在数据库教程中(在 SQL 语言: DML 这一章最后一节)，我们有提到加上 Indexes 索引的重要，忘记帮数据库加上索引也是常见的效能杀手，作为搜寻条件的字段如果没有加索引，SQL 查询的时候就会一笔笔检查资料表中的所有资料，当资料一多的时候相差的效能就十分巨大，没索引是 O(N)，有索引是 O(logN)。</p>
+
+<p>一般来说，以下的字段都必须记得加上索引：</p>
+
+<ul>
+<li>外部键(Foreign key)</li>
+<li>会被排序的字段(被放在order方法中)</li>
+<li>会被查询的字段(被放在where方法中)</li>
+<li>会被group的字段(被放在group方法中)</li>
+</ul>
+
+<p>让我们补上忘记的索引：</p>
+
+<p>执行 <code>rails g migration add_indexes</code></p>
+
+<p>编辑 <code>db/migrate/20170XXXXXXXXX_add_indexes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/20170XXXXXXXXX_add_indexes.rb
+</span></figcaption><div class="highlight"><pre>  class AddIndexes &lt; ActiveRecord::Migration[5.1]
+
+    def change
+<span class="gi">+     add_index :comments, :status
++     add_index :comments, :post_id
++     add_index :likes, :post_id
++     add_index :likes, :user_id
++
++     add_index :subscriptions, :post_id
++     add_index :subscriptions, :user_id
+</span>    end
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+<h3>常见的效能错误</h3>
+<p>一个常犯的错误是用 <code>created_at</code> 来进行排序，例如想要依照新建时间排序，让新的贴文在上面：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>@posts = Post.order("created_at DESC").page(params[:page])
+</pre></div>
+</figure>
+
+<p>由于 <code>created_at</code> 这个字段我们并没有加上索引，如果你只是想要排序，应该改用 <code>id</code> 字串：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>@posts = Post.order("id DESC").page(params[:page])
+</pre></div>
+</figure>
+
+<p>因为 <code>id</code> 是主键本身就有索引，而且它是自动递增的数字。所以根据 <code>id</code> 来排序和根据 <code>created_at</code> 来排序结果是一样的。</p>
+<h3>SQL explain 机制</h3>
+<p>对一个复杂的 SQL 查询来说，有没有索引到底有没有派上用场？SQL 在数据库中到底是如何运行的？需要实际用数据库进行分析才会知道。</p>
+
+<p><code>explain</code> 这个方法可以调用数据库的分析报告：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FkKBMSe0Qr65AoOtHqmS_92.png" title=""></figure></p>
+
+<p>不同种的数据库(SQLite、PostgreSQL、MySQL)的报告格式不一样，这里就不细说了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15. 后端缓存和延展性(Scalability)
+    </h1><h4>所属章节：Part 3: 后端效能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>内存缓存</h3>
+<p>超高流量的网站会需要用到缓存来进一步提升后端效能。本教程没有提及如何做缓存，有兴趣的同学请直接看老师的<a href="https://ihower.tw/rails/caching-cn.html">Rails 实战圣经</a>。</p>
+
+<blockquote>
+<p>快取是台湾术语，意思就是缓存</p>
+</blockquote>
+<h3>网站延展性</h3>
+<p>另一个跟「网站效能(Performance)」常一起听到的名词是「网站延展性(Scalability)」。当网站的用户越来越多，流量越来越大的时候，需要想办法扩展网站的承载能力。</p>
+
+<p>扩展的有两种方式：</p>
+
+<ol>
+<li>垂直扩展：升级服务器，例如用更快的 CPU、用大的硬盘、用多的内存</li>
+<li>水平扩展：增加(租用)更多服务器</li>
+</ol>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JzpEQrsmTHqKigpGCKED_scalling.png" title=""></figure></p>
+
+<p>垂直扩展在初期比较简单，因为网站代码不需要变更，只需要原地硬件升级即可。但是硬件升级是有上限的，越高等级的服务器越贵。CPU 再怎么快，总不可能我们去租一台超级电脑吧。</p>
+
+<p>水平扩展则比较合乎成本，因为一百台平价的电脑，比起一台超级电脑还便宜。但是水平扩展会需要网站架构的运维能力，对技术的要求比较高。</p>
+
+<p>常见的网站架构演进，请参考 <a href="https://www.digitalocean.com/community/tutorials/5-common-server-setups-for-your-web-application">5 Common Server Setups For Your Web Application</a> 这篇文章的图例：</p>
+
+<p><figure><img src="https://assets.digitalocean.com/articles/architecture/single_server.png" title=""></figure></p>
+
+<p>一开始只需要一台服务器</p>
+
+<p><figure><img src="https://assets.digitalocean.com/articles/architecture/separate_database.png" title=""></figure></p>
+
+<p>接下来将数据库独立成一台服务器</p>
+
+<p><figure><img src="https://assets.digitalocean.com/articles/architecture/load_balancer.png" title=""></figure></p>
+
+<p>前面放一台 Load Balancer 服务器分散流量，这样增加更多台应用服务器(Application server，也就是我们的 Rails server)</p>
+
+<p><figure><img src="https://assets.digitalocean.com/articles/architecture/http_accelerator.png" title=""></figure></p>
+
+<p>前面再放 HTTP 缓存服务器</p>
+
+<p><figure><img src="https://assets.digitalocean.com/articles/architecture/master_slave_database_replication.png" title=""></figure></p>
+
+<p>数据库也需要拆分，可以分成 Master 和 Slave 数据库，读写分离。</p>
+
+<p>以上是还算是入门等级的架构，要继续延展的话，就是另一门深似海的学问了。网站的延展性，就是去研究如何在合理的硬件成本下，透过水平扩展持续增加系统容量。这件事情跟 Rails 技术就比较没有关系了。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

@@ -1,0 +1,1844 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1. 什么是云服务
+    </h1><h4>所属章节：Part 1: 云服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>云服务是将电脑运算所需要的硬件和软件资源，透过因特网远程使用，而不需要自备电脑或机房。白话的说，就是去租用别人的电脑。</p>
+
+<p>传统 IT 要建立网站服务器，需要自行购买电脑硬件、购买网络设备、租用机房实体空间等等，在开站前就必须投资大笔的硬件成本。近年来的云服务就像水电等公共基础设施，用多少算多少，你不需要自己盖电厂或净水场。</p>
+
+<p>总而言之，云服务的好处有：</p>
+
+<ul>
+<li>抽象化的资源：你不需要担心底层的硬件设备，包括运算资源(CPU)、储存资源(硬盘)、网络资源(频宽)等等都可以租用</li>
+<li>随租随有：随时可以租、随时可以退租</li>
+<li>扩充性：根据需求，随时可以租更多来对付更大的用户流量</li>
+<li>用多少算多少：用了多少资源，就算多少钱</li>
+</ul>
+
+<p>这年头的新创网络公司，几乎都会选择使用云服务来架设网站服务器，快速方便又经济实惠。</p>
+<h3>云服务类型和厂商</h3>
+<p>云服务可以分成 IaaS、PaaS 和 SaaS 类型，分别为：</p>
+
+<ul>
+<li>IaaS：基础设施服务，Infrastructure-as-a-Service</li>
+<li>PaaS：平台服务，Platform-as-a-Service</li>
+<li>SaaS：软件服务，Software-as-a-Service</li>
+</ul>
+
+<blockquote>
+<p>另一篇参考文章 <a href="http://www.ruanyifeng.com/blog/2017/07/iaas-paas-saas.html">IaaS，PaaS，SaaS 的区别</a></p>
+</blockquote>
+
+<p>以下分别介绍这几种类型。</p>
+<h3>IaaS</h3>
+<p>IaaS 类型(Infrastructure as a Service)的云服务，你可以租到一台有最高权限的虚拟机，可以随你的意愿安装任何软件。</p>
+
+<p>这里说明一下什么是<a href="https://zh.wikipedia.org/zh-cn/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%99%A8">虚拟机(Virtual Machine)</a>：一台电脑上会有一个操作系统，这叫做 Host OS (主人)，但是上面可以透过 VM 软件再安装不同的操作系统，这叫做 Guest OS (客人)，每个 Guest OS 都是独立互相隔离的。</p>
+
+<p>在 Mac 上我们可以透过 <a href="https://www.virtualbox.org">VirualBox</a>、<a href="https://www.vmware.com">VMware Fusion</a> 或 <a href="https://www.parallels.com/">Parallels Desktop</a> 等软件，在 Mac 上再安装 Windows 或 Linux 操作系统。</p>
+
+<p>在云服务中其实也有用了 VM 技术来分租给用户，实际上那一台服务器可能是 8 CPU 核心 16GB 内存，但是分租给八个用户，每个人分配到 1 核心 CPU 和 2GB 内存。透过 VM 技术，不同用户的操作系统是完全独立的，你不会感觉到别的用户跟你共享同一台电脑。有些售价非常便宜云服务商，为什么售价可以这么便宜，就是它把一台服务器分租给过多的用户，并且没有保障你有固定的 CPU 资源可以使用。</p>
+
+<p>让我们看看知名的 IaaS 服务商：</p>
+<h4>国外云服务商</h4>
+<ul>
+<li>
+<a href="http://aws.amazon.com/ec2/">Amazon Web Service</a> 亚马逊是目前全世界最大的云服务商，也是云服务的领导厂商，在各大洲都布有机房。</li>
+<li>
+<a href="http://azure.microsoft.com/zh-tw/services/virtual-machines/">Microsoft Azure</a> 微软的云服务，亚洲的机房在香港和新加坡</li>
+<li>
+<a href="https://cloud.google.com/compute/">Google Cloud Compute Engine</a> 谷歌的云服务，亚洲的机房在台湾、东京、新加坡</li>
+<li>
+<a href="https://www.linode.com/">Linode</a> 亚洲的机房在东京和新加坡</li>
+<li>
+<a href="https://www.digitalocean.com/">DigitalOcean</a> 新加坡机房</li>
+<li>
+<a href="https://www.vultr.com/">Vultr</a> 东京机房</li>
+</ul>
+
+<p>其中 Linode、DigitalOcean 等传统上叫做 VPS(Vitual Private Server) 厂商，只提供虚拟机产品，通常价格比较便宜，计价方式也很简单，一个月只需要美金五块、十块起跳，它套装就包括很够力 CPU 效能、流量频宽、硬盘空间等，挑东京机房离中国也近，所以成为小网站或个人装机的高C/P值首选。</p>
+
+<p>Amazon、Microsoft 和 Google 这种属于云计算平台，以丰富的云端生态系见长，除了虚拟机之外，它还有提供数据库、档案储存和 NoSQL 数据库等等各式各样的代管服务(不用你自己安装，它已经装好并帮你维护)，但同时设定和计价模式也复杂的多，适合专业的网络服务。这些厂商也有提供教育训练跟证照，在稍有规模的公司里面，是由专人(叫做系统管理员、System Administrator、DevOps)或运维部门负责操作的。</p>
+<h4>国内云服务商</h4>
+<ul>
+<li><a href="https://www.alibabacloud.com/zh">阿里云</a></li>
+<li><a href="https://www.qcloud.com/?lang=zh">腾讯云</a></li>
+<li><a href="https://www.qingcloud.com">青云</a></li>
+<li><a href="https://www.ucloud.cn">UCloud</a></li>
+<li><a href="https://www.amazonaws.cn/?nc1=h_ls">Amazon 中国</a></li>
+<li><a href="https://www.mtyun.com">美团云</a></li>
+</ul>
+
+<p>注意到亚马逊中国的用户帐号，和国外 Amazon 的帐号是分开的。为了符合中国法规，在境内营业的公司，服务器都必须设在国内。</p>
+<h3>PaaS</h3>
+<p>PaaS 类型的云服务则是提供固定的程序执行环境，支援特定的编程语言和框架，只要将程式上传到平台上就可以执行。其中支援 Ruby 的厂商有：</p>
+
+<ul>
+<li><a href="https://www.heroku.com">Heroku</a></li>
+<li><a href="https://www.ibm.com/cloud-computing/bluemix">IBM Bluemix</a></li>
+<li><a href="https://www.openshift.com">redhat Openshift</a></li>
+</ul>
+
+<p>之前的教程中，我们将写好的 Rails 网站部署到 Heroku 上，而 Heroku 的服务其实是两个服务的总和：IaaS 云服务器和 Rails 的环境。</p>
+
+<p>为了吸引客户，这些 PaaS 通常会有免费方案可以试用。不过一但需要更多运算资源时，这些 PaaS 的价格比起 IaaS 就贵的多，而且大多只有在美国有机房。因此如果有能力自己运维 Linux 服务器的话，比较少公司会选择用 PaaS 平台。</p>
+<h3>SaaS</h3>
+<p>SaaS (Software as a Service) 类型的云服务只能执行特定软件，例如：</p>
+
+<ul>
+<li>
+<a href="https://jinshuju.net">金数据</a> 人人可用的在线表单工具</li>
+<li>
+<a href="https://hk.tower.im">Tower</a> 你的网上办公室</li>
+<li>
+<a href="https://www.strikingly.com">strikingly</a> Landing Page</li>
+<li><a href="https://github.com">Github</a></li>
+<li>....非常多，只要是线上用租的软件都算</li>
+</ul>
+
+<p>SaaS 软件算是近年来的软件趋势，早年的软件都是一套一套卖断的，现在则逐渐流行用月租或年租的 SaaS 方式。例如早些年微软的 Office 软件就是卖断的软件，一套一套卖，现在因为网络发达，加上 Google 推出免费的 Office 线上软件做竞争，所以微软也开始推出 SaaS 模式的 Office 365。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2. 租用云服务器(Linode)
+    </h1><h4>所属章节：Part 1: 云服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来我们要来实际租一台 IaaS 类型的云服务器，然后在上面运行我们的 Rails 项目：</p>
+
+<ul>
+<li>有国际信用卡(VISA/MASTER)的学员，建议使用 Linode 服务器(日本东京机房)</li>
+<li>没有国际信用卡，有国内银行卡的学员，建议用国内的阿里云</li>
+</ul>
+<h3>Linux 操作系统</h3>
+<p>云服务器的操作系统几乎都是使用 Linux 操作系统，Linux 是一套开源且免费的操作系统。当我们提 Linux 时，通常是讲 Linux Kernel (内核)。给一般用户安装的又分为不同的发行版本(Linux distribution)，例如 Ubuntu、Linux Mint、Debian、CentOS、Redhat 等等由不同厂商或社区维护。不同发行版会预装不同的软件，也有桌面版和服务器版本之分 (服务器版本就不需要 GUI 视窗介面)。</p>
+
+<p>这里推荐初学者使用最多人使用的 <a href="https://www.ubuntu.com/server">Ubuntu Server</a> 版，比较不会碰到安装问题，就算碰到也较容易搜寻到解答。依照 Ubuntu 的命名惯例，建议挑<code>.04</code>是 LTS (Long Term Support) 版本。目前最近的 LTS 版本是 16.04。</p>
+<h3>租用 Linode 服务器</h3>
+<p>以下是在 Linode 租服务器的流程：</p>
+
+<p>(使用阿里云的学员请跳到下一章)</p>
+<h3>Step 0. 注册 Linode</h3>
+<p>前往 <a href="https://www.linode.com/?r=037302ca3f330ec5ca6e910cd1977560d6ff0f3b">https://www.linode.com</a> 注册，然后进入 Linode Manager 后台。</p>
+<h3>Step 1. 选择机器</h3>
+<p>用最小的 1G 内存就够了，地点选离我们最近的 Tokyo 2 机房。</p>
+
+<blockquote>
+<p>内存会影响网站可以服务多少用户，如果用户多就需要比较多的内存。</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3sfevBWjTu6GKwbRWOJr_1.png" title=""></figure></p>
+<h3>Step 2. 安装操作系统</h3>
+<p>选择 Ubuntu 16.04 并设定 root 密码</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/R1oJuhPMQfSWSxaJbTU2_2.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/jOXaM9fRQ7GHaiQB4ABw_3.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YE3guezeTIoTMzY6HqHy_4.png" title=""></figure></p>
+
+<blockquote>
+<p>root 密码请务必有足够的复杂度，如果太好猜被人破解，你的服务器就会被人入侵拿去做坏事喔，例如去挖比特币或是网络攻击的跳板。</p>
+</blockquote>
+<h3>Step 3. 开机</h3>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/scJZTXqhSEq3HUXgKQgY_5.png" title=""></figure></p>
+
+<p>确保真的有开好机</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/BlV39gXrRsiU64ZvEqqH_6.png" title=""></figure></p>
+<h3>Step 4. 登入服务器</h3>
+<p>把 IP 位址记下来，用 SSH 就可以远端登入服务器：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kNioqcNrTqmBeBUPJWRs_7.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DU99d68RQSCI3qJ40euw_8.png" title=""></figure></p>
+
+<p>输入 exit 可以离开服务器。</p>
+<h3>如何移除服务器？</h3>
+<p>如果练习完毕，或是觉得做坏了想要重来。别担心，云服务器就是另一台电脑，随时可以砍掉重练。</p>
+
+<p>如果你要砍掉的话，先关机：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/jCWyWiLSFSm0huhrFKCV_10.png" title=""></figure></p>
+
+<p>然后点移除(Remove)</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rqs8GA2VRZmqssg6wliQ_9.png" title=""></figure></p>
+
+<blockquote>
+<p>注意：所有的云服务器如果你只是点关机、中止或停止的按钮，该服务器还是会继续算钱的。你要点移除、删除或释放的按钮，在主控台上看不到那一台机器后，才不会继续算钱。常常有学员忘记移除掉没有使用的服务器，就会继续被扣钱喔。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3. 租用云服务器(阿里云)
+    </h1><h4>所属章节：Part 1: 云服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来示范如何租用阿里云：</p>
+<h3>Step 0. 注册阿里云</h3>
+<p>前往 <a href="https://www.aliyun.com/">https://www.aliyun.com/</a>，大陆用户请确认选择的是中国站：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zRR5vLaGT1yNi0OGUr0y_11.png" title=""></figure></p>
+
+<p>注册后需要实名认证，才可以继续购买服务器。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/oEvSvWFHRci7ZjTGX3yR_12.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5CuIHqf1TJWxRbWfyuQU_13.png" title=""></figure></p>
+
+<p>充值 100 元：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/iTTuiCtRHKFL0u1Iwy8A_20.png" title=""></figure></p>
+<h3>Step 1. 选择机器</h3>
+<p>在菜单栏找到云服务器 ECS 服务：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5FKBOiaTQI6fEVnlM9rv_14.png" title=""></figure></p>
+
+<p>云服务器 ECS &gt; 实例，单击创建实例</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MjHuFKgTgOt9Y7QJaROy_15.png" title=""></figure></p>
+
+<p>配置很多，让我们稍加说明：</p>
+<h4>计费方式和地域</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/SeI3pNkCTaOOPmG2kUaN_16.png" title=""></figure></p>
+
+<p>计费分成包年包月和按量付费，前者长期来说会比较便宜，不过如果只是短时间做练习，可以选后者。</p>
+
+<p>不同地点会影响连线速度，你可以挑离给最近的。不同地域可以用的服务器等级也不一样，这里建议用比较新的华北三。</p>
+<h4>网络安全组</h4>
+<p>阿里云内建了防火墙功能，你需要打开对内连线 Port 22 (SSH 登入用)、Port 80 (HTTP)、Port 443 (HTTPS)。这里请选默认安全组：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/huMupyuiRrSNUlD2WfKW_21.png" title=""></figure></p>
+<h4>挑选实例</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/AFRU6wgTfmOousoPwRSQ_17.png" title=""></figure></p>
+
+<p>可以选最便宜的 1G 内存就够了。</p>
+
+<blockquote>
+<p>内存会影响网站可以服务多少用户，如果用户多就需要比较多的内存。</p>
+</blockquote>
+<h4>镜像</h4>
+<p>挑选操作系统，请选 Ubuntu 16.04</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QXhJNeQ5mUdBCkriklQM_18.png" title=""></figure></p>
+<h4>安全设置</h4>
+<p>请设置 root 密码</p>
+
+<blockquote>
+<p>root 密码请务必有足够的复杂度，如果太好猜被人破解，你的服务器就会被人入侵拿去做坏事喔，例如去挖比特币或是网络攻击的跳板。</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/oQNdcZxJRNSHwom6RsmU_19.png" title=""></figure></p>
+<h3>Step 3. 开机</h3>
+<p>开通后，前往控制台实例，等待启动后，找到分配给你的 IP 位置：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1vFKhowoQNWkFJCT7ePF_22-0.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fuj1M9FARQeJXwwUpVsH_22.png" title=""></figure></p>
+<h3>Step 4. 登入服务器</h3>
+<p>SSH 登入主机</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OMsWdsqCT1GFYDW5I2tv_23.png" title=""></figure></p>
+<h3>如何移除服务器？</h3>
+<p>如果练习完毕，或是觉得做坏了想要重来。别担心，云服务器就是另一台电脑，随时可以砍掉重练。</p>
+
+<p>首先先停止服务器</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rgxLWjW8RMKFe3C219fz_34.png" title=""></figure></p>
+
+<p>然后点释放设置</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/VpQE5c6JSCuLhOGMwrOs_35.png" title=""></figure></p>
+
+<p>确定主控台没有这个服务器了</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ujPBHBioRPqoyA7PcEX5_36.png" title=""></figure></p>
+
+<blockquote>
+<p>注意：所有的云服务器如果你只是点关机、中止或停止的按钮，该服务器还是会继续算钱的。你要点移除、删除或释放的按钮，在主控台上看不到那一台机器后，才不会继续算钱。常常有学员忘记移除掉没有使用的服务器，就会继续被扣钱喔。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4. 认识命令行 CLI 介面
+    </h1><h4>所属章节：Part 2: Linux 指令入门</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Command Line Interface (CLI) 就是指用文字输入的方式来操作电脑，相对于 Graphical user interface (GUI) 图形用户界面来说，CLI 可说是开发者们的好朋友，因为很多操作用 CLI 的方式比起 GUI 可以更有效率的执行，在服务器上更是只有提供 CLI 可以使用，服务器不需要 GUI 来耗费额外的运算资源，服务器不需要接上萤幕，只有需要运维的时候我们会透过网络远端登入进去操作。</p>
+
+<p>不同操作系统有不同的 CLI 指令，由于 Mac 和 Linux 都是 <a href="https://zh.wikipedia.org/wiki/%E7%B1%BBUnix%E7%B3%BB%E7%BB%9F">UNIX-like</a> 操作系统，所以操作系统的架构和 CLI 指令十分相像，因此可以跑在 Linux 上的开源软件(特别是 Web 后端用到的软件，例如各种数据库、网站服务器、Ruby/Python/PHP 编程语言语言等等) 也都支援 Mac，反而 Windows 支援比较差，CLI 指令也完全不同。这也是为什么 Web 开发者爱用 Mac 的原因，因为接近 Linux 服务器的环境。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/x8wAyzRRRmlOWGa2xAfQ_unix.png" title=""></figure></p>
+
+<blockquote>
+<p>微软在 2014 年换 CEO 后才意识到这个问题，在 Windows 10 上推出了 <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about">Linux Subsystem 和 Bash on Ubuntu on Windows</a> 来试图力挽狂澜...</p>
+</blockquote>
+<h3>名词释疑: Terminal, Console 和 Shell</h3>
+<p>Terminal 是指 CLI 输入输出的介面程序，例如 mac 内建的 Terminal，或是另外装的 <a href="https://www.iterm2.com">iTerm2</a>。使用 Terminal 时会需要设定要用哪一种 Shell。</p>
+
+<p>Shell 是指和电脑沟通的指令，这有分很多种，Unix 上常见使用 Bash Shell，Mac 也是默认用 Bash，但也有人推荐改用 Zsh 更为花俏。Windows 则是用 PowerShell。Shell 可以只当作是 Shell command 用，但也可以当作 Shell script 使用，就像编程语言一样。</p>
+
+<p>Console 指某特定的指令语言环境，例如 mysql console (输入 SQL 指令)、irb console (输入 Ruby 程序)、rails console (输入 rails 程序)</p>
+<h3>Terminal 视窗操作技巧</h3>
+<ul>
+<li>
+<code>Control+c</code> 取消目前指令</li>
+<li>
+<code>Control+z</code> 中断目前指令</li>
+<li>
+<code>Control+a</code> 跳到指令最前面</li>
+<li>
+<code>Control+e</code> 跳到指令最后面</li>
+<li>
+<code>Control+l</code> 清除画面 (或用 clear 指令)</li>
+</ul>
+<h3>一些简单的 CLI 指令</h3>
+<blockquote>
+<p>这些指令 Mac 和 Linux 大部分都是通用的</p>
+</blockquote>
+
+<ul>
+<li>
+<code>date</code> 会显示系统时间</li>
+<li>
+<code>uname -a</code> 显示系统版本</li>
+<li>
+<code>uptime</code> 查电脑开机多久了</li>
+<li>
+<code>which</code> 查询执行档的确切位置</li>
+<li>
+<code>history</code> 查询刚刚执行过的指令</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/LHIgk8I3StqzRTNxHC9K_40.png" title=""></figure></p>
+
+<ul>
+<li>
+<code>man</code> 可以查指令的文件，按 <code>q</code> 可以离开</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/E0pK1BCNTeqGYXnjpnAt_41.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/XBsQIG3GTdCfmjO78GUm_42.png" title=""></figure></p>
+<h3>认识 PATH 环境变量</h3>
+<p>刚刚执行 <code>which date</code> 和 <code>which uptime</code> 时，告诉我们这两个执行档真正的位置放在 <code>/bin/date</code> 和 <code>/usr/bin/uptime</code>。</p>
+
+<p>为什么 Linux 知道要去哪些目录去找执行档在哪里呢? 为什么不需要执行 <code>/bin/date</code>，只需要执行 <code>date</code> 就够了?</p>
+
+<p>在 Linux 中有个特别的环境变量叫做 <code>PATH</code>，你可以用 <code>echo</code> 指令来输出：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/oCQ13dAQ3aCocbruAeyQ_56.png" title=""></figure></p>
+
+<p>PATH 这个环境变量定义了要去哪些目录去找执行档。</p>
+
+<blockquote>
+<p>在 Ruby 程序中，<code>ENV</code> 这个常数就是操作系统的环境变量，用 <code>ENV["PATH"]</code> 可以读到</p>
+</blockquote>
+
+<p>用 <code>export</code> 指令可以设定环境变量。</p>
+<h3>其他 CLI 参考资料</h3>
+<p>先加入书籤，之后有空看。</p>
+
+<ul>
+<li><a href="http://billie66.github.io/TLCL/">快乐的 Linux 命令行</a></li>
+<li><a href="https://i.linuxtoy.org/files/pdf/fwunixref.pdf">Unix/Linux 命令参考</a></li>
+<li><a href="http://www.oreilly.com/programming/free/ten-steps-to-linux-survival.csp">Ten Steps to Linux Survival 电子书</a></li>
+<li><a href="https://learnpythonthehardway.org/book/appendixa.html">Command Line Crash Course</a></li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5. Linux 档案操作
+    </h1><h4>所属章节：Part 2: Linux 指令入门</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Linux 的文件系统和 Mac 很像，以下介绍相关的指令：</p>
+
+<ul>
+<li>
+<code>pwd</code> 显示目前所在的工作目录</li>
+<li>
+<code>cd</code> 可以切换目前的工作目录</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kgdzr9zHQyaHIOo85Bs5_43.png" title=""></figure></p>
+
+<p>在 Linux 中有哪些目录呢？大概说明一下：</p>
+
+<ul>
+<li>
+<code>/</code> 是根目录</li>
+<li>
+<code>/home</code> 用户目录，每个用户会有自己的家目录。（在 Mac 上是 <code>/Users</code>)</li>
+<li>
+<code>/etc</code> 放各种软件的配置文件，例如 mysql, nginx</li>
+<li>
+<code>/var</code> 放 log 日志</li>
+<li>
+<code>/usr</code> 应用程序的安装目录 user program</li>
+<li>
+<code>/tmp</code> 暂存目录，操作系统会定期清除，重开机也会清除</li>
+<li>
+<code>~</code> 这个符号是家目录的意思，如果目前登入的用户是 <code>root</code>，那个 <code>cd ~</code> 会前往 <code>/root</code>。如果目前是用 ihower 帐号登入，<code>cd ~</code> 就会前往 <code>/home/ihower/</code>
+</li>
+</ul>
+<h3>一些档案管理的指令</h3>
+<ul>
+<li>
+<code>ls -la</code> 显示所有档案，包含 <code>.</code> 开头的隐藏档案</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/LKVvkhAiSr6qmJYmnQ0Q_44.png" title=""></figure></p>
+
+<p>这会显示档案和目录的权限(下一章会说明)、档案大小、最后修改时间。</p>
+
+<ul>
+<li>
+<code>mkdir</code> 新增目录</li>
+<li>
+<code>touch</code> 创建一个空文件</li>
+<li>
+<code>cp</code> 复制档案</li>
+<li>
+<code>mv</code> 移动档案或目录(也可以更名)</li>
+<li>
+<code>ln -s</code> 建立捷径别名</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6oUoLyWTDOcf5qFhGq7J_45.png" title=""></figure></p>
+
+<p>在截图中，我先建立一个空目录是 <code>test</code>，然后创建一个文件 README.txt，接着复制和移动。最后用 <code>ln -s</code> 建立一个捷径别名(可以看到 abc 指向 todo.txt)</p>
+
+<ul>
+<li>
+<code>rm</code> 删除档案</li>
+<li>
+<code>rm -r</code> 删除整个目录和以下的档案</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/h0FfVvu8RFSXoUOrc6yL_46.png" title=""></figure></p>
+
+<p>截图中用 <code>rm</code> 指令删除了 abc 和 README.txt。<code>rm</code> 不能删除目录，而 <code>rmdir</code> 指令只能删除空目录，要用 <code>rm -r</code> 指令才可以整个目录含以下的档案都删除掉。</p>
+<h3>如何编辑和浏览文件</h3>
+<p>在 CLI 中没有像 Atom 的 GUI 编辑器，操作系统内建的是 nano 或 vi，让我们练习一下：</p>
+
+<p>输入 <code>nano abc.txt</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IW3OBwEaR1C04sp3e58F_47.png" title=""></figure></p>
+
+<p>按 control + X 再按 Y 再按 Enter 就可以存盘离开。</p>
+
+<p>请务必熟悉一下如何编辑文件，因为我们会时常需要在服务器上直接编辑各种设定档。</p>
+
+<p>vi 和 vim 是另一套更为 geek 的文档编辑器，功能强大但比较难上手使用，有兴趣的学员可以自行 google 如何使用。</p>
+<h3>如何传档案？</h3>
+<p>SSH 通信协议除了可以让我们登入远端的服务器，也可以作为档案传输使用，又叫做 SFTP。CLI 的指令是 <code>scp</code>。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QikL8gWCTWCjDrPuboav_48.png" title=""></figure></p>
+
+<p>截图中，第一个指令将本机的 test.txt 传到服务器上 root 帐号的 <code>~/</code> 目录。</p>
+
+<p>第二个指令则是将服务器上的 <code>~/text.txt</code> 传回本机。</p>
+
+<blockquote>
+<p>在 Mac 上可以用 FTP 软件例如 <a href="https://cyberduck.io">Cyberduck</a>，通讯协议选 SFTP 就可以连线传档。</p>
+</blockquote>
+<h3>如何打包压缩档案</h3>
+<p>压缩和打包是可以分开的：<code>gzip</code> 只能压缩一个档案、<code>tar</code> 可以打包整个目录顺便压缩。</p>
+
+<ul>
+<li>
+<code>gzip</code> 压缩档案</li>
+<li>
+<code>gzip -d</code> 解压缩档案</li>
+<li>
+<code>tar zcvf xxx.tar.gz xxx</code>  将 xxx 目录打包并压缩成 <code>xxx.tar.gz</code> 档案</li>
+<li>
+<code>tar zxcf xxx.tar.gz</code>。将 <code>xxx.tar.gz</code> 解压缩</li>
+</ul>
+
+<p>如果你要和服务器传输很多档案，建议先压缩打包成一个档案再传，速度会快很多。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6. Linux 权限管理
+    </h1><h4>所属章节：Part 2: Linux 指令入门</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>开自己的帐号</h3>
+<p>刚刚登入服务器用的 <code>root</code> 帐号拥有最大的权限，通常我们会另开一个帐号作为平常登入管理之用：</p>
+
+<blockquote>
+<p>有了自己的管理帐号后，稍后的 Linux 安全性章节会说明如何让 root 无法远端登入，不然每台服务器默认都有 root 帐号，要破解密码的话只要去猜 root 密码即可。</p>
+</blockquote>
+
+<p>执行 <code>adduser ihower</code></p>
+
+<blockquote>
+<p>请把 <code>ihower</code> 换成你自己的用户 ID</p>
+</blockquote>
+
+<p>设定密码后，一直按 Enter 即可。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1lToMCRBRgeLXWmrVDAu_49.png" title=""></figure></p>
+
+<p>输入 <code>exit</code> 离开服务器，重新 SSH 登入看看：</p>
+
+<p><code>ssh ihower@47.92.136.237</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ZGtPnlGTGKV9nUBsY3zo_51.png" title=""></figure></p>
+
+<p>执行 <code>pwd</code> 发现家目录是 <code>/home/ihower</code></p>
+
+<p>如果试图去编辑 <code>/root/abc.txt</code>，或是 <code>cd /root</code> 的话，会出现 <code>Permission denied</code> 没有权限的错误，因为这个目录需要 root 权限。那怎么办呢?</p>
+
+<p><code>su</code> 指令可以切换身份，例如切换成 root 帐号：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WYwK6d36T3uftnEfG7dg_52.png" title=""></figure></p>
+
+<p>输入 root 密码，就可以变身成 root。</p>
+
+<p>切过去后，如果再输入 <code>exit</code> 则会返回上一层的 ihower 身份。</p>
+
+<blockquote>
+<p><code>su -</code> 的 <code>-</code> 的意思是可以把 ihower 的环境变量带过去</p>
+</blockquote>
+<h3>sudo 权限</h3>
+<p>很多时候我们只想执行一个指令需要 root 权限，如果每次都要用 <code>su</code> 切换身份输入 root 密码太麻烦了。Linux 上有一种机制是 sudo 权限，可以暂时提升权限。</p>
+
+<p>新开的帐号没有 sudo 权限，首先需要将 ihower 加到 sudo 清单：</p>
+
+<p>新增 <code>/etc/sudoers.d/ihower</code> 这个档案，内容是</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>ihower  ALL=(ALL:ALL) ALL
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>或是执行 <code>gpasswd -a ihower sudo</code> 也可以让 ihower 新增 sudo 权限</p>
+</blockquote>
+
+<p>存盘离开。让我们实验看看编辑 root 的 <code>/root/abc.txt</code>，刚刚如果直接编辑是没有权限的。现在请在需要 root 权限的指令前加上 <code>sudo</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bVEdFETASTWMM4GYDKpk_53.png" title=""></figure></p>
+
+<p>注意到 sudo 后要再次输入自己密码，不是 root 的密码。</p>
+<h3>档案和目录权限</h3>
+<p>Linux 对于每个档案和目录，依据不同用户有着严格的权限控制：可否读、可否写、可否执行。</p>
+
+<p>执行 <code>ls -la</code> 显示一下当前目前目录的所有档案：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JFvfJ9orTy2sYKLXEwXP_50.png" title=""></figure></p>
+
+<p>第二栏的 root 表示这个档案属于 root 用户，也就是档案 owner 拥有者。</p>
+
+<p>第三栏的 root 表示这个档案属于 root 群组(group)。默认每个用户会属于跟自己同名的群组。</p>
+
+<p>而第一栏的字段共十位，第一位表示是文件还是目录，<code>d</code> 是目录、<code>-</code>是文件。</p>
+
+<p>剩下9位，每三位一组，第一组是档案 owner 拥有者的权限、第二组是群组(group)群限、第三组是其他用户。</p>
+
+<p>每组分别是三位来表示，分别是 <code>rwx</code>，<code>r</code> 表示读、<code>w</code>表示写入、<code>x</code>表示可以执行，<code>-</code> 表示没有权限。</p>
+
+<p>截图中 abc.txt 是 <code>-rw-r--r--</code> 表示这是一个档案、档案拥有者是 <code>rw-</code> 可以读写、无法执行、群组和其他人是 <code>r--</code> 表示可以读不能写入。</p>
+<h4>如何变更档案权限？</h4>
+<p><code>chown</code> 指令可以变更档案拥有者和群组，例如 <code>chown ihower:ihower abc.txt</code> 可以将档案 abc.txt 的拥有者设定为 <code>ihower</code>，群组设定为 <code>ihower</code>。如果要修改整个目录包含以下档案，则可以用 <code>chown -R</code></p>
+
+<p><code>chmod</code> 指令可以变更档案的权限，例如 <code>chmod 644 abc.txt</code> 就会设定成 <code>rw-r--r--</code>。这需要了解一下什么是 Octal Permissions 表示方式：</p>
+
+<ul>
+<li><code>r 是 4</code></li>
+<li><code>w 是 2</code></li>
+<li><code>x 是 1</code></li>
+</ul>
+
+<p>你要的权限就是把数字加起来，例如 <code>rw-</code> 就是 4+2 是 6。<code>r--</code> 就是 4。于是 <code>rw-r--r--</code> 就是 644 了。</p>
+
+<p>如果理解的话，之后碰到档案存取权限问题时，就知道如何处理了。</p>
+<h3>免密码登入</h3>
+<p>远端登入除了输入密码之外，SSH 还可以用非对称加密(Public Key Encryption)的方式来做登入。</p>
+
+<p>在非对称加密算法中，会有两把钥匙(key)，一把叫做公钥(public key)、一把叫做密钥(private key)。</p>
+
+<ul>
+<li>透过公钥加密的密文，只有密钥能够解开</li>
+<li>透过密钥加密的密文，只有公钥能够解开</li>
+</ul>
+
+<p>于是我们就可以用这个机制来做登入：首先我们把自己的公钥先放在服务器上，那么之后登入时，服务器会送一个乱数字符串给用户，用户用密钥加密后返回服务器，如果服务器可以用公钥解回来，就表示认证成功。</p>
+
+<p>以下是设定的步骤，：</p>
+
+<p><code>mkdir ~/.ssh</code></p>
+
+<p><code>touch ~/.ssh/authorized_keys</code></p>
+
+<p>回到本机电脑把公钥印出来，执行 <code>cat ~/.ssh/id_rsa.pub</code> 就会印在画面上。</p>
+
+<p>回到远端服务器继续：</p>
+
+<p><code>nano ~/.ssh/authorized_keys</code> 把公钥贴上去</p>
+
+<p><code>chmod 700 ~/.ssh</code></p>
+
+<p><code>chmod 644 ~/.ssh/authorized_keys</code></p>
+
+<p>这样就好了，你可以试试看再次登入就不用打密码了，太棒了！</p>
+
+<p>以下是操作的截图：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kGQ1kdltQMiH7Eq2IERl_54.png" title=""></figure></p>
+
+<p>这是本机 cat 公钥的截图：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/UaRCmvmNR0CSMz0PP9rz_55.png" title=""></figure></p>
+<h4>本机没有 id_rsa.pub ？</h4>
+<p>因为 Github 也是用一样的认证机制，所以之前操作 git 时你应该已经产生过这个 SSH key，并且在 Github 后台贴上你自己的公钥，所以在 <code>git push</code> 时不需要打密码。</p>
+
+<p>如果本机真的没有 <code>~/.ssh/id_rsa.pub</code> 公钥的话，需要先产生你自己的公钥私钥，请执行 <code>ssh-keygen -t rsa</code> 就会产生公钥 <code>~/.ssh/id_rsa.pub</code> 以及密钥 <code>~/.ssh/id_rsa</code> 这两个档案。请一直按 Enter，不需要设定 passphrse 密码(不然你每次用key都要输入一次密码很麻烦)。</p>
+
+<p>公钥可以公开给别人没关系，密钥就千万要保管好喔。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7. 更新和安装 Linux 套件
+    </h1><h4>所属章节：Part 3: 网站服务器安装</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><code>apt-get</code>是 Ubuntu 内建的套件管理工具，类似于 Mac 上的 homebrew。拿到一台服务器，首先就是先更新系统套件的清单，然后进行升级。</p>
+
+<blockquote>
+<p>以下需要 root 权限的指令一律都加上 sudo，如果你是 root 身份其实不需要 sudo，但没关系都可以作用。</p>
+</blockquote>
+
+<p>执行 <code>sudo apt-get update</code></p>
+
+<p>执行 <code>sudo apt-get upgrade -f</code></p>
+
+<p>看到 Do you want to continue? [Y/n] 继续按 Enter 即可</p>
+
+<p>然后设定系统时区：</p>
+
+<p>执行 <code>sudo dpkg-reconfigure tzdata</code></p>
+
+<p>进入选单选 Asia 然后选 Shanghai 就是中国时区 (UTF+8)</p>
+
+<p>接着我们安装新的套件们，这些是 Ruby on Rails 所需要的东西。请输入以下指令(这是一行)：</p>
+
+<p>执行 <code>sudo apt-get install -y build-essential git-core bison openssl libreadline6-dev curl zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3  autoconf libc6-dev libpcre3-dev libcurl4-nss-dev libxml2-dev libxslt-dev imagemagick nodejs libffi-dev</code></p>
+
+<p>看到 Do you want to continue? [Y/n] 继续按 Enter 即可</p>
+<h3>设定 apt-get 只使用 ipv4</h3>
+<p>使用 Linode 的学员，因为 ipv6 线路不稳，如果 apt-get update 卡在 0% [Connecting to security.ubuntu.com (2001:67c:1360:8001::17)] 的话，请编辑 <code>/etc/sysctl.conf</code></p>
+
+<p>加入这三行</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+</pre></div>
+</figure>
+
+<p>然后执行 <code>sudo sysctl -p</code> 后，再次执行 `sudo apt-get update</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8. 安装 Ruby
+    </h1><h4>所属章节：Part 3: 网站服务器安装</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们使用 <a href="https://www.brightbox.com/docs/ruby/ubuntu/">Brighbox</a> 已经编译好的 Ruby 套件，输入以下指令，会把 Brighbox 提供的套件加进清单，然后安装：</p>
+
+<p>执行 <code>sudo apt-get install software-properties-common</code></p>
+
+<p>执行 <code>sudo apt-add-repository ppa:brightbox/ruby-ng</code></p>
+
+<p>执行 <code>sudo apt-get update</code></p>
+
+<p>执行 <code>sudo apt-get install ruby2.4 ruby2.4-dev</code></p>
+
+<p>安装好之后，输入 <code>ruby -v</code></p>
+
+<p>应该就会看到 <code>ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux-gnu]</code> 就是成功了。</p>
+
+<p>接着安装 <a href="http://bundler.io">Bundler</a> gem，等会安装 Rails 时会需要这个 Ruby 套件：</p>
+
+<p>执行 <code>sudo gem install bundler --no-ri --no-rdoc</code></p>
+
+<blockquote>
+<p><code>--no-ri --no-rdoc</code> 参数的意思是不需要安装文档，可以节省安装时间</p>
+</blockquote>
+
+<p>如果服务器在中国境内的话，可以改用 <code>sudo gem install bundler --no-ri --no-rdoc --source https://gems.ruby-china.org</code> 会比较快。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9. 安装数据库服务器
+    </h1><h4>所属章节：Part 3: 网站服务器安装</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>以下提供 MySQL 和 PostgreSQL 的安装方式，请择一安装即可：</p>
+
+<blockquote>
+<p>本机电脑可以用 brew 安装 MySQL 和 PostgreSQL，对于正式营运上线的项目，本机电脑最好也更换成和服务器一样的数据库，让本机环境与服务器环境尽量一样。</p>
+</blockquote>
+<h3>MySQL</h3>
+<p><a href="https://www.mysql.com">MySQL</a> 是一个非常受欢迎的关联式数据库，可以说是大多数网络公司的首选。以下是安装<em>MySQL</em>的指令，过程中会提示你设定数据库的<em>root</em>密码(请记下来，等会设定 Rails 会用到)。</p>
+
+<p>执行 <code>sudo apt-get install mysql-common mysql-client libmysqlclient-dev mysql-server</code></p>
+
+<p>过程中请配置一个数据库的 root 密码 (请记下来，等会设定 rails 的 database.yml 会用到)</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/gnhGRefTPSeWPbSyBenQ_25.png" title=""></figure></p>
+
+<p>接着我们进入 mysql console 建立新的数据库：</p>
+
+<p>执行 <code>mysql -u root -p</code> 进入 mysql console 后，输入：</p>
+
+<p><code>CREATE DATABASE rails_recipes CHARACTER SET utf8mb4;</code></p>
+
+<p>这会建立一个叫做 <code>rails_recipes</code> 的数据库(注意，数据库名称不要包括横线<code>-</code>)，等会你的<em>Rails</em>就用这个数据库。执行完，输入 exit 离开 mysql console。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/jYra2DFcTlC2rG5pt7kP_26.png" title=""></figure></p>
+
+<blockquote>
+<p>请把 <code>rails_recipes</code> 换成你自己项目的名称</p>
+</blockquote>
+<h3>PostgreSQL</h3>
+<p>MySQL 是网络公司的最爱，分布式扩充和商业支持的生态系非常丰富。PostgreSQL 则是对进阶的 SQL 语法支援比较多，以及支援更多的储存格式，例如 <a href="http://postgis.net/">PostGIS</a>。</p>
+
+<p>你也可以选择安装<em>PostgreSQL</em>：</p>
+
+<p>执行 <code>sudo apt-get install postgresql libpq-dev postgresql-contrib</code></p>
+
+<p>修改帐号 postgres 的密码</p>
+
+<p>执行 <code>sudo -u postgres psql</code>，然后打 <code>\password</code> 后，就可以设置数据库的密码(请记下来，等会设定 rails 的 database.yml 会用到)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/EzcJx7tJRZ2vrTTMKJCJ_27.png" title=""></figure></p>
+
+<p>执行 <code>sudo -u postgres createdb rails_recipes</code> 建立一个叫做 rails_recipes 的数据库</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10. 安装 Nginx + Passenger 网站服务器
+    </h1><h4>所属章节：Part 3: 网站服务器安装</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在本机开发的时候，我们使用 <a href="https://github.com/puma/puma">puma</a> 这一套由 Ruby 写的网站服务器，无论是静态档案(图片/CSS/JS)或是会进到 Rails 处理的动态网页，一律都是由 puma 来处理。</p>
+
+<p>在正式 production 环境中，我们会用更高效能的网站服务器来处理，其中 <a href="http://nginx.org/">Nginx</a> 是目前最流行的网站服务器(用C语言开发的)，可以非常高效能地提供静态档案，效能是纯 Ruby 网站服务器的数十倍以上。因此像图档/CSS/JS等等静态资源，都会由 Nginx 处理。至于 Rails 动态网页的部分，我们会安装 <a href="https://www.phusionpassenger.com/">Passenger</a> 这个 Nginx 的扩充模组来执行 Ruby 程序：Nginx 会把非静态档案的 HTTP Request 转交给 Passenger 来处理。</p>
+
+<p>以下安装程序参考自 <a href="https://www.phusionpassenger.com/library/install/nginx/install/oss/">Installing Passenger + Nginx</a> 的步骤：</p>
+<figure class="figure-code code"><div class="highlight"><pre>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+
+sudo apt-get install -y apt-transport-https ca-certificates
+
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main &gt; /etc/apt/sources.list.d/passenger.list'
+
+sudo apt-get update
+
+sudo apt-get install -y nginx-extras passenger
+</pre></div>
+</figure>
+<p>打开你的浏览器，输入服务器的 IP 位置，应该就可以看到默认的 Nginx 静态网页了：<code>Welcome to nginx on Ubuntu!</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/nCVya8SwQ67naFiG7IA9_28.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11. 新增 deploy 用户
+    </h1><h4>所属章节：Part 4: 自动化部署 Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>将下来我们想要找地方放我们 Rails 项目代码。因为 root 和 ihower 帐号权限很大，习惯上我们会在服务器上另开一个专门的帐号来放<em>Rails</em>代码。这里我们另开一个 deploy 帐号来使用：</p>
+
+<p>在远端执行 <code>sudo adduser --disabled-password deploy</code> 新增帐号</p>
+
+<blockquote>
+<p><code>--disabled-password deploy</code> 参数会让<code>deploy</code>无法用密码登入，因为我们打算用 SSH Key 来登入更安全。</p>
+</blockquote>
+<h3>设定用 SSH Key 登入 deploy 帐号</h3>
+<p>在远端执行 <code>sudo su deploy</code> 切换到 deploy 身份：</p>
+
+<p>执行 <code>mkdir ~/.ssh</code></p>
+
+<p>执行 <code>touch ~/.ssh/authorized_keys</code></p>
+
+<p>回到本机电脑把公钥印出来，执行 <code>cat ~/.ssh/id_rsa.pub</code> 就会印在画面上。</p>
+
+<p>回到远端服务器继续：</p>
+
+<p><code>nano ~/.ssh/authorized_keys</code> 把公钥贴上去</p>
+
+<p><code>chmod 700 ~/.ssh</code></p>
+
+<p><code>chmod 644 ~/.ssh/authorized_keys</code></p>
+
+<p>这样就好了，本机可以直接 <code>ssh deploy@&lt;主机IP位置&gt;</code> 无须输入密码。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12. 安装 Capistrano
+    </h1><h4>所属章节：Part 4: 自动化部署 Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="http://capistranorb.com">Capistrano</a> 是 Rails 社区中最常使用的布署工具，以下是安装和使用步骤。</p>
+
+<p>以下使用百宝箱教程的项目来进行示范：</p>
+<h3>修改 Gemfile 加入 capistrano</h3>
+<p>首先在本机的 Rails 项目修改 <code>Gemfile</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'mysql2'  # mysql2 和 pg 择一安装即可
++  gem 'pg'
+</span>
+   group :development, :test do
+<span class="gi">+    gem 'capistrano-rails'
++    gem 'capistrano-passenger'
+</span>
+     gem 'rspec-rails'
+     gem 'byebug', platform: :mri
+<span class="err">   end
+</span></pre></div>
+</figure>
+
+<p>数据库用 MySQL 的话，加上 <code>gem "mysql2"</code>，数据库用 PG 的话，则用 <code>gem "pg"</code>。</p>
+
+<p>执行 <code>bundle</code> 安装</p>
+<h3>本机设定 capistrano</h3>
+<p>执行 <code>cap install</code>，这会新增一些配置档案。</p>
+
+<p>编辑 <code>Capfile</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>Capfile
+</span></figcaption><div class="highlight"><pre>   require "capistrano/scm/git"
+   install_plugin Capistrano::SCM::Git
+
+<span class="gi">+  require 'capistrano/rails'
+</span><span class="err">+  require 'capistrano/passenger'
+</span></pre></div>
+</figure>
+
+<p>修改 <code>config/deploy.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/deploy.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  sh "ssh-add"
+</span>
+   # config valid only for current version of Capistrano
+   lock "3.8.1"
+
+<span class="gd">-  set :application, "my_app_name"
+</span><span class="gi">+  set :application, "rails_recipes"   # 请用你自己的项目名称
+</span>
+<span class="gd">-  set :repo_url, "git@example.com:me/my_repo.git"
+</span><span class="gi">+  set :repo_url, "git@github.com:growthschool/rails-recipes.git"    # 请用你自己项目的git位置
+</span>
+   # Default branch is :master
+   # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+
+   # Default deploy_to directory is /var/www/my_app_name
+   # set :deploy_to, "/var/www/my_app_name"
+<span class="gi">+  set :deploy_to, "/home/deploy/rails-recipes"     # 这样服务器上代码的目录位置，放在 deploy 帐号下。请用你自己的项目名称。
+</span>
+   # Default value for :format is :airbrussh.
+   # set :format, :airbrussh
+
+   # You can configure the Airbrussh format using :format_options.
+   # These are the defaults.
+   # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+
+   # Default value for :pty is false
+   # set :pty, true
+
+   # Default value for :linked_files is []
+<span class="gd">-  # append :linked_files, "config/database.yml", "config/secrets.yml"
+</span><span class="gi">+  append :linked_files, "config/database.yml", "config/secrets.yml"
+</span>
+   # Default value for linked_dirs is []
+<span class="gd">-  # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+</span><span class="gi">+  append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+</span>
+<span class="gi">+  set :passenger_restart_with_touch, true
+</span>
+   # Default value for default_env is {}
+   # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+   # Default value for keep_releases is 5
+<span class="gd">-  # set :keep_releases, 5
+</span><span class="gi">+  set :keep_releases, 5
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>config/deploy/production.rb</code>，设定要用哪一个 branch 放在服务器上，以及服务器的 IP 位置：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="gi">+   set :branch, "master"
+</span><span class="gd">-   # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+</span><span class="gi">+     server "47.92.82.116", user: "deploy", roles: %w{app db web}, my_property: :my_value
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>在本机执行 <code>cap production deploy:check</code>，这会自动登入远端服务器建立一些 Capistrano 需要的架构目录(稍后会解说)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YYvMTAgQDGGhVZgYWL4E_30.png" title=""></figure></p>
+
+<p>你会看到一个 ERROR 说服务器上缺少一些档案，让我们进远端服务器上新增这些档案：</p>
+<h3>远端设定 database.yml 和 secrets.yml</h3>
+<p>请用 deploy 身份登入 <code>ssh deploy@47.92.82.116</code>，或是切换到 deploy 身份 <code>sudo su deploy</code>：</p>
+
+<p>在远端新增 <code>/home/deploy/rails-recipes/shared/config/database.yml</code> 这个档案，内容是：</p>
+
+<p>如果是 MySQL 数据库：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>production:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: rails_recipes
+  host: localhost
+  username: root
+  password: xxxxxxxxxx
+
+</pre></div>
+</figure>
+
+<p>如果是 PG 数据库：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>production:
+  adapter: postgresql
+  pool: 25
+  database: rails_recipes
+  host: localhost
+  username: postgres
+  password: xxxxxxxxxx
+</pre></div>
+</figure>
+
+<blockquote>
+<p>password 记得换成你的数据库密码</p>
+</blockquote>
+
+<p>在本机执行 <code>rake secret</code>，这会产生一段乱数的key，等会要用。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YbGf15mdQKqqCK3pwEdo_31.png" title=""></figure></p>
+
+<p>在远端新增 <code>/home/deploy/rails-recipes/shared/config/secrets.yml</code> 这个档案，内容是：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>production:
+  secret_key_base: 把刚刚的乱数key贴上来
+
+</pre></div>
+</figure>
+
+<p>本机再次执行 <code>cap production deploy:check</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2vZSNQYhS7mtOBXkOzgi_32.png" title=""></figure></p>
+<h3>执行部署</h3>
+<p>本机执行部署 <code>cap production deploy</code>，这个指令会登入远端服务器，把 Github 上的代码抓下来，然后自动执行 bundle 安装套件、跑数据库 migration 和编译 assets 编译等等步骤：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rXVdFE8JSESNwoU2o7qP_29.png" title=""></figure></p>
+
+<p>第一次会比较久，需耗时数十分钟，取决于网络环境与 CPU 速度：</p>
+
+<p>如果您用国内的服务器，跑 <code>01 bundle install --path /home/deploy/rails-recipes/shared/bundle</code> 这一步可能因为网络问题而失败。建议你可以修改 <code>Gemfile</code> 第一行，改成 <code>source 'https://gems.ruby-china.org'</code> 使用国内的 rubygems.org 镜像服务器，因为服务器本身是没有翻墙的。改完请执行 <code>bundle</code>，然后 git commit 和 git push 上去。然后再重新执行 <code>cap production deploy</code>。</p>
+
+<p>如果服务器 CPU 等级比较差，跑 <code>01 bundle exec rake assets:precompile</code> 这一步会比较久，如果出现 <code>Errno::ECONNRESET: Connection reset by peer - recvfrom(2)</code> 请重试几次 <code>cap production deploy</code>。</p>
+
+<p>完成后，capistrano 的设定就告一个段落了，可以 commit 了。</p>
+
+<p>之后有修改代码，只要 git push 到 Github 上，然后再次执行 <code>cap production deploy</code>，这样服务器上就会拉下最新的代码。</p>
+<h3>Capistrano 目录结构解说</h3>
+<p>在远端的部署目录 <code>/home/deploy/rails-receips</code> 下，Capistrano 建立了一些目录：</p>
+
+<ul>
+<li>releases
+
+<ul>
+<li>20170728140659</li>
+<li>20170728141211</li>
+<li>20170728174109</li>
+<li>20170729041358</li>
+<li>.....</li>
+</ul>
+</li>
+<li>current</li>
+<li>shared
+
+<ul>
+<li>bundle</li>
+<li>config</li>
+<li>log</li>
+<li>public/system</li>
+<li>public/assets</li>
+<li>tmp</li>
+</ul>
+</li>
+</ul>
+
+<p>每次执行 <code>cap production deploy</code> 时，capistrano 都会在 releases 都会建一个新的目录，然后从 git repo 把最新的代码抓下来，执行 bundle 安装套件、跑数据库 migration、编译 assets 编译等等步骤，都完成之后，会更新 current 目录(这是一个 <code>ln -s</code> 的捷径)指向最新的 releases/xxxx 目录，最后 <code>touch tmp/restart.txt</code> 告诉 Passenger 重启 Rails。</p>
+
+<p>这样做的好处是在部署过程中，服务器仍然可以稳稳地用本来的版本，不会受到新版本的影响，直到部署过程都完成之后，才会修改 current 目录重启 Rails。</p>
+
+<p>也由于每次部署都会建立新的 <code>releases/xxx</code> 目录，因此不同版本之间需要共享的档案和目录，就会放在 <code>shared</code> 下，例如 <code>bundle</code> 目录是放安装的 Ruby 套件、<code>public/system</code> 是默认用户上传档案放的位置、<code>public/assets</code> 是静态档案编译后放的位置。</p>
+
+<p>在 <code>config/deploy.rb</code> 的设定中，<code>linked_files</code> 和 <code>linked_dirs</code> 就是在配置部署过程中，需要将这些 <code>shared</code> 下的档案和目录，连结到新的 <code>releases</code> 目录里面去。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13. 完成 Nginx 设定
+    </h1><h4>所属章节：Part 4: 自动化部署 Rails</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在远端用 root 权限编辑 <code>/etc/nginx/nginx.conf</code> 这个档案：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  # 让 Nginx 可以读到环境变量 PATH，Rails 需要这一行才能调用到 nodejs 来编译静态档案
+<span class="gi">+ env PATH;
+</span>
+    user www-data;
+    worker_processes auto;
+    pid /run/nginx.pid;
+
+    events {
+      worker_connections 768;
+      # multi_accept on;
+    }
+
+  http {
+
+    # 关闭 Passenger 和 Nginx 在 HTTP Response Header 的版本资讯，减少资讯洩漏
+<span class="gi">+   passenger_show_version_in_header off;
++   server_tokens       off;
+</span>
+    # 设定档案上传可以到100mb，默认只有1Mb超小气的，上传一张图片就爆了
+<span class="gi">+   client_max_body_size 100m;
+</span>
+    gzip on;
+    gzip_disable "msie6";
+
+       # 最佳化 gzip 压缩
+<span class="gi">+   gzip_comp_level    5;
++   gzip_min_length    256;
++   gzip_proxied       any;
++   gzip_vary          on;
++   gzip_types application/atom+xml application/javascript application/x-javascript application/json application/rss+xml application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/svg+xml image/x-icon text/css text/xml text/plain text/javascript text/x-component;
+</span>
+    # 打开 passenger 模组
+<span class="gd">-   # include /etc/nginx/passenger.conf;
+</span><span class="gi">+   include /etc/nginx/passenger.conf;
+</span>
+<span class="err">    # 下略
+</span></pre></div>
+</figure>
+
+<p>在远端用 root 权限新增 <code>/etc/nginx/sites-enabled/rails-recipes.conf</code> 这个档案(档名可以自订无所谓)</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>server {
+  listen 80;
+  server_name 47.92.82.116;   # 用你自己的服务器 IP 位置
+
+  root /home/deploy/rails-recipes/current/public;  # 用你自己的项目名称位置
+
+  passenger_enabled on;
+
+  passenger_min_instances 1;
+
+  location ~ ^/assets/ {
+    expires 1y;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+   }
+}
+
+</pre></div>
+</figure>
+
+<p>以上设定包括设定 Assets 静态档案成为永不过期(Rails的Assets Pipeline会加上版本号，所以不需要担心)、设定 Passenger 至少开一个进程(Process)。其中 <code>server_name</code> 应该填网域名称。不过如果目前没有的话，只好先填 IP 位置。</p>
+
+<p>如果有多个 domain 连到同一个网站，可以用空白区隔，例如：</p>
+
+<p><code>server_name abc.ihower.tw xyz.ihower.tw ihower.tw;</code></p>
+
+<p>这样三个网址都会连到同一个 Rails 了。如果之后想在同一个服务器装多个网站，那么就需要有不同的网域名称，每个网站有自己的 <code>/etc/nginx/sites-enabled/xxxxx.conf</code> 设定档案，这样 Nginx 才能区别用户是要打开那一个网站。</p>
+
+<p>最后执行 <code>sudo service nginx restart</code> 才会套用新的 Nginx 设定。</p>
+
+<blockquote>
+<p>如果 Nginx 设定档格式不对，例如结尾少了分号 <code>;</code>，那么 <code>sudo service nginx restart</code> 会失败，Nginx 服务器就死掉了。这时候请回头修好设定档，然后执行 <code>sudo service nginx start</code> 就会启动 Nginx 了。如果无法启动请检查 <code>/etc/nginx/nginx.conf</code> 和 <code>/etc/nginx/sites-enabled/rails-recipes.conf</code>。</p>
+</blockquote>
+
+<p>打开浏览器连过去，应该可以看到百宝箱的首页了，大功告成。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WVbvE7w5SQqlpBxkR7pI_33.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14. 运维常用指令
+    </h1><h4>所属章节：Part 5: Linux 基本运维</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要部署新代码上服务器，记得需要先 <code>git push</code> 到 Github 上，再执行 <code>cap production deploy</code></p>
+<h3>如何检视 log</h3>
+<ul>
+<li>用 deploy 身分登入</li>
+<li>
+<code>cd ~/rails-recipes/current</code>  进到 Rails 目录下</li>
+<li>
+<code>tail -n 500 log/production.log</code> 这样会显示最后500行</li>
+<li>
+<code>tail -f log/production.log</code> 这样会一直挂着显示</li>
+</ul>
+
+<p>除了 Rails 的错误讯息，错误也有可能发生在 Nginx，这时候可以找 nginx log，位置在 <code>/var/log/nginx/error.log</code>，需要用 root 身分才能看。</p>
+<h3>如何查看系统状态</h3>
+<ul>
+<li>
+<code>free -h</code> 显示内存用量</li>
+<li>
+<code>df -h</code> 显示硬盘剩馀空间</li>
+<li>
+<code>sudo passenger-status</code> 显示 Passenger 状态，主要观察 Passenger 开了多少个 Rails 进程(默认最多开6个，如果机器的内存够多，你可以调整 Nginx 设定 <a href="https://www.phusionpassenger.com/library/config/nginx/reference/">passenger_max_pool_size</a> 增加更多进程来服务更多流量)</li>
+<li>
+<code>sudo passenger-memory-stats</code> 显示 Passenger 内存状态，主要观察每个 Rails 进程耗费多少内存</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KnyCl2eQb2KhqMJGUmEg_60.png" title=""></figure></p>
+
+<ul>
+<li>
+<code>top</code> 系统状态，主要可以看 CPU 负载情形，以及哪些进程在忙</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cuhYV4XoS6iTvUngDSBK_59.png" title=""></figure></p>
+
+<blockquote>
+<p>load average 三个数字分别代表最近1分钟、5分钟和15分钟的系统平均负载。这个数字表示有多少进程在等待被 CPU 执行，数字越小越好，表示系统不忙。如果你的服务器只有单颗 CPU，那这个数字应该要小于1。两颗CPU则要小于2。</p>
+</blockquote>
+
+<ul>
+<li>
+<code>ps ax</code> 显示目前所有进程(process)，用 <code>sudo kill -9 &lt;PID&gt;</code> 可以强制删除该程序，这是最后手段。</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/K136APksTFa7rWy9TZqU_61.png" title=""></figure></p>
+
+<p>网站如果无法正常运作，第一个检查网络是否正常，是不是可以 SSH 连线进去。如果第一关就卡住了，可能整台机器已经蒙了，这时候需要回到云服务的后台，强制关机重开。</p>
+
+<p>如果可以连线进去，就先检查目前系统负载情形，是不是内存不够了? 或是硬盘满了? 如果是 Passenger 进程太多人塞住了，可以先尝试重开 Nginx 让网站恢复运作。如果还是没多久还是一样，就需要进一步看 log 检查是哪一个环节不正常。</p>
+<h3>网站服务器重启指令</h3>
+<p>默认安装完以及开机后，就会启动 Nginx。如果有修改 Nginx 设定档，需要重开 Nginx。</p>
+
+<p>启动 <code>sudo service nginx start</code><br>
+停止 <code>sudo service nginx stop</code><br>
+重开 <code>sudo service nginx restart</code></p>
+
+<p>如果只是要重开 Rails，可以不重开 Nginx。在你的 Rails 目录下(例如 <code>/home/deploy/rails-recipes/current</code> 这个目录)执行 <code>touch tmp/restart.txt</code> 即可，这样 Passenger 就会知道要重新加载 Rails，而不需要重开 Nginx。</p>
+<h3>在远端如何进 rails console?</h3>
+<ul>
+<li>用 deploy 身分登入，例如 ssh deploy@your_server_ip 或用 root 登入再切换身分 sudo su deploy</li>
+<li><code>cd ~/your_project/current</code></li>
+<li>执行 <code>bundle exec rails c production</code>
+</li>
+</ul>
+<h3>如何在远端跑 rake?</h3>
+<p>例如想在服务器上执行 <code>rake db:seed</code>，可以这样做：</p>
+
+<ul>
+<li>用 deploy 身分登入，例如 ssh deploy@your_server_ip 或用 root 登入再切换身分 sudo su deploy</li>
+<li><code>cd ~/your_project/current</code></li>
+<li>执行 <code>RAILS_ENV=production bundle exec rake db:seed</code>
+</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15. 整理 Log 档案
+    </h1><h4>所属章节：Part 5: Linux 基本运维</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Linux 内建有 logrotate 工具，可以定期清空和压缩 Log 档案。如果你不整理的话，Rails 的 production.log 会不断成长到撑爆硬盘空间。</p>
+
+<p>用 root 权限新增 <code>/etc/logrotate.d/rails</code> 档案，内容如下：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>/home/deploy/rails-recipes/shared/log/*.log {
+  monthly
+  dateext
+  missingok
+  rotate 65535
+  notifempty
+  copytruncate
+}
+</pre></div>
+</figure>
+
+<blockquote>
+<p><code>rails-recipes</code> 请换成你的项目名称</p>
+</blockquote>
+
+<ul>
+<li>其中 daily 表示每天整理，也可以改成 weekly 或 monthly</li>
+<li>dateext 表示档案补上 rotate 的日期</li>
+<li>missingok 表示如果找不到 log 档也没关系</li>
+<li>rotate 表示保留65535份，建议如果硬盘空间够的话，就不要砍log档了，以供未来备查</li>
+<li>compress 表示压缩起来，默认用 gzip</li>
+<li>delaycompress 表示延后压缩直到下一次 rotate</li>
+<li>notifempty 表示如果 log 档是空的，就不 rotate</li>
+<li>copytruncate 先复制 log 档的内容后，在清空的作法，因为有些程式一定 log 在本来的档名，例如 rails。另一种方法是 create。</li>
+</ul>
+
+<p>设定好之后，可以等明天，或是执行 <code>sudo /usr/sbin/logrotate -f /etc/logrotate.conf</code> 测试看看，会发现 rails 项目下的 log/production.log 被依日期拆开了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16. 异步处理
+    </h1><h4>所属章节：Part 5: Linux 基本运维</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>Sidekiq 安装</h3>
+<p>在百宝箱第四集有安装 Redis 和 Sidekiq 来做异步处理，要在 Ubuntu 上安装 Redis 很简单：</p>
+
+<p>请执行 <code>sudo apt-get install redis-server</code> 就装好了。</p>
+
+<p>Capistrano 也需要调整，我们可以使用 <a href="https://github.com/seuros/capistrano-sidekiq" rel="nofollow" target="_blank">https://github.com/seuros/capistrano-sidekiq</a> 这个 gem</p>
+
+<p>首先编辑 <code>Gemfile</code> 加上 <code>gem 'capistrano-sidekiq'</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  group :development, :test do
+    gem 'capistrano-rails'
+    gem 'capistrano-passenger'
+<span class="gi">+   gem 'capistrano-sidekiq'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>编辑 <code>Capfile</code> 加上 <code>require 'capistrano/sidekiq'</code></p>
+
+<figure class="figure-code code"><figcaption><span>Capfile
+</span></figcaption><div class="highlight"><pre>   require 'capistrano/rails'
+   require 'capistrano/passenger'
+<span class="gi">+  require 'capistrano/sidekiq'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>cap production deploy</code>，远端服务器上就会跑起来 Sidekiq 了。</p>
+
+<p>你可以在远端服务器上用 <code>ps ax | grep 'sidekiq'</code> 指令检查看看是否有 Sidekiq 进程：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OVxMKZ4TzWwyLpz2nQ8A_62.png" title=""></figure></p>
+
+<blockquote>
+<p><code>grep</code> 指令可以过滤文字，<code>|</code> 可以将前面的输出导到后面指令的输入。</p>
+</blockquote>
+
+<p>之后每次 <code>cap production deploy</code> 进行布署的时候，这也会重开 sidekiq。</p>
+<h3>Cron 固定排程</h3>
+<p>Sidekiq 是不定时由用户的某个行为来触发，但有时候我们需要的是某个固定时间由系统排程来执行，例如每天凌晨四点进行备份、每天凌晨寄信提醒缴费、每周一凌晨一点产生报表等等。这种情况可以透过 Linux 内建的例行性排程机制 Cron。</p>
+
+<blockquote>
+<p><a href="http://linux.vbird.org/linux_basic/0430cron.php">例行性工作排程(crontab)</a></p>
+</blockquote>
+
+<p>首先，你先将需要执行的任务写成一个 rake 指令，这样就可以在主机上用 crontab 指令去执行这个 rake。</p>
+
+<p>不过由于 crontab 的格式不是非常友善，我们可以透过 <a href="https://github.com/javan/whenever">whenever</a> 这个 Gem 来编辑，用 Ruby 的语法撰写 crontab 语法，并且他支援搭配 capistrano 在布署时自动更新 crontab，非常方便。</p>
+<h4>安装方式</h4>
+<p>修改 Gemfile 加上</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+ gem 'whenever', :require =&gt; false
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>接着执行 <code>bundle</code> 和 <code>wheneverize .</code> 就会产生设定档。</p>
+<h4>排程设定</h4>
+<p>修改 <code>config/schedule.rb</code> 加入你要的排程工作，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>env :PATH, ENV['PATH']
+set :output, 'log/cron.log'
+
+# 每个小时调用一次 rake check_event_registrations
+every 1.hour do
+  rake "check_event_registrations"
+end
+
+# 每天调用一次 rake fetch_user_feeds
+every 1.day do
+  rake "fetch_user_feeds"
+end
+
+</pre></div>
+</figure>
+<h4>Capistrano 设定</h4>
+<p>在 <code>Capfile</code> 加入 <code>require "whenever/capistrano"</code></p>
+
+<p>这样就会在 <code>cap production deploy</code> 自动化布署时，自动更新服务器上的 crontab。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17. 安全防护
+    </h1><h4>所属章节：Part 5: Linux 基本运维</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>调整服务器 SSH 设定</h3>
+<p>服务器开了自己帐号之后，我们可以不允许 root 远端登入：</p>
+
+<p>用 root 权限编辑 <code>/etc/ssh/sshd_config</code></p>
+
+<p>修改 <code>PermitRootLogin no</code> 这样就不允许 root 选端登入。</p>
+
+<p>如果你有设好用公钥登入，也可以修改 <code>PasswordAuthentication no</code>，这样就不能用输入密码的方式登入。这样服务器会安全的多，因为骇客就不能猜密码了。只是说如果你不是用自己的电脑想要登入服务器，没有公钥档案的话就没有办法登入了。</p>
+
+<p>最后，执行 <code>sudo service ssh restart</code> 就会重启 SSH 套用设定。</p>
+<h3>防火墙</h3>
+<p>像 Linode 并没有内建防火墙功能，我们可以用 ufw 这个工具来设定 Linux 要开放哪些 Port。</p>
+
+<p>以下是开放 Port 22, 80, 443 的指令：</p>
+
+<ul>
+<li><code>sudo apt-get install ufw</code></li>
+<li><code>sudo ufw default deny</code></li>
+<li><code>sudo ufw allow 22</code></li>
+<li><code>sudo ufw allow 80</code></li>
+<li><code>sudo ufw allow 443</code></li>
+<li>
+<code>sudo ufw enable</code> 启用防火墙</li>
+<li>
+<code>sudo ufw status</code> 显示目前状态</li>
+</ul>
+
+<p>如果发现网站被特定IP攻击，也可以用 ufw 来丢弃特定来源的数据包：</p>
+
+<ul>
+<li><code>sudo ufw insert 1 deny from &lt;要ban掉的IP&gt;</code></li>
+<li><code>sudo ufw reload</code></li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18. 服务器数据备份
+    </h1><h4>所属章节：Part 5: Linux 基本运维</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>一个正式运营中的网站，数据备份是一件非常重要的事情，无论是天灾人祸，不怕一万只怕万一。</p>
+
+<p>服务器上要备份的数据有哪些？</p>
+
+<ol>
+<li>源代码：这个我们都放在 Github 上了，加上 Git 分布式的特性，每个开发者都有一份完成的 repo，因此不需要备份服务器上的源代码。</li>
+<li>数据库：这是最重要的，需要汇出。</li>
+<li>用户上传的档案：如果你有做档案上传的功能，就会需要备份这些档案。不过如果有用七牛云或 AWS S3 来放档案的话，就不需要担心了。</li>
+</ol>
+
+<p>备份数据需要存放在不同台机器才保险。除了备份程序之外，复原的程序也很重要，需要实际验证。很多公司以为做了备份，但真的发生事情要复原时，才发现备份的档案不能用。</p>
+<h3>手动备份</h3>
+<p>汇出数据库：</p>
+
+<p>MySQL 的指令是 <code>mysqldump -u root -p rails_recipes &gt; rails_recipes.sql</code></p>
+
+<p>参数 <code>-u root</code> 表示用数据库的 root 帐号、<code>-p</code> 表示要输入密码、汇出 <code>rails_recipes</code> 数据库到 <code>rails_recipes.sql</code> 这个档案</p>
+
+<p>PostreSQL 的指令是 <code>pg_dump -W -U postgres -h localhost rails_recipes &gt; rails_recipes.sql</code></p>
+
+<p>接着我们可以 <code>gzip rails_recipes.sql</code> 压缩起来，备份到其他电脑即可。</p>
+
+<p>数据库汇入：</p>
+
+<p>MySQL 的指令是 <code>mysql -u root -p rails_recipes &lt; rails_recipes.sql</code></p>
+
+<p>PostgreSQL 的指令是 <code>psql  -W -U postgres -h localhost rails_recipes &lt; rails_recipes.sql</code></p>
+
+<p>用户上传的档案：</p>
+
+<p>放在 <code>/home/deploy/rails-recipes/shared/public/system</code> 目录下，请打包压缩备份回其他电脑。</p>
+<h3>自动备份</h3>
+<p>使用 <a href="https://github.com/backup/backup" rel="nofollow" target="_blank">https://github.com/backup/backup</a> 这个 Ruby 工具可以帮助我们设定好自动备份，可以参考 <a href="https://gist.github.com/ihower/5a28624f9420fb9a7c49" rel="nofollow" target="_blank">https://gist.github.com/ihower/5a28624f9420fb9a7c49</a> 这会备份整个 mysql 数据库，打包压缩整个 /srv 目录，上传到指定的 AWS S3 bucket，最后寄送 email 通知完成。</p>
+
+<p>在服务器上执行 <code>crontab -e</code> 可以编辑例行性工作排程(crontab)，以下是一个每日凌晨 4:30 自动执行的范例：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>30 4 * * * /bin/bash -l -c '/usr/local/bin/backup perform -t my_backup -c /home/ihower/Backup/config.rb'
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      19. E-mail 服务
+    </h1><h4>所属章节：Part 6: 第三方服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这年头要自行架设 E-Mail 服务器很复杂，因为为了防堵垃圾邮件需要很多额外的配置。因此网站上的 E-mail 功能，我们偏好租用第三方的 E-mail 服务，推荐的厂商有：</p>
+
+<ul>
+<li>如果目标用户主要在中国，建议用 <a href="http://sendcloud.net/">SendCloud</a>
+</li>
+<li>如果目标用户主要是国外，建议用 <a href="https://www.mailgun.com">Mailgun</a>、<a href="https://sendgrid.com">SendGrid</a>、<a href="https://postmarkapp.com">Postmark</a> 等等</li>
+</ul>
+
+<p>无论是哪一家 E-mail，注册后会拿到 SMTP (邮件通信协议) 服务器的 1.位址 2. 帐号 3. 密码</p>
+
+<p>如果你希望寄信来源要显示你自己的网域，例如来自 <code>hello@ihower.tw</code> 的话，首先你需要购买自己的网域(Part 7 会教)，以及进一步的 DNS 配置。</p>
+<h3>SendCloud</h3>
+<p><a href="http://sendcloud.net/">http://sendcloud.net/</a></p>
+
+<p>将生成的<code>API_USER</code>和<code>API_KEY</code>信息保存下来。如果忘记 <code>API_KEY</code>，可以到 <code>发送设置</code> 生成一个新的</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6IcbgG2Ty2aevQcYmXDg_3bLoUnjtR5qYNPSPjk3r_WX20170209-105306.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9fV4p037SfaE5oD2VfdR_ng2cBeGRGKRr6ftEj3gH_WX20170209-105808.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4hkObqRATYGks7DsPeSu_vtk2KiN2SJq4YXf9UQar_WX20170209-111805.png" title=""></figure></p>
+<h3>Mailgun</h3>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IdfKCmPqQbQ6u7qasAgs_63.png" title=""></figure></p>
+<h3>Rails 设定</h3>
+<p>在本机编辑 <code>config/environments/production.rb</code>，加载 email 设定档。</p>
+
+<figure class="figure-code code"><figcaption><span>config/environments/production.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  config.action_mailer.default_url_options = { :host =&gt; '你的网域名称，暂时还没有就填IP地址' }
++  config.action_mailer.delivery_method = :smtp
++  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>在远端服务器上，用 deploy 帐号新增 <code>/home/deploy/rails-recipes/shared/config/email.yml</code></p>
+
+<p>如果用 SendCloud 会长这样：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>production:
+  address: "smtpcloud.sohu.com"
+  port: 25
+  domain: "XXX.sendcloud.org"
+  authentication: "plain"
+  user_name: "XXX_test_XXX"
+  password: "keyXXXXX"
+  enable_starttls_auto: true
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>注意，在阿里云、AWS、Google Cloud Platform 等大云服务商，会封锁 25 port 来阻挡垃圾邮件发送。通常 E-mail 服务商会另外提供 2525 或 587 port，例如 <a href="https://sendcloud.sohu.com/doc/faq/">SendCloud 的 SMTP 服务只开放了 25 端口么?</a>，请依此修改 port 和 SMTP address 位置。</p>
+</blockquote>
+
+<p>如果用 Mailgun 会长这样：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>production:
+  address: "smtp.mailgun.org"
+  port: 587
+  domain: "mailgun.org"
+  authentication: "plain"
+  user_name: "postmaster@sandboxXXXXXX.mailgun.org"
+  password: "XXXXX"
+  enable_starttls_auto: true
+
+</pre></div>
+</figure>
+
+<p>最后编辑 <code>config/deploy.rb</code>，在部署过程中去连结 <code>config/email.yml</code> 设定档。</p>
+
+<figure class="figure-code code"><figcaption><span>config/deploy.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  append :linked_files, "config/database.yml", "config/secrets.yml"
+</span><span class="gi">+  append :linked_files, "config/database.yml", "config/secrets.yml", "config/email.yml"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>git commit 和 git push 后，进行部署 <code>cap production deploy</code>。</p>
+
+<p>可以用忘记密码流程进行测试 E-mail 发送。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20. 档案存储服务
+    </h1><h4>所属章节：Part 6: 第三方服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>使用者上传的档案，在 carrierwave 或 paperclip gem 中默认会把档案放在服务器上的 <code>shared/public/system</code> 目录下。这样当然是可以运作。</p>
+
+<p>不过相比于数据库所需要的硬盘空间，用户上传的档案很可能会耗费更多空间。不但造成备份上的难度，也需要时常注意硬盘空间，万一硬盘满了之后，会需要增加硬盘空间甚至移机，麻烦很多。</p>
+
+<p>因此，在正式运营的网站，我们会偏好使用专门的第三方档案储存服务，来放这些用户上传的档案，节省我们后续维运上的麻烦。</p>
+
+<p>比较大的云服务商上都有提供类似的产品，这里我们推荐：</p>
+
+<ul>
+<li><a href="https://www.qiniu.com">七牛云</a></li>
+<li><a href="https://aws.amazon.com/s3/">Amazon S3</a></li>
+</ul>
+
+<p>详细的安装用法，在之前的 Rails 实战：购物网站 教程有介绍。至于密码的处理，可以参考上一节处理 email.yml 的手法。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      21. 服务器监控服务
+    </h1><h4>所属章节：Part 6: 第三方服务</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>网站 Uptime 监控</h3>
+<p>以下这些第三方服务，可以每隔几分钟检查你指定的 URL 是否正常回应(不需要额外安装Gem)，如果连不上可以透过 E-mail 通知你。免费的方案就够用了，如果需要短信通知或增加检查频率，则需要付费。</p>
+
+<ul>
+<li><a href="https://uptimerobot.com/" rel="nofollow" target="_blank">https://uptimerobot.com/</a></li>
+<li><a href="https://www.statuscake.com/" rel="nofollow" target="_blank">https://www.statuscake.com/</a></li>
+<li><a href="https://tools.pingdom.com/" rel="nofollow" target="_blank">https://tools.pingdom.com/</a></li>
+<li><a href="https://www.pagerduty.com" rel="nofollow" target="_blank">https://www.pagerduty.com</a></li>
+</ul>
+<h3>Rails 异常监控</h3>
+<p>以下这些第三方服务，可以在 Rails 发生异常 (exception) 时，主动通知及纪录下这个错误例外(exception)，好让我可以进行追踪除错。</p>
+
+<ul>
+<li><a href="https://rollbar.com" rel="nofollow" target="_blank">https://rollbar.com</a></li>
+<li><a href="https://airbrake.io" rel="nofollow" target="_blank">https://airbrake.io</a></li>
+<li><a href="https://sentry.io" rel="nofollow" target="_blank">https://sentry.io</a></li>
+<li><a href="https://www.honeybadger.io" rel="nofollow" target="_blank">https://www.honeybadger.io</a></li>
+</ul>
+
+<p>这些服务都有提供 gem 可以安装，按照注册流程应该就可以完成。</p>
+<h3>效能监控</h3>
+<p>以下这些第三方服务，会纪录监控网站程式的效能，例如网站的回应速度，协助你分析哪些部分需要做最佳化改善：</p>
+
+<ul>
+<li><a href="https://www.skylight.io/" rel="nofollow" target="_blank">https://www.skylight.io/</a></li>
+<li><a href="https://newrelic.com/" rel="nofollow" target="_blank">https://newrelic.com/</a></li>
+<li><a href="https://appsignal.com/" rel="nofollow" target="_blank">https://appsignal.com/</a></li>
+</ul>
+
+<p>这些服务都有提供 gem 可以安装，按照注册流程应该就可以完成。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      22. 域名购买和设定
+    </h1><h4>所属章节：Part 7: 购买域名、HTTPS、HTTP/2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来我们来实际购买一个域名，有了域名我们才能设定 HTTPS 加密连线。</p>
+
+<ul>
+<li>有国际信用卡的，推荐从 <a href="https://www.namecheap.com">Namechaep</a> 购买</li>
+<li>国内可以从 <a href="https://wanwang.aliyun.com/domain/">阿里云(万网)</a> 购买</li>
+</ul>
+
+<p>以下是示范用 Namecheap 进行购买：</p>
+<h3>Namecheap 购买设定步骤</h3>
+<p><a href="https://www.namecheap.com" rel="nofollow" target="_blank">https://www.namecheap.com</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/PQOgJg6Sv2fHq9x5hkwO_70.png" title=""></figure></p>
+
+<blockquote>
+<p>rails-recipes.win 一年才 USD $0.66，便宜!</p>
+</blockquote>
+
+<p>购买后，需要认证 E-mail</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JNwymzDSvWcFLSJ959UL_71.png" title=""></figure></p>
+
+<p>进入该网域的 Manage 画面</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mqDcSTqDTW637fHsAbVr_72.png" title=""></figure></p>
+
+<p>NAMESERVERS 用 Namecheap 内建提供的即可</p>
+
+<blockquote>
+<p>Linode 也有提供 DNS 服务，如果你想在 Linode 设定 DNS 纪录，这里可以用 Custom DNS，填上 Linode 的 DNS 位址，就可以改用 Linode 的 DNS 服务。阿里云跟 AWS 也有自己的 DNS 服务，提供比较多的功能。</p>
+</blockquote>
+
+<p>进化 Advanced DNS 画面</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Ifb2ZzLIR4yqe3UFrozs_73.png" title=""></figure></p>
+
+<p>删除目前的两个 RECORDS，按 ADD NEW RECORD 新增一个 A Record，让 <code>www</code> 指向我们的服务器 IP 地址。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xgKBjQ9sQjuWA0aH2TM0_74.png" title=""></figure></p>
+
+<p>设定 DNS 需要一些时间才会生效。你可以在用 <code>nslookup</code> 或 <code>dig</code> 指令查询 DNS 是否已经生效。</p>
+
+<blockquote>
+<p>如果等不及的话，你可以先修改本机电脑的 <code>/etc/hosts</code> 自行加上 DNS 对应。只是这个纪录只有你本机有效而已。</p>
+</blockquote>
+<h3>修改 Nginx 设定</h3>
+<p>进入远端服务器，用 root 权限修改 <code>/etc/nginx/sites-enabled/rails-recipes.conf</code></p>
+
+<p>把 server_name 改成我们的网域名称：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>server_name www.rails-recipes.win;
+
+</pre></div>
+</figure>
+
+<p>重启 <code>sudo service nginx restart</code></p>
+
+<p>浏览 <code>http://www.rails-recipes.win</code> 确认完成</p>
+<h3>中国境内 ICP 备案</h3>
+<p>如果服务器主机和 DNS 服务器在中国境内，必须将网域名称和主机IP进行备案。如果没有备案，云服务商会进行定期检查屏蔽，DNS 解析也可能会被国内的 DNS 查询系统屏蔽：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/51xJhDmHR2OgnM0IRuIa_99.png" title=""></figure></p>
+
+<blockquote>
+<p>实际测试发现 http 在开站两天后就被阿里云屏蔽、但 https 或 IP 地址连线没问题。</p>
+</blockquote>
+
+<p>不同备案的省市和不同的网域名称，会有不同申请规定。在哪一家云服务商购买主机，就用那家的备案系统进行申请，例如<a href="https://beian.aliyun.com">阿里云备案</a></p>
+
+<p>如果服务器主机在国外，就不需要也不能备案，但可能被墙封锁。另外也无法申请中国境内的金流服务和 CDN 服务等。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23. 安装 HTTPS 凭证和 HTTP/2
+    </h1><h4>所属章节：Part 7: 购买域名、HTTPS、HTTP/2</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <blockquote>
+<p>HTTPS 和 HTTP/2 的说明，请前往 "网路概论教程 12. 什么是 HTTPS 和 HTTP/2"</p>
+</blockquote>
+
+<p>要启用 HTTPS 加密连线和 HTTP/2 的话，需要申请该域名的 SSL 凭证：</p>
+
+<ol>
+<li>需要购买 SSL 凭证：在 <a href="https://www.namecheap.com">Namechaep</a>、<a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.2arDtO&amp;commodityCode=cas#/buy">阿里云</a> 等各家域名商都可以购买的到。</li>
+<li>或是使用 <a href="https://letsencrypt.org">Let's Encrypt</a> 的免费凭证。Let's Encrypt 是由许多大公司以及各大非营利团体为了推广 HTTPS 而赞助的一家免费发布 SSL 凭证的机构。不过它的效期只有三个月的效期，到期需要更新。凭证过期的话，浏览器会跳出警告讯息。</li>
+</ol>
+
+<p>申请凭证的流程大致上是：</p>
+
+<ol>
+<li>先自己生成一個私鑰、一個申請用的憑證CSR</li>
+<li>將 CSR 傳上去給憑證機構</li>
+<li>憑證機構认证你真的拥有这个网域</li>
+<li>下載 SSL 憑證</li>
+<li>將私鑰和 SSL 憑證安裝到網站服務器上</li>
+</ol>
+
+<p>如果主要用戶不在中國境內、服務器放在國外，建議可以用 <a href="https://cloudflare.com">Cloudflare</a> 這個 CDN 服務，這包含免費的 SSL 憑證，可以免去申請安裝的麻煩。它的 <a href="https://www.cloudflare.com/ssl/">Flexible SSL</a> 模式，可以让终端使用者到 CloudFlare 是加密连线，而你的服务器不需要安装。使用 Cloudflare 需要將 DNS 也給它管理，在註冊的流程中會要求你去修改 Namecheap 改用 Custom DNS。</p>
+<h3>Let's Encrypt 凭证申请</h3>
+<p><a href="https://letsencrypt.org">Let's Encrypt</a> 网页上有安装说明，或是你可以用 <a href="https://gethttpsforfree.com" rel="nofollow" target="_blank">https://gethttpsforfree.com</a> 手动线上申请，请依照指示在远端服务器上操作。</p>
+
+<blockquote>
+<p>protip: 过程中 Step 4: Verify Ownership 需要在服务器上启动它的 Web 服务器来做认证，我们必须暂停我们 Ngnx 服务器(执行<code>sudo service nginx stop</code>)，然后执行它的 python 程序。认证完之后就中断掉，再把我们的服务器 <code>sudo service nginx start</code> 跑起来。</p>
+</blockquote>
+<h3>安装 SSL 凭证</h3>
+<p>最后你会获得一个 Signed Certificate 憑證，请存在服务器上 <code>/etc/nginx/signed.crt</code>，以及一開始的私鑰 <code>domain.key</code> 請放在 <code>/etc/nginx/domain.key</code>。</p>
+
+<p>编辑 <code>/etc/nginx/sites-enabled/rails-recipes.conf</code>，加上 HTTPS 設定以及啟用 HTTP/2：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>server {
+  listen       443 ssl http2;
+  ssl on;
+  ssl_certificate       /etc/nginx/signed.crt;  # 这是跟凭证机构申请后，拿回来的凭证 Key
+  ssl_certificate_key    /etc/nginx/domain.key; # 这是一开始我们自己产生的 Private Key
+
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+  ssl_prefer_server_ciphers on;
+  # by https://mozilla.github.io/server-side-tls/ssl-config-generator/
+ ssl_ciphers 'ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS';
+
+  server_name www.rails-recipes.win;
+
+  root /home/deploy/rails-recipes/current/public;
+  passenger_enabled on;
+
+  passenger_min_instances 1;
+
+  location ~ ^/assets/ {
+    expires 1y;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+  }
+}
+
+</pre></div>
+</figure>
+
+<p>如果你只打算 HTTPS 安全连线，可以将所有 HTTP 连线重导到 HTTPS：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  server {
+    listen 80;
+    server_name www.rails-recipes.win;
+    server_tokens off;
+    location / {
+      return 301 https://$host$request_uri;
+    }
+  }
+
+</pre></div>
+</figure>
+
+<p>大功告成！</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4jbHgccrRaiCUGEiJd9v_75.png" title=""></figure></p>
+
+<blockquote>
+<p><a href="https://www.ssllabs.com/ssltest/index.html" rel="nofollow" target="_blank">https://www.ssllabs.com/ssltest/index.html</a> 可以检测 SSL 是否安装完美。SSL 有很多安全性相关标准。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

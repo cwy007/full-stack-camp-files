@@ -1,0 +1,1887 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      12. 匿名函式
+    </h1><h4>所属章节：函数式编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们学过在编程语言中数据有不同类型，例如字符串、数字等。这一节要教大家一个非常重要的概念，那就是函式也是一种数据类型。函式也是一种数据类型。函式也是一种数据类型。很重要所以说三遍。</p>
+
+<blockquote>
+<p>又叫做 <a href="https://zh.wikipedia.org/wiki/%E5%A4%B4%E7%AD%89%E5%87%BD%E6%95%B0">First-class function 头等函数</a></p>
+</blockquote>
+
+<p>以下的 Ruby 程式码中，变量 <code>x</code> 就是一个函式变量。它的值 <code>-&gt;{ puts "Hello World"}</code> 叫做匿名函式(或叫做 anonymous function, code block 或 lambda )。匿名函式要透过 <code>.call</code> 才会实际调用。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"Hello World"</span> <span class="p">}</span>
+<span class="n">x</span><span class="p">.</span><span class="nf">call</span> <span class="c1"># 输出 Hello World
+</span>
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p><code>-&gt;</code> 等同于 <code>lambda</code> 等同于 <code>Proc.new</code>，这三种写法都可以。有小小的差异但目前先不管没关系。</p>
+</blockquote>
+
+<p>这里 Ruby 的语法看起来有点奇怪，如果你有学过一点 JavaScript，以下是等同的 JavaScript 代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nx">x</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hello World"</span><span class="p">)</span> <span class="p">}</span>
+<span class="nx">x</span><span class="p">()</span> <span class="err">#</span> <span class="err">输出</span> <span class="nx">Hello</span> <span class="nx">World</span>
+</pre></div>
+</figure>
+
+<p>其中 <code>x</code> 是一个函式变量，透过 <code>x()</code> 才会调用。在 JavaScript 中调用一个函式一定要加上括号，所以用 <code>x()</code> 表示触发调用。但是在 Ruby 里面，调用函式是可以省略括号的，因为没办法区分 <code>x</code> 跟 <code>x()</code> 的情况下，Ruby 需要用 <code>.call</code> 方法才会调用匿名函式。</p>
+<h3>把函式变量当作参数</h3>
+<p>既然函式也是一种数据类型，我们就可以将这个函式变量当作参数来传递，例如</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">foo</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">"foo"</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">call</span>
+<span class="k">end</span>
+
+<span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+
+<span class="c1"># 输出
+</span>
+<span class="c1"># bar
+</span>
+<span class="c1"># foo
+</span>
+
+</pre></div>
+</figure>
+
+<p>我们将 <code>foo</code> 变量当作参数，传到 <code>bar</code> 里面去，然后再调用它。注意到第一行宣告 <code>foo</code> 函式的时候，我们并没有真的调用它，直到 <code>x.call</code> 时才调用它。因此是先输出 bar，然后才输出 foo。</p>
+
+<p>这段代码等同于以下的 JavaScript 代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span>
+  <span class="nx">x</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nx">bar</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+
+</pre></div>
+</figure>
+<h3>直接内嵌的写法</h3>
+<p>也可以直接用匿名函式放到参数里面：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">call</span>
+<span class="k">end</span>
+
+<span class="n">bar</span><span class="p">(</span> <span class="o">-&gt;</span><span class="p">{</span> <span class="nb">puts</span> <span class="s2">"zoo"</span> <span class="p">}</span> <span class="p">)</span>
+
+<span class="c1"># 输出
+</span>
+<span class="c1"># bar
+</span>
+<span class="c1"># zoo
+</span></pre></div>
+</figure>
+
+<p>等同于</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"bar"</span><span class="p">)</span>
+  <span class="nx">x</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nx">bar</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"zoo"</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</figure>
+
+<p>有写过 JQuery 的同学们应该很熟悉这种形式。不过 Ruby 的写法似乎不太常见这样写，这是因为通常会简化成这样：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">bar</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+  <span class="k">yield</span>
+<span class="k">end</span>
+
+<span class="n">bar</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"foo"</span>
+<span class="k">end</span>
+
+<span class="c1"># 或是 bar { puts "foo" }
+</span></pre></div>
+</figure>
+
+<p>看起来很熟悉了吧。如果参数列最后一个参数是匿名函式，那么就会用这种简化的写法：传入的匿名函式用 <code>{ ...}</code> 或 <code>do .... end</code> 表示，然后在函式里面用 <code>yield</code> 这个关键字来实际调用它。</p>
+
+<blockquote>
+<p>通常单行的程式会用 <code>{ ... }</code> 的写法，多行则会用 <code>do ... end</code> 的写法。这只是 Coding Style 惯例而已，作用是一样的。</p>
+</blockquote>
+
+<p>如果匿名函式接受参数的话，语法是这样：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">bar</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+  <span class="k">yield</span><span class="p">(</span><span class="s2">"zoo"</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">bar</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">x</span>
+  <span class="nb">puts</span> <span class="s2">"foo"</span>
+<span class="k">end</span>
+
+<span class="c1"># 输出
+</span>
+<span class="c1"># bar
+</span>
+<span class="c1"># zoo
+</span>
+<span class="c1"># foo
+</span></pre></div>
+</figure>
+
+<p>其中 <code>yield("zoo")</code> 会将 "zoo" 带入匿名函式，也就是函式 <code>bar</code> 的 <code>x</code> 参数</p>
+
+<p>另外，还有一种混合的写法长这样：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+  <span class="n">block</span><span class="p">.</span><span class="nf">call</span>
+<span class="k">end</span>
+
+<span class="n">bar</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"foo"</span>
+<span class="k">end</span>
+
+<span class="c1"># 或是 bar { puts "foo" }
+</span></pre></div>
+</figure>
+
+<p>用 <code>&amp;block</code> 可以具体化传入的 <code>{....}</code> 或 <code>do ... end</code> 参数。不过除非你还会继续在 bar 里面调用另一个方法代入这个匿名函式，否则一般不需要这样写。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13. 匿名函式的应用
+    </h1><h4>所属章节：函数式编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>匿名函式是一种非常重要的概念，这种可以将函数当作参数的技巧，有非常多的 API 设计使用到，特别如果你是库(Library)或框架(Framework)的作者的话，更会用到这个技巧。以下来看看几种不同的应用：</p>
+
+<blockquote>
+<p>这种技巧又叫做 <a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0">Higher-order function 高阶函数</a></p>
+</blockquote>
+<h3>pre-and post-processing</h3>
+<p>pre-and post-processing 的意思是前置和后置处理，将共享的前置和后置处理代码抽取出来。以 Ruby 的开档写入为例，无论要写入什么，首先一定要打开档案，完成后一定要调用 <code>close</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"myfile.txt"</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="nf">close</span>
+
+</pre></div>
+</figure>
+
+<p>我们可以改用传入 block 参数的写法，这样就会自动关档了：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>File.open("myfile.txt", 'w') do |f|
+  f.write("Lorem ipsum dolor sit amet")
+  f.write("Lorem ipsum dolor sit amet")
+end
+
+</pre></div>
+</figure>
+
+<p>作为练习，假如我们模仿写一个类似的方法，会长这样：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_open_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_mode</span><span class="p">)</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_mode</span><span class="p">)</span> <span class="c1"># 前置处理
+</span>
+  <span class="k">yield</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">close</span>  <span class="c1"># 后置处理
+</span>
+<span class="k">end</span>
+
+<span class="n">my_open_file</span><span class="p">(</span><span class="s2">"myfile.txt"</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">)</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">)</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>这个 <code>my_open_file</code> 方法就是一个通用的开档方法，这样的好处是不用写 <code>f.close</code> 了，而且也不可能忘记。如果忘了写 <code>end</code> 的话会语法错误。另一个好处是透过代码缩进也更好阅读了解这些代码在一起的。</p>
+<h3>callback function</h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">回调函数</a>的意思是先挖好坑，让调用这个 API 的人可以填要执行什么。</p>
+
+<p>例如 Rails ActiveRecord 可以注册 <a href="https://ihower.tw/rails/activerecord-lifecycle-cn.html#sec1">callback 方法</a>，在 <code>save</code> 前后做一些事情。我们在百宝箱 2-3 自订 Model 网址曾经用过 <code>before_validation :generate_friendly_id, :on =&gt; :create</code>，这会在 <code>save</code> 前去调用 <code>generate_friendly_id</code> 方法。</p>
+
+<p>这个原理就是回调函式，假如我们自己来写一个练习看看，这个 <code>save</code> 会长这样：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyRecord</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">register_before_callback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="vc">@@before_callback</span> <span class="o">=</span> <span class="n">block</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">register_after_callback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="vc">@@after_callback</span> <span class="o">=</span> <span class="n">block</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">save</span>
+    <span class="vc">@@before_callback</span><span class="p">.</span><span class="nf">call</span>  <span class="c1"># 挖了一个坑
+</span>
+    <span class="nb">puts</span> <span class="s2">"save into DB"</span>
+    <span class="vc">@@after_callback</span><span class="p">.</span><span class="nf">call</span>   <span class="c1"># 挖了一个坑
+</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>上面的代码属于库(Library)的通用代码，你可以想像在 Rails 内部大概是这样的。</p>
+
+<p>接下来是我们实际使用的情况：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="no">MyRecord</span><span class="p">.</span><span class="nf">register_before_callback</span> <span class="k">do</span> <span class="c1"># 填坑
+</span>
+  <span class="nb">puts</span> <span class="s2">"this is before callback"</span>
+<span class="k">end</span>
+
+<span class="no">MyRecord</span><span class="p">.</span><span class="nf">register_after_callback</span> <span class="k">do</span> <span class="c1"># 填坑
+</span>
+  <span class="nb">puts</span> <span class="s2">"this is before callback"</span>
+<span class="k">end</span>
+
+<span class="n">record</span> <span class="o">=</span> <span class="no">MyRecord</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">record</span><span class="p">.</span><span class="nf">save</span>
+
+<span class="c1"># 输出
+</span>
+<span class="c1"># this is before callback
+</span>
+<span class="c1"># save into DB
+</span>
+<span class="c1"># this is after callback
+</span>
+
+</pre></div>
+</figure>
+
+<p>调用函式在 JavaScript 用的就更多了，例如绑事件：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"div"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"click!"</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</figure>
+
+<p>这个 <code>click</code> 的参数就是一个回调函式用法，当我们真正 click 时，才会调用这个匿名函式。</p>
+<h3>currying function</h3>
+<p>既然函数也是一种数据，我们可以造一种函式让他也回传一个匿名函式：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+   <span class="o">-&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">){</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">add2</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">add3</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="nb">puts</span> <span class="n">add2</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># 输出 6
+</span>
+<span class="nb">puts</span> <span class="n">add3</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1"># 输出 9
+</span>
+
+</pre></div>
+</figure>
+
+<p>这虽然不太实用，但是是个有趣的例子。</p>
+<h3>Closure 闭包特性</h3>
+<p>匿名函式有一个很重要的特性，那就是 Closure (闭包)。这个意思是它会将外面的作用域(scope)一起包进来，函式内可以读取到函数外的变量，但是在匿名函式中新建立的变量，离开匿名函式后会清掉。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">outer</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">outer</span>  <span class="c1"># 可以读取到外面的 outer 变量
+</span>
+  <span class="n">inner</span> <span class="o">=</span> <span class="mi">4</span>   <span class="c1"># 新建立一个 inner 变量
+</span>
+<span class="k">end</span>
+
+<span class="n">inner</span>  <span class="c1"># 错误 NameError，找不到 inner 这个变量
+</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14. Combinator functions
+    </h1><h4>所属章节：函数式编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>另一个常见的应用是 Combinator functions，指的是处理容器的三个组合招数，让我们一一道来：</p>
+<h3>映射 map</h3>
+<p>映射的意思就是将容器里面的元素，一对一变换成另一个新的容器。</p>
+
+<p>例如我们想将以下的 <code>arr</code> 元素每一个都加一，首先示范一下传统的写法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="n">result</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+<span class="c1"># 输出 [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+</span></pre></div>
+</figure>
+
+<p>改用 <code>map</code> 方法，这个方法接受一个匿名函式来做转换：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="p">}</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+<span class="c1"># 输出 [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+</span></pre></div>
+</figure>
+<h3>过滤 filter</h3>
+<p>过滤就是将容器里的元素，根据某些条件过滤建立另一个容器。</p>
+
+<p>例如过滤出所有偶数，首先示范一下传统的写法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+<span class="c1"># 输出 [2, 4, 6, 8, 10]
+</span></pre></div>
+</figure>
+
+<p>改用 <code>select</code> 方法，这个方法接受一个匿名函式来决定条件：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="nf">select</span><span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span>  <span class="c1"># 这个匿名函式要回传 true 或 false
+</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+
+</pre></div>
+</figure>
+<h3>归纳 reduce</h3>
+<p>归纳就是将一个容器里的元素，归纳成一个值：</p>
+
+<p>例如加总好了，首先示范一下传统的写法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">i</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+<span class="c1"># 输出 55
+</span></pre></div>
+</figure>
+
+<p>改用 <code>reduce</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">sum</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">i</span> <span class="p">}</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+
+</pre></div>
+</figure>
+
+<p><code>result</code> 比较难理解一点：<code>reduce</code> 的第一个参数 <code>0</code> 是初始值，然后这个匿名函式依序走访容器，两个参数 <code>sum</code> 跟 <code>i</code>，前者 <code>sum</code> 是前一次循环的回传结果。<code>i</code> 是这次走访的元素。</p>
+
+<p>找最大值其实也可以用 <code>reduce</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="nf">reduce</span> <span class="k">do</span> <span class="o">|</span><span class="n">max</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">max</span> <span class="o">&gt;</span> <span class="n">i</span>
+    <span class="n">max</span>
+  <span class="k">else</span>
+    <span class="n">i</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">max</span>
+<span class="c1"># 输出 10
+</span></pre></div>
+</figure>
+
+<p>每次循环，匿名函式回传的值就是下一次的 <code>max</code> 参数。</p>
+
+<p>如果 <code>reduce</code> 没给第一个参数，那容器的第一个元素会是初始值。</p>
+<h3>综合应用</h3>
+<p>假如我们想从以下的数据找出小于 1000 的最大的金额，要怎么找呢？</p>
+
+<p>先示范传统写法：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>tickets = [
+  { name: "Ticket A", amount: 100 },
+  { name: "Ticket B", amount: 1123 },
+  { name: "Ticket C", amount: 670 },
+  { name: "Ticket D", amount: 50 },
+  { name: "Ticket E", amount: 990 },
+]
+
+result = tickets[0][:amount]   # 一定要先在 code block 外面初始这个变量，如果放在里面，出来就被清掉了
+
+tickets.each do |ticket|
+  if (ticket[:amount] &lt; 1000 &amp;&amp; ticket[:amount] &gt; result )
+    result = ticket[:amount];
+  end
+end
+
+puts result
+# 输出 990
+</pre></div>
+</figure>
+
+<p>改成刚刚学到的写法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">tickets</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s2">"Ticket A"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">100</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s2">"Ticket B"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">1123</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s2">"Ticket C"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">670</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s2">"Ticket D"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">50</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s2">"Ticket E"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">990</span> <span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">tickets</span><span class="p">.</span><span class="nf">map</span><span class="p">{</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">t</span><span class="p">[</span><span class="ss">:amount</span><span class="p">]</span> <span class="p">}.</span><span class="nf">select</span><span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="p">}.</span><span class="nf">reduce</span><span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">|</span>
+<span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)?</span> <span class="n">x</span> <span class="p">:</span> <span class="n">y</span> <span class="p">}</span>
+
+<span class="nb">puts</span> <span class="n">result</span>
+<span class="c1"># 输出 990
+</span></pre></div>
+</figure>
+
+<p>一行就可以写完，有没有觉得很厉害呢。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15. 什么是面向对象?
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>所谓的对象(Object)就是指一个带有状态和方法的容器，例如以下是 JavaScript 中的自定义对象：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="kd">var</span> <span class="nx">my_object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"ihower"</span><span class="p">,</span>
+  <span class="na">move</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" is moving"</span> <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="nx">my_object</span><span class="p">.</span><span class="nx">move</span><span class="p">()</span>
+
+</pre></div>
+</figure>
+
+<p><code>my_object</code> 有两个属性，一个是 <code>name</code> 一个是 <code>move</code>，而 <code>move</code> 其实是一个匿名函式。这个对象有自己的状态(<code>name</code> 是 ihower)，有自己的方法(move)。我们把相关的数据和方法，一起包进物件里面。</p>
+
+<p><code>my_object.move()</code> 可以看成是朝对象 <code>my_object</code> 发送一个 <code>move</code> 讯息。接收者 <code>my_object</code> 接到一个 <code>move</code> 讯息。</p>
+
+<p>向面对象(Object-Oriented)程序设计指的就是以对象为基础的编程方式，整个软件就是一群对象之间的互动。</p>
+<h3>为什么要用面向对象？</h3>
+<p>在编程语言第一集中，算法和数据结构强调的是正确性和高效率。但是在面向对象要追求的是软件的扩充性、维护性、修改弹性、可读性、可测性，是一种将代码适当安排组织的一种设计方式。</p>
+
+<p>Ruby 是一个非常面向对象思维的编程语言，在 Ruby 中其实每一个数据其实都是对象。</p>
+<h3>Class-based 基于类的面向对象设计</h3>
+<p>主流编程语言中，只有 JavaScript 可以像刚刚一样直接创造一个自定义对象，其他编程语言包括 Ruby，都是要先定义类(Class-based)才能创造对象。所谓的类(Class)就是去定义了某一种类型的对象所拥有的属性和方法。类别是抽象的事物，而不是其所描述的特定对象。以下的 Ruby 代码先定义了 <code>Person</code> 类，然后再用 <code>new</code> 方法创造出两个对象 <code>p1</code> 和 <code>p2</code>：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+
+  <span class="k">def</span> <span class="nf">move</span>
+    <span class="nb">puts</span> <span class="s2">"Hello, </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"ihower"</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">move</span> <span class="c1"># 输出 Hello, ihower
+</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">p2</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"John"</span>
+<span class="n">p2</span><span class="p">.</span><span class="nf">move</span> <span class="c1"># 输出 Hello, John
+</span></pre></div>
+</figure>
+
+<p>你可以想像类(Class)就是对象(Object)的模版，这些对象都有 <code>name</code> 属性和一个 <code>move</code> 方法。</p>
+
+<blockquote>
+<p>名词释疑：除了 Object (对象)的讲法，这些由类产生出来的 Object，又叫做 Instance (实例)</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16. Ruby 语法说明
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们完整解说一下 Ruby 中类的语法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+        <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">word</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"ihower"</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"ihover"</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="p">.</span><span class="nf">say</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span> <span class="c1"># 输出 Hello, ihower
+</span>
+<span class="n">p2</span><span class="p">.</span><span class="nf">say</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span> <span class="c1"># 输出 Hello, ihover
+</span>
+
+</pre></div>
+</figure>
+
+<ul>
+<li>类一定是大写开头，也是一种常数</li>
+<li>
+<code>initialize</code> 是对象的建构方法，当调用 <code>new</code> 的时候的会把参数传进这里</li>
+<li>
+<code>@</code> 开头的变量，也就是范例中的 <code>@name</code> 叫做对象变量(instance variable)。这个是对象的内部状态。</li>
+<li>
+<code>def</code> 会定义对象的方法</li>
+</ul>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span>
+
+    <span class="vc">@@name</span> <span class="o">=</span> <span class="err">“</span><span class="n">ihower</span><span class="err">”</span>
+
+    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">say</span>
+        <span class="nb">puts</span> <span class="vc">@@name</span>
+    <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="no">Person</span><span class="p">.</span><span class="nf">say</span> <span class="c1"># 输出 ihower
+</span>
+
+</pre></div>
+</figure>
+
+<ul>
+<li>两个 <code>@@</code> 开头的变量，也就是 <code>@@name</code> 叫做类变量(class variable)，这个是属于类的</li>
+<li>用 <code>self.def</code> 开头定义的方法，也就是 <code>def self.say</code> 叫做类方法。用 <code>Person.say</code> 就会调用。</li>
+</ul>
+
+<p>另外，对象变量(@开头)和类变量(@@开头)，都是封装在类内部，类外无法存取。都需透过定义方法才可以存取到。</p>
+
+<p>例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+        <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">p</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'ihower'</span><span class="p">)</span>
+<span class="nb">p</span><span class="p">.</span><span class="nf">name</span>
+<span class="c1"># NoMethodError 会出错
+</span>
+<span class="nb">p</span><span class="p">.</span><span class="nf">name</span><span class="o">=</span><span class="s1">'peny'</span>
+<span class="c1"># NoMethodError 会出错
+</span>
+
+</pre></div>
+</figure>
+
+<p>需要定义存取的方法，一个读、一个写：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Person
+
+   def initialize(name)
+    @name = name
+   end
+
+   def name
+     @name
+   end
+
+   def name=(name)
+     @name = name
+   end
+
+end
+
+p = Person.new('ihower')
+p.name
+=&gt; "ihower"
+p.name = "peny"
+=&gt; "peny"
+
+</pre></div>
+</figure>
+<h3>attr_* 用法</h3>
+<p>由于定义存取方法很常见，Ruby 提供了 <code>attr_accessor</code>、<code>attr_reader</code>、<code>attr_writer</code> 等类方法帮我们定义：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Person
+
+  attr_accessor :name
+
+  attr_reader :foo
+  attr_writer :bar
+end
+
+</pre></div>
+</figure>
+
+<p>其中 <code>attr_accessor :name</code> 等同于刚刚我们自定义的存取方法。<code>attr_reader</code> 只定义读、<code>attr_writer</code> 只定义写。</p>
+<h3>public/protected/private 方法</h3>
+<p>对象方法还有分 public(公开)、protected 和 private 不同，默认是 public。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">MyClass</span>
+
+    <span class="k">def</span> <span class="nf">public_method</span>
+      <span class="n">private_method</span> <span class="c1"># 调用 private 方法
+</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">protected_method</span> <span class="c1"># 调用 protected_method 方法，self. 可加可不加
+</span>
+    <span class="k">end</span>
+
+    <span class="kp">private</span> <span class="c1"># 以下定义的都是 private 方法
+</span>
+
+    <span class="k">def</span> <span class="nf">private_method</span>
+    <span class="k">end</span>
+
+    <span class="kp">protected</span>  <span class="c1"># 以下定义的都是 protected 方法
+</span>
+
+    <span class="k">def</span> <span class="nf">protected_method</span>
+    <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="no">MyClass</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">m</span><span class="p">.</span><span class="nf">public_method</span>
+
+<span class="n">m</span><span class="p">.</span><span class="nf">private_method</span>
+<span class="c1"># NoMethodError: private method `private_method' called 会出错
+</span>
+
+<span class="n">m</span><span class="p">.</span><span class="nf">protected_method</span>
+<span class="c1"># NoMethodError: protected method `protected_method' called 会出错
+</span>
+
+</pre></div>
+</figure>
+
+<p>你不能对对象 <code>m</code> 调用 privated_method 或 protected_method。这两个方法只能在内部调用。</p>
+
+<blockquote>
+<p>那 private 和 protected 有什么差别? protected 允许调用同一类的对象。private 则严格限制在内部调用。</p>
+</blockquote>
+
+<p>为什么面向对象语言会设计这个功能呢？这是因为我们希望管控有哪些 public 方法。这些 public 是公开的 API 会给程序员调用的，如果有任何修改都会影响到软件的其他地方要一起修改。但是 private 但 protected 方法就只会影响这个对象的内部而已。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17. 特性一: 封装(encapsulation)
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>面向对象的其中一个特色就是封装，调用者不需要关心内部结构，只需根据公开接口进行操作。程式只依赖物件的公开接口，而不依赖内部结构。这样内部的结构可以根据架构需求而修改，而不会影响到其他程式。</p>
+
+<p>我们看一个没有封装的例子，分数相加：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="c1"># 设计处理分数的相加，假设分子是 x、分母是 y
+</span>
+
+<span class="k">def</span> <span class="nf">add_rational_numerator</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+    <span class="n">x1</span><span class="o">*</span><span class="n">y2</span> <span class="o">+</span> <span class="n">x2</span><span class="o">*</span><span class="n">y1</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">add_rational_denominator</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+    <span class="n">y1</span><span class="o">*</span><span class="n">y2</span>
+<span class="k">end</span>
+
+<span class="c1"># 2/3 + 3/4
+</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">answer_x</span> <span class="o">=</span> <span class="n">add_rational_numerator</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+<span class="n">answer_y</span> <span class="o">=</span> <span class="n">add_rational_denominator</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">answer_x</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">answer_y</span><span class="si">}</span><span class="s2">"</span>
+
+</pre></div>
+</figure>
+
+<p>分子、分母、算分母的方法、算分子的方法，都是分开的。</p>
+
+<p>如果改用面向对象来写，首先定义分数的类：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyRational</span>
+
+  <span class="kp">attr_accessor</span> <span class="ss">:x</span><span class="p">,</span> <span class="ss">:y</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="vi">@x</span><span class="p">,</span> <span class="vi">@y</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="no">MyRational</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="vi">@x</span><span class="o">*</span><span class="n">target</span><span class="p">.</span><span class="nf">y</span> <span class="o">+</span> <span class="vi">@y</span><span class="o">*</span><span class="n">target</span><span class="p">.</span><span class="nf">x</span><span class="p">,</span> <span class="vi">@y</span><span class="o">*</span><span class="n">target</span><span class="p">.</span><span class="nf">y</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="c1"># 2/3 + 3/4
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="no">MyRational</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="no">MyRational</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">c</span><span class="p">.</span><span class="nf">x</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">c</span><span class="p">.</span><span class="nf">y</span><span class="si">}</span><span class="s2">"</span>
+
+</pre></div>
+</figure>
+
+<p>于是有关分数的数据和方法，都被一起封装到对象里面去了。这样就很清楚它们是相关的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18. 特性二: 继承(inheritance)
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>继承可以让父类的定义都复制到子类，在 Ruby 中用 <code>class Child &lt; Parent</code> 符号表示：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Vehicle
+
+  def move
+    puts "vehicle move"
+  end
+
+end
+
+class Car &lt; Vehicle
+
+  def foo
+    puts "car foo"
+  end
+
+end
+
+class Bike &lt; Vehicle
+
+  # overwrite
+  def move
+    puts "special bike move"
+  end
+
+  def foo
+    puts "bike foo"
+  end
+
+end
+
+car = Car.new
+bike = Bike.new
+
+car.move()
+bike.move()
+
+car.foo()
+bike.foo()
+</pre></div>
+</figure>
+
+<p><code>Vehicle</code> 类定义了 <code>move</code>方法，而 <code>Car</code> 跟 <code>Bike</code> 都继承自 <code>Vehicle</code>，因此他们也都有 <code>move</code> 方法。但是在 <code>Bike</code> 中你也可以复写掉 <code>move</code> 方法。</p>
+
+<p>在 Rails 中也很常见继承，打开任一个 Model 档案，都是继承自 <code>ApplicationRecord</code>。再打开会发现 <code>ApplicationRecord</code> 继承自 <code>ActiveRecord::Base</code>。后者是 Rails 框架的核心类，我们之所以可以调用 <code>.save</code>、<code>.find</code>、<code>.where</code> 等等方法就是在 <code>ActiveRecord::Base</code> 中定义的。。</p>
+
+<p>打开任一个 Controller 档案，都是继承自 <code>ApplicationController</code>，然后 <code>ApplicationController</code> 又是继承自 <code>ActionController::Base</code>，我们之所以可以调用 <code>before_action</code>、<code>render</code>、<code>redirect_to</code> 等等方法就是在 <code>ActionController::Base</code> 中定义的。</p>
+
+<p>透过继承，我们写的 Model 和 Controller 都是基于 Rails 已经写好的功能进行扩充而已。</p>
+<h3>多重继承</h3>
+<p>上述的写法只能单一继承，也就是只能有一个父类。如果有多个父类要继承，在 Ruby 中会用到 module：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">Ownership</span>
+  <span class="k">def</span> <span class="nf">show_owner</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> show_owner called"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Vehicle</span>
+  <span class="k">def</span> <span class="nf">move</span>
+    <span class="nb">puts</span> <span class="s2">"move"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Car has two parents: Car and Ownership
+</span>
+<span class="k">class</span> <span class="nc">Car</span> <span class="o">&lt;</span> <span class="no">Vehicle</span>
+  <span class="kp">include</span> <span class="no">Ownership</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">House</span>
+  <span class="kp">include</span> <span class="no">Ownership</span>
+<span class="k">end</span>
+
+<span class="n">car</span> <span class="o">=</span> <span class="no">Car</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">house</span> <span class="o">=</span> <span class="no">House</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">show_owner</span><span class="p">()</span>
+<span class="n">house</span><span class="p">.</span><span class="nf">show_owner</span><span class="p">()</span>
+
+</pre></div>
+</figure>
+
+<p>其中 <code>module Ownership</code> 会用 <code>include</code> 的语法 mix-in(混入)到 <code>Car</code> 里面。</p>
+
+<blockquote>
+<p>那 class 跟 module 有什么不一样？你不能实例化 module，也就是不能对 module 调用 <code>new</code> 方法来产生对象。</p>
+</blockquote>
+<h3>module 命名空间</h3>
+<p>顺道一提 module 的另一个用途，就是拿来做命名空间，也就是让常数的命名长一点避免撞名：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">module</span>  <span class="nn">A</span>
+  <span class="k">class</span> <span class="nc">B</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这个被 module A 包起来的 class B，如果要使用它要用 <code>A::B</code>。</p>
+
+<p>如果 module A 已经定义过了，则可以这样写：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span><span class="o">::</span><span class="no">C</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>假如在 module A 里面定义了一个跟最外层撞名的类，这时候如果要拿外层的类，需要加上 <code>::</code> 符号：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Person
+end
+
+module A
+  class Person
+    def foo
+      Person    # 这个会是指 A::Person
+      ::Person  # 前面要加 :: 表示要拿最外层的 Person
+    end
+  end
+end
+</pre></div>
+</figure>
+
+<p>最后，可以用 module 来定义模块方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">MyUtil</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">foobar</span>
+    <span class="nb">puts</span> <span class="s2">"foobar"</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="no">MyUtil</span><span class="p">.</span><span class="nf">foobar</span>
+<span class="c1"># 输出 foobar
+</span></pre></div>
+</figure>
+
+<p>Ruby 的 <a href="https://ruby-doc.org/core-2.2.0/Math.html">Math API</a> 就是长这种形式。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      19. 特性三: 多态(polymorphism)
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>多态的意思是可以把很多不一样的东西，当作同一种东西来处理。例如箱子有很多种，打开的实作方式各有不同(有的有锁、有的没锁)，但是这些箱子都有提供「打开」这个接口可以操作。下命令的人只需要知道呼叫这个指令即可。</p>
+
+<p>先来示范一个不是面向对象的设计：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">box1</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Box1"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"locked"</span> <span class="p">}</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Box2"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"unlocked"</span><span class="p">}</span>
+<span class="n">box3</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Box3"</span><span class="p">,</span> <span class="ss">:type</span> <span class="o">=&gt;</span> <span class="s2">"seal"</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">open_box</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">box</span><span class="p">[</span><span class="ss">:type</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"locked"</span>
+    <span class="nb">puts</span> <span class="s2">"Open locked"</span>
+  <span class="k">elsif</span> <span class="n">box</span><span class="p">[</span><span class="ss">:type</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"unlocked"</span>
+    <span class="nb">puts</span> <span class="s2">"Open unlocked"</span>
+  <span class="k">elsif</span> <span class="n">box</span><span class="p">[</span><span class="ss">:type</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"seal"</span>
+    <span class="nb">puts</span> <span class="s2">"Open Seal"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">,</span> <span class="n">box3</span><span class="p">]</span>
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="n">open_box</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>上述的代码中，有一个很厉害的 <code>open_box</code> 方法，在里面会判断不同的箱子调用不同的输出。这样设计的缺点是不好扩充，维护性低。因为无论是新增不同的箱子，或是修改某一个箱子打开的行为，都得修改同一个方法，复杂度全部集中在 <code>open_box</code> 之中。</p>
+
+<p>让我们改用面向对象来写：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Box</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">open</span>
+    <span class="nb">puts</span> <span class="s2">"Open default box"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">LockedBox</span> <span class="o">&lt;</span> <span class="no">Box</span>
+  <span class="k">def</span> <span class="nf">open</span>
+    <span class="nb">puts</span> <span class="s2">"Open locked"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UnlockedBox</span> <span class="o">&lt;</span> <span class="no">Box</span>
+  <span class="k">def</span> <span class="nf">open</span>
+    <span class="nb">puts</span> <span class="s2">"Open Unlocked"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">SealBox</span> <span class="o">&lt;</span> <span class="no">Box</span>
+  <span class="k">def</span> <span class="nf">open</span>
+    <span class="nb">puts</span> <span class="s2">"Open seal"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">box1</span> <span class="o">=</span> <span class="no">LockedBox</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Box1"</span><span class="p">)</span>
+<span class="n">box2</span> <span class="o">=</span> <span class="no">UnlockedBox</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Box2"</span><span class="p">)</span>
+<span class="n">box3</span> <span class="o">=</span> <span class="no">SealBox</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Box3"</span><span class="p">)</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">,</span> <span class="n">box3</span><span class="p">]</span>
+<span class="n">arr</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">open</span><span class="p">()</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>代码看起来好像变多了，但是扩充性和维护性比较好。因为如果要新增不同的箱子，只需要新增类即可，不需要改到本来的代码。没有多型的话，单一函数就会充满根据数据类型的判断的 if-else，变得难以扩充。这种多型的特型让我们不需要担心确切的数据类型，只要接口一致(都有 open 方法)就可以操作</p>
+<h3>鸭子型别 Duck Typing</h3>
+<p>在动态语言中，不同对象只要方法的接口一样，就可以有多态的特型，这又叫做 <a href="https://zh.wikipedia.org/wiki/%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B">Duck Typing</a>：当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。</p>
+
+<blockquote>
+<p>名词释疑：方法的「接口(Interface)」指的是方法的名称和参数，方法的「实作(Implement)」指的是方法内实际要做的代码。上述的 LockedBox、UnlockedBox 和 SealBox 都有一样的 open 接口，但是子类别中定义了不同的实作。</p>
+</blockquote>
+
+<p>刚刚的 Box 例子是透过继承来达成多态，因为所有继承自 Box 的子类，都一定有 open 方法，自然是多态的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20. 面向对象设计
+    </h1><h4>所属章节：面向对象编程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>到目前为止我们只是基本了解定义类的语法，以及认识了面向对象的三个特性。但是面对一个复杂的软件好像还是不知道怎么去设计要有哪些类？</p>
+
+<p>别担心，作为应用程式开发的初学者，我们绝大部分需要的类设计，都由应用程式框架，也就是 Rails 提供了，只要照着框架的规范写程式即可，一开始不太需要自己设计全新的类别。随着大型专案的需求，才会逐步需要这方面的知识进行更好的程式架构调整。</p>
+
+<blockquote>
+<p>这种不依赖框架，自己定义的对象，又叫作 Plain-Old Ruby Object</p>
+</blockquote>
+
+<p>面向对象设计又是一门学问，有兴趣的学员，可以朝以下参考资源搜寻：</p>
+
+<ul>
+<li>
+<a href="https://book.douban.com/subject/25795276/">面向对象设计实践指南: Ruby 语言描述</a> 人民邮电</li>
+<li>
+<a href="http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29">SOLID</a> OO 设计原则</li>
+<li>
+<a href="https://zh.wikipedia.org/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">Design Patterns 设计模式</a>，最有名的即 GoF patterns。设计模式针对了特定的情境，提供设计解法(通常是如何设计你的类别)，并且「命名」这些模式让程序员可以方便沟通和当作命名的元素。另一方面也是提供一种可以临摹的设计范例。常见的设计模式包括 Factory, Adapter, Composite, Decorator, Iterator, Observer 等等</li>
+</ul>
+
+<p>例如以下是一个 Strategy Pattern 范例：情境是我们想要设计一个通用的数据输出功能，并且允许我们随时可以抽换不同的输出方式，例如 XML 或 JSON。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">AwesomeFormatter</span>
+
+  <span class="kp">attr_accessor</span> <span class="ss">:data</span><span class="p">,</span> <span class="ss">:formatter</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">formatter</span> <span class="o">=</span> <span class="n">formatter</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">output</span>
+    <span class="nb">puts</span> <span class="nb">self</span><span class="p">.</span><span class="nf">formatter</span><span class="p">.</span><span class="nf">output</span><span class="p">(</span> <span class="nb">self</span><span class="p">.</span><span class="nf">data</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">XMLFormatter</span>
+  <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="s2">"&lt;data&gt;</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">&lt;/data&gt;"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">JSONFormatter</span>
+  <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="s2">"{ data: </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2"> }"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+
+<span class="n">formatter</span> <span class="o">=</span> <span class="no">AwesomeFormatter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span> <span class="s2">"ihower"</span><span class="p">,</span> <span class="no">XMLFormatter</span><span class="p">.</span><span class="nf">new</span> <span class="p">)</span>
+
+<span class="n">formatter</span><span class="p">.</span><span class="nf">output</span><span class="p">()</span> <span class="c1"># 输出 XML 格式
+</span>
+
+<span class="n">formatter</span><span class="p">.</span><span class="nf">formatter</span> <span class="o">=</span> <span class="no">JSONFormatter</span><span class="p">.</span><span class="nf">new</span>   <span class="c1"># 动态更换不同的输出策略
+</span>
+
+<span class="n">formatter</span><span class="p">.</span><span class="nf">output</span><span class="p">()</span> <span class="c1"># 输出 JSON 格式
+</span></pre></div>
+</figure>
+
+<p>在建构 <code>AwesomeFormatter.new</code> 时，第二个参数就是不同的策略，其中 <code>formatter</code> 属性就代表不同的输出方式。</p>
+
+<p>透过这个 Strategy Pattern，我们可以随时抽换不同的输出方式。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      21. 什么是异常处理 Exception
+    </h1><h4>所属章节：异常处理 Exception</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>异常处理 (Exception Handling) 是高阶编程语言的一种用于处理异常状况的流程机制，在 Ruby、JavaScript、Python、Java、Swift 等语言中都有这个功能。</p>
+
+<p>哪些算是异常状况呢？是指不在程序运行中预期会发生的事情，例如语法错误、发送 HTTP API 时网络不通、写入档案时硬盘已满、数字除以零等等。</p>
+
+<p>当发生异常时，程序会中断跳开，跳到处理异常的代码。如果没有处理这段异常的代码，整个程序就会终止(也就是软件crash、app 闪退、网站看到500错误画面)</p>
+
+<p>在开发 Rails 时，每次你看到的红色错误画面，就是发生了一个异常错误(Exception)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/f5fhohrHRmeUopMZzlr6_1.png" title=""></figure></p>
+<h3>Ruby 语法说明: raise</h3>
+<p>让我们实际看看异常处理的语法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"Start"</span>
+<span class="k">raise</span> <span class="s2">"Errorrrr"</span>
+<span class="nb">puts</span> <span class="s2">"Never execute"</span>
+
+</pre></div>
+</figure>
+
+<p>这段代码中，用 <code>raise</code> 会丢出一个异常(Exception)，执行的结果是：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>Start
+Called
+exception.rb:4:in `&lt;main&gt;': Errorrrr (RuntimeError)
+</pre></div>
+</figure>
+
+<p>注意到第三行的 <code>puts "Never execute"</code> 是没有被执行的，执行到 <code>raise</code> 时程序就终止了。</p>
+
+<blockquote>
+<p><code>raise 'An error has occured.'</code> 等同于 <code>raise RuntimeError.new('An error has occured.')</code>，<code>RuntimeError</code> 是一个 Ruby 内建的默认异常对象，用来储存关于这个异常的信息。Rails 还有内建其他不同的异常对象，详见 <a href="https://ruby-doc.org/core-2.2.0/Exception.html">Ruby API</a>。</p>
+</blockquote>
+
+<p>为什么你好像很少用到 <code>raise</code> 这个功能呢？这是因为丢出 <code>raise</code> 的大多是 Ruby 本身或是我们使用的库和框架之中，例如：</p>
+
+<ul>
+<li>当你对一个对象调用一个不存在的方法时，Ruby 会丢出 <code>NoMethodError</code> 异常</li>
+<li>在 Rails 中当URL找不到任何路由规则可以符合时，会丢出 <code>Routing Error</code> 异常</li>
+</ul>
+<h3>Ruby 语法说明: rescue</h3>
+<p>接下来让我们加上处理异常的代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"Start"</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s2">"Called"</span>
+  <span class="k">raise</span> <span class="s2">"Errorrrr"</span>
+  <span class="nb">puts</span> <span class="s2">"Never execute"</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s1">'I am rescued.'</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">message</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">"Done"</span>
+
+</pre></div>
+</figure>
+
+<p>从 <code>begin</code> 到 <code>end</code> 包住整个可能会丢出异常的代码，然后用 <code>rescue =&gt; e</code> 可以捕捉到异常。执行的结果是：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>Start
+Called
+I am rescued.
+Errorrrr
+Done
+</pre></div>
+</figure>
+
+<p><code>puts "Never execute"</code> 这一行依然不会执行到，程式从 <code>raise</code> 后就跳去 <code>resue</code> 的部分，然后再继续往后正常执行。</p>
+
+<p>在 <code>rescue</code> 我们会写如何去处理(拯救)异常，而 <code>rescue =&gt; e</code> 的 <code>e</code> 是个异常对象，会储存关于这个异常的信息。</p>
+
+<p>常见的 <code>rescue</code> 可能是显示错误讯息，告诉用户这个操作失败了，然后程序回复正常继续执行。</p>
+<h3>Ruby 语法: ensure</h3>
+<p><code>ensure</code> 部分则是不管有没有发生异常，都一定会执行到。例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>begin
+    # do something
+    raise 'An error has occured.'
+rescue =&gt; e
+    puts 'I am rescued.'
+ensure
+    puts 'This code gets executed always.'
+end
+</pre></div>
+</figure>
+
+<p>执行结果</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>I am rescued.
+This code gets executed always.
+
+</pre></div>
+</figure>
+<h3>Ruby 语法: 顶层异常捕获</h3>
+<p>上述的 <code>begin...rescue</code> 语法，如果放在 <code>def</code> 方法定义中，则可以用以下的简略写法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="err">某个方法名称</span>
+  <span class="c1"># do something
+</span>
+  <span class="k">raise</span> <span class="s1">'An error has occured.'</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="s1">'I am rescued.'</span>
+<span class="k">ensure</span>
+  <span class="nb">puts</span> <span class="s1">'This code gets executed always.'</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>也就是可以省略掉原本异常处理的 <code>begin</code> 跟结尾的 <code>end</code>。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      22. 什么是 callstack 和 backtrace
+    </h1><h4>所属章节：异常处理 Exception</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在一个复杂的软件中，方法内会调用其他方法，然后方法又在调用其他方法，例如以下范例，c 方法调用 b 方法、b 方法内又调用 a 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">a</span>
+  <span class="nb">puts</span> <span class="s2">"a"</span>
+  <span class="k">raise</span> <span class="s2">"A error"</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">b</span>
+  <span class="nb">puts</span> <span class="s2">"b"</span>
+  <span class="n">a</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">c</span>
+  <span class="nb">puts</span> <span class="s2">"c"</span>
+  <span class="n">b</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="k">begin</span>
+  <span class="n">c</span><span class="p">()</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">message</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">backtrace</span>
+<span class="k">ensure</span>
+  <span class="nb">puts</span> <span class="s2">"finally"</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>这种一层一层的关系，又叫做 <code>callstack</code>。</p>
+
+<p>其中 a 方法中丢出了异常，但是在 a 方法内并没有 rescue，这个异常会一层一层往外抛出，直到某一层有 rescue 有本事捕捉这个例外。如果一直到到最外层都没人能处理异常，那么程序才会中断。</p>
+
+<p>在上述的 <code>rescue</code> 中，我们用 <code>e.backtrace</code> 可以列出调用的 <code>callstack</code> 关系，<code>backtrace</code> 的意思就是回朔当初的调用关系。</p>
+
+<p>在 Rails 中如果发生异常，根据 development 模式或 production 模式，最外层有不同的异常处理策略：在开发时最外层的 <code>rescue</code> 会显示错误的 backtrace，这样可以帮助我们了解发生错误的来龙去脉：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9Bgdkhk0QKa8tLVSNlhA_2.png" title=""></figure></p>
+
+<p>这里区分了 Application Trace、Framework Trace 和 Full Trace。默认显示 Application Trace 也就是我们写的代码 backtrace，而 Framework Trace 则是发生在 Rails 框架内的 backtrace。</p>
+
+<p>如果是 production 模式，默认的最外层 <code>rescue</code> 其实是显示 500 错误画面(也就是 public/500.html)。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4J89ANRWQ3qa5Qp24vqT_3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      23. 异常处理策略
+    </h1><h4>所属章节：异常处理 Exception</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>现在你了解异常处理的语法了，我们回过头来思考一下，当程序发生错误时会如何处理? 程序发生错误其实是蛮常见的事情，但是并不是每种错误都会用异常处理功能来解决。</p>
+<h3>回传错误码 vs. 抛出异常</h3>
+<p>事实上有两种处理方式：第一种是回传某个代表错误的值(例如 nil, true/false 或错误数字码)，第二种才是抛出异常 Exception。</p>
+
+<p>例如从 Hash 或 Array 中取出一个值，如果该 key 不存在，其实也可以算是一种异常：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">h</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="s2">"123"</span> <span class="p">}</span>
+
+<span class="n">h</span><span class="p">[</span><span class="ss">:bar</span><span class="p">]</span> <span class="c1"># 回传 nil
+</span>
+
+<span class="n">h</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:bar</span><span class="p">)</span> <span class="c1"># 丢出 KeyError 异常
+</span>
+
+</pre></div>
+</figure>
+
+<p>其中 <code>:bar</code> 是一个不存在的 key，而 <code>h[:bar]</code> 默认回传 <code>nil</code> 代表了此值不存在。但 Ruby 也提供另一个 Hash#fetch 用法，如果该 key 不存在，会丢出错误异常 <code>KeyError</code>。同一件事情，Ruby 提供了两种 API 方法，但有不同的异常处理策略。</p>
+
+<p>在看 Ruby API 或是 gem 的 API 文档时，你可以注意一下它们是如何处理异常情况的。例如在 <a href="https://github.com/rest-client/rest-client">rest-client</a> gem 中(在 Web API 教程中，我们用这个 gem 来抓取第三方的信息)，如果抓取失败，就会抛出<a href="https://github.com/rest-client/rest-client#exceptions-see-httpwwww3orgprotocolsrfc2616rfc2616-sec10html">RestClient::ExceptionWithResponse 异常</a>。</p>
+<h3>何时用抛出异常？</h3>
+<p>什么时候会用错误码？什么时候会用抛出异常的方式呢？这得取决于这个错误是否在预期之内。抛出异常的意思像是: 这个异常这里不知道怎么处理，只好把烫手山芋抛出去，看哪一层有办法处理。如果最后都没有人可以处理，那程序只好 crash 了!</p>
+
+<p>以 Rails 来说，存储的 API 有两种，一个是 <code>save</code> 一个是 <code>save!</code>。差别是当 validation 验证失败时的处理方式不同。以下是大家比较熟悉的版本：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span> <span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+  <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
+    <span class="n">redirect_to</span> <span class="n">user_path</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Unable to create user'</span>
+    <span class="n">render</span> <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="ss">:new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这是改用异常处理的版本：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span> <span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+  <span class="vi">@user</span><span class="p">.</span><span class="nf">save!</span>
+  <span class="n">redirect_to</span> <span class="n">user_path</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span>
+<span class="k">rescue</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordNotSaved</span>
+  <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Unable to create user'</span>
+  <span class="n">render</span> <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="ss">:new</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>在这两个版本中，前者还是比较好的。这是因为用户输入不正确其实是很常见的事情，处理用户输入失败，重新显示表单也算是正常流程处理的一部分，所以用 <code>if ... else ...</code> 的写法还比较清楚。改用异常处理的版本，代码并不会比较清楚。</p>
+
+<p>异常处理的初衷，是希望处理异常的代码不要干扰正常代码的可读性，会发生异常的可能性很低，因此将处理异常的代码放到最后面去。</p>
+
+<p>甚至，不处理异常也是很常见的事情，例如在百宝箱「自订列表顺序」中，其中有个 <code>reorder</code> action 是这样的：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">reorder</span>
+    <span class="vi">@event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">find_by_friendly_id!</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@event</span><span class="p">.</span><span class="nf">row_order_position</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:position</span><span class="p">]</span>
+    <span class="vi">@event</span><span class="p">.</span><span class="nf">save!</span>
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>在这个动作中，用了 <code>save!</code> 而不是 <code>save</code>。这是因为我们没有预期会发生 validation 失败，我们也没有打算要写 validation 失败了要怎么处理。在这种情况下，我们就会改用 <code>save!</code> 而不是 <code>save</code>。这样如果真的万一出事了，程序就会中断，用户会看到 500 错误画面，这个错误会被记录在 log 之中让我们程序员去检查这个错误。如果你用 <code>save</code> 的话，如果失败只会回传 <code>false</code> 然后就继续执行下去，用户只会觉得很奇怪为什么没有存成功，但是却没有任何错误记录。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      24. 关于 Rails 的异常处理
+    </h1><h4>所属章节：异常处理 Exception</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在一节我们来回顾一下 Rails 是如何做异常处理的?</p>
+<h3>find</h3>
+<p>ActiveRecord 的 <code>find</code> API 如果找不到数据，会丢 <code>ActiveRecord::RecordNotFound</code> 的例外。在 show action 我们经常用这个 API，因为如果真的找不到，程序就会中断。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  def show
+    @event = Event.find(params[:id])
+  end
+
+</pre></div>
+</figure>
+
+<blockquote>
+<p>在 development 开发模式中，你会看到 ActiveRecord::RecordNotFound 异常。在 production 上线模式，会显示 404 页面(public/404.html)</p>
+</blockquote>
+
+<p>Rails 还有提供 <code>find_by_字段名称</code> 和 <code>find_by_字段名称!</code> API，前者如果找不到数据，会回传 <code>nil</code>，后者则是抛出异常。</p>
+
+<p>在百宝箱第一集的「自定义 Model 网址」中，我们新增了一个 <code>friendly_id</code> 字段，然后 show action 改成：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">find_by_friendly_id!</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>当找不到数据时，就会抛出 <code>ActiveRecord::RecordNotFound</code> 异常程序中断。</p>
+
+<p>为什么这里偏好用抛出异常的策略呢？如果我们改用 <code>Event.find_by_friendly_id(params[:id])</code> 的话，找不到数据时会回传 <code>nil</code>，那么 @event 变成 <code>nil</code> 程序继续执行，一直进到 <code>show.html.erb</code> 里面的某一行去显示 <code>@event.name</code>，然后就会碰到 <code>nil.name</code> 抛出异常是 <code>NoMethodError</code> 最后程序中断。这时候要找到真正异常的原因就会多花一点时间。</p>
+
+<p>我们希望在异常发生的第一时间就中断程序(fail fast)，而不是让程序无声地继续执行下去，最后像一个未爆弹一样最后莫名其妙地炸掉。</p>
+<h3>save 和 save!</h3>
+<p>这刚刚有提过，存储有分 save 和 save!，更新有分 udpate 和 udpate!。</p>
+
+<ul>
+<li>有搭配 <code>if ... else</code> 情况做处理用 save。这表示你会处理储存失败流程</li>
+<li>没有的话，用 save! 惊叹号版本。这表示你认为 99% 应该会存成功，懒得处理存不成功。如果出错会异常抛出</li>
+</ul>
+<h3>rescue_from</h3>
+<p><a href="http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html">rescue_from</a><br>
+可以在 controller 中宣告 <code>rescue_from</code> 去救回特定的异常对象。例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class ApplicationController &lt; ActionController::Base
+  rescue_from User::NotAuthorized, with: :deny_access # self defined exception
+  rescue_from ActiveRecord::RecordInvalid, with: :show_errors
+
+  rescue_from 'MyAppError::Base' do |exception|
+    render xml: exception, status: 500
+  end
+
+  private
+    def deny_access
+      ...
+    end
+
+    def show_errors(exception)
+      exception.record.new_record? ? ...
+    end
+end
+
+</pre></div>
+</figure>
+
+<p>这功能不太常用。你会发生其实我们不太常去处理 <code>rescue</code> 的情况，这是因为我们对于消费级软件的鲁棒性//抗变换性(Robust)的要求没这么高。如果异常发生了，只要能提示用户并记录下来就不错了。在一些高鲁棒性/抗变换性(Robust)要求的软件中，例如医疗、金融企业等级软件，则会进行重试(retry)或是切换备用系统。</p>
+<h3>安装异常通知</h3>
+<p>在 production 上线环境中，如果用户操作碰到异常会看到 500 错误画面，并且在 log 中会纪录下来。我们希望能有一些机制能够主动通知我们程序员，好让我可以 trace error、fixed bug 甚至在发生错误没多久就可以通知苦主发生了什么事情。</p>
+
+<p>最基本我们可以安装 <a href="https://github.com/smartinez87/exception_notification">Exception Notifier</a>，这个套件会在发生例外时寄 email 通知。或是使用第三方服务，例如：</p>
+
+<ul>
+<li>
+<a href="https://rollbar.com">Rollbar</a> 推荐这套，有免费额度一个月记录 5000 个异常</li>
+<li><a href="https://airbrake.io">Airbrake</a></li>
+</ul>
+
+<p>这些第三方服务可以在网站发生异常错误的时候自动将错误讯息收集起来，并且提供了还蛮不错的后台可以浏览，还可以统计及追踪异常处理的情况。免费的方案对于小网站就很够用，非常推荐使用。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      25. 元编程: define_method
+    </h1><h4>所属章节：元编程 Meta-Programming</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>元编程(Meta-programming)的意思是让程序帮我们写程序，这听起来非常神奇，但这就是 Rails 很多 API 用法之所以这么 magic 背后的秘密武器。撰写元编程的能力是库和框架作者的必备技巧。</p>
+
+<p>这一章我们将简单介绍一些元编程的技巧，目的是让各位学员能够稍微理解 Rails 背后的原理。如果想要进一步了解如何使用元编程技巧，推荐<a href="https://book.douban.com/subject/26575429/">Ruby元编程</a>一书。</p>
+<h3>动态定义方法 define_method</h3>
+<p><code>define_method</code> 是个 Ruby 的类方法，可以动态定义对象方法，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Dragon
+  define_method(:foo) { puts "bar" }
+
+  ['a','b','c','d','e','f'].each do |x|
+    define_method(x) { puts x }
+  end
+end
+
+dragon = Dragon.new
+dragon.foo # 输出 "bar"
+dragon.a # 输出 "a"
+dragon.f # 输出 "f"
+</pre></div>
+</figure>
+
+<p>其中 <code>define_method(:foo) { puts "bar" }</code> 等同于</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span>
+  <span class="nb">puts</span> <span class="s2">"bar"</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>也许你会好奇 <code>define_method</code> 跟 <code>def</code> 同样都可以定义方法，差别在哪里呢? 差别在 <code>define_method</code> 用匿名函式来定义方法，所以有 Closure(闭包) 特性。我们需要这个特性，才可以有弹性地根据参数去自定义出不同的方法实作。例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class A
+  def self.define_my_method(x)
+    define_method("output_#{x}") do
+      puts "This is #{x}"
+    end
+  end
+end
+
+class B &lt; A
+  define_my_method :foo # 定义 output_foo 方法
+end
+
+class C &lt; A
+  define_my_method :bar # 定义 output_bar 方法
+end
+
+B.new.output_foo # 输出 This is foo
+C.new.output_bar # 输出 This is bar
+
+</pre></div>
+</figure>
+
+<p>如果你能理解上述的代码，那么你就能理解在 Rails 很多这样的宣告背后，都是用 <code>define_method</code> 做出来的：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">Firm</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span>   <span class="ss">:clients</span>
+  <span class="n">has_one</span>    <span class="ss">:account</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+<span class="k">end</span>
+
+<span class="c1"># has_many 是 AciveRecord 的类方法(class method)
+</span>
+<span class="c1"># 其内容是动态定义出 Firm 的一堆对象方法(instance methods)
+</span>
+
+<span class="n">firm</span> <span class="o">=</span> <span class="no">Firm</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">firm</span><span class="p">.</span><span class="nf">clients</span>
+<span class="n">firm</span><span class="p">.</span><span class="nf">account</span>
+<span class="n">firm</span><span class="p">.</span><span class="nf">build_account</span>
+<span class="n">firm</span><span class="p">.</span><span class="nf">user</span>
+
+</pre></div>
+</figure>
+
+<p>其中 <code>clients</code>、<code>account</code>、<code>build_account</code>、<code>user</code> 等方法，都是透过 <code>has_many :clients</code>、<code>has_one :account</code>、<code>belongs_to :user</code> 所定义出来的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      26. 元编程: method_missing
+    </h1><h4>所属章节：元编程 Meta-Programming</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>Ruby 在调用方法找不到时，会改调用这个 <code>method_missing</code> 这个方法。例如以下的代码中，任何 <code>go_to_XXXX</code> 的方法调用，都可以输出 <code>go to XXXX</code> 字符串。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">car</span> <span class="o">=</span> <span class="no">Car</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">go_to_taipei</span>
+<span class="c1"># go to taipei
+</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">go_to_shanghai</span>
+<span class="c1"># go to shanghai
+</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">go_to_japan</span>
+<span class="c1"># go to japan
+</span>
+
+</pre></div>
+</figure>
+
+<p>但是我们不可能定义出所有的 <code>go_to_XXX</code> 方法啊，这背后的秘诀就是 <code>method_missing</code> 方法：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Car</span>
+  <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="n">place</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"go to </span><span class="si">#{</span><span class="n">place</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">name</span><span class="p">.</span><span class="nf">to_s</span> <span class="o">=~</span> <span class="sr">/^go_to_(.*)/</span>
+      <span class="n">go</span><span class="p">(</span><span class="vg">$1</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="k">super</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">car</span> <span class="o">=</span> <span class="no">Car</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">go_to_taipei</span>
+<span class="c1"># go to taipei
+</span>
+
+<span class="n">car</span><span class="p">.</span><span class="nf">blah</span> <span class="c1"># NoMethodError: undefined method `blah`
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p><code>super</code> 当你在类别中复写一个方法时，透过 <code>super</code> 可以调用到上一层被你复写的方法。</p>
+</blockquote>
+
+<p>当调用 <code>go_to_XXXX</code> 时，因为我们并没有特别定义这个方法，所以就会改成调用 <code>method_missing</code> 方法，在这个方法中我们再检查是不是 <code>go_to_</code> 开头，如果是的话就调用 <code>go</code> 方法，不然就改调用 <code>super</code> 回到原本的行为，也就是抛出 NoMethodError 异常。</p>
+
+<p>如果你能理解这个方法，那个在 Rails 中就有几个功能是这样做出来的：</p>
+
+<p>例如 ActiveRecord 的 <code>find_by_XXX("YYY")</code> 功能，会变成 <code>where( :XXX =&gt; "YYY" ).first</code></p>
+
+<p>又例如在 Web API 教程中，用到 Jbuilder 样板来输出 JSON：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/api/v1/trains/show.json.jbuilder
+</span></figcaption><div class="highlight"><pre>
+json.number @train.number
+json.available_seats @train.available_seats
+json.created_at @train.created_at
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中的 <code>number</code>、<code>available_seats</code> 和 <code>created_at</code> 方法其实都进到 <code>method_missing</code> 了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      27. 元编程: Monkey Patch
+    </h1><h4>所属章节：元编程 Meta-Programming</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://zh.wikipedia.org/wiki/%E7%8C%B4%E8%A1%A5%E4%B8%81">猴子补丁</a>的意思是直接复写 Class 的定义去修改行为，在 Rails 中常用这招来扩增原本 Ruby 的行为，例如：</p>
+<h4>try 方法</h4>
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="p">.</span><span class="nf">find_by_email</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">])</span> <span class="c1"># 如果找不到，会回传 nil
+</span>
+
+<span class="vi">@person</span><span class="p">.</span><span class="nf">try</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="c1"># 如果 @person 是 nil，透过 try 会输出 nil
+</span>
+
+<span class="vi">@person</span><span class="p">.</span><span class="nf">name</span> <span class="c1"># 如果 @person 是 nil，这样会抛出异常 NoMethodError
+</span></pre></div>
+</figure>
+
+<p>try 这个方法的原理是什么呢？看一下 Rails 的原代码就知道了：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class NilClass
+  def try(*args)
+    nil
+  end
+end
+</pre></div>
+</figure>
+<h4>blank? 方法</h4>
+<p><code>blank?</code> 方法是 Rails 提供的一个方法，检查对象是否是 <code>nil</code> 或空字符串：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>[1,2,3].blank? # false
+"blah".blank? # false
+"".blank? # true
+
+class Demo
+  def return_nil
+  end
+end
+
+Demo.new.blank? # false
+Demo.new.return_nil.blank? # true
+
+</pre></div>
+</figure>
+
+<p>blank? 这个方法的原理是什么呢？看一下 Rails 的原代码就知道了：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>class Object    # 在 Ruby 中所有的类都会继承自 Object 这个类
+
+  def blank?
+    respond_to?(:empty?) ? empty? : !self
+  end
+
+  def present?
+    !blank?
+  end
+
+end
+
+class NilClass
+  def blank?
+    true
+  end
+end
+
+class FalseClass
+  def blank?
+    true
+  end
+end
+
+class TrueClass
+  def blank?
+    false
+  end
+end
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      28. 编码风格 Coding Style
+    </h1><h4>所属章节：编码风格</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>同样一件事情，可以有很多种不同的写法，要用哪一种好呢? 很多时候对电脑来说并没有什么差别，因为作用和效能是一模一样的，差别只是编码风格而已。</p>
+
+<p>编码风格对于团队开发十分重要，维持一惯的风格可以增加代码的可读性。在 Ruby 和 Rails 社区中，大多会遵守以下的风格指南：</p>
+
+<ul>
+<li><a href="https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md">Ruby 风格指南</a></li>
+<li><a href="https://github.com/JuanitoFatas/rails-style-guide/blob/master/README-zhCN.md">Rails 风格指南</a></li>
+<li><a href="http://udacity.github.io/frontend-nanodegree-styleguide/index.html">Udacity Frontend Nanodegree Style Guide</a></li>
+<li><a href="https://github.com/thoughtbot/guides/tree/master/style">A guide for programming in style</a></li>
+</ul>
+
+<p>对个人来说，编码风格也代表了你的代码有没有在编程语言社区「接地气」，更是代码给人的第一印象。一个缩进不佳的代码，给人的第一印象就是「不专业」。</p>
+
+<blockquote>
+<p>要找工作的同学，面试官在看你的 Portfolio 作品集的代码时，第一印象就是你的代码风格好不好</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

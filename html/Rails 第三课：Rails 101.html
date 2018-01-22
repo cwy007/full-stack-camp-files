@@ -1,0 +1,3827 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-0 由此开始：学习说明
+    </h1><h4>所属章节：1-教材介绍</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>欢迎进入课程，本网站用户分为免费会员和 VIP 会员。</p>
+
+<p>免费会员可以学习免费课程。</p>
+
+<p>VIP 会员在会员有效期内可以学习所有开课内容，并可享有 Slack 上专业程序员助教团队的技术指导、答疑，另外还有各界大牛不定期直播分享，帮助 VIP 会员更好的成长。</p>
+<h3>课程提醒</h3>
+<p>继续阅读前请设置<a href="http://docs.qzy.camp/docs/internet" target="_blank">科学上网</a>，不然教材里的图片可能无法正常显示。</p>
+
+<p>我们为每一位 VIP 会员准备了科学上网礼包 ，<a href="https://fullstack.xinshengdaxue.com/account/vip_gifts" target="_blank">点击查看</a>。</p>
+
+<p>如果在注册各种帐号的时候遇到不懂操作的地方，请查阅<a href="http://docs.qzy.camp/docs/courses1" target="_blank">课程帮助文档</a>。</p>
+
+<p>VIP会员请务必在正式开课前完成课前作业，即： 《Rails 第一课》、《Rails 第二课》、《Rails 第三课》的作业。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-1 前言
+    </h1><h4>所属章节：1-教材介绍</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>这一份是写给 Rails 新手的中级训练教材。<br>
+接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。</p>
+
+<p>这个讨论版会有：</p>
+
+<ul>
+<li>使用者注册以及登录功能</li>
+<li>开新讨论区、留言功能</li>
+<li>加入讨论区、退出讨论区功能</li>
+<li>权限管理功能</li>
+<li>热门文章排序功能</li>
+<li>了解什么是 RESTful</li>
+</ul>
+
+<p>当你把这次应用程序实作完成，并上线后，你会学会：</p>
+
+<ul>
+<li>怎么把需求变成会动的 Rails 应用程序</li>
+<li>如何在 Rails 套版</li>
+<li>如何制作使用者登录功能</li>
+<li>重要 Rails 观念以及 API
+
+<ul>
+<li>CRUD</li>
+<li>RESTful</li>
+<li>member, collection</li>
+<li>helper</li>
+<li>partial</li>
+<li>scope</li>
+</ul>
+</li>
+<li>找到 Rails 第三方 gem 的技巧</li>
+<li>要怎么把你的应用程序放到网络上</li>
+</ul>
+
+<p>这几乎是一个 Rails 新手应该学的一切了，有了这些基础技巧之后，你再学更难的技巧，或者是要自己做出复杂的东西，就不会那么容易失败了。</p>
+<h3>时程</h3>
+<ul>
+<li>约 30 小时 Rails 开发</li>
+<li>建议每天使用 4 小时来完成作业（约需5-7天）</li>
+<li>重复练习三遍（相信我，你会越练越快的...）</li>
+</ul>
+<h3>需求</h3>
+<p>我们会用这些来做：</p>
+
+<ul>
+<li>ruby 2.1.2 、2.2.0 、2.3.1用 RVM 安装（Mac 或 Linux）</li>
+<li>rails 5.0.0</li>
+<li>bundler</li>
+<li>Atom编辑器</li>
+</ul>
+
+<p>这些应该都要在第一份教材就装好，确定它们都妥妥的。</p>
+<h3>如何确认一切没问题？</h3>
+<p>运行终端机，输入：</p>
+
+<p><code>irb</code></p>
+
+<p>2.3.1 :001 &gt; <code>1 + 2</code><br>
+=&gt; 3</p>
+
+<p>2.3.1 :002 &gt; <code>require "active_support"</code><br>
+=&gt; true</p>
+
+<p>2.3.1 :003 &gt; <code>exit</code></p>
+
+<p>这些都可以成功执行的话，就是没问题了。</p>
+
+<p>提示：在 irb 里运行命令的话，最后记得输入 <code>exit</code> 退出。</p>
+<h3>效能！效率！</h3>
+<p>我非常推荐你这样做：</p>
+
+<ul>
+<li>打开终端机并开两个标签页：
+
+<ul>
+<li>一个放着跑 rails s<br>
+</li>
+<li>一个用来做平常的终端机指令<br>
+</li>
+</ul>
+</li>
+<li>重新打开你的浏览器（推荐chrome），或是把其他窗口关掉
+
+<ul>
+<li>打开新的窗口并开两个标签页</li>
+<li>一个用来看本教学</li>
+<li>一个用来测试你的程序</li>
+</ul>
+</li>
+<li>打开Atom编辑器，然后不要关掉它。我们不会中途离开。</li>
+<li>把其他应用程序都隐藏起来，关掉facebook 、微信和其他即时通讯软件、别的干扰物。</li>
+<li>把跟你互动的东西最少化，可以减少你分心在这些东西的次数与耗费的时间（比方说在浏览器里打开 50 个分页，这会干扰到你并且浪费你的时间）</li>
+</ul>
+<h3>格式</h3>
+<p>每一课的格式都会长这样：</p>
+
+<ul>
+<li>目标</li>
+</ul>
+
+<p>叙述我们要做什么。</p>
+
+<ul>
+<li>步骤</li>
+</ul>
+
+<p>跟着做，但是这时候你还不知道原理。</p>
+
+<ul>
+<li>解释</li>
+</ul>
+
+<p>关于这些步骤实际上做了什么的细节，详述原因与效果。将一切都连在一起。</p>
+<h3>注意</h3>
+<p>如果你刚刚完成第二课的初级练习</p>
+
+<ol>
+<li>请在终端机运行 rails server 的窗口（或者标签页）中按 ctrl + c 终止运行，然后按 command + q 退出终端机。</li>
+<li>请在 Atom 编辑器的界面按 command + w 关闭所有的标签页，然后点击任务栏左上角 Atom &gt; Quit 退出编辑器。</li>
+<li>在开始第二遍，第三遍作业时，同样执行以上两个步骤。</li>
+</ol>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 本章目标
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章的最终目标，是让各位同学在本章结束后，可以得到一个套好 Bootstrap 样式的空项目。</p>
+
+<p>最后成果会长成这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hQ9cSDnBQkOAAExdibcC_hello_world.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 建立新项目
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>这一节的目标，是要带领大家建立一个全新的 Rails 空项目。</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 确认 Ruby 版本</h3>
+<p>输入 <code>ruby -v</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/XGqyxzOGTYSqKLj65Kpq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8A%E5%8D%8812.27.33.png" title=""></figure></p>
+
+<p>确认一下现在的 Ruby 版本。这份教材用的 Ruby 版本是 ruby-2.3.1</p>
+
+<p><br></p>
+<h3>Step 2. 安装 Rails （版本 5.0.0 或以上)</h3>
+<p>输入 <code>rails -v</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/iifaXX1CTTuwFKScZZ3x_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8A%E5%8D%881.18.08.png" title=""></figure></p>
+
+<p>确认一下现在的 Rails 版本。这份教材用的 Rails 版本是 5.0.0 。</p>
+
+<p><br></p>
+<h3>Step 3. 建立一个新 Rails 项目 （版本 5.0.0)</h3>
+<p>输入 <code>rails new rails101</code><br>
+（做第二遍的同学，请输入 <code>rails new rails102</code>）<br>
+（做第三遍的同学，请输入 <code>rails new rails103</code>）</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/X2Mqnyt1TT2r7hSfRSdK_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8A%E5%8D%881.20.21.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4. 进入新建好的项目, 并建立 git 做版本控制</h3>
+<p>请跟着指南，输入每一行指令。</p>
+
+<ul>
+<li><p><code>cd rails101</code><br>
+（做第二遍的同学，请输入 <code>cd rails102</code>）<br>
+（做第三遍的同学，请输入 <code>cd rails103</code>）</p></li>
+<li><p><code>git init</code></p></li>
+<li><p><code>git add .</code></p></li>
+<li><p><code>git commit -m "Initial Commit"</code></p></li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/KipDDCSRGq56YTVbG0bw_Screenshot%20at%20Mar%2003%2014-02-55.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 帮 Rails 项目穿上衣服“Bootstrap” （以下内容无需记忆）
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>本章的作业目标，是要带领各位把目前的空项目，穿上“衣服”，让各位在做这个程序练习时，不再感到项目是在“裸奔”！</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MLm7sjxnQPOlaWs9Mnn0_Screenshot%20at%20Mar%2027%2021-27-16.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch01</h3>
+<p>这里我们要来示范一个 git 功能，输入：</p>
+
+<p><code>git checkout -b ch01</code></p>
+
+<p>等一下在这一章做的动作，我们 commit 进去的代码都会属于 ch01 这个分支。</p>
+
+<p><br></p>
+<h3>Step 1. 帮项目穿上衣服 Bootstrap，挂上 bootstrap-sass 这个 gem</h3>
+<p>Bootstrap 是 Web 设计圈有名的 CSS 框架，提供了开发项目快速便利的元件素材，如按钮、下拉选单、表格等等样式。</p>
+
+<p>在 Rails 上要帮项目穿上 Bootstrap，用的是 bootstrap-sass 这个套件。</p>
+
+<p>在终端输入 <code>atom .</code> 打开atom编辑器，再打开 Gemfile 这个文件</p>
+
+<p>修改 Gemfile，在 group :development, :test do前一行加入 gem 'bootstrap-sass'</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/h5XvJCjtRYqcauTwQyds_bootstrap.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="err">gem 'bootstrap-sass'
+</span></pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2. bundle install</h3>
+<p>执行 <code>bundle install</code></p>
+
+<p>(注意：每次修改完 Gemfile 都记得要command + s 保存 ，然后执行 bundle install）</p>
+
+<p><br></p>
+<h3>Step 3. 将 Bootstrap 的 CSS 套件装进项目里面</h3>
+<p>输入</p>
+
+<p><code>mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss</code></p>
+
+<p>将 application.css 更名为 application.scss</p>
+
+<p>然后修改内容加入这两行</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/stylesheets/application.scss
+</span></figcaption><div class="highlight"><pre><span class="cm">/*
+ * ...(一堆注解)
+ *= require_tree .
+ *= require_self
+ */</span>
+
+<span class="k">@import</span> <span class="s2">"bootstrap-sprockets"</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">"bootstrap"</span><span class="p">;</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9bHBGGaQQGN3xmg0xUcW_application_scss_%E2%80%94__Users_xdite_Documents_projects_rails101.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4. 将变更 commit 进去 git 里面。</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add bootstrap to project"</code><br>
+<br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-4 套用 Bootstrap 的 html 样式 （以下内容无需记忆）
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>上一节只是“挂上”Bootstrap 使用的 CSS </li>
+<li>这一节则是让全站的 HTML 架构，套用 Bootstrap 的制服</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 新增 app/views/common 文件夹</h3>
+<p><code>mkdir app/views/common</code></p>
+
+<p><br></p>
+<h3>Step 2. 新增 navbar</h3>
+<p><code>touch app/views/common/_navbar.html.erb</code></p>
+
+<p>填入</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/common/_navbar.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-default"</span> <span class="na">role=</span><span class="s">"navigation"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"navbar-header"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Rails 101<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"collapse navbar-collapse"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"nav navbar-nav navbar-right"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;li&gt;</span>
+                    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"登录"</span><span class="p">,</span> <span class="s1">'#'</span><span class="p">)</span> <span class="cp">%&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+<span class="c">&lt;!-- 以上部分，不需要记忆 --&gt;</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3. 新增 footer</h3>
+<p><code>touch app/views/common/_footer.html.erb</code></p>
+
+<p>填入</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/common/_footer.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">style=</span><span class="s">"margin-top: 100px;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-center"</span><span class="nt">&gt;</span>Copyright ©2017 Rails101
+        <span class="nt">&lt;br&gt;</span>Design by
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://courses.growthschool.com/courses/rails-101/"</span> <span class="na">target=</span><span class="s">_new</span><span class="nt">&gt;</span>xdite<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+<span class="c">&lt;!-- 以上部分，不需要记忆 --&gt;</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4. 修改全域 HTML 样式 application.html.erb</h3>
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Rails101<span class="nt">&lt;/title&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">csrf_meta_tags</span> <span class="cp">%&gt;</span>
+
+        <span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span>    <span class="s1">'application'</span><span class="p">,</span> <span class="ss">media: </span><span class="s1">'all'</span><span class="p">,</span> <span class="s1">'data-turbolinks-track'</span><span class="p">:</span> <span class="s1">'reload'</span> <span class="cp">%&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s1">'application'</span><span class="p">,</span> <span class="s1">'data-turbolinks-track'</span><span class="p">:</span> <span class="s1">'reload'</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+            <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"common/navbar"</span> <span class="cp">%&gt;</span>
+            <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+
+        <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"common/footer"</span> <span class="cp">%&gt;</span>
+
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 5. 产生一个新的空 Hello World 页面 （放在 welcome#index)</h3>
+<ul>
+<li>新增一个 welcome controller</li>
+</ul>
+
+<p><code>rails g controller welcome</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kYNRc151TyCxTdv1FCpS_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8A%E5%8D%882.04.25.png" title=""></figure></p>
+
+<ul>
+<li>新增一个空的 HelloWorld 页面</li>
+</ul>
+
+<p><code>touch app/views/welcome/index.html.erb</code></p>
+
+<p>填入</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/welcome/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span> Hello World! <span class="nt">&lt;/h1&gt;</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 6. 将首页指到 welcome 下的 index.html.erb 页面</h3>
+<p>修改 config/routes.rb，改成以下内容</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">root</span> <span class="s1">'welcome#index'</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 7. git 进度存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add bootstrap html"</code></p>
+<h3>Step 8. 运行 Rails Server</h3>
+<p><code>rails s</code></p>
+
+<p>最后完成画面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MLm7sjxnQPOlaWs9Mnn0_Screenshot%20at%20Mar%2027%2021-27-16.png" title=""></figure></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-5 制作漂亮的“提示信息” （以下内容无需记忆）
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>你应该看过一些网站，有这样的提示信息吧？</li>
+<li>这一节的目的在于让你学习到，在 Rails 内如何配合 Bootstrap 内建的特效，建立“提示信息”。</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Tkg7OkPvRquIB2q7U3sz_Screenshot%20at%20Mar%2028%2013-03-15.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 将 Bootstrap 的 js 提示套件 bootstrap/alert “挂”进项目里面</h3>
+<p>在 require_tree 上加入 //= require bootstrap/alert</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>... (一堆注解)
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+<span class="gi">+//= require bootstrap/alert
+</span><span class="err">//= require_tree .
+</span></pre></div>
+</figure>
+
+<p><strong>+号在这里是新增一行代码的意思，不用复制贴上这个+号本身，只要粘贴后面的代码就可以了</strong></p>
+
+<p><br></p>
+<h3>Step 2. 新增 app/views/common/_flashes.html.erb</h3>
+<p><code>touch app/views/common/_flashes.html.erb</code></p>
+
+<p>填入</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/common/_flashes.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">flash</span><span class="p">.</span><span class="nf">any?</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">user_facing_flashes</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"alert alert-dismissable alert-</span><span class="cp">&lt;%=</span> <span class="n">flash_class</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"close"</span> <span class="na">data-dismiss=</span><span class="s">"alert"</span><span class="nt">&gt;</span>×<span class="nt">&lt;/button&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">value</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</pre></div>
+</figure>  
+<h3>Step 3. 加入 app/helpers/flashes_helper.rb</h3>
+<p><code>touch app/helpers/flashes_helper.rb</code></p>
+
+<p>加入以下内容：</p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/flashes_helper.rb
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">FlashesHelper</span>
+  <span class="no">FLASH_CLASSES</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">alert: </span><span class="s2">"danger"</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"success"</span><span class="p">,</span> <span class="ss">warning: </span><span class="s2">"warning"</span><span class="p">}.</span><span class="nf">freeze</span>
+
+  <span class="k">def</span> <span class="nf">flash_class</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="no">FLASH_CLASSES</span><span class="p">.</span><span class="nf">fetch</span> <span class="n">key</span><span class="p">.</span><span class="nf">to_sym</span><span class="p">,</span> <span class="n">key</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">user_facing_flashes</span>
+    <span class="n">flash</span><span class="p">.</span><span class="nf">to_hash</span><span class="p">.</span><span class="nf">slice</span> <span class="s2">"alert"</span><span class="p">,</span> <span class="s2">"notice"</span><span class="p">,</span> <span class="s2">"warning"</span> 
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 4. 在 application.html.erb 内加入 flash 这个 partial</h3>
+<p>在 &lt;%= yield %&gt; 前加入 &lt;%= render "common/flashes" %&gt;</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/application.html.erb
+</span></figcaption><div class="highlight"><pre>  <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"common/flashes"</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+</pre></div>
+</figure>      
+<h3>Step 5. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add bootstrap flash function"</code></p>
+<h3>Step 6: 测试 flash helper 的功能</h3>
+<p>修改 app/controllers/welcome_controller.rb。加入 flash[:notice] = "早安！你好！"。你应该可以看到系统跳出“绿色”提示窗。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/welcome_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">WelcomeController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"早安！你好！"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Tkg7OkPvRquIB2q7U3sz_Screenshot%20at%20Mar%2028%2013-03-15.png" title=""></figure></p>
+
+<p>修改 app/controllers/welcome_controller.rb。加入 flash[:alert] = "晚安！该睡了！"。你应该可以看到系统跳出“红色”提示窗。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/welcome_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">WelcomeController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">flash</span><span class="p">[</span><span class="ss">:alert</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"晚安！该睡了！"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/p752z2flSXaLR3dXKDIz_Screenshot%20at%20Mar%2028%2013-05-15.png" title=""></figure></p>
+
+<p>修改 app/controllers/welcome_controller.rb。加入 flash[:warning] = "这是 warning 信息！"。你应该可以看到系统跳出“黄色”提示窗。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/welcome_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">WelcomeController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+   <span class="n">flash</span><span class="p">[</span><span class="ss">:warning</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"这是 warning 信息！"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ybFBTJplTnywlNphU9rj_Screenshot%20at%20Mar%2028%2013-06-31.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-6 参考：git 常用指令教学
+    </h1><h4>所属章节：2-开始吧！</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这边是一些常用的 git 指令，常用就会自然记起来，不用硬背，你可以在遇到问题的时候再回来看这篇。</p>
+
+<p><br></p>
+<h3>存档：</h3>
+<p>最一开始的时候要先执行存档：<br>
+<code>cd 你的项目文件夹名称</code><br>
+<code>git init</code><br>
+<code>git add .</code><br>
+<code>git commit -m "对于修改部分的简要叙述"</code></p>
+
+<p><br></p>
+<h3>新增一个分支：</h3>
+<p><code>git checkout -b 你想取的分支名称</code></p>
+
+<p>这样你的存档会自动被保留在这个分支里。<br>
+如果不小心做烂了，可以直接切回上一个分支去做。</p>
+
+<p><br></p>
+<h3>切换分支：</h3>
+<p><code>git checkout 你想要切换到的分支名称</code><br>
+举例来说，假设你从01开始做，做到02的时候烂掉了<br>
+你可以 <code>git checkout 01</code> 回到01再重新开始做</p>
+
+<p>那这个烂掉的02要怎么办呢？虽然你可以产生另一个新的02-1，但还是建议把错误的删除掉，这样才不会做到最后变得乱七八糟的。</p>
+
+<p><br></p>
+<h3>删除掉branch的方法：</h3>
+<p>先离开你要删除的分支，接着执行 <code>git branch -D 你要删除的分支名称</code><br>
+就可以了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 建立讨论群的架构
+    </h1><h4>所属章节：3-建立一个讨论群</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>在这一章，我们要带大家设计出一个讨论群“列表”。我们会完成以下事项：</p>
+
+<ul>
+<li>讨论群要有“标题”与“叙述”</li>
+<li>使用者要可以看到“讨论群一览表”</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DJUJmGSnemGhaiNcMqaQ_Screenshot%20at%20Mar%2028%2013-16-02.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch02</h3>
+<p>因为我们现在要实作第二章的内容，新增一个 branch 把实作内容集中在 ch02 是比较合理的。将来回顾就可以比较清楚 在 ch02我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch02</code></p>
+
+<p><br></p>
+<h3>Step 1. 设计 Group 的 model 架构</h3>
+<p>为了做到在讨论群要有“标题”与“叙述”，我们在这里要建立一个 model <strong>Group</strong>，并建立数据表 group 的两个栏位: </p>
+
+<ul>
+<li>
+<strong>title</strong> (string 字串属性) </li>
+<li>
+<strong>description</strong> (text 文字属性)</li>
+</ul>
+
+<p><code>rails g model group title:string description:text</code></p>
+
+<p>将数据库建立起来，并执行 rake db:migrate</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p>提示：每次产生 migration 之后都要运行 <code>rake db:migrate</code> 。</p>
+
+<p><br></p>
+<h3>Step 2. 产生 groups controller</h3>
+<ul>
+<li>接下来我们要建立一个可以展示“讨论群一览表”的功能</li>
+<li>这个地方会是 groups_controller 下的 index action</li>
+</ul>
+
+<p><code>rails g controller groups</code></p>
+
+<p><br></p>
+<h3>Step 3. 建立 index action 以及 index 的 view</h3>
+<p>修改 app/controllers/groups_controller.rb</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@groups</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">all</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><code>touch app/views/groups/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"New group"</span><span class="p">,</span> <span class="n">new_group_path</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary pull-right"</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-hover"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Title<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Description<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="cp">&lt;%</span> <span class="vi">@groups</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+          <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">description</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span>
+              <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">)</span><span class="cp">%&gt;</span>
+              <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Delete"</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>    <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">,</span> 
+                          <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="p">)</span><span class="cp">%&gt;</span>
+          <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4. 在 routing 上挂上 groups</h3>
+<p>在 root 'welcome#index' 前加上一行 resources :groups</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>Rails.application.routes.draw do
+   resources :groups
+   root 'welcome#index'
+<span class="err">end
+</span></pre></div>
+</figure>
+
+<p>打开 <a href="http://localhost:3000/groups" rel="nofollow" target="_blank">http://localhost:3000/groups</a> 可以看到以下成果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/RCNqxITRVKQ9WrWTZtQI_Screenshot%20at%20Mar%2028%2013-14-18.png" title=""></figure></p>
+
+<p>当然现在没有东西，空荡荡的。等一下让我们来加一些数据。</p>
+
+<p><br></p>
+<h3>Step 5. 添加一些数据。</h3>
+<p>首先，打开 rails console</p>
+
+<p><code>rails console</code></p>
+
+<p>然后再输入</p>
+
+<p><code>Group.create(title: "Board 1", description: "Board 1 body")</code><br>
+<code>Group.create(title: "Board 2", description: "Board 2 body")</code></p>
+
+<p>再重新打开 <a href="http://localhost:3000/groups" rel="nofollow" target="_blank">http://localhost:3000/groups</a> 可以看到以下成果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DJUJmGSnemGhaiNcMqaQ_Screenshot%20at%20Mar%2028%2013-16-02.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6. git 存档</h3>
+<p>输入 <code>exit</code> 命令 退出rails console</p>
+
+<p><code>git add .</code><br>
+<code>git commit -m "create groups index"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 将首页换成讨论群一览表
+    </h1><h4>所属章节：3-建立一个讨论群</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>在这一节，我们会完成以下事项：</p>
+
+<ul>
+<li>使用者在首页，可以直接看到“讨论群一览表”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 修改 routing</h3>
+<p>把 root 'welcome#index' 删掉，换成 root 'groups#index'</p>
+
+<p>（记得 <code>+</code> <code>-</code> 不要打进去，他们各代表“加这一行” / “减这一行”的意思。）</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>Rails.application.routes.draw do
+  resources :groups
+<span class="gi">+  root 'groups#index'
+</span><span class="gd">-  root 'welcome#index'
+</span><span class="err">end
+</span></pre></div>
+</figure>
+
+<p>然后你就可以在 <a href="http://localhost:3000/" rel="nofollow" target="_blank">http://localhost:3000/</a> 看到 Group 一览表了</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Kg3gQxBPSCOY9QolKyFJ_Screenshot%20at%20Mar%2028%2013-18-43.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "replace root with groups#index"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 本章目标
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>实作看板的“新增” new / create</li>
+<li>实作看板的“编辑” edit / update</li>
+<li>实作看板的“删除” destroy</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/n1TTxgIvSHOzoXbuM71H_Screenshot%20at%20Mar%2028%2013-23-17.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/F0iV0CdWSvGRVylzvlge_Screenshot%20at%20Mar%2028%2013-33-25.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/tWiXyZ2S6yHFgMByALfX_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%882.54.46.png" title=""></figure></p>
+
+<p><br></p>
+
+<p><strong>额外会谈到的主题是：</strong></p>
+
+<ul>
+<li>使用 gem "simple_form" 产生表单</li>
+<li>限制看板标题“不得为空”</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 实作讨论群“新增”功能
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>这一章我们要实作 讨论群 的新增功能</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/n1TTxgIvSHOzoXbuM71H_Screenshot%20at%20Mar%2028%2013-23-17.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch03</h3>
+<p>因为我们现在要实作第三章的内容，新增一个 branch 把实作内容集中在 ch03 是比较合理的。将来回顾就可以比较清楚 在 ch03 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch03</code></p>
+
+<p><br></p>
+<h3>Step 1. 建立 new action</h3>
+<p>修改 app/controllers/groups_controller.rb 加入 new action</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>class GroupsController &lt; ApplicationController
+  def index
+    @groups = Group.all
+  end
+
+<span class="gi">+ def new
++   @group = Group.new
++ end
+</span>end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2. 建立 new action 的表单</h3>
+<p><code>touch app/views/groups/new.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/new.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4 col-md-offset-4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>新增讨论版<span class="nt">&lt;/h2&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@group</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+
+    标题
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+    叙述
+    <span class="nt">&lt;br&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:description</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">:disable_with</span> <span class="o">=&gt;</span> <span class="s1">'Submitting...'</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<p>然后打开 <a href="http://localhost:3000/groups/new" rel="nofollow" target="_blank">http://localhost:3000/groups/new</a>，可以见到成果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/n1TTxgIvSHOzoXbuM71H_Screenshot%20at%20Mar%2028%2013-23-17.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#new"</code></p>
+<h3>Step 4. 建立 create action，接收数据并储存</h3>
+<p>目前还只是个表单画面，无法将数据送出后成功建立出一笔讨论版的数据，缺了 action create。如果此时你按下 Submit，会看到这样的画面：<br>
+<figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4hQ318D1SoKBC2luPXb0_step4.png" title=""></figure></p>
+
+<p>所以这时候，我们要实作 create action，接收 new 里的表单送出的信息，变成一笔存在数据库里的数据。</p>
+
+<p>修改 app/controllers/groups_controller.rb</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>class GroupsController &lt; ApplicationController
+  def index
+    @groups = Group.all
+  end
+
+  def new
+    @group = Group.new
+  end
+
+<span class="gi">+ def create
++   @group = Group.new(group_params)
++   @group.save
++
++     redirect_to groups_path
++ end
++
++ private
++
++ def group_params
++   params.require(:group).permit(:title, :description)
++ end
+</span>  
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>完成后再送一次即可成功建立数据，可以多建几笔数据测试功能。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/umGsHFTeSLWqaJVlgJOK_Screenshot%20at%20Mar%2028%2013-28-47.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#create"</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-3 实作讨论群“浏览”功能
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>这一章我们要实作 讨论群 的浏览功能</li>
+</ul>
+
+<p>这时候如果直接点 index 上的 title 连结, 会跳出下面的错误信息：<br>
+<figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/yOgld2FRHOJGtZRVvxtN_goal.png" title=""></figure></p>
+
+<p>我们要修正这个问题，让使用者可以浏览这个页面</p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step1: 建立 show action</h3>
+<p>在 app/controllers/groups_controller.rb 加入 show action</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>class GroupsController &lt; ApplicationController
+  def index
+    @groups = Group.all
+  end
+
+<span class="gi">+ def show
++   @group = Group.find(params[:id])
++ end
+</span>
+  def new
+    @group = Group.new
+  end
+
+  def create
+    @group = Group.new(group_params)
+    @group.save
+  
+    redirect_to groups_path
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:title, :description)
+  end
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2: 加入 app/views/groups/show.html.erb</h3>
+<p><code>touch app/views/groups/show.html.erb</code></p>
+
+<p>加入以下内容</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-primary pull-right"</span><span class="p">)</span><span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">description</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>然后，当你浏览 <a href="http://localhost:3000/groups/1" rel="nofollow" target="_blank">http://localhost:3000/groups/1</a> 时，页面就会长这样</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/UlV7qExeS1KECHNlZGDS_Screenshot%20at%20Mar%2028%2013-31-06.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3 : git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#show"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-4 实作讨论群“编辑”功能
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>这一节我们要实作 讨论群 的编辑功能</li>
+</ul>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step 1. 建立 edit action</h3>
+<p>修改 app/controllers/groups_controller.rb 加入 edit action</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="c1"># 略 ...
+</span>
+  
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+
+<span class="o">+</span> <span class="k">def</span> <span class="nf">edit</span>
+<span class="o">+</span>  <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="o">+</span> <span class="k">end</span>
+
+  <span class="c1"># 略 ...
+</span>
+ 
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2. 建立 edit action 的表单</h3>
+<p>新增 app/views/groups/edit.html.erb</p>
+
+<p><code>touch app/views/groups/edit.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/edit.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4 col-md-offset-4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>编辑讨论版<span class="nt">&lt;/h2&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@group</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+
+    标题
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+    叙述
+    <span class="nt">&lt;br&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:description</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">:disable_with</span> <span class="o">=&gt;</span> <span class="s1">'Submiting...'</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<p>然后打开 <a href="http://localhost:3000/groups/1/edit" rel="nofollow" target="_blank">http://localhost:3000/groups/1/edit</a>，可以见到成果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/F0iV0CdWSvGRVylzvlge_Screenshot%20at%20Mar%2028%2013-33-25.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#edit "</code></p>
+
+<p><br></p>
+<h3>Step 4. 实作 update action</h3>
+<p>这时候我们可以尝试修改里面的数据，并试着送出。但是我们发现会跳出错误信息，提醒我们 update 还没实作：<br>
+<figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7w8JHmfNSCOqi5di4GnN_step4.png" title=""></figure></p>
+
+<p>所以这时候，我们要实作 update action，接收 edit 里的表单送出的信息，真正更新存在数据库里的数据。</p>
+
+<p>修改 app/controllers/groups_controller.rb</p>
+
+<figure class="figure-code code"><figcaption><span>app/controller/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>class GroupsController &lt; ApplicationController
+
+    # ... 略
+
+  def create
+    @group = Group.new(group_params)
+    @group.save
+
+    redirect_to groups_path
+  end
+
+<span class="gi">+  def update
++    @group = Group.find(params[:id])
++
++    @group.update(group_params)
++
++    redirect_to groups_path, notice: "Update Success"
++  end
+</span>
+    # ... 略
+
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>然后试着更新一下数据，成功画面应该会有“绿色”提示信息。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zbLTF2HyQ5mYT1CGayvP_Screenshot%20at%20Mar%2028%2013-35-56.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#update "</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-5 实作讨论群“删除”功能
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>这一节我们要实作 讨论群 的删除功能</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/e5KmLEDKRpeK7hYd4WzN_Screenshot%20at%20Mar%2028%2013-41-39.png" title=""></figure></p>
+
+<p>当我们点击 delete 按钮的时候, 会跳出下面的错误信息</p>
+
+<p><figure><img src="http://user-image.logdown.io/user/3653/blog/15213/post/393245/lv4Fm5lgSyKFLwhka3uC_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-12-29%20%E4%B8%8B%E5%8D%882.49.51.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step1. 建立 delete action</h3>
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>
+    # .... 略
+  def update
+    @group = Group.find(params[:id])
+
+    @group.update(group_params)
+
+    redirect_to groups_path, notice: "Update Success"
+  end
+
+<span class="gi">+  def destroy
++    @group = Group.find(params[:id])
++    @group.destroy
++    flash[:alert] = "Group deleted"
++    redirect_to groups_path
++  end
+</span>
+<span class="err">  # .... 略
+</span></pre></div>
+</figure>
+
+<p>然后，按下删除键之后，就可以把该笔记录删除。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/71uhUpUREqB4dKeRyeEA_Screenshot%20at%20Mar%2028%2013-39-47.png" title=""></figure></p>
+
+<p>如果成功的话，可以看到显示“红色”的信息。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/tWiXyZ2S6yHFgMByALfX_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%882.54.46.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement groups#destroy "</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-6 限制“标题为空”的Group，不能被新增
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>有时候我们会遇到使用者手残，直接送出全空的表单，结果就出现空文章</li>
+<li>因此我们要加上一个限制，让使用者不能送出“空标题”文章才对</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xrqeAKZS9GL8cfozVPCJ_Screenshot%20at%20Mar%2028%2013-48-45.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/LXaQUOtkTrqZvyDzwI0w_Screenshot%20at%20Mar%2028%2013-49-45.png" title=""></figure><br>
+<br></p>
+<h2>步骤</h2>
+<h3>Step 1: 在 Group model 加入“标题限制”</h3>
+<p>修改 app/models/group.rb 让它长得像这样</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/group.rb
+</span></figcaption><div class="highlight"><pre>class Group &lt; ApplicationRecord
+ validates :title, presence: true
+<span class="err">end
+</span></pre></div>
+</figure>
+
+<p>这样一来，就算送出了空的表单，也不会产生任何纪录。</p>
+
+<p>但我们真正希望达到的效果是像这样子的，送出了空表单，使用者能够确切地知道，自己是因为什么错误被拦下：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/eu3DA4QRSYdIBksgBvXg_Screenshot%20at%20Mar%2028%2013-53-53.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2: 在 groups_controller 里面加入储存失败的判断</h3>
+<p>修改 app/controllers/groups_controller.rb</p>
+
+<p>将 create action 修改成这样：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后修改 app/views/groups/new.html.erb</p>
+
+<p>在 form_for 下方加入这一段：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/43jZcWHhQFOUTNmZCPzq_Screenshot%20at%20Feb%2024%2017-11-14.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/new.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">any?</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">msg</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">msg</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</pre></div>
+</figure>    
+
+<p>然后就可以产生这样的效果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/72EWSleeQeeblyOUGcie_Screenshot%20at%20Mar%2028%2013-54-25.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3 : git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add validation to title"</code></p>
+
+<p><br></p>
+<h3>Step 4 : 修改 edit action</h3>
+<p>还有一种情况是，在修改时，把标题改成空白的。<br>
+所以我们也要避免这样的情况发生。</p>
+
+<p>修改 app/controllers/groups_controller.rb，的 update action 让他长得像这样</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"Update Success"</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  
+</pre></div>
+</figure>
+
+<p>然后修改 app/views/groups/edit.html.erb</p>
+
+<p>也在 form_for 下方加入这一段：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/M5UtJtBJR3KmK1LTLoor_Screenshot%20at%20Feb%2024%2017-16-01.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">any?</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">msg</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">msg</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</pre></div>
+</figure>    
+
+<p>这样，在“编辑”时，也有一样的效果。</p>
+
+<p><br></p>
+<h3>Step 5 : git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add validation to title apply to edit/update"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-7 共用“表单”
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>把 new 与 edit 重复的表单代码，抽成一个共用文件</li>
+</ul>
+
+<p>我们观察到，new 与 edit 都有相同的“表单代码”，显得相当累赘。在这里我们可以利用一个 Rails  内建的架构  partial去整理设计。</p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 产生 app/views/groups/_form.html.erb</h3>
+<p><code>touch app/views/groups/_form.html.erb</code></p>
+
+<p>填入以下内容：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@group</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">any?</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">msg</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">msg</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+标题
+<span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;br&gt;</span>
+叙述
+<span class="nt">&lt;br&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:description</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;br&gt;</span>
+
+<span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">:disable_with</span> <span class="o">=&gt;</span> <span class="s1">'Submiting...'</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2: 修改 app/views/groups/new.html.erb</h3>
+<p>修改 app/views/groups/new.html.erb，把原先重复的表单代码“整段删掉”，改成 &lt;%= render "form" %&gt;</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/new.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4 col-md-offset-4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>新增讨论版<span class="nt">&lt;/h2&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"form"</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3: 修改 app/views/groups/edit.html.erb</h3>
+<p>修改 app/views/groups/edit.html.erb，把原先重复的表单源代码“整段删掉”，改成 &lt;%= render "form" %&gt;</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4 col-md-offset-4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>编辑讨论版<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;hr&gt;</span>
+
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s2">"form"</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "move form to partial"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-8 将表单换为 Bootstrap 提供的版型
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>将表单换为 Bootstrap 提供的版型</li>
+</ul>
+
+<p>虽然我们已经有看起来还可以的表单，但是 Bootstrap 本身提供的表单版型更棒。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/20hmVo9mTS2UjiRJLLvJ_Screenshot%20at%20Mar%2028%2014-07-38.png" title=""></figure></p>
+
+<p>这一章，我们要示范怎么换成 Bootstrap 的表单版型。</p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 修改 app/views/groups/_form.html.erb</h3>
+<p>修改 app/views/groups/_form.html.erb，换成以下内容</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@group</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group string optional"</span><span class="nt">&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">label</span> <span class="s2">"title"</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional control-label"</span> <span class="cp">%&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional form-control"</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group string optional"</span><span class="nt">&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">label</span> <span class="s2">"description"</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional control-label"</span> <span class="cp">%&gt;</span>
+        <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional form-control"</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;/div&gt;</span>
+<span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary"</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">disable_with: </span><span class="s2">"Submiting..."</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>然后打开 <a href="http://localhost:3000/groups/new" rel="nofollow" target="_blank">http://localhost:3000/groups/new</a> 就可以看到这样的成果了</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/20hmVo9mTS2UjiRJLLvJ_Screenshot%20at%20Mar%2028%2014-07-38.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2： git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "style form with bootstrap"</code></p>
+
+<p><br></p>
+<h3>Step 3: 使用 SimpleForm 简化</h3>
+<p>在这张新的表单 HTML 中，我们见到很啰唆的语句：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group string optional"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">label</span> <span class="s2">"title"</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional control-label"</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"string optional form-control"</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<p>然后每一个栏位，都必须要用 bootstrap 指定的样式，重新装潢。但是如此一来，要是在栏位很多时，要写的 HTML 就要写上不少。有没有方法可以简化呢？</p>
+
+<p>这边我们要介绍一个 gem 叫做 simple_form，它可以帮你简化复杂的表单这件事。</p>
+
+<p>首先我们要来安装 simple_form</p>
+
+<p>打开 Gemfile，然后新增一行 gem 'simple_form'</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>
+gem 'bootstrap-sass'
+<span class="err">+ gem 'simple_form'
+</span></pre></div>
+</figure>
+
+<p>然后执行 </p>
+
+<p><code>bundle install</code> </p>
+
+<p>安装 gem。</p>
+
+<p><br></p>
+<h3>Step 4: 安装 simple_form for bootstrap 的设定</h3>
+<p>执行：</p>
+
+<p><code>rails generate simple_form:install --bootstrap</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qhG8fT0yICTvwdE71igI_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%885.45.42.png" title=""></figure></p>
+
+<p>然后重开 rails server（ 按 ctrl＋c 终止 rails server， 再运行 <code>rails s</code>）</p>
+
+<p>这个指令会产生两个文件</p>
+
+<ul>
+<li>config/initializers/simple_form.rb</li>
+<li>config/initializers/simple_form_bootstrap.rb （这个是 Bootstrap 表单的“布景”)</li>
+</ul>
+
+<p><br></p>
+<h3>Step 5: 修改 app/views/groups/_form.html.erb</h3>
+<p>把内容改成</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">simple_form_for</span> <span class="vi">@group</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">input</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">input_html: </span><span class="p">{</span> <span class="ss">class: </span><span class="s2">"form-control"</span><span class="p">}</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">input</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">input_html: </span><span class="p">{</span> <span class="ss">class: </span><span class="s2">"form-control"</span><span class="p">}</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary"</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">disable_with: </span><span class="s2">"Submiting..."</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>然后打开 <a href="http://localhost:3000/groups/new" rel="nofollow" target="_blank">http://localhost:3000/groups/new</a> 就可以看到这样的成果了。更棒的是 simple_form 提供的错误信息，直接是在栏位旁边的。更明显更直观。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cpAc8EKsTRy54IoQtrEQ_Screenshot%20at%20Mar%2028%2014-11-36.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "replace form with simple_form bootstrap template"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-9（解说）Rails 的 CRUD 与 RESTful
+    </h1><h4>所属章节：4-手动实作讨论群的“新增”“修改”“删除”功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>如果你还在做第一遍练习时，请跳过这整章解说，否则你大脑会乱掉！<br>
+如果你还在做第一遍练习时，请跳过这整章解说，否则你大脑会乱掉！<br>
+如果你还在做第一遍练习时，请跳过这整章解说，否则你大脑会乱掉！</p>
+
+<ul>
+<li>叫你滚出去还不明白吗？</li>
+<li>叫你滚出去还不明白吗？</li>
+<li>叫你滚出去还不明白吗？</li>
+</ul>
+
+<p>好。我现在确定你应该已经是做第二遍了，才看这一篇解说的。</p>
+
+<p><br></p>
+<h2>HTTP 请求( Request）与 HTTP 动作 ( Verb）</h2>
+<p>一般网页的运作原理是这样的：</p>
+
+<ol>
+<li>使用者在浏览器输入了某个网址，点击了某个连结。这都叫发出 HTTP 请求 ( Request）。</li>
+<li>而浏览器回应之后：产生页面，或者是重新导向。这都叫 HTTP 回应（ Response）。</li>
+</ol>
+
+<p>一般来说，使用者最常使用的是两种类型 / 动作 ( Verb )的请求： GET 与 POST。</p>
+
+<ul>
+<li>GET ：输入网址，点击某些网址。这都是 GET。</li>
+<li>POST：送出表单。这叫做 POST</li>
+</ul>
+
+<p><br></p>
+<h2>RESTful 的基础概念</h2>
+<p>因为 CRUD 是常见的操作行为，但是大家实作的方式、与网址设计方式不一样。造成很多维护上的困扰。</p>
+
+<p>后来就有人发明 RESTful 这个概念，希望用 HTTP 的动作 ( Verb）一起去封装 CRUD 的行为。所以又多加了两个动作：</p>
+
+<ul>
+<li>PUT : 更新 ( update )</li>
+<li>DELETE : 删除 ( delete）</li>
+</ul>
+
+<p>而 Rails 的 Routing 也是依循这样的理念去设计。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rGUHz08gQriXQbiPLTE4_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-13%20%E4%B8%8A%E5%8D%881.29.48.png" title=""></figure></p>
+
+<p><br></p>
+<h2>Rails 的基础 RESTful概念</h2>
+<p>由于RESTful是个新手不容易一下子理解的概念，号称学 Ruby on Rails 初期最大障碍。</p>
+
+<p>在本篇尽量用浅显易懂的方式解释。如果看不懂也没关系，用背的！！</p>
+
+<p>一定要背起来！</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WJXUF3ISuyzR26tmyNc9_xDdK3FnmSXyZC9mUxjtL_TPgJPeyuQkyNumT3bJGA_RESTful.jpg" title=""></figure></p>
+
+<p><br></p>
+<h2>以下例子以 第三章， 做出 CRUD 功能的讨论版来解释：</h2>
+<ul>
+<li>讨论版有个群组叫： groups。在 Restful 的概念里把这个 groups 叫做 resources，“一组资源”的意思。</li>
+</ul>
+
+<p>为了要控制它的运作，我们会创建一个新的 Controller文件 叫做 groups_controller.rb</p>
+
+<p>HTTP Verb 有四种：</p>
+
+<ul>
+<li>新增 (create，使用 POST )</li>
+<li>读取 (read，使用 GET )</li>
+<li>更新 (update，使用 PUT )</li>
+<li>删除 (destroy，使用 DELETE)</li>
+</ul>
+
+<p>在这组 controller 当中，我们会实作 7 个 Action ，4 张页面。</p>
+
+<ul>
+<li>首页( index )：用来列出所有的讨论版，可以选择各个单版 （使用 GET )</li>
+<li>各个讨论版专属页面(show)：显示讨论版版名跟简介 (使用 GET )</li>
+<li>新增页面(new)：里面会有表单，填完以后可以送出 (使用 GET )</li>
+<li>产生数据（create) ：new 送出来的表单到 create 这个 action，新增一笔数据 ( 使用 POST )</li>
+<li>编辑页面(edit)：里面会有表单呈现现有数据来，填完数据后可以送出 (使用 GET )</li>
+<li>更新数据（update)：edit 送出来的表单可以到 update 这个 action，更新该笔数据 (使用 PUT )</li>
+<li>删除数据：送出删除请求，删除该笔数据（使用 DELETE）</li>
+</ul>
+
+<p>这七个 action ，是每个CRUD功能里最基本的动作。只要我们在 controller.rb 里定义 (def) 好这七个方法当作动作 (action)。其他的部分 Rails 就会帮我们处理了。</p>
+
+<p>像是设定 Routing (路由) 只需要简单一行:</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  <span class="n">resources</span> <span class="ss">:groups</span>
+</pre></div>
+</figure>
+ 
+
+<p>这样不管浏览器端跑来什么样的请求 (request) ，Routing都会聪明地帮我们导向正确的 action 去运作后续流程。</p>
+
+<p><br></p>
+<h2>网址对应关系</h2>
+<p>对于网址跟对应的Action与页面来说</p>
+
+<ul>
+<li>/groups/ 一定就是 index，首页，对应Routes路径： groups_path</li>
+<li>/groups/123 一定就是 show，名字为123的讨论版个版页面，对应Routes路径： group_path(123)</li>
+<li>/groups/123/edit 一定就是 edit，编辑讨论版123的表单页面，对应Routes路径：edit_group_path(123)</li>
+<li>/groups/new 一定就是 new，新增讨论版的表单页面，对应Routes路径(或称为helper)：new_group_path</li>
+</ul>
+<h2>总结</h2>
+<p>所以制作一个 RESTful 风格的讨论版，我们仅需在Routes设定一行代码即可</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-1 本章目标
+    </h1><h4>所属章节：5-加入使用者功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>本章目标:</h2>
+<ul>
+<li>安装“会员系统”（使用 devise）</li>
+<li>在 navbar 安装登录/退出按钮</li>
+<li>只有登录了的使用者，才可以建立群组</li>
+<li>只有群组的建立者，才可以 编辑 / 删除群组</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/BEK2JoGTDyQsBLpVzVuZ_Screenshot%20at%20Mar%2028%2014-22-34.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/G5VGS3Qfa0fCYfoCtdtw_Screenshot%20at%20Mar%2028%2014-23-45.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-2 安装 devise gem
+    </h1><h4>所属章节：5-加入使用者功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>做会员系统似乎很困难？让我告诉你，在 Rails 内一点都不会！</li>
+<li>利用 devise 实作会员系统</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch04</h3>
+<p>因为我们现在要实作第四章的内容，新增一个 branch 把实作内容集中在 ch04 是比较合理的。将来回顾就可以比较清楚 在 ch04 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch04</code></p>
+
+<p><br></p>
+<h3>Step 1: 安装登录系统</h3>
+<p>Devise 是一个 Rails 内热门的 gem，专门用来快速实作“登录系统”。在这一章我们会用 devise 实作登录功能。</p>
+
+<p>Gemfile 新增一行 gem 'devise'</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="n">gem</span> <span class="s1">'devise'</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OPcBS4K1Sc6ugg74McMT_step1.png" title=""></figure></p>
+
+<p>然后执行</p>
+
+<p><code>bundle install</code></p>
+
+<p><br></p>
+<h3>Step 2 : 产生会员系统的必要文件</h3>
+<p>执行</p>
+
+<p><code>rails g devise:install</code><br>
+<code>rails g devise user</code><br>
+<code>rake db:migrate</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Pyn1QXERRDitrIsfO7l2_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%886.30.38.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/38OJJxJMSPisjGXEoap3_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%886.30.23.png" title=""></figure></p>
+
+<p>然后重开 rails server</p>
+
+<p><br></p>
+<h3>Step 3: 在 groups_controller 限制 “新增讨论群”必须先登录</h3>
+<p>在 app/controllers/groups_controller.rb 加入一行 before_action :authenticate_user! , only: [:new]</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">]</span>
+</pre></div>
+</figure>
+
+<p>然后这时候当你要访问 <a href="http://localhost:3000/groups/new" rel="nofollow" target="_blank">http://localhost:3000/groups/new</a> 时，就会出现“登录画面”阻挡。可以注册一个账户试试效果。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/33c0ooBvQyyFNkJHQkFQ_Screenshot%20at%20Mar%2028%2014-16-22.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "install devise"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-3 让这个网站有实际“登录”、“退出”的功能
+    </h1><h4>所属章节：5-加入使用者功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>让右上角的“登录”可以实际有：“登录” / “退出的效果”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 修改 app/views/common/_navbar.html.erb</h3>
+<figure class="figure-code code"><figcaption><span>app/views/common/_navbar.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-                &lt;li&gt; 
+-                  &lt;%= link_to("登录", '#') %&gt;   
+-                &lt;/li&gt;
+</span><span class="gi">+                &lt;% if !current_user %&gt;
++                  &lt;li&gt;&lt;%= link_to("注册", new_user_registration_path) %&gt; &lt;/li&gt;
++                  &lt;li&gt;&lt;%= link_to("登录", new_user_session_path) %&gt;&lt;/li&gt;
++                &lt;% else %&gt;
++                  &lt;li class="dropdown"&gt;
++                    &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;
++                        Hi!, &lt;%= current_user.email %&gt;
++                        &lt;b class="caret"&gt;&lt;/b&gt;
++                    &lt;/a&gt;
++                    &lt;ul class="dropdown-menu"&gt;
++                        &lt;li&gt; &lt;%= link_to("退出", destroy_user_session_path, method: :delete) %&gt; &lt;/li&gt;
++                    &lt;/ul&gt;
++                  &lt;/li&gt;
+</span><span class="err">+                &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><strong>（+号代表新增的意思，复制贴上的时候请删掉它，-号代表删除的意思）</strong></p>
+
+<p><br></p>
+<h3>Step 2: 修改 app/assets/javascripts/application.js</h3>
+<p>加入 //= require bootstrap/dropdown</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>//= require bootstrap/alert
+<span class="err">+ //= require bootstrap/dropdown
+</span></pre></div>
+</figure> 
+
+<p><strong>（+号代表新增的意思，复制贴上的时候请删掉它）</strong></p>
+
+<p>成果应该会是这样的效果。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/BEK2JoGTDyQsBLpVzVuZ_Screenshot%20at%20Mar%2028%2014-22-34.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/G5VGS3Qfa0fCYfoCtdtw_Screenshot%20at%20Mar%2028%2014-23-45.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3: git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "user can login/logout/signup"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-4 让“群组”与“使用者”产生关联
+    </h1><h4>所属章节：5-加入使用者功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>我们要让“群组”记录是“被谁开的”。</li>
+<li>并且在看板一览表显示出来“开设者的名称”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 新增 user_id 到 group 的 table 里</h3>
+<p>执行</p>
+
+<p><code>rails g migration add_user_id_to_group</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JomTVi8eTUmTKcAgTQb0_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%886.53.02.png" title=""></figure></p>
+
+<p>然后打开刚刚新增的 migration 档，修改让它长得像这样</p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/一串数字_add_user_id_to_group
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">AddUserIdToGroup</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_column</span> <span class="ss">:groups</span><span class="p">,</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:integer</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后，执行</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p><br></p>
+<h3>Step 2: 连结 user 与 group 的双向关系</h3>
+<p>修改 app/models/user.rb 加入 has_many :groups</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="c1"># Include default devise modules. Others available are:
+</span>
+  <span class="c1"># :confirmable, :lockable, :timeoutable and :omniauthable
+</span>
+  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span>
+         <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span>
+
+  <span class="n">has_many</span> <span class="ss">:groups</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>修改 app/models/group.rb 加入 belongs_to :user</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/group.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3: 在新增看板时，记录谁是群组的建立者</h3>
+<p>修改 app/controllers/groups_controller.rb，在需要“登入验证”的 action 列表再加入 create。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">]</span>
+</pre></div>
+</figure>  
+  
+
+<p>修改 app/controllers/groups_controller.rb，在 create 中，多加入一行 @group.user = current_user。</p>
+
+<p>变成以下内容：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+    <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="n">current_user</span>
+    
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4 : git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add user_id to group"</code></p>
+
+<p><br></p>
+<h3>Step 5 : 修改 group 列表，将 user 的名字列上去</h3>
+<p>修改 app/views/groups/index.html.erb 然后把 Creator 的信息加进去。（代码如下）</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/47PSYmIOSxqqvC1El5iR_Screenshot%20at%20Feb%2024%2017-48-19.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"New group"</span><span class="p">,</span> <span class="n">new_group_path</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary pull-right"</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-hover"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Title<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Description<span class="nt">&lt;/td&gt;</span>
++       <span class="nt">&lt;td&gt;</span>Creator <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="cp">&lt;%</span> <span class="vi">@groups</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+          <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">description</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
++         <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span>
+              <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">)</span><span class="cp">%&gt;</span>
+              <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Delete"</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>    <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">,</span>
+                          <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="p">)</span><span class="cp">%&gt;</span>
+          <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>      
+       
+
+<p>做完之后，打开 <a href="http://localhost:3000/" rel="nofollow" target="_blank">http://localhost:3000/</a> 会发现，首页怎么爆炸了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zCXLBKPCTOWsKmTLBghp_Screenshot%20at%20Mar%2028%2014-36-19.png" title=""></figure></p>
+
+<p>别担心，这是因为我们之前创造的“群组”都是“无主”的。只要把这些“无主”的群组，通通删掉就行了。既然我们也进不去首页删群组了，我们就从 console 删吧。</p>
+<h3>Step 6: 删除所有“无主”的群组</h3>
+<p>执行</p>
+
+<p><code>rails console</code></p>
+
+<p>然后输入</p>
+
+<p><code>Group.delete_all</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/zqwtQsxhTZGUiUpIaqAI_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-11%20%E4%B8%8B%E5%8D%888.18.22.png" title=""></figure><br>
+输入 <code>exit</code> 退出 console</p>
+
+<p>然后再打开 <a href="http://localhost:3000/" rel="nofollow" target="_blank">http://localhost:3000/</a> 就正常了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/HTjkeLsvQlaSLf2ODLA6_Screenshot%20at%20Mar%2028%2014-37-50.png" title=""></figure></p>
+
+<p>这时候我们再新增一笔数据，就会显示 creator 的信息了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/LP1ACYrS6CteAF6jUbdC_Screenshot%20at%20Mar%2028%2014-38-26.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 7 : git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "show group's creator info "</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-5 只有群组的“创始者”可以“编辑”“删除”群组资讯
+    </h1><h4>所属章节：5-加入使用者功能</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>路人不应该可以看到“编辑”“删除”按钮</li>
+<li>只有群组的“创始者”可以实际执行“编辑”“删除”群组资讯</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 路人不应该可以看到“编辑”“删除”按钮</h3>
+<p>让我们登出系统，在这里我们察觉一个严重的问题：明明是路人，怎么能看到“编辑”“删除”按钮的资讯呢？</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mALyeLKkQVSVYkqVWLXG_Screenshot%20at%20Mar%2028%2014-40-48.png" title=""></figure></p>
+
+<p>所以在这里我们要把“编辑”“删除”这两个按钮藏起来，限定</p>
+
+<ul>
+<li>只有登入模式下</li>
+<li>而且还必须是群组“创始者”</li>
+</ul>
+
+<p>才能看得到这个两个按钮，否则路人是看不到的。</p>
+
+<p>修改 app/views/groups/index.html.erb</p>
+
+<p>加入   &lt;% if current_user &amp;&amp; current_user == group.user %&gt; 的判断式</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+      <span class="nt">&lt;td&gt;</span>
++            <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span> <span class="o">==</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span> <span class="cp">%&gt;</span>
+             <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">)</span><span class="cp">%&gt;</span>
+             <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Delete"</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>    <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">,</span>
+                         <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="p">)</span><span class="cp">%&gt;</span>
++            <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+          <span class="nt">&lt;/td&gt;</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/uheHTau6QMS4ALdpjTEG_current_user_index.png" title=""></figure></p>
+
+<p>重新刷新首页，路人现在就看不到按钮了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/oU7UA4CJQLmCSOPmXpVP_Screenshot%20at%20Mar%2028%2014-42-54.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "people can't see edit button unless he is group owner"</code></p>
+
+<p><br></p>
+<h3>Step 3: 路人不应该也可以“直接输入网址”去存取 edit / update / destroy action</h3>
+<p>除了将按钮对路人隐藏外，我们还要考虑到一个情形，假设这个路人是知道 Rails 规则的，那么他可能输入 </p>
+
+<figure class="figure-code code"><div class="highlight"><pre>http://localhost:3000/groups/某笔数据的ID/edit 
+</pre></div>
+</figure>
+
+<p>网址，就直接可以编辑数据。</p>
+
+<p>我们也要在 controller 做权限判断，滤掉这种人。</p>
+
+<p>首先，我们先限定 edit / update / destroy 这三个操作动作，必须要是“登入”的使用者才能存取。</p>
+
+<p>修改 app/controllers/groups_controller.rb 在 before_action :authenticate_user!  列表中，加入 :edit, :update, :destroy</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">]</span>
+</pre></div>
+</figure>  
+ 
+
+<p>这样“没登录”的路人，就进不来了。但这只是第一步。</p>
+
+<p><br></p>
+<h3>Step 4: 必须要是 group 拥有人，才能进入 edit，否则会被重导至首页，并显示错误信息。</h3>
+<p>修改 app/controllers/groups_controller.rb 加入权限，如果不是“创始者”去存取，会显示没有权限的错误信息。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">current_user</span> <span class="o">!=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span>
+      <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"You have no permission."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>  
+
+<p>这样当其他人，试图输入 </p>
+
+<figure class="figure-code code"><div class="highlight"><pre>http://localhost:3000/groups/某笔数据的ID/edit 
+</pre></div>
+</figure>
+
+<p>这样的网址，想要编辑数据，就会被挡住。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/GUSD10DsSIyiJpG2XDq8_Screenshot%20at%20Mar%2028%2014-49-58.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5: 依样画葫芦的把“权限检查”的代码，套用到 update / destroy 上</h3>
+<p>修改 app/controllers/groups_controller.rb 中的 update 与 destroy 部分。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">current_user</span> <span class="o">!=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span>
+      <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"You have no permission."</span>
+    <span class="k">end</span>
+
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"Update Success"</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">current_user</span> <span class="o">!=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span>
+      <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"You have no permission."</span>
+    <span class="k">end</span>
+        
+    <span class="vi">@group</span><span class="p">.</span><span class="nf">destroy</span>
+    <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"Group deleted"</span>
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 6: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "check owner permission when access edit/update/destroy"</code></p>
+
+<p><br></p>
+<h3>Step 7: 制作 find_group_and_check_permission</h3>
+<p>我们发现 edit、update、destroy 这三个 action 都有一样的代码，看起来有点冗。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">current_user</span> <span class="o">!=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span>
+  <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"You have no permission."</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>其实我们可以透过把它包装成一个函式的方式 find_group_and_check_permission 去省略这段冗余代码。</p>
+
+<p>打开 app/controllers/groups_controller.rb  在 private 下，新增一个 find_group_and_check_permission</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">find_group_and_check_permission</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">current_user</span> <span class="o">!=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span>
+      <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"You have no permission."</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">group_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:group</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>  
+</pre></div>
+</figure> 
+
+<p>再修正 edit</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="n">find_group_and_check_permission</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>修正 update</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">update</span>
+
+    <span class="n">find_group_and_check_permission</span>
+
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"Update Success"</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>修正 destroy</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="n">find_group_and_check_permission</span>
+    
+    <span class="vi">@group</span><span class="p">.</span><span class="nf">destroy</span>
+    <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"Group deleted"</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>  
+
+<p><br></p>
+<h3>Step 8: 把 find_group_and_check_permission 挂到 before_action</h3>
+<p>开发到这里你会发现一件事，find_group_and_check_permission 其实都是在这三个 action 的最前面开头执行的，所以你甚至可以这样写，把 find_group_and_check_permission 挂到 before_action</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">]</span>
+  <span class="n">before_action</span> <span class="ss">:find_group_and_check_permission</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">]</span>
+ 
+</pre></div>
+</figure>  
+
+<p>然后再把 edit update destroy 里的 find_group_and_check_permission 砍掉。变成这样：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">edit</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s2">"Update Success"</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@group</span><span class="p">.</span><span class="nf">destroy</span>
+    <span class="n">redirect_to</span> <span class="n">groups_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s2">"Group deleted"</span>
+  <span class="k">end</span>
+  
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 9: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "use before_action to find_group_and_check_permission"</code></p>
+
+<p><br></p>
+<h3>Step 10 : 修掉 show 里面的 Edit 按钮</h3>
+<p>做到这里，我们还发现一个地方，我们漏了改，那就是 show.html.erb 上面，还有一个 Edit 按钮我们还没有拔掉。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rcnnjHjCSEewcX1gA6xG_Screenshot%20at%20Mar%2028%2015-03-21.png" title=""></figure></p>
+
+<p>修改 app/views/groups/show.html.erb ，然后加入</p>
+
+<p>加入   &lt;% if current_user &amp;&amp; current_user == @group.user %&gt; 的判断式</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cbnKVjtaT1Cn9rz3mIQB_show_html_erb.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span> <span class="o">==</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-primary pull-right"</span><span class="p">)</span><span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<p>如此按钮就被修掉了。</p>
+
+<p><br></p>
+<h3>Step 11: git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add permission check on show page"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-1 本章目标
+    </h1><h4>所属章节：6-在讨论群里面“发表文章”</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>本章目标：</h2>
+<ul>
+<li>可以在群组里面新增 / 编辑 / 删除文章</li>
+<li>文章必须要有“内容”，否则不允许被发表</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-2 建立文章的架构
+    </h1><h4>所属章节：6-在讨论群里面“发表文章”</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>在这一章，我们要带大家在群里面可以发文章。我们会完成以下事项：</p>
+
+<ul>
+<li>文章 Post 要有“内容”、“所属讨论群组”、“叙述”</li>
+<li>发文网址是在 <a href="http://localhost:3000/groups/1/posts/new" rel="nofollow" target="_blank">http://localhost:3000/groups/1/posts/new</a>
+</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch05</h3>
+<p>因为我们现在要实作第五章的内容，新增一个 branch 把实作内容集中在 ch05 是比较合理的。将来回顾就可以比较清楚 在 ch05 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch05</code></p>
+
+<p><br></p>
+<h3>Step 1. 设计 Post 的 model 架构</h3>
+<ul>
+<li>文章内容要有“内容”、“所属讨论群组”、“叙述”</li>
+<li>我们在这里要建立一个 model <strong>Post</strong>，并建立数据表 post 的三个栏位: content ( text 文字属性) 、group_id (integer 数字属性)、 user_id ( integer 数字属性）</li>
+</ul>
+
+<p><code>rails g model post content:text group_id:integer user_id:integer</code></p>
+
+<p>将数据库建立起来，并执行 rake db:migrate</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p><br></p>
+<h3>Step 2. 建立 Group / Post / User 三者间的关系</h3>
+<ul>
+<li>Group has_many posts</li>
+</ul>
+
+<figure class="figure-code code"><figcaption><span>app/models/group.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<ul>
+<li>User has_many posts</li>
+</ul>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="c1"># Include default devise modules. Others available are:
+</span>
+  <span class="c1"># :confirmable, :lockable, :timeoutable and :omniauthable
+</span>
+  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span>
+         <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span>
+
+  <span class="n">has_many</span> <span class="ss">:groups</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<ul>
+<li>Post belongs_to User</li>
+<li>Post belongs_to Group</li>
+</ul>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">belongs_to</span> <span class="ss">:group</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add post and hook group/user relation"</code></p>
+
+<p><br></p>
+<h3>Step 4. 建立 Post Controller</h3>
+<p><code>rails g controller posts</code></p>
+
+<p><br></p>
+<h3>Step 5. 设立 routing</h3>
+<p>修改 config/routes.rb</p>
+
+<p>将 resources :posts 加入 resources :groups 内。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/tDOcEw7QFyG41ktvz05g_posts_resources.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">devise_for</span> <span class="ss">:users</span>
+  <span class="n">resources</span> <span class="ss">:groups</span> <span class="k">do</span>
+    <span class="n">resources</span> <span class="ss">:posts</span>
+  <span class="k">end</span>
+  <span class="n">root</span> <span class="s1">'groups#index'</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure> 
+
+<p>做了这件事后，执行</p>
+
+<p><code>rake routes</code></p>
+
+<p>然后你就会发现， routing 列表内产生了 /groups/:group_id/posts/new 这样的网址支援。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QxlWwWQmR5yUvfzjxkeq_rake_routes.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add posts nested route"</code></p>
+
+<p><br></p>
+<h3>Step 7. 在 groups#show 新增 “发表文章”按钮</h3>
+<p>修改 app/views/groups/show.html.erb</p>
+
+<p>然后加入一行</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre>  <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Write a Post"</span><span class="p">,</span> <span class="n">new_group_post_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-default pull-right"</span><span class="p">)</span><span class="cp">%&gt;</span>
+</pre></div>
+</figure>
+
+<p>在权限判断的位置上面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IWovsg8Tz2uFiThPPdPj_show_html_erb_%E2%80%94__Users_xdite_Documents_projects_rails101.png" title=""></figure></p>
+
+<p>我们就得到了一颗可以新增文章的按钮</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OvoWNvU3QGCbEUDYlGAy_Screenshot%20at%20Mar%2028%2015-16-13.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 8. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add post button"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-3 实际发表文章
+    </h1><h4>所属章节：6-在讨论群里面“发表文章”</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标：</h2>
+<ul>
+<li>实际把文章发在群里面</li>
+<li>使用者可以在群里面看到文章一览表</li>
+</ul>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step 1: 实作 new / create action</h3>
+<p>新增 new 与 create action 在 posts_controller</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/posts_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span><span class="p">,</span> <span class="ss">:only</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">new</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:group_id</span><span class="p">])</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:group_id</span><span class="p">])</span>
+    <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">group</span> <span class="o">=</span> <span class="vi">@group</span>
+    <span class="vi">@post</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="n">current_user</span>
+
+    <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">group_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">post_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:post</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:content</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2. 新增 app/views/posts/new.html.erb</h3>
+<p><code>touch app/views/posts/new.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/posts/new.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"text-center"</span><span class="nt">&gt;</span>新增文章<span class="nt">&lt;/h2&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4 col-md-offset-4"</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">simple_form_for</span> <span class="p">[</span><span class="vi">@group</span><span class="p">,</span><span class="vi">@post</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">input</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">input_html: </span><span class="p">{</span> <span class="ss">class: </span><span class="s2">"form-control"</span><span class="p">}</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-actions"</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="s2">"Submit"</span><span class="p">,</span> <span class="ss">disable_with: </span><span class="s2">"Submiting..."</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary"</span><span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3. 修改 groups_controller 中的 show action</h3>
+<p>修改 app/controllers/groups_controller.rb</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">posts</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4. 修改 groups/show.html.erb</h3>
+<p>我们要修改 app/views/groups/show.html.erb，让文章能够显示出来，在&lt;%= @group.description %&gt;下，我们多加了一个表格做这件事。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre>...（略）
+  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">description</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+
++  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
++    <span class="nt">&lt;thead&gt;</span>
++     <span class="nt">&lt;tr&gt;</span>
++        <span class="nt">&lt;th&gt;</span>文章内容<span class="nt">&lt;/th&gt;</span>
++        <span class="nt">&lt;th&gt;</span>发表者<span class="nt">&lt;/th&gt;</span>
++        <span class="nt">&lt;th&gt;</span>发表时间<span class="nt">&lt;/th&gt;</span>
++      <span class="nt">&lt;/tr&gt;</span>
++    <span class="nt">&lt;/thead&gt;</span>
++    <span class="nt">&lt;tbody&gt;</span>
++      <span class="cp">&lt;%</span> <span class="vi">@posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
++        <span class="nt">&lt;tr&gt;</span>
++          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
++          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
++          <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">created_at</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
++        <span class="nt">&lt;/tr&gt;</span>
++      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
++    <span class="nt">&lt;/tbody&gt;</span>
++  <span class="nt">&lt;/table&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>新增几笔文章试看看！</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/nFgVu94tTjutGJ7oJyTw_Screenshot%20at%20Mar%2028%2015-29-10.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5: 对 Post 加上 validation</h3>
+<p>这时候我们发现，刚刚有文章不小心没填内容，就发出去变成空的。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/EK40JBOhR064tFYsu7DS_Screenshot%20at%20Mar%2028%2015-29-33.png" title=""></figure></p>
+
+<p>为了防止这样的情形，我们还是要限制 post 的 content 要是为空，就不得送出。</p>
+
+<p>修改 app/models/post.rb 加入 validates :content, presence: true</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">belongs_to</span> <span class="ss">:group</span>
+
+  <span class="n">validates</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+    
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>之后要是再有使用者，送出空的内容，就会被挡下来。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/v4lsOfKGQHSEvtI2k5FQ_Screenshot%20at%20Mar%2028%2015-31-43.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement post create function"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-4 文章应该按照发表时间倒序排列
+    </h1><h4>所属章节：6-在讨论群里面“发表文章”</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>在文章列表上，应该让文章按照发表时间“倒序”排列，我们应该让最近发表的文章在“最上面”。</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7v1Da1qnQNSVGtfqLfdC_Snip20170328_3.png" title=""></figure></p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 修改 groups_controller</h3>
+<p>修改 app/controllers/groups_controller.rb 的 show，让它最后长成以下样子：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="s2">"created_at DESC"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>重新刷新，看板列表就会变成，按照发表时间“倒序”排列</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xobRr8CRtyhziXjiL6ea_Snip20170328_1.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2. git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "add order by created_at to group's post"</code></p>
+
+<p><br></p>
+<h3>Step 3. 使用 scope 替代直接 order</h3>
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="s2">"created_at DESC"</span><span class="p">)</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这里的 order("created_at DESC") 是“程序语句”，但不是“功能叙述”。我们作为旁观者，只能猜测这是要按照“最近的时序排列”。</p>
+
+<p>如果能改成 @group.posts.recent 可能在维护性上更直观。</p>
+
+<p>这里我们还可以用 Rails 里面的一个内建 API scope 让代码更直观一些。 scope 可以用来包装一些查询式，如果我们这里想要让最后的代码变成  @group.posts.recent 的话，作法如下：</p>
+
+<p>修改 app/models/post.rb，加入一行 scope :recent, -&gt; { order("created_at DESC")}</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/post.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+
+    <span class="c1"># ... 略
+</span>
+
+  <span class="n">scope</span> <span class="ss">:recent</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">order</span><span class="p">(</span><span class="s2">"created_at DESC"</span><span class="p">)}</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后修改 app/controllers/groups_controller.rb 中的 show，变成</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">recent</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这样就可以了。</p>
+<h3>Step 4. git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "using scope to write order by created_at to group's post"</code></p>
+
+<p><br></p>
+<h2>解说</h2>
+<h3>order("created_at DESC") 是什么？</h3>
+<p>实际上呢，Model 里面的所有语句，看起来是“Ruby 语句”，实际上是 Rails 帮我们“翻译”成为了数据库语句。（这一套叫 ActiveRecord 框架）</p>
+
+<p>如果有兴趣的话，Rails 的 Log 都有显示的。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vfnLMIZHRNOCmePjLYcE_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-13%20%E4%B8%8A%E5%8D%881.41.16.png" title=""></figure></p>
+
+<p>比如说：</p>
+
+<p>Post.all 真正的数据库语句是  SELECT  "posts".* FROM "posts"<br>
+@group.posts.order("created_at DESC") 是 SELECT  "posts".* FROM "posts" WHERE "posts"."group_id" = ? ORDER BY created_at DESC</p>
+
+<p>因为数据库语句也是个“巨坑”，Rails 开发的目的，在于希望程序员专注于“产品”的逻辑设计，而花上少一点时间去纠缠非常底层的细节。</p>
+
+<p>在刚开始学习过程中，其实你是不太需要去纠结数据库语句的，大部份你想要捞的数据，ActiveRecord 都能帮你搞定，而且可以“形容”的非常“口语”。</p>
+
+<p><br></p>
+<h3>scope 又是什么呢？</h3>
+<p>你可以想像成，拿来包装“常用 query”的方法。理解到这里就可以了。</p>
+
+<p>更多 scope 的用法：<a href="http://guides.rubyonrails.org/active_record_querying.html" rel="nofollow" target="_blank">http://guides.rubyonrails.org/active_record_querying.html</a></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-5 加入文章分页功能
+    </h1><h4>所属章节：6-在讨论群里面“发表文章”</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>为文章列表加入分页功能。</li>
+<li>一页 5 篇文章。</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 安装 will_paginate</h3>
+<p>Rails 社群内有很多“分页”功能的 gem 可以办到这件事，其中最热门的 gem 叫 <strong>will_paginate</strong>，使用这些 gem ，一下子就会把功能做完了。</p>
+
+<p>修改 Gemfile，加入 will_paginate, </p>
+
+<p>gem 'will_paginate'</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="n">gem</span> <span class="s1">'will_paginate'</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/EUQGOyRtTUqA7Dd2SX4T_Screenshot%20at%20Feb%2020%2016-23-44.png" title=""></figure></p>
+
+<p>然后执行</p>
+
+<p><code>bundle install</code></p>
+
+<p>然后重开 <code>rails server</code></p>
+
+<p><br></p>
+<h3>Step 2: 修改 groups_controller</h3>
+<p>修改 app/controllers/groups_controller.rb 中的 show</p>
+
+<p>加入分页代码，变成</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">recent</span><span class="p">.</span><span class="nf">paginate</span><span class="p">(</span><span class="ss">:page</span> <span class="o">=&gt;</span> <span class="n">params</span><span class="p">[</span><span class="ss">:page</span><span class="p">],</span> <span class="ss">:per_page</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3: 修改 groups/show.html.erb</h3>
+<p>修改 app/views/groups/show.html.erb 在最下面 <code>&lt;/table&gt;</code> 下加入以下三行代码：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre>  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
++    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text-center"</span><span class="nt">&gt;</span>
++      <span class="cp">&lt;%=</span> <span class="n">will_paginate</span> <span class="vi">@posts</span> <span class="cp">%&gt;</span>
++    <span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>    
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/YvfVHc5PRKWQ2XugQpvm_step3.png" title=""></figure></p>
+
+<p>如果你的群组内，超过 5 篇文章（现在就去新增！！），就可以看到分页功能出现了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/e8a4IxvSTki9XhQpz7WM_Screenshot%20at%20Mar%2028%2015-52-20.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4: git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement posts pagination with will_paginate"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-1 本章目标
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>本章目标：</h2>
+<ul>
+<li>一个使用者可以选择“加入”、“退出”讨论群</li>
+<li>群的创始者，创群一开始就应该加在群组里</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qm7JgV4oT8WUvDozSpAx_Screenshot%20at%20Mar%2028%2016-37-16.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WhsIyCkUSuigRDg5nJZw_Screenshot%20at%20Mar%2028%2016-37-37.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-2 建立“群成员”数据表
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>建立群成员的关系表</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch06</h3>
+<p>因为我们现在要实作第六章的内容，新增一个 branch 把实作内容集中在 ch06 是比较合理的。将来回顾就可以比较清楚 在 ch06 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch06</code></p>
+
+<p><br></p>
+<h3>Step 1: 建立 GroupRelationship</h3>
+<p>我们在这里要建立一个新的 model 叫 GroupRelationship。这个数据表里面只有两个栏位：</p>
+
+<ul>
+<li>group_id  ( integer )</li>
+<li>user_id  ( integer)</li>
+</ul>
+
+<p>记录了“谁”参加了“哪个群组”。</p>
+
+<p>输入</p>
+
+<p><code>rails g model group_relationship group_id:integer user_id:integer</code></p>
+
+<p>执行</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p><br></p>
+<h3>Step 2: 设定 Group 与 User 之间的关系 ( 使用者参与的所有群）</h3>
+<p>在这之前，在 User model 已经有一行：has_many :groups</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+
+<span class="c1"># .. 略
+</span>
+  <span class="n">has_many</span> <span class="ss">:groups</span>
+<span class="c1"># .. 略
+</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>user.groups 会捞出这个使用者“创造过的所有群”。那我们要如何撰写 “参与的所有群”呢？</p>
+
+<p>首先，修改 app/models/user.rb 加入以下两行</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+
+<span class="c1"># .. 略
+</span>
+
+<span class="o">+</span>  <span class="n">has_many</span> <span class="ss">:group_relationships</span>
+<span class="o">+</span>  <span class="n">has_many</span> <span class="ss">:participated_groups</span><span class="p">,</span> <span class="ss">:through</span> <span class="o">=&gt;</span> <span class="ss">:group_relationships</span><span class="p">,</span> <span class="ss">:source</span> <span class="o">=&gt;</span> <span class="ss">:group</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后修改 app/models/group_relationship.rb，加入这两行</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/group_relationship.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupRelationship</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+<span class="o">+</span>  <span class="n">belongs_to</span> <span class="ss">:group</span>
+<span class="o">+</span>  <span class="n">belongs_to</span> <span class="ss">:user</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这样当捞 user.participated_groups 时，就会捞出“参与的所有群”。</p>
+
+<p><br></p>
+<h3>Step 3: 设定 Group 与 User 之间的关系 ( 群组内的所有会员 ）</h3>
+<p>修改 app/models/group.rb，加入这两行</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/group.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+
+    <span class="c1"># ... 略
+</span>
+  
+<span class="o">+</span>  <span class="n">has_many</span> <span class="ss">:group_relationships</span>
+<span class="o">+</span>  <span class="n">has_many</span> <span class="ss">:members</span><span class="p">,</span> <span class="ss">through: :group_relationships</span><span class="p">,</span> <span class="ss">source: :user</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 4: 动手测看看</h3>
+<p>打开 <code>rails console</code></p>
+
+<p>输入</p>
+
+<figure class="figure-code code"><div class="highlight"><pre> u = User.first
+ g = Group.first
+ g.members &lt;&lt; u
+ g.members
+ u.participated_groups
+</pre></div>
+</figure>
+
+<p>看看会出现什么结果。<br>
+最后执行<code>exit</code>退出<br>
+<figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hTViiKFRQq2Sv3tOELHu_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%20%E4%B8%8B%E5%8D%885.22.33.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5: git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement group relation"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-3 在群组里面判断“是否群组成员”实作
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>会员要可以在社团里面看到自己“是否群组成员”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 在 user model 内实作判断式“是否为群组的一分子”</h3>
+<p>让我们修改 app/models/user.rb ，在最后一个end的上面加入这一段 is_member_of?(group)</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="c1"># 略 ...
+</span>
+  
+<span class="o">+</span>    <span class="k">def</span> <span class="nf">is_member_of?</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="o">+</span>      <span class="n">participated_groups</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="o">+</span>    <span class="k">end</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后“重开”<code>rails console</code></p>
+
+<p>输入</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>u = User.first
+g = Group.first
+u.is_member_of?(g)
+</pre></div>
+</figure>
+
+<p>结果会是这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DSzAOnmYT86HMFtQov0t_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%20%E4%B8%8B%E5%8D%885.55.56.png" title=""></figure></p>
+
+<p>运行 <code>exit</code> 退出console</p>
+
+<p>我们等一下将会使用 is_member_of?(group)来判断“这个使用者是否属于该群组”</p>
+
+<p><br></p>
+<h3>Step 2. 修改 groups/show.html.erb</h3>
+<p>我们在 app/views/groups/show.html.erb 加入这一段</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/tJ7ki5CfSFWHxNUxJYWX_show_html_erb_%E2%80%94__Users_xdite_projects_rails101.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"pull-right"</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">is_member_of?</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"label label-success"</span><span class="nt">&gt;</span> 群组成员 <span class="nt">&lt;/label&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"label label-warning"</span><span class="nt">&gt;</span> 不是群组成员 <span class="nt">&lt;/label&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/span&gt;</span>
+</pre></div>
+</figure>    
+
+<p>你应该只会看到这两种结果</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/GLfoZDC2Tdqw4VW1lO1u_Screenshot%20at%20Feb%2024%2019-39-26.png" title=""></figure></p>
+
+<p><br><br><br></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DWwg5WhCT9ylag9ZKvaR_Screenshot%20at%20Feb%2024%2019-38-35.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 3. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement is_member_of?(group)"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-4 “加入群组”或“退出群组”
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>实作 model 层 “加入群组”</li>
+<li>实作 model 层“退出群组”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>步骤 1:</h3>
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">join!</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    <span class="n">participated_groups</span> <span class="o">&lt;&lt;</span> <span class="n">group</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">quit!</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    <span class="n">participated_groups</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/pIO8ANXRS5i8lSjufnhg_step1.png" title=""></figure></p>
+
+<p>打开 <code>rails console</code></p>
+
+<p>输入</p>
+
+<ul>
+<li><code>u = User.first</code></li>
+<li><code>g = Group.first</code></li>
+<li><code>u.join!(g)</code></li>
+<li><code>u.is_member_of?(g)</code></li>
+<li><code>u.quit!(g)</code></li>
+<li><code>u.is_member_of?(g)</code></li>
+<li><code>exit</code></li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JY4GDh1fT2KmOZs7QczT_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-12%20%E4%B8%8B%E5%8D%886.16.38.png" title=""></figure></p>
+
+<p><br></p>
+<h3>步骤 2:</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "join or quit group"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-5 实际操作“加入群组”或“退出群组”
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>步骤</h2>
+<h3>Step 1:</h3>
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="o">+</span>  <span class="k">def</span> <span class="nf">join</span>
+<span class="o">+</span>   <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="o">+</span>  
+<span class="o">+</span>    <span class="k">if</span> <span class="o">!</span><span class="n">current_user</span><span class="p">.</span><span class="nf">is_member_of?</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>      <span class="n">current_user</span><span class="p">.</span><span class="nf">join!</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>      <span class="n">flash</span><span class="p">[</span><span class="ss">:notice</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"加入本讨论版成功！"</span>
+<span class="o">+</span>    <span class="k">else</span>
+<span class="o">+</span>      <span class="n">flash</span><span class="p">[</span><span class="ss">:warning</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"你已经是本讨论版成员了！"</span>
+<span class="o">+</span>    <span class="k">end</span>
+<span class="o">+</span>  
+<span class="o">+</span>    <span class="n">redirect_to</span> <span class="n">group_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+<span class="o">+</span>  
+<span class="o">+</span>  <span class="k">def</span> <span class="nf">quit</span>
+<span class="o">+</span>    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="o">+</span>  
+<span class="o">+</span>    <span class="k">if</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">is_member_of?</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>      <span class="n">current_user</span><span class="p">.</span><span class="nf">quit!</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>      <span class="n">flash</span><span class="p">[</span><span class="ss">:alert</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"已退出本讨论版！"</span>
+<span class="o">+</span>    <span class="k">else</span>
+<span class="o">+</span>      <span class="n">flash</span><span class="p">[</span><span class="ss">:warning</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"你不是本讨论版成员，怎么退出 XD"</span>
+<span class="o">+</span>    <span class="k">end</span>
+<span class="o">+</span>  
+<span class="o">+</span>    <span class="n">redirect_to</span> <span class="n">group_path</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+<span class="o">+</span>  <span class="k">end</span>
+
+    <span class="kp">private</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/8TThycVyTRuE7r434HgM_step1.png" title=""></figure><br>
+<br></p>
+
+<p>加入与退出群组必须要是登入状态下才行，修改位於第二行的 <code>before_action</code> ，加入 join 和 quit 也需要验证  </p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<span class="o">-</span>  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">]</span>
+<span class="o">+</span>  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span> <span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">,</span> <span class="ss">:join</span><span class="p">,</span> <span class="ss">:quit</span><span class="p">]</span>
+
+<span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+<span class="nf">.</span><span class="p">.</span><span class="nf">.</span>
+</pre></div>
+</figure>
+<h3>Step 2:</h3>
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="n">resources</span> <span class="ss">:groups</span> <span class="k">do</span>
+<span class="o">+</span>    <span class="n">member</span> <span class="k">do</span>
+<span class="o">+</span>      <span class="n">post</span> <span class="ss">:join</span>
+<span class="o">+</span>      <span class="n">post</span> <span class="ss">:quit</span>
+<span class="o">+</span>    <span class="k">end</span>
+
+    <span class="n">resources</span> <span class="ss">:posts</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="http://ww4.sinaimg.cn/large/006tNbRwjw1fat1hvbvpxj30i30ekabc.jpg" title=""></figure><br>
+<br></p>
+<h3>Step 3:</h3>
+<p>加入两行代码，将这个文件修改成这样：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="o">&lt;</span><span class="n">span</span> <span class="k">class</span><span class="o">=</span><span class="s2">"pull-right"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% if </span><span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">is_member_of?</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span> <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="n">label</span> <span class="k">class</span><span class="o">=</span><span class="s2">"label label-success"</span><span class="o">&gt;</span> <span class="err">群组成员</span> <span class="o">&lt;</span><span class="sr">/label&gt;
++        &lt;%= link_to("Quit Group", quit_group_path(@group), method: :post, class: "btn btn-default") %&gt;
+  &lt;% else %&gt;
+    &lt;label class="label label-warning"&gt; 不是群组成员 &lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="o">+</span>        <span class="o">&lt;</span><span class="sx">%= link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-default") %&gt;
+  &lt;% end %&gt;
+&lt;/span&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qm7JgV4oT8WUvDozSpAx_Screenshot%20at%20Mar%2028%2016-37-16.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WhsIyCkUSuigRDg5nJZw_Screenshot%20at%20Mar%2028%2016-37-37.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4:</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "join &amp; quit group action"</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-6 User 在建立 group 后自动成为 group 的一员
+    </h1><h4>所属章节：7-使用者应该要“加入社团”才能发表文章</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<p>当你创办了 group ，却还要手动再加入这个 group 不会很怪吗？ XD<br>
+所以在这个步骤我们让 User 在建立 group 后自动成为 group 的一员</p>
+
+<p><br></p>
+<h2>步骤</h2>
+<h2>Step 1 :</h2>
+<figure class="figure-code code"><figcaption><span>app/controllers/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@group</span> <span class="o">=</span> <span class="no">Group</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">group_params</span><span class="p">)</span>
+    <span class="vi">@group</span><span class="p">.</span><span class="nf">user</span> <span class="o">=</span> <span class="n">current_user</span>
+    <span class="k">if</span> <span class="vi">@group</span><span class="p">.</span><span class="nf">save</span>
+<span class="o">+</span>     <span class="n">current_user</span><span class="p">.</span><span class="nf">join!</span><span class="p">(</span><span class="vi">@group</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">groups_path</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2:</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "when created a group, join it automatically"</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-1 本章目标
+    </h1><h4>所属章节：8-使用者可以在“自己的后台”看过曾经发表的文章、以及创立的社团</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>新增一个下拉选单</li>
+<li>可以看到自己过去曾经发表的文章</li>
+<li>可以看到自己过去曾经参与的社团</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/euudzpTdaCt2yOzapOHA_Screenshot%20at%20Feb%2024%2020-17-13.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MKi6K2blReyF0gswiy3b_Screenshot%20at%20Feb%2024%2020-17-30.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/yd6feSlRWk2yPR2RshPQ_Screenshot%20at%20Feb%2024%2020-18-02.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-2 可以看到自己参与的所有群组
+    </h1><h4>所属章节：8-使用者可以在“自己的后台”看过曾经发表的文章、以及创立的社团</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>使用者在下拉选单内，可以看到 "My Groups"</li>
+<li>使用者点选 "My Groups" 可以看到自己参与的所有群组</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 0. git checkout -b ch07</h3>
+<p>因为我们现在要实作第七章的内容，新增一个 branch 把实作内容集中在 ch07 是比较合理的。将来回顾就可以比较清楚 在 ch07 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch07</code></p>
+
+<p><br></p>
+<h3>Step 1: 产生 account 的 namespace 下的 groups_controller</h3>
+<p>执行</p>
+
+<p><code>rails g controller account/groups</code></p>
+
+<p><br></p>
+<h3>Step 2. 修改 routing</h3>
+<p>修改 config/routes.rb 加入：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  <span class="n">namespace</span> <span class="ss">:account</span> <span class="k">do</span>
+    <span class="n">resources</span> <span class="ss">:groups</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="http://ww4.sinaimg.cn/large/006tNbRwjw1faswmyfo4fj30la0h1dih.jpg" title=""></figure><br>
+<br></p>
+<h3>Step 3: 修改下拉选项</h3>
+<p>然后修改 app/views/common/_navbar.html.erb</p>
+
+<p>在“下拉选单选项”中多加入一个My Groups：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/common/_navbar.html.erb
+</span></figcaption><div class="highlight"><pre>   <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span><span class="nt">&gt;</span>
++    <span class="nt">&lt;li&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"My Groups"</span><span class="p">,</span> <span class="n">account_groups_path</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
++    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;</span> <span class="nt">&lt;/li&gt;</span>
+     <span class="nt">&lt;li&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"退出"</span><span class="p">,</span> <span class="n">destroy_user_session_path</span><span class="p">,</span> <span class="ss">method: :delete</span><span class="p">)</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/li&gt;</span>
+   <span class="nt">&lt;/ul&gt;</span>
+</pre></div>
+</figure>                    
+
+<p>成果就会长这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dXEwIjORuWVaCSgz9l17_Screenshot%20at%20Feb%2024%2019-54-56.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/mrqvDb7Q0yFfhFrDH9w4_Screenshot%20at%20Feb%2024%2019-56-35.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 4. 建立 account/groups_controller.rb 下的 index action</h3>
+<p>记得要加入： before_action :authenticate_user!，限制必须要得登录使用者，才能看。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/account/groups_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">Account</span><span class="o">::</span><span class="no">GroupsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@groups</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">participated_groups</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 5. 新增 “参与群组一览表”</h3>
+<p><code>touch app/views/account/groups/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/account/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"text-center"</span><span class="nt">&gt;</span> 我加入的讨论版 <span class="nt">&lt;/h2&gt;</span>
+
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;</span> # <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Title <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Description <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Post Count <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Last Update <span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="cp">&lt;%</span> <span class="vi">@groups</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+          <span class="nt">&lt;td&gt;</span> # <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">description</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">count</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">updated_at</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/M9hk6bvQRIaGStPovdQF_Screenshot%20at%20Feb%2024%2020-05-47.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6: git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement my groups"</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-3 可以看到自己发表的所有文章
+    </h1><h4>所属章节：8-使用者可以在“自己的后台”看过曾经发表的文章、以及创立的社团</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>使用者在下拉选单内，可以看到 "My Posts"</li>
+<li>使用者点选 "My Posts" 可以看到自己发表的所有文章</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1: 产生 account 的 namespace 下的 posts_controller</h3>
+<p>执行</p>
+
+<p><code>rails g controller account/posts</code></p>
+
+<p><br></p>
+<h3>Step 2. 建立 account/posts_controller.rb 下的 index action</h3>
+<p>加入： before_action :authenticate_user!，限制必须要得登入使用者，才能看。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/account/posts_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Account</span><span class="o">::</span><span class="no">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate_user!</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">posts</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 3. 修改 routing</h3>
+<p>修改 config/routes.rb 加入 resources :posts</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>  <span class="n">namespace</span> <span class="ss">:account</span> <span class="k">do</span>
+     <span class="n">resources</span> <span class="ss">:groups</span>
+<span class="o">+</span>    <span class="n">resources</span> <span class="ss">:posts</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>  
+
+<p><figure><img src="http://ww1.sinaimg.cn/large/006tNbRwjw1faswnssqxoj30la0h1acq.jpg" title=""></figure><br>
+<br></p>
+<h3>Step 4: 修改下拉选项</h3>
+<p>然后修改 app/views/common/_navbar.html.erb</p>
+
+<p>加入多一个“下拉选单选项”：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/common/_navbar.html.erb
+</span></figcaption><div class="highlight"><pre>                <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span><span class="nt">&gt;</span>
+                     <span class="nt">&lt;li&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"My Groups"</span><span class="p">,</span> <span class="n">account_groups_path</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
++                    <span class="nt">&lt;li&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"My Posts"</span><span class="p">,</span> <span class="n">account_posts_path</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span> 
+                     <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"divider"</span><span class="nt">&gt;</span> <span class="nt">&lt;/li&gt;</span>
+                     <span class="nt">&lt;li&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"退出"</span><span class="p">,</span> <span class="n">destroy_user_session_path</span><span class="p">,</span> <span class="ss">method: :delete</span><span class="p">)</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+</pre></div>
+</figure>
+
+<p>成果就会长这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rxzXs4siTBi4JtHEvbJo_Screenshot%20at%20Feb%2024%2020-09-38.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 5. 新增 “发表文章一览表”</h3>
+<p><code>touch app/views/account/posts/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/account/posts/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"text-center"</span><span class="nt">&gt;</span> 我发表过的文章 <span class="nt">&lt;/h2&gt;</span>
+
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Content <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Group Name <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span> Last Update <span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th</span> <span class="na">colspan=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/th&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="cp">&lt;%</span> <span class="vi">@posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">group</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">updated_at</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s1">'Edit'</span><span class="p">,</span> <span class="n">edit_group_post_path</span><span class="p">(</span><span class="n">post</span><span class="p">.</span><span class="nf">group</span><span class="p">,</span> <span class="n">post</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-default btn-xs"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s1">'Delete'</span><span class="p">,</span> <span class="n">group_post_path</span><span class="p">(</span><span class="n">post</span><span class="p">.</span><span class="nf">group</span><span class="p">,</span> <span class="n">post</span><span class="p">),</span> <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">},</span> <span class="ss">class: </span><span class="s2">"btn btn-default btn-xs"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ZKq40ff6RCKx2ebf1OU8_Screenshot%20at%20Feb%2024%2020-11-49.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 6: git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "implement my posts"</code></p>
+
+<p><br></p>
+<h2>额外作业：</h2>
+<p>（这次没有解答）</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QG1xjgv7STu5bpblRr6G_Screenshot%20at%20Feb%2024%2020-13-11.png" title=""></figure></p>
+
+<p>练习自己实作“编辑”和“删除”按钮这两个功能！</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-1 本章目标
+    </h1><h4>所属章节：9-修饰细节，使用 Helper 与 Partial</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>了解 Helper 是什么，怎么使用</li>
+<li>了解 Partial 是什么，怎么使用</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-2 系统内建 Helper “simple_format”的使用
+    </h1><h4>所属章节：9-修饰细节，使用 Helper 与 Partial</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>让群组叙述能够正确的断行</li>
+</ul>
+
+<p>当你开始使用这个系统时，你会发现一件很奇怪的事，输入三行叙述</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/c2KMDQzISdOuusAzzsxn_Screenshot%20at%20Feb%2024%2020-31-33.png" title=""></figure></p>
+
+<p>却没有断行</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4MgLunCAQcG8CNBgZBNm_Screenshot%20at%20Feb%2024%2020-32-44.png" title=""></figure></p>
+
+<p>我们这一节要讲的就是如何正确的断行</p>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step 0. git checkout -b ch08</h3>
+<p>因为我们现在要实作第八章的内容，新增一个 branch 把实作内容集中在 ch08 是比较合理的。将来回顾就可以比较清楚 在 ch08 我们做了哪一些练习。</p>
+
+<p><code>git checkout -b ch08</code></p>
+
+<p><br></p>
+<h3>Step 1. 将 group.description 改成 simple_format(group.description)</h3>
+<p>修改 app/views/groups/index.html.erb</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre>      <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="sx">%= link_to(group.title, group_path(group)) %&gt;&lt;/td&gt;
+-     &lt;td&gt;&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">description</span> <span class="sx">%&gt;&lt;/td&gt;</span>
+<span class="o">+</span>     <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="sx">%= simple_format(group.description) %&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="sx">%&gt; &lt;/td&gt;</span>
+</pre></div>
+</figure>          
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/LBd28oG2Rj28vXrnloW2_Screenshot%20at%20Feb%2024%2020-24-46.png" title=""></figure></p>
+
+<p>然后你就可以看到正确的断行</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WjNnF1gUR8yUCDip7GJq_Screenshot%20at%20Feb%2024%2020-29-35.png" title=""></figure></p>
+
+<p><code>git add .</code><br>
+<code>git commit -m "use simple_format helper to decorate"</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-3 使用自定义 Helper
+    </h1><h4>所属章节：9-修饰细节，使用 Helper 与 Partial</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>用到 group.description 的地方很多，老是直接写 simple_format(group.description) 不是很好，万一以后产品经理想要加个什么特效，我们可能会改死</li>
+<li>我们也想要发明“自己的 Helper”</li>
+</ul>
+
+<p><br></p>
+<h2>步骤</h2>
+<h3>Step 1. 自制 render_group_description(group)</h3>
+<p>修改 app/helpers/groups_helper.rb</p>
+
+<p>加入：</p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/groups_helper.rb
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">GroupsHelper</span>
+  <span class="k">def</span> <span class="nf">render_group_description</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    <span class="n">simple_format</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">description</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>然后修改 app/views/groups/index.html.erb 与 app/views/account/groups/index.html.erb 里关于 group.description 的部分（最终代码如下）：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre>      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">render_group_description</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5VHVflEWRkOkVpwhh3o3_render_group_desc.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/account/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre>      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">render_group_description</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">count</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">updated_at</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/hTEvvp9kQUe4UvI3lTBS_Screenshot%20at%20Mar%2006%2016-19-41.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2 : git 储存</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "use self delimit helper"</code><br>
+<br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-4 partial 还可以这样用
+    </h1><h4>所属章节：9-修饰细节，使用 Helper 与 Partial</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标：</h2>
+<ul>
+<li>了解进阶的 partial 用法</li>
+</ul>
+
+<p>在很前面的地方，我们介绍了，form 可以放入 partial。这里我们要介绍 partial 还可以用在循环上。</p>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step 1. 修改 app/views/groups/index.html.erb</h3>
+<p>把下图中红色框出的部分砍掉：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/JCkr1MoJTjaB2QN9s2gM_Screenshot%20at%20Feb%2024%2020-50-16.png" title=""></figure></p>
+
+<p>换成 partial</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/z9gay8hHTAmzBzvYFkr5_Screenshot%20at%20Feb%2024%2020-51-03.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"group"</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"New group"</span><span class="p">,</span> <span class="n">new_group_path</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"btn btn-primary pull-right"</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-hover"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Title<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Description<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Creator <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+-     <span class="cp">&lt;%</span> <span class="vi">@groups</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="cp">%&gt;</span>
+-       <span class="nt">&lt;tr&gt;</span>
+-         <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+-         <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+-         <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">render_group_description</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+-         <span class="nt">&lt;td&gt;</span> <span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="cp">%&gt;</span> <span class="nt">&lt;/td&gt;</span>
+-         <span class="nt">&lt;td&gt;</span>
+-           <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span> <span class="o">==</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span> <span class="cp">%&gt;</span>
+-             <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">)</span><span class="cp">%&gt;</span>
+-             <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Delete"</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>    <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">,</span>
+<span class="o">-</span>                         <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="p">)</span><span class="cp">%&gt;</span>
+-           <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+-         <span class="nt">&lt;/td&gt;</span>
+-       <span class="nt">&lt;/tr&gt;</span>
+-     <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
++     <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="ss">:partial</span> <span class="o">=&gt;</span> <span class="s2">"group_item"</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="vi">@groups</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="ss">:group</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</pre></div>
+</figure>
+
+<p>然后 <code>touch app/views/groups/_group_item.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/groups/_group_item.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;tr&gt;</span>
+  <span class="nt">&lt;td&gt;</span>#<span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="n">group</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">render_group_description</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;td&gt;</span><span class="cp">&lt;%=</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">email</span> <span class="cp">%&gt;</span><span class="nt">&lt;/td&gt;</span>
+  <span class="nt">&lt;td&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">current_user</span> <span class="o">&amp;&amp;</span> <span class="n">current_user</span> <span class="o">==</span> <span class="n">group</span><span class="p">.</span><span class="nf">user</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Edit"</span><span class="p">,</span> <span class="n">edit_group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">)</span><span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s2">"Delete"</span><span class="p">,</span> <span class="n">group_path</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>    <span class="ss">class: </span><span class="s2">"btn btn-sm btn-default"</span><span class="p">,</span>
+                  <span class="ss">method: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="p">)</span><span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/td&gt;</span>
+
+<span class="nt">&lt;/tr&gt;</span>
+
+</pre></div>
+</figure>
+
+<p><br></p>
+<h3>Step 2. git 存档</h3>
+<p><code>git add .</code><br>
+<code>git commit -m "render partial with collection"</code></p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-1 上传到 Github 指南
+    </h1><h4>所属章节：10-上传到 github 与 heroku</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>把练习作业上传到 Github </li>
+</ul>
+
+<p><br></p>
+<h2>步骤：</h2>
+<h3>Step 1. 到 Github 开设 repo</h3>
+<ul>
+<li>如果你是做第一遍，就开 rails101</li>
+<li>如果你是做第二遍，就开 rails101-1</li>
+<li>如果你是做第三遍，就开 rails101-2</li>
+</ul>
+
+<p>像我这样</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Ak1YaMdzRpWprmHSVgQx_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-13%20%E4%B8%8A%E5%8D%884.02.53.png" title=""></figure></p>
+
+<p><br></p>
+<h3>Step 2. 上传 Git 进度到 Github</h3>
+<p>我们每次在github上新建立一个repo后，都要执行以下两条指令：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/m3p3y1DpRLiXkmfxjxt1_Screenshot%20at%20Feb%2024%2021-01-32.png" title=""></figure></p>
+
+<p>分别在终端输入以上两条指令：<br>
+<code>git remote add origin git@github.com:你的github名字/rails101-1.git</code><br>
+<code>git push -u origin master</code></p>
+
+<p><br></p>
+<h3>Step 3. 上传“所有进度”</h3>
+<p>因为我们这一次有做了很多“branch”，但是复制执行step2的两行命令只会让我们 push上去master一个分支而已。当我们新建立其他分支以后，在终端输入以下指令：</p>
+
+<p><code>git push --all origin</code></p>
+
+<p>这样就会把你所有的进度都推上去。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xVMH02TsSZGgLI4LhTu2_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-13%20%E4%B8%8A%E5%8D%884.03.42.png" title=""></figure></p>
+
+<p>成果：</p>
+
+<p>一切都顺利的话，你可以在 Github 上看到所有的 branch</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xnFDsNdjSCWKdxvCqlw2_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-13%20%E4%B8%8A%E5%8D%884.09.04.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-2 上传到 Heroku 指南
+    </h1><h4>所属章节：10-上传到 github 与 heroku</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>Step 1：确认本地运行一切正常</h3>
+<p>有bug请先解决掉，否则上传會失败。</p>
+
+<p><br></p>
+<h3>Step 2：修改sqlite3加入pg这个gem</h3>
+<p>修改 Gemfile 文件<br>
+把 sqlite3 从第7行搬到约第30到40行的group :development, :test do</p>
+
+<p>这一行里面，置于gem 'byebug'的下面。</p>
+
+<p><figure><img src="http://ww1.sinaimg.cn/large/006tNbRwjw1fb5t9ep5udj30dc03ydg7.jpg" title=""></figure></p>
+
+<p>在末尾新增一个 production group，加上 pg 这个 gem</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>group :production do 
+  gem 'pg'
+end 
+</pre></div>
+</figure>
+
+<p><figure><img src="http://ww3.sinaimg.cn/large/006tNbRwjw1fb5vm23d6wj30ft03zwex.jpg" title=""></figure></p>
+
+<p>command+s 存档</p>
+
+<p>修改 Gemfile 后要 <code>bundle install</code></p>
+
+<p>存档</p>
+
+<ul>
+<li><code>git add .</code></li>
+<li><code>git commit -m "move sqlite3 to dev group &amp; add pg to production group "</code></li>
+</ul>
+
+<p>具体可以参考第一课<a href="https://fullstack.xinshengdaxue.com/posts/26" target="_blank">相关章节</a>以及<a href="http://docs.qzy.camp/docs/heroku" target="_blank">帮助文档</a></p>
+
+<p><br></p>
+<h3>Step3：在 Heroku 建立新项目</h3>
+<p>首先记得登入<br>
+<code>heroku login</code></p>
+
+<p>创建<br>
+<code>heroku create</code></p>
+
+<p><strong>小提示：因为heroku为远端连结，需要等待一段时间，如果无法连上，可以尝试换一个VPN再操作。</strong></p>
+
+<p><br></p>
+<h3>Step 4：上传到 heroku</h3>
+<p>在终端输入<br>
+<code>git push heroku ch08:master</code></p>
+
+<p>因为我们的最新进度在 ch08。</p>
+
+<p><br></p>
+<h3>Step 5：跑 heroku run rake db:migrate</h3>
+<p>执行</p>
+
+<p><code>heroku run rake db:migrate</code></p>
+
+<p><br></p>
+<h3>Step 6：大功告成！交作业吧</h3>
+<p>恭喜你完成！<br>
+把你的 heroku 网址贴上作业栏位吧。</p>
+
+<p><br></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      如果你已经做了 Rails 101 到了第 4 遍，第 5 遍，请入内....
+    </h1><h4>所属章节：加分作业</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我知道各位做 Rails 101 到第 4 遍，第５遍以后已经感受到很无聊。来，如果你是一个 VIP 用户的话，我有隐藏的彩蛋作业。。。。</p>
+
+<p>我们来建一个电影影评网站吧。以下是需求</p>
+
+<ul>
+<li>使用者可以建立电影 Movie</li>
+<li>使用者可以针对电影的评论 Review</li>
+<li>使用者必须收藏（ Favorite） 该电影，才可以留下 Review</li>
+</ul>
+
+<p>可以用 Rails 101 的框架，修改出来。但请用手打实做。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

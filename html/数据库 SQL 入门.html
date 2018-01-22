@@ -1,0 +1,1099 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1. 什么是数据库？
+    </h1><h4>所属章节：什么是数据库</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据库的作用就是为了保存数据。</p>
+
+<p>程序运行时的数据会放在内存之中，但是只要程序结束或关机就会消失了。需要永久保存数据的话，就会存放在硬盘上。我们在编程基础课程曾经学过，可以利用档案来将数据放在硬盘上。不过如果数据又多又杂，存成档案要怎么命名、档案要用什么格式才方便之后查询，这些都是问题。</p>
+
+<p>数据库就是为了解决这些问题而发明了，除了可以保存大量数据，数据库还提供了方便的查询(Query)机制，以及提供 CRUD(Create, Read, Update, Delete) 操作。</p>
+<h3>关系型数据库</h3>
+<p>数据库有很多种，其中一种叫做「关系型数据库」 (RDBMS: Relational Database Management System) 是目前最普遍最多人使用的一种数据库。这种数据库包括开源的 SQLite、MySQL、PostgreSQL，以及需要付费的 Oracle、Microsoft SQL Server 等等，简单介绍如下：</p>
+<h4><a href="https://www.sqlite.org">SQLite3</a></h4>
+<p>SQLite 是一套轻量级的关系型数据库，也是 Rails 开发时默认的数据库。这种数据库并不是单独的服务器，而是会被集成在我们程序(也就是 Rails)之中，它的一个数据库就是一个档案，在 Rails 中也就是 <code>db/development.sqlite3</code> 这个档案。</p>
+
+<p>SQLite 主要是单机用途，在行动装置、手机上比较常使用，并不适合多人连线使用的场景。因此在实际部署 Rails 到服务器时，我们会需要换成 PostgreSQL 或 MySQL 等数据库服务器。</p>
+
+<p>Mac 本身就有内建 SQLite3，请下载 <a href="http://sqlitebrowser.org">DB Browser for SQLite</a> 这个 GUI 软件，就可以打开 SQLte3 的数据库档案。</p>
+<h4><a href="https://www.mysql.com">MySQL</a></h4>
+<p>MySQL 是目前最流行的开源数据库，容易上手、资源多、效能好、支援的厂商多，是最多网络公司使用的数据库。跟 SQLite3 不同，这是一个数据库服务器，除了安装还必须要执行 MySQL 服务器跑在背景，要连线 MySQL 也必须提供数据库的帐号密码。</p>
+
+<p>Mac 上用 <code>brew install mysql</code> 就会安装 MySQL，推荐再安装 <a href="https://www.sequelpro.com">Sequel Pro</a> 这套 GUI 软件。</p>
+<h4><a href="https://www.postgresql.org">PostgreSQL</a></h4>
+<p>PostgreSQL 也是非常流行的开源数据库，经常与 MySQL 相提并论。因为是 Heroku 默认的数据库，所以在全栈营中大家比较熟悉。和 MySQL 相比，PostgreSQL 的功能比较多，但是在超级大量数据的场景下，不如 MySQL 有更多的的分布式服务器经验。</p>
+
+<p>Mac 上用 <code>brew install postgresql</code> 就会安装 PostgreSQL 服务器。GUI 的话，可以考虑安装 <a href="https://www.pgadmin.org">pgAdmin</a>。</p>
+<h4>Oracle 和 MS SQL Server</h4>
+<p>这两家公司提供的数据库系统，则是需要付费的。通常是非软件开发专业的大型企业(例如银行、保险业等等)会采购的产品。这种需要付费的数据库有更好的自调优功能。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2. 关系型数据库的特性一: Schema
+    </h1><h4>所属章节：什么是数据库</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在关系型数据库中，有一些共通的特性，第一个就是 Schema 纲要：</p>
+<h3>Schema 纲要</h3>
+<p>所谓的 Schema 纲要就是使用数据库存数据前，需要先定义 Tables(表) 和 Columns(字段)：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Yx5LyN5zSAexfpThkpxk_1.png" title=""></figure></p>
+
+<p>例如在这张 Table，有 id、name、capacity、user_id 等字段，其中每一行(row)就一笔数据(data)。</p>
+
+<p>相信大家用过试算表(Microsoft Excel 或 Apple Numbers)，这跟试算表看起来蛮像的：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/O1cY2sh1RTCiqniaNGj2_2.png" title=""></figure></p>
+
+<p>在试算表中，每一格都可以随便你填什么，但是 Schema 纲要不一样。我们需要定义数据型别(Data Type)。每个字段(Column)都要指定格式，只有符合格式才能存进数据库。不同数据库的数据类型大同小异，大体上都有：</p>
+
+<ul>
+<li>字符串：varchar 或 text。varchar 默认是 255 字符、text 默认是 65535 字符。如果你要开一个字段来存长篇文章，text 可能会不够存，需要在额外指定长度。</li>
+<li>数字: Integer, Decimal, Float</li>
+<li>Blob 二进制: 可以存放档案。但是通常不建议把档案直接塞数据库，一来数据库塞太大不容易备份和管理、二来没有什么好处，因为你也没办法针对二进制档案进行条件搜寻和过滤。人们对于读档案也有心理准备会比较慢。所以通常只会在数据库里面纪录档案的 metadata 例如档名、大小、MimeType 等等，而实际的档案则放在档案系统上，或是上传到七牛或AWS S3等空间。</li>
+<li>Boolean 布林</li>
+<li>Date 日期</li>
+<li>Time 时间</li>
+<li>Datetime 日期时间</li>
+</ul>
+
+<p>在 Rails Migration 之中，就是在定义这些表的字段是什么格式，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">create_table</span> <span class="ss">:events</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:name</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">text</span>   <span class="ss">:description</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:capacity</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:null</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+
+  <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>在Rails 实战圣经有一份<a href="https://ihower.tw/rails/migrations-cn.html#sec2">对照表</a>。Rails 会根据数据库的不同，自动对应使用不同的数据型态。</p>
+
+<p>除了定义 Data Type，你还可以在 Schema 中定义限制 (constraint)，最基本就限制是 <code>NOT NULL</code> 必填不能为空。</p>
+
+<p>数据库还可以设定更多数据验证，不过你会发现这跟我们在 Rails model 中的 validations 的作用是一样的。所以通常我们偏好在 Rails 里面做验证，而不是在数据库这层做。优缺点是：</p>
+
+<ol>
+<li>在 Rails 做比较有弹性，可以用 Ruby 来写验证逻辑</li>
+<li>在 DB 层做是硬条件，无法跳过这个验证</li>
+</ol>
+
+<p>早期的数据库非常重视 Data/Entity Integrity 资料验证，这是因为早期的数据库用户，就是直接操作数据库。但是对近年来的网络公司来说，用户不会直接操作数据库，而是都会经过网站应用服务器(例如 Rails)，用我们写好的功能间接地使用到数据库，因此我们可以在应用层验证好数据即可。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3. 关系型数据库的特性二: SQL 标准语法
+    </h1><h4>所属章节：什么是数据库</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>关系型数据库都支援使用一种叫做 SQL (Structured Query Language) 的结构化查询语言。我们会用这种语法来操作数据库，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">events</span> <span class="k">VALUES</span> <span class="p">(</span><span class="nv">"RubyConf"</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</figure>
+
+<p>这个 SQL 句会插入一笔数据到 events 表。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">events</span><span class="p">;</span>
+</pre></div>
+</figure>
+
+<p>这个 SQL 句告诉数据库拿出 <code>events</code> 表的所有数据。在 Rails 之中虽然我们没有直接撰写 SQL 句子，其实是 Rails 内部是自动帮我们转换好了，例如刚刚的句子，我们是写这样的 Ruby 代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="no">Event</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"RubyConf"</span><span class="p">,</span> <span class="ss">:capacity</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>和</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="no">Event</span><span class="p">.</span><span class="nf">all</span>
+</pre></div>
+</figure>
+
+<p>在 Rails 内部则会自动转换成 SQL 句，来向数据库进行操作。在稍后的章节我们会详细介绍这个 SQL 语言，你必须进一步了解 SQL 语言，才能够完整了解 Rails 是如何操作数据库的。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4. 关系型数据库的特性三: ACID
+    </h1><h4>所属章节：什么是数据库</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>关系型数据库的另一个重要的特性是 <a href="https://en.wikipedia.org/wiki/ACID">ACID</a>，也就是<br>
+Atomicity, Consistency, Isolation, Durability。在解释个别的意义前，我们先介绍一个关系型数据库的功能，叫做 Transaction 事务。</p>
+
+<p>请想像这样的场景：当你再做银行转帐时，A 的馀额会减少、B 的馀额会增加，如果这是两个 SQL 操作的话，我们如何能保证这两个 SQL 操作必须是一起成功的？不能发生 A 钱变少了，但是 B 没有收到钱的情况。或是考虑一个更极端的场景，如果你和别人同时同一秒钟互相转帐，数据库会不会算错馀额？</p>
+
+<p>要达成这种跨 Tables 多个 SQL 操作必须同时完成(或失败)的需求，就必须用上 Transaction 事务。语法是用 <code>BEGIN;</code> 和 <code>COMMIT;</code> 把 SQL 句包裹在一起，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">BEGIN</span><span class="p">;</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">histories</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">histories</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="k">UPDATE</span> <span class="n">accounts</span> <span class="k">SET</span> <span class="n">balance</span><span class="o">=</span><span class="mi">200</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">UPDATE</span> <span class="n">accounts</span> <span class="k">SET</span> <span class="n">balance</span><span class="o">=</span><span class="mi">300</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</pre></div>
+</figure>
+
+<blockquote>
+<p>每个 SQL 句必须用分号 <code>;</code> 代表结束</p>
+</blockquote>
+
+<p>这样 <code>BEGIN;</code> 和 <code>COMMIT;</code> 中间的所有 SQL 句，就会一起递交给数据库，要么一起成功、要么一起失败。</p>
+
+<p>非常多场景会用到这个 Transaction 功能，来保证数据的正确性。在 Rails 中，每个 model 的 <code>save</code> 其实都会用 Transaction 包起来，包括 model 里面的所有 callback 都会在同一个 Transaction 事务里面。</p>
+
+<p>如果是跨 model 的话，你也可以用 <code>ActiveRecord::Base.transaction</code> 来包裹 <code>Transaction</code> 事务，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
+  <span class="no">A</span><span class="p">.</span><span class="nf">save</span>
+  <span class="no">B</span><span class="p">.</span><span class="nf">save</span>
+  <span class="no">C</span><span class="p">.</span><span class="nf">save</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h4>ACID</h4>
+<p>ACID 其实就是在说明 Transactin 的能耐，以下取自 <a href="https://zh.wikipedia.org/zh-cn/ACID">wikipedia</a>:</p>
+
+<ul>
+<li>Atomicity 原子性：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li>Consistency 一致性：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li>Isolation 隔离性：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li>Durability 持久性：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+
+<p>透过 Transactions 事务功能，关系型数据库可以在多人连线同时执行多个 SQL 句的情况下，也可以保证数据最后的正确性。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5. SQL 语言: DDL
+    </h1><h4>所属章节：基础 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>关系型数据库使用 SQL(Structured Query Language) 语言，每个 SQL 句子叫做 SQL Query 或 SQL Statement。我们可以用 CLI 指令或 GUI 软件，用 SQL 语言对数据库进行查询和操作。</p>
+
+<p>SQL 分成 DDL 和 DML 两种，都是用分号 <code>;</code> 结尾。</p>
+<h3>Data Definition Language, DDL</h3>
+<p>如何告诉数据库去定义 Schema 纲要? 也是使用 SQL 语法，这类型的 SQL 就做 DDL(Data Definition Language)</p>
+<h4>建立、删除和更名数据库</h4>
+<p>每家方法不太一样，建议可以用 GUI 进行即可。PostgreSQL 和 MySQL 都是数据库服务器，可以管理很多不同数据库，例如你可以架很多 Rails 网站，但是只需要一个数据库服务器，里面建立不同数据库即可。</p>
+
+<p>建立数据库时，请注意选择编码(Encoding)。PostgrSQL 可用 utf-8、MySQL 可用 utf8mb4 编码。</p>
+
+<p>在 SQLite3 的话，直接在 Terminal 用 CLI 指令 <code>sqlite3 your_db_name.db</code> 就会打开(或产生)<br>
+一个数据库档案。直接砍掉档案就是删除数据库。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bLhkItQeSja1UV9DG3qx_3.png" title=""></figure></p>
+
+<blockquote>
+<p>MySQL 的话，指令是 <code>mysql -u root -p</code>。PostgreSQL 的指令是 <code>psql &lt;database_name&gt;</code>。</p>
+</blockquote>
+
+<p>以下用 SQLite3 示范。</p>
+<h4>建立 Table</h4>
+<p>以下 SQL 会建立 <code>events</code> 表，并新增三个字段 <code>name</code>, <code>capacity</code> 和 <code>date</code>。默认是字段允许 <code>NULL</code>，除非加上 <code>NOT NULL</code>。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">events</span> <span class="p">(</span><span class="n">name</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="n">capacity</span> <span class="n">INTEGER</span><span class="p">,</span> <span class="n">date</span> <span class="n">DATE</span><span class="p">);</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/SZa33bJmSyCvn55aW0ag_4.png" title=""></figure></p>
+
+<p>你可以用 SQLite3 的 GUI <a href="http://sqlitebrowser.org">DB Browser for SQLite</a> 打开 <code>demo.db</code> 这个档案：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1sJX5xEtSOeIEZFBFnri_5.png" title=""></figure></p>
+
+<p>用 GUI 进行 Schame 操作会比较简单，在 Rails 的话，则是统一都用 Migrations 机制来变更 Schema。</p>
+<h4>修改 Table</h4>
+<ul>
+<li>改名 Table，例如 <code>ALTER TABLE persons RENAME TO people;</code>
+</li>
+<li>新增字串，例如 <code>ALTER TABLE people ADD COLUMN status VARCHAR(50);</code>
+</li>
+<li>修改和移除字段：SQLite3 没支援，需要开一个新 table 然后把资料复制过去</li>
+</ul>
+<h4>删除 Table</h4>
+<p>语法是 <code>DROP TABLE IF EXISTS people;</code></p>
+
+<p>通常不会让终端使用者可以动态新建 table 和修改 schema。数据库的 Schema 比较像是你程式的一部分，我们的代码会依赖于 Schema 设计。另外也有效能的考量，变更 Schema 是很耗时的操作，特别是数据量已经很多的情况下，修改 Schema 会锁住整个 Table 影响网站运作。</p>
+<h4>Migration 机制</h4>
+<p>数据库 Schema 不是一成不变的，会随着软件变更升级也会有修改的需要。因此，在一些软件中会实作一种叫做 Migration 的功能，透过 Schema Migration 纪录目前的 schema 版本。开机的时候检查目前程式的版本和数据库里面的版本是否相同，不同的话，执行 Migration 更新 schema。这些 Migration 代码也会放进版本控制系统 Git 里面，这样整个团队的开发者和不同服务器上，都可以利用 Migration 来一致管理 Schema。</p>
+
+<p>这个功能就是大家熟悉的 Rails Migration。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6. SQL 语言: DML
+    </h1><h4>所属章节：基础 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>操作数据的 SQL 就是 DML(Data Manipulation Language)，也就是做 CRUD 的操作。</p>
+<h3>新增资料</h3>
+<p>以下 SQL 会新增数据：</p>
+
+<p><code>INSERT INTO events (capacity, name) VALUES (200, "JSConf");</code></p>
+
+<blockquote>
+<p>这个对应的 Rails 语法是 <code>Event.create( :capacity =&gt; 200, :name =&gt; "JSConf")</code></p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/c4oCxBgGQiaJPiT156QE_6.png" title=""></figure></p>
+
+<p>插入多笔 <code>INSERT INTO events (capacity, name) VALUES (300, "COSCUP"), (300, "OSDC.TW");</code></p>
+
+<p>接下来你也可以在 GUI 的视窗中，练习输入 SQL 句：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Z62NhfgOTTuHsQmZc8Og_7.png" title=""></figure></p>
+<h3>查询资料</h3>
+<p>捞全部 events 资料 <code>SELECT * FROM events;</code></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.all</code></p>
+</blockquote>
+
+<p>只捞出指定的字段 <code>SELECT name, capacity FROM events;</code></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.select(:name, :capacity).all</code></p>
+</blockquote>
+
+<p>字段前段可以补上表的名称 <code>SELECT events.name, events.capacity FROM events;</code></p>
+
+<p>递增排序 <code>SELECT name, capacity FROM events ORDER BY id;</code> 或 <code>SELECT name, capacity FROM events ORDER BY id ASC;</code></p>
+
+<p>递减排序 <code>SELECT name, capacity FROM events ORDER BY id DESC;</code></p>
+
+<p>分页 <code>SELECT name, capacity FROM events ORDER BY capacity DESC, name ASC LIMIT 20 OFFSET 20;</code></p>
+<h3>修改资料</h3>
+<p>以下 SQL 会修改数据</p>
+
+<p><code>UPDATE events SET capacity=10;</code> 这会修改 events table 的所有数据把 capacity 改成 10</p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.update_all( :capacity =&gt; 10 )</code></p>
+</blockquote>
+
+<p><code>UPDATE events SET capacity=100 WHERE name="RubyConf";</code> 用 WHERE 可以指定只有修改 name 是 "RubyConf" 的数据</p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.where( :name =&gt; "RubyConf" ).update_all( :capacity =&gt; 100)</code></p>
+</blockquote>
+
+<p><code>UPDATE events SET capacity=100, name="RubyConf 2015" WHERE name="RubyConf";</code> 修改 capacity 和 name</p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.where( :name =&gt; "RubyConf" ).update_all( :capacity =&gt; 100, :name =&gt; "RubyConf 2015" )</code></p>
+</blockquote>
+
+<p>在 Rails 中，比较常见只修改一笔，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="vi">@event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="vi">@event</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span> <span class="ss">:capacity</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>对应的 SQL 会是</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">events</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="k">UPDATE</span> <span class="n">events</span> <span class="k">SET</span> <span class="n">capacity</span><span class="o">=</span><span class="mi">200</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">123</span><span class="p">;</span>
+
+</pre></div>
+</figure>
+<h3>删除数据数据</h3>
+<p>以下 SQL 会删除数据</p>
+
+<p><code>DELETE FROM events;</code> 会全部删除</p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.delete_all</code></p>
+</blockquote>
+
+<p><code>DELETE FROM events WHERE name="RubyConf";</code> 只删除</p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.where( :name =&gt; "RubyConf" ).delete_all</code></p>
+</blockquote>
+
+<p>在 Rails 中，比较常见只删除一笔，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="vi">@event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="vi">@event</span><span class="p">.</span><span class="nf">destroy</span>
+</pre></div>
+</figure>
+
+<p>对应的 SQL 会是</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">events</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">events</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+
+</pre></div>
+</figure>
+<h3>查有哪些 tables 和 columns</h3>
+<p>各家语法不一样：</p>
+
+<ul>
+<li>SQLite3: <code>.tables 和</code>.schema tablename`</li>
+<li>MySQL: <code>show tables</code> 和 <code>describe tablename</code>
+</li>
+<li>PostgreSQL: <code>\dt</code> 和 <code>\d tablename</code>
+</li>
+</ul>
+
+<p>这些查询在 Rails 启动的时后，其实也会帮我们做。你可以在 rails console 中对 model 执行 <code>columns</code> 方法，例如 <code>Event.columns</code> 就会反射出这个表有哪些字段。</p>
+<h3>条件查询</h3>
+<p>以下是一些范例来做条件查询：</p>
+
+<ul>
+<li><code>SELECT * FROM events WHERE date = '2015-03-15';</code></li>
+<li>条件或 <code>SELECT * FROM events WHERE date = '2015-03-15' OR date = '2015-03-16';</code>
+</li>
+<li>某个区间 <code>SELECT * FROM events WHERE date BETWEEN '2015-03-15' AND '2015-03-30';</code>
+</li>
+<li>条件且 <code>SELECT * FROM events WHERE date = '2015-03-15' AND capacity &gt;= 100;</code>
+</li>
+<li>模糊比对 <code>SELECT * FROM events WHERE name LIKE '%Ruby%';</code>
+</li>
+<li>不可为空 <code>SELECT * FROM events WHERE description IS NOT NULL;</code>
+</li>
+</ul>
+
+<p>条件比对时，小心大小写(Case insensitive)不同数据库默认不同。MySQL 是不分大小写(case insensitive)、PostgreSQL 会区分大小写(case sensitive)。</p>
+<h3>Indexes 索引</h3>
+<p><code>WHERE</code>、<code>ORDER</code> 条件字段最好都要加上数据库索引(Index)，例如范例中的 <code>date</code> 字串，如果没有索引的话，会是 O(n) 的效率(这里又叫作 Full Table Scan，需要扫过整个表的意思)，数据库越多数据会越慢。如果有索引的话，会是 O(logn)，在数据量大的情况差非常多。</p>
+
+<p>模糊搜寻 LIKE 查询都会变成 Full Table Scan，没办法用数据库索引，百宝箱教过的 <a href="https://github.com/activerecord-hackery/ransack">ransack</a> gem 搜寻是用 LIKE 语法，在几万笔数据内效能还能接受，再大的数据量就需要用另外的 Full-Text Searching 引擎了，例如 <a href="https://www.elastic.co">ElasticSearch</a>。</p>
+
+<p>加索引的 SQL 语法：</p>
+
+<ul>
+<li>加索引 <code>CREATE INDEX events_user_id_idx ON events(user_id);</code>
+</li>
+<li>索引并且值是唯一 <code>CREATE UNIQUE INDEX xxx_idx ON xxx(yyy);</code>
+</li>
+</ul>
+
+<p>在 Rails Migration 中要加上索引的话，可用 <code>add_index</code> 语法，例如 <code>add_index :events, :date</code>。</p>
+
+<blockquote>
+<p>将字段设成 unique 跟设成 unique index 是一样的</p>
+</blockquote>
+
+<p>当然也不是所有字段通通都加上索引就好了，因为加索引会让写入数据变慢(因为要建立索引，也会增加储存空间)，但是查询时会加快。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7. 数据库规范化 Normalization
+    </h1><h4>所属章节：数据库设计</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>一个数据库会包含很多张表，那么这些表要如何因应需求来做设计呢？该设计哪些表？该设计哪些字段？这两节会告诉大家。</p>
+
+<p><a href="https://zh.wikipedia.org/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%84%E8%8C%83%E5%8C%96">数据库规范化(Normalization)</a>是数据库设计的一个非常重要的基本概念，目的是要去除重复的数据，增加数据的一致性。实际的作法是会将重复的字段，抽出来变成另一个新的表。</p>
+
+<p>规范化还分成一阶规范化、二阶规范化、三阶规范化、DK/NF规范化等等不同级别，一般来说我们的应用软件会做到二阶或三阶规范化。</p>
+
+<p>让我们用实际的例子来看：假设我们要设计一个场景是纪录「使用者 User」参与多个「活动 Event」</p>
+<h3>未规范化</h3>
+<table class="table-bordered">
+<tr>
+<th>user name</th>
+<th>user city</th>
+<th>zipcode</th>
+<th>event 1</th>
+<th>event 1 date</th>
+<th>event 2</th>
+<th>event 2 date</th>
+<th>event 3</th>
+<th>event 3 date</th>
+</tr>
+<tr>
+<td>ihower</td>
+<td>hsinchu</td>
+<td>300</td>
+<td>RubyConf</td>
+<td>2015/9/11</td>
+<td>JSConf</td>
+<td>2015/5/1</td>
+<td>CSSConf</td>
+<td>2016/1/1</td>
+</tr>
+<tr>
+<td>john</td>
+<td>taipei</td>
+<td>100</td>
+<td>RubyConf</td>
+<td>2015/9/11</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<p>这种 Table 设计缺点很多：</p>
+
+<ol>
+<li>ihower 如果需要参加第四个活动，就必须变更 Table 的 Schema 增加更多字段。但是变更 Schema 是一件成本很高的事情 :(</li>
+<li>john 没有参加这么多活动，多馀的字段都是 NULL，对数据库来说是浪费空间</li>
+<li>ihower 跟 john 都有参加 RubyConf，但是 2015/9/11 这个活动日期重复存了。而且如果活动改日期，表示这些值都要改</li>
+</ol>
+<h3>一阶: 移除重复语意的 columns</h3>
+<p>刚刚的 event 1, event 1 date, event 2, event 2 date, event 3, event 3 date 俩俩都是重复的，让我们消灭它们：</p>
+
+<table class="table-bordered">
+<tr>
+  <th>user name</th>
+  <th>user city</th>
+  <th>zipcode</th>
+  <th>event</th>
+  <th>event date</th>
+</tr>
+<tr>
+    <td>ihower</td>
+    <td>hsinchu</td>
+    <td>300</td>
+    <td>RubyConf</td>
+    <td>2015/9/11</td>
+</tr>
+<tr>
+    <td>ihower</td>
+    <td>hsinchu</td>
+    <td>300</td>
+    <td>JSConf</td>
+    <td>2015/5/1</td>
+</tr>
+<tr>
+    <td>ihower</td>
+    <td>hsinchu</td>
+    <td>300</td>
+    <td>CSSConf</td>
+    <td>2016/1/1</td>
+</tr>
+<tr>
+    <td>john</td>
+    <td>taipei</td>
+    <td>300</td>
+    <td>RubyConf</td>
+    <td>2015/9/11</td>
+</tr>
+</table>
+
+<p>缺点:</p>
+
+<ul>
+<li>相比于没有规范化的，现在新报名不需要修改 schema 了</li>
+<li>但是重复的资料更多，包括用户数据和活动数据</li>
+</ul>
+<h3>二阶: 移除重复语意的 row</h3>
+<p>接下来需要拆表了，一口气我们拆成三张表：users 表、events 表、registration 表，并且 users 和 events 要加上可识别的 id 字段。</p>
+
+<blockquote>
+<p>相信对 Rails 已经很熟悉的同学，这就是 User model 和 Event model 透过 Registration model 来达成多对多关系。</p>
+</blockquote>
+<h4>users table</h4>
+<table class="table-bordered">
+<tr>
+  <th>user id</th>
+  <th>user name</th>
+  <th>user city</th>
+  <th>zipcode</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>ihower</td>
+  <td>hsinchu</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>john</td>
+  <td>taipei</td>
+  <td>100</td>
+</tr>
+</table>
+<h4>events table</h4>
+<table class="table-bordered">
+<tr>
+  <th>event id</th>
+  <th>event</th>
+  <th>event date</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>RubyConf</td>
+  <td>2015/9/11</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>JSConf</td>
+  <td>2015/5/1</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>CSSConf</td>
+  <td>2016/1/1</td>
+</tr>
+</table>
+<h4>registrations table</h4>
+<table class="table-bordered">
+<tr>
+  <th>user id</th>
+  <th>event id</th>
+  <th>register_at</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>1</td>
+  <td>2016-03-16 12:00:00</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>2</td>
+  <td>2016-03-16 12:30:00</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>3</td>
+  <td>2016-03-17 12:00:00</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>1</td>
+  <td>2016-03-18 12:00:00</td>
+</tr>
+</table>
+
+<p>这好多了，看起来没有重复的资料了，如果要改 user 或 event 的数据，只需要改一个地方。</p>
+
+<p>但是还有一个小地方可以改进，让我们继续看下去：</p>
+<h3>三阶: 移除不依赖主 ID 的资料</h3>
+<p>在 users table 中，city 名字其实只跟 zipcode 相关，跟 user id 没关系，因此这个 city 可以拆出来。在 users table 中只需要留着 zipcode 就好了。</p>
+<h4>users table</h4>
+<table class="table-bordered">
+<tr>
+  <th>user id</th>
+  <th>user name</th>
+  <th>zipcode</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td>ihower</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>john</td>
+  <td>300</td>
+</tr>
+</table>
+<h4>zipcodes table</h4>
+<table class="table-bordered">
+<tr>
+  <th>zipcode</th>
+  <th>user city</th>
+</tr>
+<tr>
+  <td>300</td>
+  <td>hsinchu</td>
+</tr>
+<tr>
+  <td>100</td>
+  <td>taipei</td>
+</tr>
+</table>
+<h3>小结</h3>
+<p>规范化让数据不会重复和高度一致性，节省空间、增加修改数据时的效率、避免数据不一致的错误。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8. 数据库设计实务
+    </h1><h4>所属章节：数据库设计</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据库规范化看起来好像很难，所幸我们实务设计的时候，并不是从一阶二阶三阶这样慢慢思考的，而是用 Model 的关系来思考。</p>
+<h3>关联设计 Associations</h3>
+<p>在传统数据库课程中，会使用 <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">ER diagram</a> (entity-relationship model) 这种描述关联的标准图表。</p>
+
+<blockquote>
+<p><a href="http://www.vivekmchawla.com/erd-crows-foot-relationship-symbols-cheat-sheet/">ERD “Crow’s Foot” Relationship Symbols Cheat Sheet</a></p>
+</blockquote>
+
+<p>在这种图表中，定义了一对一关系、一对多关系、多对多关系等的图表。也就是在 Rails 中我们已经熟悉只用 <code>has_one</code>, <code>has_many</code>, <code>belongs_to</code> 等。</p>
+<h3>Primary Key 主键</h3>
+<p>所谓的 Primary Key 主键就是可以唯一识别的字段，在 Rails 中会默认产生一个字段是 <code>id</code>。</p>
+
+<p>这个主键有一些特性：</p>
+
+<ul>
+<li>不能 NULL 也不能重复</li>
+<li>最常见是 Simple ID Column Key (单一 column) 的设计。但也可以是 Compound/Composite Key (多个 columns 组成一个 primary key)，但 Rails 不支援。</li>
+</ul>
+
+<p>如何选择你的 Primary Key ?</p>
+
+<ul>
+<li>最常见是自动递增的整数(Auto incrementing Primary Key)，这是 Rails 的默认方式，也是大家熟悉的 ID</li>
+<li>
+<a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">UUID</a> 通用唯一识别码: 1. 分布式系统喜欢用 2. 或是当作 token URL 功能</li>
+<li>Natural key (例如身份证号码, ISBN, 国码 ISO ALPHA-2) 等等，不过你需要真的确认不会重复，例如 ISBN 其实会重复的</li>
+</ul>
+
+<blockquote>
+<p>由于 Rails 默认使用自动递增的整数当作 ID，一般不建议去改这件事情。在百宝箱第一集有提到你可以自己增加别的字串来当作 Model URL。</p>
+</blockquote>
+
+<p>加 primary key 的 SQL 语法：</p>
+
+<p><code>CREATE TABLE events (id INTEGER NOT NULL PRIMARY KEY, name TEXT, capacity INTEGER);</code></p>
+
+<p>加 auto increment primary key 的 SQL (各家语法不一样，以下是 SQLite3)</p>
+
+<p><code>CREATE TABLE events (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT, capacity INTEGER);</code></p>
+
+<p>这些在 Rails Migration 中已经帮我们做了。</p>
+<h3>Foreign Key (Reference Key) 外键</h3>
+<p>所谓的 Foreign Key 是指用来关联一对多的字段字段，例如上述 registrations 表中的 user_id 和 event_id。外键的命名没有特别规定，通常是 <code>_id</code> 结尾。</p>
+
+<p>你不需要特别告诉数据库这个是 foreign key，就可以当他是 foreign key 来使用。在 Rails 中，写 <code>belongs_to</code> 的那个 model，就是 foreign key 字段的那个 model。</p>
+
+<p>在 Rails Migration 中可以用 <a href="http://guides.rubyonrails.org/active_record_migrations.html#foreign-keys">add_foreign_key</a> 语法告诉数据库这个是 foreign key，如此数据库会提供 Referential integrity (Reference constraint) 验证：</p>
+
+<ul>
+<li>确保新增或修改时，要参考的数据存在，不然数据库会报错</li>
+<li>删除资料时，确保没有其他资料参考我，不然数据库会报错</li>
+</ul>
+
+<p>传统数据库设计非常重视数据的正确性，不过在 Rails 中则偏好在应用层解决，我们有学过利用 <code>dependent</code> 属性来处理删除的情况，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Event</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many</span> <span class="ss">:registrations</span><span class="p">,</span> <span class="ss">:dependent</span> <span class="o">=&gt;</span> <span class="ss">:destroy</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>其中 <code>:dependent</code>可以有几种不同的处理方式，例如：</p>
+
+<ul>
+<li>
+<code>:destroy</code> 把依赖的 registrations 也一并删除，并且执行 Registration 的 destroy 回呼</li>
+<li>
+<code>:delete</code> 把依赖的 registrations 也一并删除，但不执行 Registration 的 destroy 回呼</li>
+<li>
+<code>:nullify</code> 这是默认值，不会帮忙删除 registrations，但会把 registrations 的外部键 event_id 都设成NULL</li>
+<li>
+<code>:restrict_with_exception</code>如果有任何依赖的 registrations 资料，则连 event 都不允许删除。执行删除时会丢出错误例外 ActiveRecord::DeleteRestrictionError。</li>
+<li>
+<code>:restrict_with_error</code> 不允许删除。执行删除时会回传 false，在 @event.errors 中会留有错误讯息。</li>
+</ul>
+<h3>逆规范化 denormalized</h3>
+<p>数据库规范化并不是完全的真理，在不同场景下甚至会做逆规范化的设计。</p>
+
+<p>在一般应用的场景下，也就是营运用途(OLTP)的 Schema 通常会达到比较高的规范化。但是在做分析用途(OLAP)的 Schema，则会偏好逆正规化的设计。因为不会修改数据，只会查询，所以不会有修改数据造成数据不一致的风险。这领域叫做 <a href="https://zh.wikipedia.org/zh-cn/%E8%B5%84%E6%96%99%E4%BB%93%E5%82%A8">Data Warehouse 数据仓库</a>。从 OLTP 数据库搬资料转到 OLAP 的过程就做 ETL (Extract-Transform-Load)</p>
+
+<p>另外，在一些需要局部效能最佳化的场景，也会做一些逆规范化的设计，例如 Rails 的 <a href="https://ihower.tw/rails/performance-cn.html#sec0">计数快取 Counter Cache</a> 功能，将数量额外用一个字段先存下来，免去之后计算的查询时间。这也是一种逆规范化的设计。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9. Joining
+    </h1><h4>所属章节：进阶 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>SQL 查询厉害的地方，就是可以同时关联(Joining)多张表来进行复杂的查询。让我们先准备示范用的数据。</p>
+
+<p>以下是 user 一对多 events 的情境，请执行 <code>sqlite3 demo2.db</code>，并输入以下 SQL 建立 tables 和数据：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">events</span> <span class="p">(</span><span class="n">id</span> <span class="n">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span> <span class="n">name</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">capacity</span> <span class="n">INTEGER</span><span class="p">,</span> <span class="n">user_id</span> <span class="n">INTEGER</span><span class="p">);</span>
+  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span> <span class="n">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span> <span class="n">name</span> <span class="n">TEXT</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'ihower'</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'john'</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'roy'</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">events</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'rubyconf'</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">events</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'jsconf'</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">events</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'cssconf'</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">events</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'htmlconf'</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fAJHtnzDTmeOCfeVh1Kr_8.png" title=""></figure></p>
+
+<p>跨 Tables 进行 Joining 查询，常用的有 Inner Joining 和 Left Outer Joining 两种：</p>
+<h4>Inner joining 合并两张 tables，接不起来就不要：</h4>
+<p>捞出所有活动，以及该活动的主办人资料：</p>
+
+<p><code>SELECT * FROM events INNER JOIN users ON events.user_id = users.id;</code><br>
+或 <code>SELECT * FROM events, users WHERE events.user_id = users.id;</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ArJf0GsETC61TqgIKGEw_9.png" title=""></figure></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>User.joins(:events)</code></p>
+</blockquote>
+<h4>Outer joining 合并两张 tables，接不起就填 NULL:</h4>
+<p>捞出所有活动，以及该活动的主办人资料(包括没有主办人的活动)：</p>
+
+<p><code>SELECT * FROM events LEFT OUTER JOIN users ON events.user_id = users.id;</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MnIeiktnStmKYPWw7Jhy_10.png" title=""></figure></p>
+<h4>AS 语法</h4>
+<p>因为有多张 tables 在 SQL 时，column 最好必须加上 table name 当作 prefix (特别是有重复的 column name 时，在 WHERE 条件里可能会无法判断)，而且可以加上别名 AS。</p>
+
+<p>例如 <code>SELECT events.id AS event_id, events.capacity AS ec, events.name FROM events INNER JOIN users ON events.user_id = users.id WHERE ec=100;</code></p>
+<h4>Rails 的 includes 原理</h4>
+<p>Rails ActiveRecord 的 includes 方法(当没有 WHERE 过滤条件时)则采用另一种 SQL 策略来作 Outer joining:</p>
+
+<p>例如 <code>Event.includes(:user)</code> 这个 Rails 语法，实际上的 SQL 是：</p>
+
+<p><code>SELECT * FROM events;</code></p>
+
+<p>然后透过程式组合出所有的 user_id 成为 (1, 2, 3, 5, 9, 11, 14)，然后再</p>
+
+<p><code>SELECT * FROM users WHERE users.id IN (1, 2, 3, 5, 9, 11, 14);</code></p>
+
+<p>不过，如果有 users 身上有 WHERE 条件的话，Rails 会变成 LEFT OUTER JOIN。</p>
+<h4>Joining 图表</h4>
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vXiFLH9QHGSRaZ6CbpaY_join1.jpg" title=""></figure></p>
+
+<p>这张 google 比较常看到，出处 <a href="https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins">Visual Representation of SQL Joins</a></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/3N0eNE9xSYettzM1lu79_join2.png" title=""></figure></p>
+
+<p>这张更清楚说明不同 Join 差别，出处<a href="https://blog.jooq.org/2016/07/05/say-no-to-venn-diagrams-when-explaining-joins/">SQL Joins Better</a></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10. Functions
+    </h1><h4>所属章节：进阶 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>数据库也有提供一些 Function 可以用在 SQL 里面：</p>
+<h3>计算 Aggregations</h3>
+<p>数量</p>
+
+<p><code>SELECT COUNT(*) AS event_count FROM events;</code></p>
+
+<blockquote>
+<p>加上 AS 别名才比较好识别处理</p>
+
+<p>对应的 Rails 语法是 <code>Event.count</code></p>
+</blockquote>
+
+<p>最小和最大值</p>
+
+<p><code>SELECT MIN(capacity) as min_capacity FROM events;</code><br>
+<code>SELECT MAX(capacity) as max_capacity FROM events;</code></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.minimum(:capacity)</code> 和 <code>Event.maximum(:capacity)</code></p>
+</blockquote>
+
+<p>总和</p>
+
+<p><code>SELECT SUM(capacity) as sum_capacity FROM events;</code></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.sum(:capacity)</code></p>
+</blockquote>
+
+<p>平均</p>
+
+<p><code>SELECT SUM(capacity) / COUNT(capacity) as avg_capacity FROM events;</code><br>
+或<br>
+<code>SELECT AVG(capacity) as avg_capacity FROM events;</code></p>
+
+<blockquote>
+<p>对应的 Rails 语法是 <code>Event.average(:capacity)</code></p>
+</blockquote>
+<h4>分类 GROUP BY</h4>
+<p>GROUP BY 分类功能主要是用来搭配上述 aggregating function 来使用的，例如请回答这个问题：计算每个 user 有多少 events?</p>
+
+<p>让我们试试看：</p>
+
+<ul>
+<li>
+<code>SELECT user_id, COUNT(*) FROM events;</code> 这样不行，user_id 只会回传第一笔的 user_id</li>
+<li>
+<code>SELECT user_id, COUNT(*) FROM events GROUP BY user_id;</code> 还是不行，没有 user 的名字</li>
+<li>
+<code>SELECT users.name, COUNT(events.id) FROM events JOIN users ON users.id = events.user_id GROUP BY user_id;</code> 不对，结果少了 Roy</li>
+<li>
+<code>SELECT users.name, COUNT(events.id) FROM users LEFT JOIN events ON users.id = events.user_id GROUP BY user_id;</code> 正确答案</li>
+<li>
+<code>SELECT users.name, COUNT(events.id) AS c FROM users LEFT JOIN events ON users.id = events.user_id GROUP BY user_id HAVING c &gt; 1 ORDER BY c DESC;</code> 可再加条件和排序</li>
+</ul>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MafzIyOdQNaxp7IJQdMf_11.png" title=""></figure></p>
+
+<blockquote>
+<p>其中 <code>WHERE</code> 是给 source tables 的条件，<code>HAVING</code> 才是 aggregation 后的条件</p>
+</blockquote>
+<h4>DISTINCT</h4>
+<p>可以去除重复的数据</p>
+
+<p><code>SELECT DISTINCT(user_id) FROM events;</code></p>
+<h4>其他函式</h4>
+<p>数据库还有提供其他函数，例如 字串 SQLite - <a href="http://www.tutorialspoint.com/sqlite/sqlite_useful_functions.htm">Useful Functions</a>、时间 SQLite - <a href="https://www.sqlite.org/lang_datefunc.html">Date And Time Functions</a> 等等。</p>
+
+<p>不过通常比较少用到，因为我们偏好捞出来数据后，交由 Ruby 处理即可。</p>
+<h3>为何要 Joining</h3>
+<p>回头想想看为什么需要 Joining 语法。SQL 的 Joining 语法是对新手比较困难的部分，没办法完全掌握是正常的。很多时候其实我们在 Rails 先将需要的数据通通捞出来，然后用 Ruby 进行过滤跟组合似乎也可以达成目标，为什么需要用到这些看起来很复杂的 SQL Joining 语法呢?</p>
+
+<p>主要的原因还是查询速度和需要的内存空间，数据库是一套针对 SQL 优化非常快速的软件，因此可以用远比 Ruby 高效的方式来取出数据。更何况如果全部的数据都拿出来用 Ruby 处理，很可能内存也不够。例如以下的问题：请回答去年第三季所有商品的销售额，并根据分类计算总额。去年一整年的销售可能多达上百万笔，如果要逐笔捞出用 Ruby 处理，效能会非常低下。这时候就必须用 SQL 精准地捞出想要的数据才是可行的方式。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11. NoSQL 简介
+    </h1><h4>所属章节：进阶 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>世界上除了「关系型」数据库，还有其他另类不使用 SQL 的数据库系统，泛称 <a href="https://zh.wikipedia.org/wiki/NoSQL">NoSQL</a>。</p>
+
+<p>这些 NoSQL 又可以分成几个类型：</p>
+<h3>Key-value</h3>
+<p><a href="https://redis.io">Redis</a> 可说是一种小型数据结构瑞士刀，作为搭配用的数据库来使用。我们在百宝箱用 <a href="sidekiq">sidekiq</a> 实作异步时看过它。</p>
+
+<p>它的用途包括：</p>
+
+<ul>
+<li>各式计数器：流量+1</li>
+<li>简易标记( 例如同一 IP 十分钟内只算一次 pageview)</li>
+<li>排行榜 zadd</li>
+<li>自制 Inverted-Index Text Search</li>
+<li>Pub/Sub 聊天室</li>
+<li>Job Queue (例如 sidekiq)</li>
+</ul>
+
+<p>主要是局部的、需要密集性写入的功能，改用 Redis 来操作，来降低主数据库的负担。</p>
+<h3>Document-Oriented</h3>
+<p><a href="https://www.mongodb.com">MongoDB</a> 是一种泛用型的数据库，和 MySQL/PostgreSQL 打对台，特色是 Scheme-free 不需要定义 Schema。曾经有一阵子 Rails 社区非常流行，因为不需要用 Migration 去定义 Schema 就可以使用 Model，一开始用起来非常方便。不过后来大家发现营运久了以后，没有 Schema 的数据会变脏，造成后续维运的成本增加。所以后来就没这么流行了。</p>
+<h3>Column-Oriented</h3>
+<p>关系型数据库的 Transaction 事务的缺点是效能。数据库在做 Transaction 事务时，不可避免地必须锁住一些数据，避免其他人同时修改。因此如果是一个写入流量非常大的网站，就说是一个售票网站好了，非常多人在开票时准时抢票，这时候数据库的效能就会非常差。</p>
+
+<p>特别是当数据非常巨量的时候，需要多台数据库服务器时，Transaction 事务的写入速度，就会成为扩充的瓶颈。</p>
+
+<p>根据<a href="https://zh.wikipedia.org/zh-cn/CAP%E5%AE%9A%E7%90%86">CAP 定理</a>告诉我们: RDBMS 在多服务器(P)架构下为了维持 C 特性，只能牺牲 A、NoSQL 让你有 tradeoff 的空间，牺牲 C 特性以换得 A、但这不是 C 和 A 二元的选择，而是 C 和 delay 延迟时间的取舍，你愿意容忍多少延迟时间才算作不 Available。</p>
+
+<p>因此这类型的 NoSQL 不讲 ACID，而是讲 BASE 特性 (Basically Available, Soft state, Eventual consistency)，重点是 Eventual consistency。想像一个场景: Facebook 和 Twitter 贴文，当你贴文成功的时候，并不是当下马上其他人就可以看到你的贴文，这中间其实是有延迟时间的。这个延迟对于关系型数据库来说是不可以接受的，但是对于这种社交应用来说，却没有关系。牺牲 Consistence 一致性，就可以换到更多的写入反应效能，这就是这类型的 NoSQL 的设计目的。</p>
+
+<ul>
+<li>
+<a href="https://hbase.apache.org">Apache HBase</a> 分布式、强调超大 Table： billions of rows X millions of columns (PB以上等级) (Google Big Table 的开源版本，由 Yahoo 推出)</li>
+<li>
+<a href="http://cassandra.apache.org">Apache Cassandra</a> 分布式、最终一致性，高写入场景 (Amazon Dynamo 的开源版本，由 Facebook 推出)</li>
+<li><a href="https://aws.amazon.com/cn/dynamodb/">Amazon DynamoDB</a></li>
+<li><a href="https://cloud.google.com/datastore/">Google Cloud Datastore</a></li>
+</ul>
+
+<blockquote>
+<p>如果你的数据量不到 1PB (=1000TB)，你就不需要考虑这类型的数据库了，用 MySQL 或 PostgreSQL 足矣。</p>
+</blockquote>
+<h3>Graph: neo4j 图形数据库</h3>
+<p><a href="https://neo4j.com">neo4j</a> 用节点和边来储存数据</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12. SQL 参考资料和更多教程
+    </h1><h4>所属章节：进阶 SQL</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>网络上关于 SQL 的教程非常多，以下列出一些可以继续进修学习：</p>
+
+<ul>
+<li>
+<a href="https://www.udacity.com/course/intro-to-relational-databases--ud197">Udacity: Intro to Relational Databases</a> (有简中字幕)，建议看 Lesson 1, 2, 4，不用看 Lesson 3: Python DB-API 和 Lesson 5: Final Project。</li>
+<li><a href="https://launchschool.com/books/sql/read/introduction">LaunchSchool: Introduction to SQL</a></li>
+<li><a href="https://www.codecademy.com/learn/learn-sql">Learn SQL</a></li>
+<li><a href="https://www.codecademy.com/learn/sql-analyzing-business-metrics">SQL: Analyzing Business Metrics</a></li>
+<li><a href="https://en.wikibooks.org/wiki/SQL_Exercises">SQL Exercises</a></li>
+<li><a href="https://pgexercises.com">PostgreSQL Exercises</a></li>
+<li><a href="http://sqlzoo.net/wiki/SQL_Tutorial">SQL Tutorial</a></li>
+<li><a href="http://blog.jobbole.com/100349/">如果有人问你数据库的原理，叫他看这篇文章</a></li>
+</ul>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

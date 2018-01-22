@@ -1,0 +1,1124 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      开发需求
+    </h1><h4>所属章节：开发需求</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <ul>
+<li>RubyMotion 最新版</li>
+<li>Rails 最新版</li>
+</ul>
+
+<p><br><br>
+注意：由于系统以及xcode等版本不同，会出现不一样的结果，请自行尝试google解答。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      RedPotion 安装指南
+    </h1><h4>所属章节：安装教程</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>适用 OSX 10.13</p>
+
+<p>·安裝 Xcode 9.0.3<br>
+（在终端输入 <code>xcodebuild -version</code> 看你目前的 xcode 版本）<br>
+·再去 rubymotion 官网下载 <a href="http://www.rubymotion.com/" rel="nofollow" target="_blank">http://www.rubymotion.com/</a><br>
+（下载时需要填写邮箱地址，下载完成后安装时需要填写邮件中收到的key）<br>
+<code>gem install cocoapods</code><br>
+<code>pod setup</code> （要非常久，因为 782mb )<br>
+<code>gem install redpotion</code></p>
+
+<p>先安装修复补丁，新版的 ruby motion 还未修复问题，参考<a href="http://community.rubymotion.com/t/cant-build-app-on-macos-10-13/2167/11">Can’t build app on macOS 10.13</a> </p>
+
+<p><code>git clone https://github.com/amirrajan/BridgeSupport.git</code><br>
+<code>cd BridgeSupport</code><br>
+<code>git checkout high-sierra</code><br>
+<code>sudo mv /Library/RubyMotion/lib/BridgeSupport /Library/RubyMotion/lib/BridgeSupport.bak</code><br>
+<code>sudo cp -r ./Versions/2.0/BridgeSupport/ /Library/RubyMotion/lib/BridgeSupport</code></p>
+
+<p><code>sudo cp -R /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain /Applications/Xcode.app/Contents/Developer/Toolchains/OSX10.13.xctoolchain</code></p>
+
+<p>修复完成，继续创建测试用专案</p>
+
+<p><code>cd</code><br>
+<code>potion new meme</code><br>
+<code>cd meme</code><br>
+<code>rake pod:install</code><br>
+<code>rake</code></p>
+
+<p>如何确定自己下载 cocoapods 的进度</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">while</span> <span class="kp">true</span><span class="p">;</span> <span class="k">do</span>
+  <span class="n">du</span> <span class="o">-</span><span class="n">sh</span> <span class="o">~</span><span class="sr">/.cocoapods/</span>
+  <span class="nb">sleep</span> <span class="mi">3</span>
+<span class="n">done</span>
+</pre></div>
+</figure>
+
+<p>在 terminal 输入这四行可以确定自己下载 cocoapods 的进度<br>
+<a href="http://stackoverflow.com/questions/21022638/pod-install-is-staying-on-setting-up-cocoapods-master-repo" rel="nofollow" target="_blank">http://stackoverflow.com/questions/21022638/pod-install-is-staying-on-setting-up-cocoapods-master-repo</a></p>
+<h2>特别注意：</h2>
+<ul>
+<li>记得不要过 VPN 抓 rubymotion，否则会超慢</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      Rails-1
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>新建专案</h2>
+<p><code>rails new api-job-list</code></p>
+
+<p><code>cd api-job-list</code></p>
+<h2>产生 API 所需资料</h2>
+<p><code>rails g scaffold job title:string content:text</code></p>
+
+<p><code>rake db:migrate</code></p>
+<h2>使用 ActiveRecordSerializers 取代掉原本的 jbuilder</h2>
+<p>· <a href="https://github.com/rails-api/active_model_serializers" rel="nofollow" target="_blank">https://github.com/rails-api/active_model_serializers</a></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">gem</span> <span class="s2">"active_model_serializers"</span>
+</pre></div>
+</figure>
+
+<p>添加 <code>app/serializers/job_serializer.rb</code></p>
+
+<p>内容</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">JobSerializer</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Serializer</span>
+ <span class="n">attributes</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:image_url</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h2>检验是否有成功</h2>
+<p>访问 <a href="http://localhost:3000/jobs" rel="nofollow" target="_blank">http://localhost:3000/jobs</a><br>
+（记得在 db/seed.rb 先塞点假资料）</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      Rails-2
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>让 Rails 支援 API 登入</h2>
+<h3>Step 1：安装 Devise</h3>
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre>  <span class="n">gem</span> <span class="s2">"devise"</span>
+</pre></div>
+</figure>
+
+<p><code>rails g devise:install</code><br>
+<code>rails g devise user</code><br>
+<code>rake db:migrate</code></p>
+<h3>Step 2：新增认证 Token 到 user</h3>
+<p><code>rails g migration AddAuthTokenToUsers</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>class AddAuthTokenToUsers &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :users, :authentication_token, :string
+    add_index :users, :authentication_token
+  end
+end
+</pre></div>
+</figure>
+
+<p><code>rake db:migrate</code></p>
+<h3>Step 3：修改 user model</h3>
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>class User &lt; ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  before_save do
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
+    end
+  end
+end
+</pre></div>
+</figure>
+<h3>Step 4 : 修改 application_controller 关掉 CSRF</h3>
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">protect_from_forgery</span> <span class="ss">with: :null_session</span>
+
+  <span class="n">before_action</span> <span class="ss">:authenticate_user_from_token!</span>
+
+  <span class="k">def</span> <span class="nf">authenticate_user_from_token!</span>
+    <span class="n">authenticate_with_http_token</span> <span class="k">do</span> <span class="o">|</span><span class="n">token</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+      <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">email: </span><span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:email</span><span class="p">))</span>
+      <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="no">Devise</span><span class="p">.</span><span class="nf">secure_compare</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+        <span class="n">sign_in</span> <span class="n">user</span><span class="p">,</span> <span class="ss">store: </span><span class="kp">false</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 5 : 使用客制 sessions_controller</h3>
+<p><code>rails g controller sessions</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">Devise</span><span class="o">::</span><span class="no">SessionsController</span>
+  <span class="n">respond_to</span> <span class="ss">:json</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="k">super</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="ss">token: </span><span class="n">user</span><span class="p">.</span><span class="nf">authentication_token</span><span class="p">,</span>
+        <span class="ss">email: </span><span class="n">user</span><span class="p">.</span><span class="nf">email</span>
+      <span class="p">}</span>
+      <span class="n">render</span><span class="p">(</span><span class="ss">json: </span><span class="n">data</span><span class="p">,</span> <span class="ss">status: </span><span class="mi">201</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">return</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 6 : 修改 config/routes.rb</h3>
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">devise_for</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">controllers: </span><span class="p">{</span> <span class="ss">sessions: </span><span class="s2">"sessions"</span> <span class="p">}</span>
+  <span class="c1"># .....
+</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      ios-01
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>生成第一个 redpotion 专案</li>
+<li>拉 API 绘成第一个主画面</li>
+</ul>
+<h2>步骤</h2>
+<h3>Step 1：新增第一个 Project</h3>
+<p><code>potion new ios-job-list</code><br>
+<code>cd ios-job-list</code><br>
+<code>rake</code><br>
+会显示第一个画面 Hello World 画面<br>
+<figure><img src="https://ws3.sinaimg.cn/large/006tNc79ly1flhkiom0ewj30ag0j4q37.jpg" title=""></figure></p>
+<h3>Step 2：修改标题</h3>
+<p>打开 <code>app/screens/home_screen.rb</code> 修改 title 为 '职缺列表'<br>
+<code>rake</code><br>
+<figure><img src="https://ws3.sinaimg.cn/large/006tNc79ly1flhkk3u10qj30ao0jd3ys.jpg" title=""></figure></p>
+<h3>Step 3：准备 jobs 资料</h3>
+<p>在负责吐资料的另一个网址我们准备了职缺的资料。资料位址是 <a href="http://localhost:3000/jobs.json" rel="nofollow" target="_blank">http://localhost:3000/jobs.json</a><br>
+<figure><img src="https://ws3.sinaimg.cn/large/006tNc79ly1flhklq4fvzj312405lq47.jpg" title=""></figure></p>
+<h3>Step 4：接 API</h3>
+<p>修改 <code>app/screens/home_screen.rb</code> 变成</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">HomeScreen</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">TableScreen</span>
+  <span class="n">title</span> <span class="s1">'职缺一览'</span>
+  <span class="n">stylesheet</span> <span class="no">HomeScreenStylesheet</span>
+
+  <span class="k">def</span> <span class="nf">on_load</span>
+    <span class="vi">@jobs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">load_jobs</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">load_jobs</span>
+    <span class="no">Job</span><span class="p">.</span><span class="nf">all</span> <span class="k">do</span> <span class="o">|</span><span class="n">response</span><span class="p">,</span> <span class="n">jobs</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="nf">success?</span>
+        <span class="vi">@jobs</span> <span class="o">=</span> <span class="n">jobs</span>
+        <span class="n">stop_refreshing</span>
+        <span class="n">update_table_data</span>
+      <span class="k">else</span>
+        <span class="n">app</span><span class="p">.</span><span class="nf">alert</span> <span class="s1">'Sorry, there was an error fetching the jobs.'</span>
+        <span class="n">mp</span> <span class="n">response</span><span class="p">.</span><span class="nf">error</span><span class="p">.</span><span class="nf">localizedDescription</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">table_data</span>
+    <span class="p">[{</span>
+      <span class="ss">cells: </span><span class="vi">@jobs</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">job</span><span class="o">|</span>
+        <span class="p">{</span>
+          <span class="ss">height: </span><span class="mi">100</span><span class="p">,</span>
+          <span class="ss">title: </span><span class="n">job</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span>
+          <span class="ss">action: :view_job</span><span class="p">,</span>
+          <span class="ss">arguments: </span><span class="p">{</span> <span class="ss">job: </span><span class="n">job</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="k">end</span>
+    <span class="p">}]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">will_animate_rotate</span><span class="p">(</span><span class="n">_orientation</span><span class="p">,</span> <span class="n">_duration</span><span class="p">)</span>
+    <span class="n">find</span><span class="p">.</span><span class="nf">all</span><span class="p">.</span><span class="nf">reapply_styles</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure> 
+
+<p>新增 <code>app/models/api_client.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">ApiClient</span>
+  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+    <span class="k">def</span> <span class="nf">client</span>
+      <span class="vi">@client</span> <span class="o">||=</span> <span class="no">AFMotion</span><span class="o">::</span><span class="no">SessionClient</span><span class="p">.</span><span class="nf">build</span><span class="p">(</span><span class="s1">'http://localhost:3000/'</span><span class="p">)</span> <span class="k">do</span>
+        <span class="n">header</span> <span class="s1">'Accept'</span><span class="p">,</span> <span class="s1">'application/json'</span>
+        <span class="n">response_serializer</span> <span class="ss">:json</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">update_authorization_header</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+      <span class="n">client</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span> <span class="o">=</span> <span class="n">header</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>新增 <code>app/models/job.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Job</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:title</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="vi">@id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+    <span class="vi">@title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span><span class="p">(</span><span class="o">&amp;</span><span class="n">callback</span><span class="p">)</span>
+    <span class="no">ApiClient</span><span class="p">.</span><span class="nf">client</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'jobs'</span> <span class="k">do</span> <span class="o">|</span><span class="n">response</span><span class="o">|</span>
+      <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">models</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">object</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">data</span><span class="o">|</span> <span class="kp">new</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">}</span> <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="n">callback</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">models</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>记得要去 <code>Rakefile</code> 里面加入这一行</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">app</span><span class="p">.</span><span class="nf">info_plist</span><span class="p">[</span><span class="s1">'NSAppTransportSecurity'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'NSAllowsArbitraryLoads'</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="c1"># allow any HTTP request
+</span></pre></div>
+</figure>
+
+<p>这样 app 的网络才会通<br>
+然后执行<br>
+<code>rake</code><br>
+这样你就收到刚刚的资料了<br>
+<figure><img src="https://ws2.sinaimg.cn/large/006tNc79ly1flhkr0f5zqj30af0j93yt.jpg" title=""></figure></p>
+<h3>新增职缺叙述</h3>
+<p>我们想在列表上新增职缺叙述<br>
+<figure><img src="https://ws3.sinaimg.cn/large/006tNc79ly1flhkryv7n8j30ac0j3jru.jpg" title=""></figure></p>
+
+<p>修改 <code>app/models/job.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Job</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:content</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="vi">@id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+    <span class="vi">@title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
+    <span class="vi">@content</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+  <span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>修改 <code>app/screens/home_screen.rb</code> 中的 table_data，加入 subtitle</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">table_data</span>
+  <span class="p">[{</span>
+    <span class="ss">cells: </span><span class="vi">@jobs</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">job</span><span class="o">|</span>
+      <span class="p">{</span>
+        <span class="ss">height: </span><span class="mi">100</span><span class="p">,</span>
+        <span class="ss">title: </span><span class="n">job</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span>
+        <span class="ss">subtitle: </span><span class="n">job</span><span class="p">.</span><span class="nf">content</span><span class="p">,</span>
+        <span class="ss">action: :view_job</span><span class="p">,</span>
+        <span class="ss">arguments: </span><span class="p">{</span> <span class="ss">job: </span><span class="n">job</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="p">}]</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h2>资源</h2>
+<ul>
+<li>Table Screen <a href="https://promotion.readthedocs.io/en/master/Reference/ProMotion%20TableScreen/" rel="nofollow" target="_blank">https://promotion.readthedocs.io/en/master/Reference/ProMotion%20TableScreen/</a>
+</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      ios-02
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标</h2>
+<ul>
+<li>点击工作，可以看到工作内容</li>
+</ul>
+<h2>步骤</h2>
+<h3>Step 1</h3>
+<p>在 <code>app/screens/homr_screen.rb</code> 加入</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">view_job</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+  <span class="nb">open</span> <span class="no">JobScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 2</h3>
+<p><code>potion g screen job</code></p>
+<h3>Step 3</h3>
+<p>修改 <code>app/screens/job_screen.rb</code> 加入</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">JobScreen</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">Screen</span>
+  <span class="n">stylesheet</span> <span class="no">JobScreenStylesheet</span>
+
+  <span class="kp">attr_accessor</span> <span class="ss">:job</span>
+
+  <span class="k">def</span> <span class="nf">on_load</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="vi">@job</span><span class="p">.</span><span class="nf">title</span>
+
+    <span class="vi">@content</span> <span class="o">=</span> <span class="n">append!</span><span class="p">(</span><span class="no">UILabel</span><span class="p">,</span> <span class="ss">:job_content</span><span class="p">)</span>
+    <span class="vi">@content</span><span class="p">.</span><span class="nf">text</span> <span class="o">=</span> <span class="vi">@job</span><span class="p">.</span><span class="nf">content</span>
+
+    <span class="vi">@image</span> <span class="o">=</span> <span class="n">append!</span><span class="p">(</span><span class="no">UIImageView</span><span class="p">,</span> <span class="ss">:job_image</span><span class="p">).</span><span class="nf">style</span> <span class="p">{</span> <span class="o">|</span><span class="n">st</span><span class="o">|</span> <span class="n">st</span><span class="p">.</span><span class="nf">remote_image</span> <span class="o">=</span> <span class="vi">@job</span><span class="p">.</span><span class="nf">image_url</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">will_animate_rotate</span><span class="p">(</span><span class="n">_orientation</span><span class="p">,</span> <span class="n">_duration</span><span class="p">)</span>
+    <span class="n">reapply_styles</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>修改 <code>app/stylesheets/job_screen_stylesheet.rb</code>加入</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">JobScreenStylesheet</span> <span class="o">&lt;</span> <span class="no">ApplicationStylesheet</span>
+  <span class="c1"># Add your view stylesheets here. You can then override styles if needed,
+</span>
+  <span class="c1"># example: include FooStylesheet
+</span>
+
+  <span class="k">def</span> <span class="nf">setup</span>
+    <span class="c1"># Add stylesheet specific setup stuff here.
+</span>
+    <span class="c1"># Add application specific setup stuff in application_stylesheet.rb
+</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">job_content</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="nf">frame</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">top: </span><span class="mi">100</span><span class="p">,</span> <span class="ss">left: </span><span class="mi">20</span><span class="p">,</span> <span class="ss">width: </span><span class="mi">100</span><span class="p">,</span> <span class="ss">height: </span><span class="mi">30</span> <span class="p">}</span>
+    <span class="n">st</span><span class="p">.</span><span class="nf">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="nf">black</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">job_image</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="nf">frame</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">top: </span><span class="mi">200</span><span class="p">,</span> <span class="ss">left: </span><span class="mi">10</span><span class="p">,</span> <span class="ss">width: </span><span class="mi">200</span><span class="p">,</span> <span class="ss">height: </span><span class="mi">200</span> <span class="p">}</span>
+    <span class="n">st</span><span class="p">.</span><span class="nf">background_color</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="nf">black</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">root_view</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="nf">background_color</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="nf">white</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>修改 <code>app/models/job.rb</code> 加入 image_url 一个栏位</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Job</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:image_url</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="vi">@id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+    <span class="vi">@title</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
+    <span class="vi">@content</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'content'</span><span class="p">]</span>
+    <span class="vi">@image_url</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'image_url'</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ....
+</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 4</h3>
+<p><code>rake</code><br>
+最后会生成<br>
+<figure><img src="https://ws1.sinaimg.cn/large/006tNc79ly1flhkz67penj30ak0j9mxf.jpg" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      ios-03
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>目标：</h2>
+<ul>
+<li>可以登入</li>
+</ul>
+
+<p><figure><img src="https://cdn.filepicker.io/api/file/RbslfTbSQlCUzbQB3XKq" title=""></figure></p>
+
+<p><figure><img src="https://cdn.filepicker.io/api/file/aP3GD5cERGqdvHSwwjD8" title=""></figure></p>
+
+<p><figure><img src="https://cdn.filepicker.io/api/file/psnyJGyjRyruxfjDo4KQ" title=""></figure></p>
+<h2>步骤：</h2>
+<h3>Step 1 :</h3>
+<p>修改 Gemfile</p>
+
+<p>加入</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">gem</span> <span class="s2">"motion-authentication"</span>
+<span class="n">gem</span> <span class="s2">"ProMotion-XLForm"</span>
+</pre></div>
+</figure>
+
+<p><code>bundle install</code><br>
+<code>rake pod:install</code></p>
+<h3>Step 2 :</h3>
+<p>修改 <code>app/screens/home_screen.rb</code> 里的 <code>on_road</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">def</span> <span class="nf">on_load</span>
+  <span class="k">if</span> <span class="no">Auth</span><span class="p">.</span><span class="nf">signed_in?</span>
+    <span class="n">set_nav_bar_button</span> <span class="ss">:right</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Logout"</span><span class="p">,</span> <span class="ss">action: :sign_out_button</span>
+  <span class="k">else</span>
+    <span class="n">set_nav_bar_button</span> <span class="ss">:right</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Sign In"</span><span class="p">,</span> <span class="ss">action: :sign_in_button</span>
+  <span class="k">end</span>
+
+  <span class="vi">@jobs</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">load_jobs</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>在 <code>app/screens/home_screen.rb</code> 加入</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">def</span> <span class="nf">sign_out_button</span>
+  <span class="no">Auth</span><span class="p">.</span><span class="nf">sign_out</span> <span class="k">do</span>
+    <span class="n">open_tab_bar</span> <span class="no">HomeScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">sign_in_button</span>
+  <span class="nb">open</span> <span class="no">SignInScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 3 : 加入 SignInScreen</h3>
+<p><code>potion g screen sign_in</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">SignInScreen</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">XLFormScreen</span>
+  <span class="n">title</span> <span class="s2">"Sign In"</span>
+  <span class="n">stylesheet</span> <span class="no">SignInScreenStylesheet</span>
+
+  <span class="k">def</span> <span class="nf">form_data</span>
+    <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">cells: </span><span class="p">[</span>
+          <span class="p">{</span>
+            <span class="ss">title:       </span><span class="s2">"Email"</span><span class="p">,</span>
+            <span class="ss">name:        :email</span><span class="p">,</span>
+            <span class="ss">type:        :email</span><span class="p">,</span>
+            <span class="ss">placeholder: </span><span class="s2">"Enter your email"</span><span class="p">,</span>
+            <span class="ss">required:    </span><span class="kp">true</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">title:       </span><span class="s2">"Password"</span><span class="p">,</span>
+            <span class="ss">name:        :password</span><span class="p">,</span>
+            <span class="ss">type:        :password</span><span class="p">,</span>
+            <span class="ss">placeholder: </span><span class="s2">"Enter your password"</span><span class="p">,</span>
+            <span class="ss">required:    </span><span class="kp">true</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="ss">title: </span><span class="s2">"Sign In"</span><span class="p">,</span>
+            <span class="ss">name: :save</span><span class="p">,</span>
+            <span class="ss">type: :button</span><span class="p">,</span>
+            <span class="ss">on_click: </span><span class="nb">lambda</span> <span class="k">do</span> <span class="o">|</span><span class="n">_cell</span><span class="o">|</span>
+              <span class="n">authenticate</span>
+            <span class="k">end</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">authenticate</span>
+    <span class="no">Auth</span><span class="p">.</span><span class="nf">sign_in</span><span class="p">(</span><span class="ss">email: </span><span class="n">values</span><span class="p">[</span><span class="s2">"email"</span><span class="p">],</span> <span class="ss">password: </span><span class="n">values</span><span class="p">[</span><span class="s2">"password"</span><span class="p">])</span> <span class="k">do</span> <span class="o">|</span><span class="n">response</span><span class="o">|</span>
+      <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="nf">success?</span>
+        <span class="no">Store</span><span class="p">[</span><span class="s2">"token"</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">object</span><span class="p">[</span><span class="s2">"token"</span><span class="p">]</span>
+        <span class="n">app</span><span class="p">.</span><span class="nf">delegate</span><span class="p">.</span><span class="nf">open_authenticated_root</span>
+      <span class="k">elsif</span> <span class="n">response</span><span class="p">.</span><span class="nf">object</span>
+        <span class="n">app</span><span class="p">.</span><span class="nf">alert</span> <span class="n">response</span><span class="p">.</span><span class="nf">object</span><span class="p">[</span><span class="s2">"error"</span><span class="p">]</span>
+      <span class="k">else</span>
+        <span class="n">app</span><span class="p">.</span><span class="nf">alert</span> <span class="s2">"Sorry, there was an error. </span><span class="si">#{</span><span class="n">response</span><span class="p">.</span><span class="nf">error</span><span class="p">.</span><span class="nf">localizedDescription</span><span class="si">}</span><span class="s2">"</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">will_animate_rotate</span><span class="p">(</span><span class="n">_orientation</span><span class="p">,</span> <span class="n">_duration</span><span class="p">)</span>
+    <span class="n">reapply_styles</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 4 : 新增 Store</h3>
+<p><code>touch app/models/store.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Store</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">[]</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">_storage</span><span class="p">.</span><span class="nf">objectForKey</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">[]=</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">_storage</span><span class="p">.</span><span class="nf">setObject</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">forKey</span><span class="ss">:key</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">_storage</span><span class="p">.</span><span class="nf">removeObjectForKey</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+    <span class="n">_storage</span><span class="p">.</span><span class="nf">dictionaryRepresentation</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">_storage</span>
+    <span class="no">NSUserDefaults</span><span class="p">.</span><span class="nf">standardUserDefaults</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 5 : 新增 auth</h3>
+<p><code>touch app/models/auth.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Auth</span> <span class="o">&lt;</span> <span class="no">Motion</span><span class="o">::</span><span class="no">Authentication</span>
+  <span class="n">strategy</span> <span class="no">DeviseTokenAuth</span>
+  <span class="n">sign_in_url</span> <span class="s2">"http://localhost:3000/users/sign_in"</span>
+  
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">signed_in?</span>
+    <span class="no">Store</span><span class="p">[</span><span class="s2">"token"</span><span class="p">]</span>
+  <span class="k">end</span>
+
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">sign_out</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="no">Store</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"token"</span><span class="p">)</span>
+    <span class="n">block</span><span class="p">.</span><span class="nf">call</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 6 : compile</h3>
+<p><code>rake</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      ios-04
+    </h1><h4>所属章节：开发步骤</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h2>做抽屉</h2>
+<p><figure><img src="https://cdn.filepicker.io/api/file/ZbQas77vSHCOlghBDYBn" title=""></figure></p>
+<h2>步骤：</h2>
+<h3>Step 1:</h3>
+<p>安裝 Gem</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="n">gem</span> <span class="s2">"ProMotion-menu"</span>
+<span class="n">gem</span> <span class="s2">"motion-fontawesome"</span>
+
+</pre></div>
+</figure>
+
+<ul>
+<li>bundle install</li>
+<li>rake pod:install</li>
+</ul>
+<h3>Step 2 :</h3>
+<p>修改 <code>app/screens/home_screen.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">HomeScreen</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">TableScreen</span>
+  <span class="n">title</span> <span class="s2">"職缺一覽"</span>
+  <span class="n">stylesheet</span> <span class="no">HomeScreenStylesheet</span>
+
+  <span class="kp">include</span> <span class="no">NavigationHelper</span>
+
+  <span class="k">def</span> <span class="nf">on_load</span>
+    <span class="n">add_side_menu</span>
+
+    <span class="vi">@jobs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">load_jobs</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_out_button</span>
+    <span class="no">Auth</span><span class="p">.</span><span class="nf">sign_out</span> <span class="k">do</span>
+      <span class="n">app</span><span class="p">.</span><span class="nf">delegate</span><span class="p">.</span><span class="nf">open_authenticated_root</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_in_button</span>
+    <span class="nb">open</span> <span class="no">SignInScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 3 :</h3>
+<p><code>touch app/helpers/navigation_helpper.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">module</span> <span class="nn">NavigationHelper</span>
+  <span class="k">def</span> <span class="nf">add_side_menu</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="no">UILabel</span><span class="p">.</span><span class="nf">alloc</span><span class="p">.</span><span class="nf">initWithFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span>
+    <span class="n">label</span><span class="p">.</span><span class="nf">font</span> <span class="o">=</span> <span class="no">FontAwesome</span><span class="p">.</span><span class="nf">fontWithSize</span><span class="p">(</span><span class="mi">16</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">label</span><span class="p">.</span><span class="nf">text</span> <span class="o">=</span> <span class="no">FontAwesome</span><span class="p">.</span><span class="nf">icon</span><span class="p">(</span><span class="s2">"list"</span><span class="p">)</span>
+    <span class="n">label</span><span class="p">.</span><span class="nf">color</span> <span class="o">=</span> <span class="n">rmq</span><span class="p">.</span><span class="nf">color</span><span class="p">.</span><span class="nf">black</span>
+
+    <span class="n">set_nav_bar_button</span> <span class="ss">:left</span><span class="p">,</span> <span class="ss">custom_view: </span><span class="n">label</span><span class="p">,</span> <span class="ss">action: :tapped_left_nav</span>
+
+    <span class="n">rmq</span><span class="p">(</span><span class="n">label</span><span class="p">).</span><span class="nf">on</span><span class="p">(</span><span class="ss">:tap</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_sender</span><span class="o">|</span>
+      <span class="n">app_delegate</span><span class="p">.</span><span class="nf">menu</span><span class="p">.</span><span class="nf">show</span><span class="p">(</span><span class="ss">:left</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">tapped_left_nav</span>
+    <span class="n">app_delegate</span><span class="p">.</span><span class="nf">show_menu</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 4:</h3>
+<p>修改 <code>app/app_delegate.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>
+<span class="k">class</span> <span class="nc">AppDelegate</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">Delegate</span>
+  <span class="kp">include</span> <span class="no">CDQ</span> <span class="c1"># Remove this if you aren't using CDQ
+</span>
+
+  <span class="n">status_bar</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">animation: :fade</span>
+
+  <span class="c1"># Without this, settings in StandardAppearance will not be correctly applied
+</span>
+  <span class="c1"># Remove this if you aren't using StandardAppearance
+</span>
+  <span class="no">ApplicationStylesheet</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="kp">nil</span><span class="p">).</span><span class="nf">application_setup</span>
+
+  <span class="k">def</span> <span class="nf">on_load</span><span class="p">(</span><span class="n">_app</span><span class="p">,</span> <span class="n">_options</span><span class="p">)</span>
+    <span class="n">cdq</span><span class="p">.</span><span class="nf">setup</span> <span class="c1"># Remove this if you aren't using CDQ
+</span>
+    <span class="n">open_authenticated_root</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">show_menu</span>
+    <span class="vi">@menu</span><span class="p">.</span><span class="nf">show</span> <span class="ss">:left</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Remove this if you are only supporting portrait
+</span>
+  <span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">_application</span><span class="p">,</span> <span class="ss">willChangeStatusBarOrientation: </span><span class="n">new_orientation</span><span class="p">,</span> <span class="ss">duration: </span><span class="n">duration</span><span class="p">)</span>
+    <span class="c1"># Manually set RMQ's orientation before the device is actually oriented
+</span>
+    <span class="c1"># So that we can do stuff like style views before the rotation begins
+</span>
+    <span class="n">device</span><span class="p">.</span><span class="nf">orientation</span> <span class="o">=</span> <span class="n">new_orientation</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">open_authenticated_root</span>
+    <span class="n">open_tab_bar</span> <span class="no">HomeScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="vi">@menu</span> <span class="o">=</span> <span class="nb">open</span> <span class="no">MenuDrawer</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</pre></div>
+</figure>
+<h3>Step 5 :</h3>
+<p><code>touch app/drawers/menu_drawer.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">MenuDrawer</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">Menu</span><span class="o">::</span><span class="no">Drawer</span>
+  <span class="k">def</span> <span class="nf">setup</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">center</span> <span class="o">=</span> <span class="no">HomeScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">left</span> <span class="o">=</span> <span class="no">NavigationScreen</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">to_show</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:pan_bezel</span><span class="p">,</span> <span class="ss">:pan_center</span><span class="p">]</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">transition_animation</span> <span class="o">=</span> <span class="ss">:slide</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">max_left_width</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">shadow</span> <span class="o">=</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 6</h3>
+<figure class="figure-code code"><figcaption><span>app/screens/navigation_screen.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">NavigationScreen</span> <span class="o">&lt;</span> <span class="no">PM</span><span class="o">::</span><span class="no">TableScreen</span>
+  <span class="k">def</span> <span class="nf">on_load</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">table_data</span>
+    <span class="p">[{</span>
+      <span class="ss">title: </span><span class="kp">nil</span><span class="p">,</span>
+      <span class="ss">cells: </span><span class="p">[</span>
+        <span class="p">{</span> <span class="ss">title: </span><span class="s2">""</span> <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="ss">title: </span><span class="n">sign_in_out_title</span><span class="p">,</span>
+          <span class="ss">action: :sign_in_out_button</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_in_out_title</span>
+    <span class="k">if</span> <span class="no">Auth</span><span class="p">.</span><span class="nf">signed_in?</span>
+      <span class="s2">"Logout"</span>
+    <span class="k">else</span>
+      <span class="s2">"Sign In"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_in_out_button</span>
+    <span class="k">if</span> <span class="no">Auth</span><span class="p">.</span><span class="nf">signed_in?</span>
+      <span class="n">sign_out_button</span>
+    <span class="k">else</span>
+      <span class="n">sign_in_button</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_in_button</span>
+    <span class="nb">open</span> <span class="no">SignInScreen</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">nav_bar: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sign_out_button</span>
+    <span class="no">Auth</span><span class="p">.</span><span class="nf">sign_out</span> <span class="k">do</span>
+      <span class="n">app</span><span class="p">.</span><span class="nf">delegate</span><span class="p">.</span><span class="nf">open_authenticated_root</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">swap_center_controller</span><span class="p">(</span><span class="n">screen_class</span><span class="p">)</span>
+    <span class="c1"># Just use screen_class if you don't need a navigation bar
+</span>
+    <span class="n">app_delegate</span><span class="p">.</span><span class="nf">menu</span><span class="p">.</span><span class="nf">center_controller</span> <span class="o">=</span> <span class="n">screen_class</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">will_animate_rotate</span><span class="p">(</span><span class="n">_orientation</span><span class="p">,</span> <span class="n">_duration</span><span class="p">)</span>
+    <span class="n">reapply_styles</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</figure>
+<h3>Step 6 :</h3>
+<p><code>rake</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      示范代码地址
+    </h1><h4>所属章节：示范代码地址</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>JOB List </p>
+
+<ul>
+<li>iOS：<a href="https://github.com/quanzhanying/ios-job-list" rel="nofollow" target="_blank">https://github.com/quanzhanying/ios-job-list</a>
+</li>
+<li>API：<a href="https://github.com/quanzhanying/api-job-list" rel="nofollow" target="_blank">https://github.com/quanzhanying/api-job-list</a>
+</li>
+</ul>
+
+<p>ArtStore</p>
+
+<ul>
+<li>iOS : <a href="https://github.com/growthschool/ios-artstore" rel="nofollow" target="_blank">https://github.com/growthschool/ios-artstore</a>
+</li>
+<li>API : <a href="https://github.com/growthschool/api-artstore" rel="nofollow" target="_blank">https://github.com/growthschool/api-artstore</a>
+</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      好用工具以及文档
+    </h1><h4>所属章节：RedPotion 资源</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h3>资源简介</h3>
+<p>RedPotion 是集成了 RMQ, ProMotion, CDQ, AFMotion, MotionPrint 以及许多 Library 的一套 template，可以快速的搭建 rubymotion App</p>
+
+<ul>
+<li>官方文档 <a href="http://docs.redpotion.org/en/latest/" rel="nofollow" target="_blank">http://docs.redpotion.org/en/latest/</a>
+</li>
+</ul>
+<h3>ProMotion</h3>
+<ul>
+<li>
+<a href="https://github.com/infinitered/ProMotion" rel="nofollow" target="_blank">https://github.com/infinitered/ProMotion</a>
+ProMotion 提供了各式各样的 "Screen" 以及「框架」。你除了可以使用 ProMotion 提供的 Screen 快速拉出版面外，还可以使用以下的 Gem 做出更多进阶的效果。</li>
+</ul>
+
+<p>比如说使用 ProMotion-XLForm 快速实现表单设计</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>gem "ProMotion-XLForm"
+gem "ProMotion-push", "~&gt; 0.2" # Push Notifications
+gem "ProMotion-map", "~&gt; 0.3"  # PM::MapScreen
+gem "ProMotion-iap" # PM In-app purchases
+gem "ProMotion-menu" # PM Side menu
+</pre></div>
+</figure>
+<h3>RMQ</h3>
+<ul>
+<li>
+<a href="http://rubymotionquery.com/" rel="nofollow" target="_blank">http://rubymotionquery.com/</a>
+提供了类似 jQuery 的语法，可以让开发者以类似「DOM 操作」的方式，进行 iOS 手机排版以及特效实践。
+在排版上非常省时。</li>
+</ul>
+<h3>CDQ</h3>
+<ul>
+<li>
+<a href="https://github.com/infinitered/cdq" rel="nofollow" target="_blank">https://github.com/infinitered/cdq</a>
+提供了一套 ActiveRecord like 的语法，支援让开发者写出易维护的语法，操作 CoreData ( 等同 iOS 里的 database )</li>
+</ul>
+
+<p>其中的 Schema 机制类似于 db migration</p>
+<h3>AFMotion</h3>
+<ul>
+<li>
+<a href="https://github.com/clayallsopp/afmotion" rel="nofollow" target="_blank">https://github.com/clayallsopp/afmotion</a>
+是 AFNetworking 的 RubyMotion 版 wrapper。方便操作 API</li>
+</ul>
+<h3>MotionToolbox</h3>
+<ul>
+<li>
+<a href="http://motion-toolbox.com/" rel="nofollow" target="_blank">http://motion-toolbox.com/</a>
+可以在上面找到你想要的第三方元件工具</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      如何找到更多开源示范教材
+    </h1><h4>所属章节：RedPotion 资源</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <ul>
+<li>打开 github</li>
+<li>使用 github 代码搜索功能</li>
+<li>搜寻 ProMotion</li>
+<li>切换 Ruby 分页</li>
+</ul>
+<h3>写的不错的 Repo</h3>
+<ul>
+<li><a href="https://github.com/notch8/calagator-ios" rel="nofollow" target="_blank">https://github.com/notch8/calagator-ios</a></li>
+<li><a href="https://github.com/andrewhavens/railsconf-2016-demo-mobile-app" rel="nofollow" target="_blank">https://github.com/andrewhavens/railsconf-2016-demo-mobile-app</a></li>
+</ul>
+<h3>Additional Resources</h3>
+<ul>
+<li>RubyMotion Slack</li>
+<li>RubyMotion Community Forum</li>
+<li>Portland RubyMotion Meetup Blog</li>
+</ul>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

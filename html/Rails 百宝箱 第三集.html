@@ -1,0 +1,2928 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      15-1 需求和 Model 设计
+    </h1><h4>所属章节：15. 自订列表顺序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：在后台可以自定义活动列表的显示顺序</p>
+
+<p>目前在前后台的 events index action，我们并没有指定用什么顺序。<br>
+如果要指定顺序，可以用 <code>order</code>，例如根据新建的顺序递降 <code>Event.order("id DESC")</code> 或递增 <code>Event.order("id")</code>。</p>
+
+<p>接下来我们想做的功能，就是可以用管理员可以自定义顺序，例如让需要曝光的活动放在前面、不重要的活动放在后面。</p>
+
+<p>需要的 Model 设计很简单，就是增加一个整数字段来存「位置」。这种列表顺序的功能，有两个 gem 可以用：</p>
+
+<ul>
+<li><a href="https://github.com/swanandp/acts_as_list">acts_as_list</a></li>
+<li><a href="https://github.com/mixonic/ranked-model">ranked-model</a></li>
+</ul>
+
+<p>这些 gem 提供了方法，帮助我们快速修改这个位置数字。</p>
+
+<p>这里介绍用 ranked-model，两个 gem 大同小异。</p>
+
+<p>装 Gemfile</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'ranked-model'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+
+<span class="gi">+   include RankedModel
++   ranks :row_order
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>执行 <code>rails g migration add_row_order_to_events</code></p>
+
+<p>编辑 <code>db/migrate/20170427130106_add_row_order_to_events.rb</code>，增加一个 <code>row_order</code> 字段到 <code>events</code> 上。</p>
+
+<blockquote>
+<p>这是因为 ranked-model 默认的位置字段命名是 <code>row_order</code></p>
+</blockquote>
+
+<figure class="figure-code code"><figcaption><span>20170427130106_add_row_order_to_events.rb
+</span></figcaption><div class="highlight"><pre>  class AddRowOrderToEvents &lt; ActiveRecord::Migration[5.0]
+
+    def change
+<span class="gi">+     add_column :events, :row_order, :integer
++
++     # 因为要改用这个 row_order 来做排序，而数据库已经有的 events 默认是 nil
++     # 因此这里要设定 row_order 的值，其中 `:last` 是 ranked-model 
++     Event.find_each do |e|
++       e.update( :row_order_position =&gt; :last )
++     end
++
++     add_index :events, :row_order
+</span>    end
+
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>修改 <code>app/controllers/events_controller.rb</code>，改成用 <code>rank(:row_order)</code> 方法来做排序。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>   class EventsController &lt; ApplicationController
+
+     def index
+-      @events = Event.all
++      @events = Event.rank(:row_order).all
+     end
+
+</pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>   class Admin::EventsController &lt; AdminController
+
+     def index
+-      @events = Event.all
++      @events = Event.rank(:row_order).all
+     end
+
+</pre></div>
+</figure>
+
+<p>重新浏览看看，应该一切正常没有变化。</p>
+
+<p>我们可以实验看看这个 gem 的作用，请执行 <code>rails console</code></p>
+
+<p><code>e = Event.last</code><br>
+<code>e.row_order_position = :up</code><br>
+<code>e.save!</code></p>
+
+<p>重新浏览看看，本来放最后的活动，应该顺序往前一笔。</p>
+
+<p><code>e.row_order_position = :first</code><br>
+<code>e.save!</code></p>
+
+<p>重新浏览看看，这一笔应该会移动到第一笔。</p>
+
+<blockquote>
+<p>row_order_position 不是数据库的字段，而是一个方法会转换输入的字符串到 row_order (这是整数)，例如 e.row_order_position = :first 实际作用是让 e.row_order = 一个最小的数字</p>
+</blockquote>
+
+<p>接着，重头戏是如何让管理员可以编辑这个排序，有两种 UI 解法：</p>
+
+<ul>
+<li>传统 UI：提供往上、往下、移到顶端、移到尾端 等四个按钮</li>
+<li>Ajax UI：直接用鼠标进行拖拉排序</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15-2 传统 UI
+    </h1><h4>所属章节：15. 自订列表顺序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>所谓的传统 UI，就是提供往上、往下、移到顶端、移到尾端 等四个按钮，让我们来实作看看。</p>
+
+<p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>resources :events do
+  resources :tickets, :controller =&gt; "event_tickets"
+
+<span class="gi">+     member do
++       post :reorder
++     end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/index.html.erb</code>，加上四个按钮：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;td&gt;
+<span class="gi">+     &lt;%= link_to "上移", reorder_admin_event_path(event, :position =&gt; :up), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
++     &lt;%= link_to "下移", reorder_admin_event_path(event, :position =&gt; :down), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
++     &lt;%= link_to "置顶", reorder_admin_event_path(event, :position =&gt; :first), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
++     &lt;%= link_to "置底", reorder_admin_event_path(event, :position =&gt; :last), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+</span>
+<span class="err">  &lt;%= link_to "Tickets", admin_event_tickets_path(event), :class =&gt; "btn btn-default" %&gt;
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>在路由方法 <code>reorder_admin_event_path</code> 中，我们额外传了 <code>:position</code> 参数，等会在 controller 中就可以接收到 <code>params[:position]</code> 代表移动的方式</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def reorder
++    @event = Event.find_by_friendly_id!(params[:id])
++    @event.row_order_position = params[:position]
++    @event.save!
++
++    redirect_to admin_events_path
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/lnbTx58XRue6tEloQpCz_15-1.png" title=""></figure></p>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      15-3 Ajax UI
+    </h1><h4>所属章节：15. 自订列表顺序</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>所谓的 Ajax 拖拉 UI，就是直接用鼠标进行拖拉排序，这种方式对用户来说操作速度更快。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/pWQxNtMMTraSX1DTW0nH_15-2.gif" title=""></figure></p>
+
+<p>拖拉的 UI 需要额外的前端套件，这里介绍 jQuery UI 的 <a href="http://api.jqueryui.com/sortable/">Sortable Plugin</a>，并直接使用 <a href="https://github.com/joliss/jquery-ui-rails">jquery-ui-rails</a> 这个 gem 来安装</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'jquery-ui-rails'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/assets/javascripts/admin.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/admin.js
+</span></figcaption><div class="highlight"><pre>  //= require bootstrap-datepicker/core
+  //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+  //= require ckeditor/init
+<span class="gi">+ //= require jquery-ui
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/assets/stylesheets/admin.scss</code>，其中 <code>.sortable_icon</code> 是给画面中可被拖拉的 ☰ 的样式</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/stylesheets/admin.scss
+</span></figcaption><div class="highlight"><pre><span class="gi">+  @import "jquery-ui";
++
++  .sortable .sortable_icon {
++   border: none;
++   color: #ECECEC;
++   font-size: 20px;
++   cursor: move;
++   padding-right: 10px;
++  }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>编辑 <code>app/views/admin/events/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;table class="table"&gt;
+<span class="gi">+  &lt;thead&gt;
+</span>   &lt;tr&gt;
+     &lt;th&gt;&lt;%= check_box_tag "全选", "1", false, :id =&gt; "toggle_all" %&gt;&lt;/th&gt;
+     &lt;th&gt;Event Name&lt;/th&gt;
+     &lt;th&gt;Actions&lt;/th&gt;
+   &lt;/tr&gt;
+<span class="gi">+  &lt;/thead&gt;
++  &lt;tbody class="sortable"&gt;
+</span>   &lt;% @events.each do |event| %&gt;
+<span class="gd">-    &lt;tr&gt;
+</span><span class="gi">+    &lt;tr data-reorder-url="&lt;%= reorder_admin_event_path(event) %&gt;"&gt;
+</span>       &lt;td&gt;
+         &lt;%= check_box_tag "ids[]", event.id %&gt;
+       &lt;/td&gt;
+<span class="gd">-      &lt;td&gt;&lt;%= link_to event.name, admin_event_path(event) %&gt;&lt;/td&gt;
+</span><span class="gi">+      &lt;td&gt;
++        &lt;span class="sortable_icon"&gt;☰&lt;/span&gt;
++        &lt;%= link_to event.name, admin_event_path(event) %&gt;
++      &lt;/td&gt;
+</span>       &lt;td&gt;
+<span class="gd">-        &lt;%= link_to "上移", reorder_admin_event_path(event, :position =&gt; :up), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+-        &lt;%= link_to "下移", reorder_admin_event_path(event, :position =&gt; :down), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+</span>         &lt;%= link_to "置顶", reorder_admin_event_path(event, :position =&gt; :first), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+         &lt;%= link_to "置底", reorder_admin_event_path(event, :position =&gt; :last), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+         &lt;%= link_to "Tickets", admin_event_tickets_path(event), :class =&gt; "btn btn-default" %&gt;
+         &lt;%= link_to "Edit", edit_admin_event_path(event), :class =&gt; "btn btn-default" %&gt;
+         &lt;%= link_to "Delete", admin_event_path(event), :method =&gt; "delete", :data =&gt; { :confirm =&gt; "Are you sure?" }, :class =&gt; "btn btn-danger" %&gt;
+     &lt;/tr&gt;
+   &lt;% end %&gt;
+<span class="gi">+  &lt;/tbody&gt;
+</span>   &lt;/table&gt;
+     &lt;p&gt;
+     &lt;%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope =&gt; "event.status"), s] }), :class =&gt; "form-control" %&gt;
+     &lt;%= submit_tag t(:bulk_update), :class =&gt; "btn btn-primary" %&gt;
+     &lt;%= submit_tag t(:bulk_delete), :class =&gt; "btn btn-danger", :data =&gt; { :confirm =&gt; "Are you sure?" } %&gt;
+     &lt;/p&gt;
+   &lt;% end %&gt;
+
+   &lt;script&gt;
+     $("#toggle_all").click(function(){
+       if ( $(this).prop("checked") ) {
+         $("input[name='ids[]']").prop("checked", false);
+       }
+     })
+
+<span class="gi">+  $( ".sortable" ).sortable({
++    axis: 'y',       // 限制只能上下拖拉
++    items: 'tr',     // 拖拉整个 tr
++    cursor: 'move',  // 变更拖拉时的 icon
++    handle: ".sortable_icon",  // 限制只有点 ☰ 才能开始拖拉，砍掉这行的话，会是整个 tr 都可以进行拖拉，你可以试试看
++    stop: function(e, ui){     // 当拖拉结束时，会调用这个方法
++      ui.item.children('td').effect('highlight', {}, 1000)
++    },
++    update: function(e, ui) {   // 当拖拉结束并且 DOM 上的位置变更时，会调用这个方法
++      reorder_url = ui.item.data('reorder-url')
++      position = ui.item.index()  // 取得顺序
++      $.ajax({
++       type: 'POST',
++       url: reorder_url,
++       dataType: 'json',
++       data: { position: position }
++      })
++    }
++  });
+</span>   &lt;/script&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>设计解说：</p>
+
+<ol>
+<li>我们将整个 tr 包在 tbody 之中，好让 <code>$( ".sortable" ).sortable</code> 将 tbody 标籤内的 tr 都变成可以拖拉，而不会拖拉到标题列 thead 中的 tr。</li>
+<li>因为每个活动的 reorder 网址都不同，所以我们将网址放在 <code>data-reorder-url="&lt;%= reorder_admin_event_path(event) %&gt;</code> 之中，这样在 jQuery 里面透过 <code>reorder_url = ui.item.data('reorder-url')</code> 就可以取得 Ajax 要送去的网址。</li>
+</ol>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>  def reorder
+    @event = Event.find_by_friendly_id!(params[:id])
+    @event.row_order_position = params[:position]
+    @event.save!
+
+<span class="gd">-    redirect_to admin_events_path
+</span><span class="gi">+    respond_to do |format|
++      format.html { redirect_to admin_events_path }
++      format.json { render :json =&gt; { :message =&gt; "ok" }}
++    end
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p><code>respond_to</code> 可以让 Rails 根据 request 请求的格式(在 $ajax 中我们有指定了 dataType 是 json)，来回传不同格式。</p>
+</blockquote>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-1 需求和 Model 设计
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来要制作的功能是：用户可以报名活动，也就是 event has_many registrations。</p>
+
+<p>首先建立 Registration model</p>
+
+<p>执行 <code>rails g model registration</code></p>
+
+<p>编辑 <code>db/migrate/20170429152604_create_registrations.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>20170429152604_create_registrations.rb
+</span></figcaption><div class="highlight"><pre>  class CreateRegistrations &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :registrations do |t|
+<span class="gi">+       t.string :status, :default =&gt; "pending"
++       t.string :uuid
++       t.integer :event_id, :index =&gt; true
++       t.integer :ticket_id, :index =&gt; true
++       t.integer :user_id, :index =&gt; true
++       t.string :name
++       t.string :email
++       t.string :cellphone
++       t.string :website
++       t.text :bio
++       t.timestamps
+</span>      end
+
+<span class="gi">+     add_index :registrations, :uuid,  :unique =&gt; true
+</span>    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre>class Registration &lt; ApplicationRecord
+
+  STATUS = ["pending", "confirmed"]
+  validates_inclusion_of :status, :in =&gt; STATUS
+  validates_presence_of :status, :ticket_id
+
+  belongs_to :event
+  belongs_to :ticket
+  belongs_to :user, :optional =&gt; true
+
+  before_validation :generate_uuid, :on =&gt; :create
+
+  def to_param
+    self.uuid
+  end
+
+  protected
+
+  def generate_uuid
+    self.uuid = SecureRandom.uuid
+  end
+
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>这里设计了 status 状态字段，以及在新建的时候乱数产生一个 UUID 来当作网址 ID。</p>
+</blockquote>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :registrations, :dependent =&gt; :destroy
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/ticket.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/ticket.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :registrations
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/user.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/user.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  has_many :registrations
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>接下来要制作 UI，我们示范两个解法：</p>
+
+<ul>
+<li>单一表单</li>
+<li>多步骤表单</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-2 建立报名表单
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  resources :events
+</span><span class="gi">+  resources :events do
++    resources :registrations
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rails g controller registrations</code></p>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>class RegistrationsController &lt; ApplicationController
+
+  before_action :find_event
+
+  def new
+  end
+
+  def create
+    @registration = @event.registrations.new(registration_params)
+    @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
+    @registration.status = "confirmed"
+    @registration.user = current_user
+
+    if @registration.save
+      redirect_to event_registration_path(@event, @registration)
+    else
+      render "new"
+    end
+  end
+
+  def show
+    @registration = @event.registrations.find_by_uuid(params[:id])
+  end
+
+  protected
+
+  def registration_params
+    params.require(:registration).permit(:ticket_id, :name, :email, :cellphone, :website, :bio)
+  end
+
+  def find_event
+    @event = Event.find_by_friendly_id(params[:event_id])
+  end
+
+end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>这里针对 ticket 额外用 <code>@event.tickets.find</code> 再检查确定这个票种属于这个活动</p>
+</blockquote>
+
+<p>编辑 <code>app/views/events/show.html.erb</code> 加上一个按钮去报名表单</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;p&gt;&lt;%= link_to "开始报名", new_event_registration_path(@event), :class =&gt; "btn btn-primary" %&gt;&lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kw3BL9m1Q96poKVl2Jyx_16-1.png" title=""></figure></p>
+
+<p>新增 <code>app/views/registrations/new.html.erb</code> 报名页面</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/new.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+&lt;%= form_for [@event, Registration.new] do |f| %&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :ticket_id %&gt;
+    &lt;%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :name %&gt;
+    &lt;%= f.text_field :name, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :email %&gt;
+    &lt;%= f.email_field :email, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :cellphone %&gt;
+    &lt;%= f.text_field :cellphone, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :website %&gt;
+    &lt;%= f.url_field :website, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :bio %&gt;
+    &lt;%= f.text_area :bio, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.submit "Submit", :class =&gt; "btn btn-primary" %&gt;
+  &lt;/div&gt;
+
+&lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/aPCTXvkzQxmi0MxYDVZj_16-2.png" title=""></figure></p>
+
+<p>新增 <code>app/views/registrations/show.html.erb</code> 报名成功页面</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/show.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+&lt;h2&gt;报名资料&lt;/h2&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;状态&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= t(@registration.status, :scope =&gt; "registration.status") %&gt;&lt;/dd&gt;
+  &lt;dt&gt;姓名&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= @registration.name %&gt;&lt;/dd&gt;
+  &lt;dt&gt;E-mail&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= @registration.email %&gt;&lt;/dd&gt;
+  &lt;dt&gt;电话&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= @registration.cellphone %&gt;&lt;/dd&gt;
+  &lt;dt&gt;网站&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= @registration.website %&gt;&lt;/dd&gt;
+  &lt;dt&gt;自我介绍&lt;/dt&gt;
+  &lt;dd&gt;&lt;%= simple_format @registration.bio %&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>config/locales/zh-CN.yml</code> 新增状态的翻译</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>  "zh-CN":
++   registration:
++     status:
++       pending: 报名尚未完成
++       confirmed: 报名成功
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/6FYL6hxLSyOGyYT1vXDe_16-3.png" title=""></figure></p>
+
+<p>这样就完成了。如果只是这样就太小看大家了，让我们继续看下去...</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-3 多步骤表单
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来的重头戏是制作多步骤的表单(Multi Step Form，又叫做 Wizards)</p>
+
+<blockquote>
+<p>Protip: 记得这些英文名词对 google 是有帮助的，google "wizards rails" 就可以找到如何做这个功能的教程</p>
+</blockquote>
+
+<p>什么时候会用到呢? 当表单很复杂的时候，我们不希望一次就把所有字段显示出来，这样会吓跑用户。而是会拆成步骤一、步骤二、步骤三.... 一步一步让用户<del>掉入这个坑</del>完成表单，以增加表单完成的成功率。</p>
+
+<p>要制作的 UI 将拆分成三个表单：</p>
+
+<ul>
+<li>第一个表单: 选票种</li>
+<li>第二个表单: 填姓名、E-mail、电话</li>
+<li>第三个表单: 填个人网站URL、填自我介绍</li>
+</ul>
+
+<p>其中第二个表单和第三个表单，除了有下一步之外，也可以回到上一步进行修改。如果用户中途离开，下次再进来也可以继续编辑。</p>
+
+<blockquote>
+<p>另一种纯前端的做法，例如 <a href="http://www.jquery-steps.com/">jQuery Steps</a>，则是只用特效的方式拆成不同步骤，而没有将过程储存进到数据库，如果中离就毫无纪录。本章的做法是中间过程都会存进数据库。</p>
+</blockquote>
+
+<p>首先，让我们修改路由 <code>config/routes.rb</code>，分别是三个步骤的表单页面和修改动作：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   resources :events do
+<span class="gd">-    resources :registrations
+</span><span class="gi">+    resources :registrations do
++      member do
++        get "steps/2" =&gt; "registrations#step2", :as =&gt; :step2
++        patch "steps/2/update" =&gt; "registrations#step2_update", :as =&gt; :update_step2
++        get "steps/3" =&gt; "registrations#step3", :as =&gt; :step3
++        patch "steps/3/update" =&gt; "registrations#step3_update", :as =&gt; :update_step3
++      end
+</span>     end
+   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>没有特别看到 step1 是因为 registrations controller 本来的 new action 和 create action 就是新增时的第一步。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-4 第一步的表单
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>修改 <code>app/views/registrations/new.html.erb</code> 报名页面，只留下选票种：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/new.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+<span class="gi">+  &lt;h2&gt;Step 1&lt;/h2&gt;
+</span>
+   &lt;%= form_for [@event, Registration.new] do |f| %&gt;
+
+     &lt;div class="form-group"&gt;
+       &lt;%= f.label :ticket_id %&gt;
+       &lt;%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class =&gt; "form-control" %&gt;
+     &lt;/div&gt;
+
+<span class="gd">-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :name %&gt;
+-      &lt;%= f.text_field :name, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+-
+-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :email %&gt;
+-      &lt;%= f.email_field :email, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+-
+-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :cellphone %&gt;
+-      &lt;%= f.text_field :cellphone, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+-
+-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :website %&gt;
+-      &lt;%= f.url_field :website, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+-
+-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :bio %&gt;
+-      &lt;%= f.text_area :bio, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+-
+</span>     &lt;div class="form-group"&gt;
+<span class="gd">-      &lt;%= f.submit "Submit", :class =&gt; "btn btn-primary" %&gt;
+</span><span class="gi">+      &lt;%= f.submit "Save and Next", :class =&gt; "btn btn-primary" %&gt;
+</span>     &lt;/div&gt;
+
+   &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+   def create
+     @registration = @event.registrations.new(registration_params)
+     @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
+<span class="gd">-    @registration.status = "confirmed"
+</span><span class="gi">+    @registration.status = "pending"
+</span>     @registration.user = current_user
+
+     if @registration.save
+<span class="gd">-      redirect_to event_registration_path(@event, @registration)
+</span><span class="gi">+      redirect_to step2_event_registration_path(@event, @registration)
+</span>     else
+       render "new"
+     end
+   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>本来进 create action 就完成了，现在要改成进 step2 action。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/99yUP3WTTNXOapkC2JGW_16-4.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-5 第二步的表单
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着要编辑第二步：</p>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  def step2
++    @registration = @event.registrations.find_by_uuid(params[:id])
++  end
++
++  def step2_update
++    @registration = @event.registrations.find_by_uuid(params[:id])
++
++    if @registration.update(registration_params)
++      redirect_to step3_event_registration_path(@event, @registration)
++    else
++      render "step2"
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+&lt;h2&gt;Step 2&lt;/h2&gt;
+
+&lt;%= form_for @registration, :url =&gt; update_step2_event_registration_path(@event, @registration) do |f| %&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :name %&gt;
+    &lt;%= f.text_field :name, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :email %&gt;
+    &lt;%= f.email_field :email, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :cellphone %&gt;
+    &lt;%= f.text_field :cellphone, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.submit "Save &amp; Next", :class =&gt; "btn btn-primary" %&gt;
+  &lt;/div&gt;
+
+<span class="err">&lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/AGM93TCSdSDcRLPcgZgg_16-5.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-6 第三步的表单
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接着要编辑第三步：</p>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def step3
++    @registration = @event.registrations.find_by_uuid(params[:id])
++  end
++
++  def step3_update
++    @registration = @event.registrations.find_by_uuid(params[:id])
++    @registration.status = "confirmed"
++
++    if @registration.update(registration_params)
++      flash[:notice] = "报名成功"
++      redirect_to event_registration_path(@event, @registration)
++    else
++      render "step3"
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/registrations/step3.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step3.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+&lt;h2&gt;Step 3&lt;/h2&gt;
+
+&lt;%= form_for @registration, :url =&gt; update_step3_event_registration_path(@event, @registration) do |f| %&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :website %&gt;
+    &lt;%= f.url_field :website, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.label :bio %&gt;
+    &lt;%= f.text_area :bio, :class =&gt; "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;%= f.submit "Submit", :class =&gt; "btn btn-primary" %&gt;
+  &lt;/div&gt;
+
+&lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/IWc3nfDgRAOAda0zrmq4_16-6.png" title=""></figure></p>
+
+<p>这样基本上就完成了，在 step3_update action 中，最后成功后会转去 show 成功画面。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+       16-7 回到上一步
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来让我们加上「回到上一步」的按钮。</p>
+
+<p>首先是第三步回第二步，修改 <code>app/views/registrations/step3.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step3.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;div class="form-group"&gt;
+<span class="gi">+    &lt;%= link_to "Previous", step2_event_registration_path(@event, @registration), :class =&gt; "btn btn-default" %&gt;
+</span>     &lt;%= f.submit "Submit", :class =&gt; "btn btn-primary" %&gt;
+   &lt;/div&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这个简单，一个连结回去 step2 即可。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kr1KcA3gR1aI9QC5XMmn_16-7.png" title=""></figure></p>
+
+<p>接下来是第二步回到第一步，编辑 <code>config/routes.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   resources :events do
+     resources :registrations do
+       member do
+<span class="gi">+        get "steps/1" =&gt; "registrations#step1", :as =&gt; :step1
++        patch "steps/1/update" =&gt; "registrations#step1_update", :as =&gt; :update_step1
+</span>         get "steps/2" =&gt; "registrations#step2", :as =&gt; :step2
+         patch "steps/2/update" =&gt; "registrations#step2_update", :as =&gt; :update_step2
+         get "steps/3" =&gt; "registrations#step3", :as =&gt; :step3
+         patch "steps/3/update" =&gt; "registrations#step3_update", :as =&gt; :update_step3
+       end
+     end
+   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;div class="form-group"&gt;
+<span class="gi">+    &lt;%= link_to "Previous", step1_event_registration_path(@event, @registration), :class =&gt; "btn btn-default" %&gt;
+</span>     &lt;%= f.submit "Save &amp; Next", :class =&gt; "btn btn-primary" %&gt;
+   &lt;/div&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这里就很不一样了，当初新增时的第一步是 <code>new_event_registration_path</code>，而不是这里写的 <code>step1_event_registration_path</code>。这是因为如果已经开始编辑了，那么「回头编辑时」的第一步跟「新增当时」的第一步，虽然表单长得一样，但是其实是不同页面，操作也不一样，前者是更新资料(update_step1 action)，后者新建资料(create action)。</p>
+
+<p>接着让我们新增「回头编辑时」的第一步动作，请编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def step1
++    @registration = @event.registrations.find_by_uuid(params[:id])
++  end
++
++  def step1_update
++    @registration = @event.registrations.find_by_uuid(params[:id])
++
++    if @registration.update(registration_params)
++      redirect_to step2_event_registration_path(@event, @registration)
++    else
++      render "step1"
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/registrations/step1.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step1.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+&lt;h2&gt;Step 1&lt;/h2&gt;
+
+&lt;%= form_for [@event, @registration], :url =&gt; update_step1_event_registration_path(@event, @registration) do |f| %&gt;
+
+  &lt;%= render :partial =&gt; "step1_form", :locals =&gt; { :f =&gt; f } %&gt;
+
+&lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>因为 <code>new.html.erb</code> 和 <code>step1.html.erb</code> 的表单是一模一样的，所以让我们拆出来 partial 样板：</p>
+
+<p>新增 <code>app/views/registrations/_step1_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/_step1_form.html.erb
+</span></figcaption><div class="highlight"><pre>&lt;div class="form-group"&gt;
+  &lt;%= f.label :ticket_id %&gt;
+  &lt;%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class =&gt; "form-control" %&gt;
+&lt;/div&gt;
+
+&lt;div class="form-group"&gt;
+  &lt;%= f.submit "Save &amp; Next", :class =&gt; "btn btn-primary" %&gt;
+&lt;/div&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/registrations/new.html.erb</code>，改用这个 partial 样板。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/new.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+   &lt;h2&gt;Step 1&lt;/h2&gt;
+
+   &lt;%= form_for [@event, Registration.new] do |f| %&gt;
+
+<span class="gd">-    &lt;div class="form-group"&gt;
+-      &lt;%= f.label :ticket_id %&gt;
+-      &lt;%= f.select :ticket_id, @event.tickets.map{ |t| [t.name, t.id] }, {}, :class =&gt; "form-control" %&gt;
+-    &lt;/div&gt;
+</span>
+<span class="gd">-    &lt;div class="form-group"&gt;
+-      &lt;%= f.submit "Save and Next", :class =&gt; "btn btn-primary" %&gt;
+-    &lt;/div&gt;
+</span>
+<span class="gi">+    &lt;%= render :partial =&gt; "step1_form", :locals =&gt; { :f =&gt; f } %&gt;
+</span>   &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/C8EaXqIERKOtVh9ph1lS_16-8.png" title=""></figure></p>
+
+<p>你可以试试看这个上一步的功能了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      16-8 有条件的表单验证
+    </h1><h4>所属章节：16. 多步骤表单</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来加上一些资料验证好了，编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  validates_presence_of :name, :email, :cellphone, :bio
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>乍看之下没有问题，但是你会发现我们连第一步都做不下去。因为第一步的表单只有选票种，而没有其他资料。这样存储时验证会失败。</p>
+
+<p>怎么办呢？Rails 可以根据条件来做表单验证，叫做 Conditional Validations。我们需要根据用户实际在做哪一步，来决定要启用哪些验证。</p>
+
+<p>再次编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-  validates_presence_of :name, :email, :cellphone, :bio
+</span>
+<span class="gi">+  attr_accessor :current_step
++  validates_presence_of :name, :email, :cellphone, :if =&gt; :should_validate_basic_data?
++  validates_presence_of :name, :email, :cellphone, :bio, :if =&gt; :should_validate_all_data?
+</span>
+  # 略
+
+   protected
+
+<span class="gi">+  def should_validate_basic_data?
++    current_step == 2  # 只有做到第二步需要验证
++  end
++
++  def should_validate_all_data?
++    current_step == 3 || status == "confirmed"  # 做到第三步，或最后状态是 confirmed 时需要验证
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>解说：</p>
+
+<ul>
+<li>
+<code>:if</code> 这个参数可以设定调用那一个方法来决定要不要启用这个验证，回传 true 就是要，回传 false 就是不要</li>
+<li>透过 <code>attr_accessor :current_step</code> 我们增加一个虚拟属性(也就是数据库中并没有这个字段)来代表目前做到哪一步</li>
+</ul>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def create
+     @registration = @event.registrations.new(registration_params)
+     @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
+     @registration.status = "pending"
+     @registration.user = current_user
+<span class="gi">+    @registration.current_step = 1
+</span>
+   # 略
+
+   def step1_update
+     @registration = @event.registrations.find_by_uuid(params[:id])
+<span class="gi">+    @registration.current_step = 1
+</span>
+   # 略
+
+   def step2_update
+     @registration = @event.registrations.find_by_uuid(params[:id])
+<span class="gi">+    @registration.current_step = 2
+</span>
+   # 略
+
+   def step3_update
+     @registration = @event.registrations.find_by_uuid(params[:id])
+     @registration.status = "confirmed"
+<span class="gi">+    @registration.current_step = 3
+</span>
+<span class="err">   # 略
+</span></pre></div>
+</figure>
+
+<p>我们在每次调用 <code>save</code> 存进数据库前，设定一下 <code>current_step</code> 的值，这样就可以有条件的触发对应的资料验证了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17-1 显示资料验证的错误讯息
+    </h1><h4>所属章节：17. 显示资料验证错误讯息</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一章实作的报名的表单，如果资料验证没有通过的话，目前没有显示任何错误讯息，让我们补上错误讯息。</p>
+
+<p>编辑 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h2&gt;Step 2&lt;/h2&gt;
+
+<span class="gi">+  &lt;% if @registration.errors.any? %&gt;
++    &lt;ul&gt;
++    &lt;% @registration.errors.full_messages.each do |error| %&gt;
++      &lt;li&gt;&lt;%= error %&gt;&lt;/li&gt;
++    &lt;% end %&gt;
++    &lt;/ul&gt;
+</span><span class="err">+  &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/registrations/step3.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step3.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h2&gt;Step 3&lt;/h2&gt;
+
+<span class="gi">+  &lt;% if @registration.errors.any? %&gt;
++    &lt;ul&gt;
++    &lt;% @registration.errors.full_messages.each do |error| %&gt;
++      &lt;li&gt;&lt;%= error %&gt;&lt;/li&gt;
++    &lt;% end %&gt;
++    &lt;/ul&gt;
+</span><span class="err">+  &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/euQ9ojlaS2aXxfSTsX6f_16-9.png" title=""></figure></p>
+
+<p>不过，这样的 UI 只是用起来简单，但是对用户并不是很友善，因为眼睛需要上上下下跑，才能找到底出错的字段是哪一个。</p>
+
+<p>因此目前公认推荐比较好 UI 作法，是将错误讯息放在输入框旁边...</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17-2 内联式(inline)错误讯息
+    </h1><h4>所属章节：17. 显示资料验证错误讯息</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>像这样直接把字段的错误讯息，显示在输入框旁边，就非常一目了然了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Dup1NC6Tmmr5K9WCbTzV_16-10.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">- &lt;% if @registration.errors.any? %&gt;
+-   &lt;ul&gt;
+-   &lt;% @registration.errors.full_messages.each do |error| %&gt;
+-     &lt;li&gt;&lt;%= error %&gt;&lt;/li&gt;
+-   &lt;% end %&gt;
+-   &lt;/ul&gt;
+- &lt;% end %&gt;
+</span>
+  &lt;%= form_for @registration, :url =&gt; update_step2_event_registration_path(@event, @registration) do |f| %&gt;
+<span class="gd">-   &lt;div class="form-group"&gt;
+</span><span class="gi">+   &lt;div class="form-group &lt;%= (f.object.errors[:name].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gd">-     &lt;%= f.label :name %&gt;
+</span><span class="gi">+     &lt;%= f.label :name, "姓名", :class =&gt; "control-label" %&gt;
+</span>      &lt;%= f.text_field :name, :class =&gt; "form-control" %&gt;
+
+<span class="gi">+     &lt;% if f.object.errors[:name] %&gt;
++       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:name], "、") %&gt;&lt;/span&gt;
++     &lt;% end %&gt;
+</span>    &lt;/div&gt;
+
+<span class="gd">-   &lt;div class="form-group"&gt;
+</span><span class="gi">+   &lt;div class="form-group &lt;%= (f.object.errors[:email].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gd">-     &lt;%= f.label :email %&gt;
+</span><span class="gi">+     &lt;%= f.label :email, "E-mail", :class =&gt; "control-label" %&gt;
+</span>      &lt;%= f.email_field :email, :class =&gt; "form-control" %&gt;
+
+<span class="gi">+     &lt;% if f.object.errors[:email] %&gt;
++       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:email], "、") %&gt;&lt;/span&gt;
++     &lt;% end %&gt;
+</span>    &lt;/div&gt;
+
+<span class="gd">-   &lt;div class="form-group"&gt;
+</span><span class="gi">+   &lt;div class="form-group &lt;%= (f.object.errors[:cellphone].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gd">-     &lt;%= f.label :cellphone %&gt;
+</span><span class="gi">+     &lt;%= f.label :cellphone, "电话", :class =&gt; "control-label" %&gt;
+</span>      &lt;%= f.text_field :cellphone, :class =&gt; "form-control" %&gt;
+
+<span class="gi">+     &lt;% if f.object.errors[:cellphone] %&gt;
++       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:cellphone], "、") %&gt;&lt;/span&gt;
++     &lt;% end %&gt;
+</span><span class="err">    &lt;/div&gt;
+</span></pre></div>
+</figure>
+
+<p>解说：</p>
+
+<ul>
+<li>
+<code>f.object</code> 指的是这个 <code>form_for</code> 表单的 model 物件，也就是 <code>@registration</code>
+</li>
+<li>
+<code>f.object.errors[字段名称]</code> 是个数组储存了这个字段的错误讯息</li>
+<li>
+<code>has-error</code> 和 <code>help-block</code> 是 Bootstrap 提供的样式，这里配合使用。</li>
+</ul>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17-3 自订义资料验证的错误显示
+    </h1><h4>所属章节：17. 显示资料验证错误讯息</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>内联式(inline)错误讯息有个小问题，就是有些错误不属于表单上的某个输入字段。例如我们来自定义一个资料验证：如果活动的状态是 draft 草稿，则不允许新增报名。</p>
+
+<p>编辑 <code>app/models/registration.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  validate :check_event_status, :on =&gt; :create
+</span>
+   # (略)
+
+   protected
+
+<span class="gi">+  def check_event_status
++    if self.event.status == "draft"
++      errors.add(:base, "活动尚未开放报名")
++    end
++  end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>解说：</p>
+
+<ul>
+<li>
+<code>validate</code> 可以增加自定义的资料验证，后面的 <code>:on =&gt; :create</code> 参数可以指定只有新建才会验证(默认是新建跟修改都会验证)</li>
+<li>验证不通过时，会用<code>errors.add</code> 增加错误讯息，第一个参数是字段名称，第二个参数是错误讯息</li>
+<li>因为表单上并没有 <code>event_id</code> 这个输入框，所以就算写成 <code>errors.add(:event_id, "活动尚未开放报名")</code> 也没有地方显示出来。依照惯例，任何不属于某个字段的错误，我们会放在 <code>:base</code> 上。</li>
+</ul>
+
+<p>那怎么把显示 <code>errors[:base]</code> 显示出来？有两种方法：</p>
+<h4>方法一：同 17-1 的作法</h4>
+<p>透过循环 <code>@registration.errors[:base]</code> 把错误讯息印出来，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;% if @registration.errors[:base].any? %&gt;
+  &lt;ul&gt;
+  &lt;% @registration.errors[:base].each do |error| %&gt;
+    &lt;li&gt;&lt;%= error %&gt;&lt;/li&gt;
+  &lt;% end %&gt;
+  &lt;/ul&gt;
+&lt;% end %&gt;
+</pre></div>
+</figure>
+<h4>方法二：用 flash</h4>
+<p>flash 一般用在 redirect 跳转页面前后，用来传递提示讯息。这里也可以沿用 flash 的样式来显示资料验证的错误。</p>
+
+<p>编辑 <code>app/controllers/registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>  def create
+    @registration = @event.registrations.new(registration_params)
+    @registration.ticket = @event.tickets.find( params[:registration][:ticket_id] )
+    @registration.status = "pending"
+    @registration.user = current_user
+    @registration.current_step = 1
+
+    if @registration.save
+      redirect_to step2_event_registration_path(@event, @registration)
+    else
+<span class="gi">+     flash.now[:alert] = @registration.errors[:base].join("、")
+</span>      render "new"
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>本来的 <code>flash</code> 搭配的是 <code>redirect</code>，这会在跳转后清空 flash 讯息(所以只会显示一次)。<br>
+这里因为并不是 <code>redirect</code> 跳转，而是用 <code>render</code> 显示页面，这种情况要改用 <code>flash.now</code>。</p>
+
+<blockquote>
+<p>有研究精神的话，你可以试试看在这里用 <code>flash[:alert]</code>，你会发现出现错误讯息之后，再点一次其他页面，错误讯息还会多重复出现一次。</p>
+</blockquote>
+
+<p>另外，顺便修理一下目前的 flash 样式以配合 Bootstrap。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layout/application.html.erb
+</span></figcaption><div class="highlight"><pre><span class="o">-</span>  <span class="o">&lt;</span><span class="nb">p</span> <span class="k">class</span><span class="o">=</span><span class="s2">"notice"</span><span class="o">&gt;&lt;</span><span class="sx">%= notice %&gt;&lt;/p&gt;
++  &lt;% if notice %&gt;
++    &lt;p class=</span><span class="s2">"notice alert-success"</span><span class="o">&gt;&lt;</span><span class="sx">%= notice %&gt;&lt;/p&gt;
++  &lt;% end %&gt;
+
+-  &lt;p class=</span><span class="s2">"alert"</span><span class="o">&gt;&lt;</span><span class="sx">%= alert %&gt;&lt;/p&gt;
++  &lt;% if alert %&gt;
++    &lt;p class=</span><span class="s2">"alert alert-danger"</span><span class="o">&gt;&lt;</span><span class="sx">%= alert %&gt;&lt;/p&gt;
++  &lt;% end %&gt;
+
+</span></pre></div>
+</figure>
+
+<p>请挑一个状态是 draft 的活动，然后新增报名就会看到以下错误了。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DnVkBZVOQsaCtAVyIgeS_16-11.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17-4 HTML5 前端资料验证
+    </h1><h4>所属章节：17. 显示资料验证错误讯息</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>不过无论是 17-1 或 17-2 的作法，都是属于服务器端(server-side)的验证，这种方式的优缺点是：</p>
+
+<ul>
+<li>优点：保证资料会被验证后，才会存进数据库</li>
+<li>缺点：用户一定要按下送出，资料经过服务器验证，才会看到错误讯息，因此反应速度比较慢</li>
+</ul>
+
+<p>但有些简单的验证，前端就可以做了，例如检查必填，这种事情根本不需要后端做，在前端就可以办到了。</p>
+
+<p>在 HTML5 就有定义了一些常见的验证方式，让我们加上去：</p>
+
+<p>编辑 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-    &lt;%= f.text_field :name, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+    &lt;%= f.text_field :name, :class =&gt; "form-control", :required =&gt; true, :autofocus =&gt; true %&gt;
+</span>
+     # (略)
+
+<span class="gd">-    &lt;%= f.email_field :email, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+    &lt;%= f.email_field :email, :class =&gt; "form-control", :required =&gt; true %&gt;
+</span>
+     # (略)
+
+<span class="gd">-    &lt;%= f.text_field :cellphone, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+    &lt;%= f.text_field :cellphone, :class =&gt; "form-control", :required =&gt; true %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>透过 <code>required</code> 就可以让浏览器做必填的资料验证了，按下送出会看到以下画面。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Mn2s0ZreSw6X7X464u5t_16-12.png" title=""></figure></p>
+
+<p>实际产生出来的 HTML 源码是这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9T3wJMq4QEOa9cCFu37I_16-13.png" title=""></figure></p>
+
+<p>透过 <code>input</code> 的 <code>required="required"</code> 属性，浏览器就会检查必填了，这个错误讯息的样式是浏览器自带的。</p>
+
+<blockquote>
+<p>Protip: <code>:autofocus =&gt; true</code> 可以在进到这一页时，自动将光标锁定在这一个输入框，这样用户就可以马上<del>入坑</del>开始填写。一个页面只能有一个输入框用 autofocus。</p>
+</blockquote>
+
+<p>另外 Email 这个输入框，我们也不是用 <code>f.text_field :email</code>，而是用 <code>f.email_field :email</code>，这是 HTML5 新的输入类型：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/P26Y3bSKTpmu8CUzHOzY_16-15.png" title=""></figure></p>
+
+<p>外观看起来跟一般文字输入框一模一样，但会让浏览器检查 E-mail 格式：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kDQNlAuXRGKySsnl9t85_16-14.png" title=""></figure></p>
+
+<p>最后，第三步表单的 Website 字段，注意到我们是用 <code>f.url_field :website</code> 而不是 <code>f.text_field :website</code>，这会让浏览器检查输入的文字必须是网址格式。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      17-5 前端套件资料验证
+    </h1><h4>所属章节：17. 显示资料验证错误讯息</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上述的 HTML5 验证是浏览器内建的，如果想要更漂亮的特效，我们可以考虑安装其他前端的套件，参考 <a href="https://www.sitepoint.com/10-jquery-form-validation-plugins/">10 jQuery Form Validation Plugins</a> 我们挑一套 <a href="http://1000hz.github.io/bootstrap-validator/">Bootstrap Validator</a> 来试试看。</p>
+
+<p>这个前端套件没有包好的 Gem 可以安装，请手动下载 <a href="https://raw.githubusercontent.com/1000hz/bootstrap-validator/master/dist/validator.min.js">validator.min.js</a> 这个 javascript 档案，放在 <code>vendor/assets/javascripts/</code> 目录下。</p>
+
+<p>然后修改 <code>app/assets/javascripts/application.js</code> 加载它</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre><span class="gi">+  //= require validator.min
+</span><span class="err">   //= require_tree .
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/registrations/step2.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step2.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;h2&gt;Step 2&lt;/h2&gt;
+
+<span class="gi">+ &lt;% if @registration.errors.any? %&gt;
++   &lt;ul&gt;
++   &lt;% @registration.errors.full_messages.each do |error| %&gt;
++     &lt;li&gt;&lt;%= error %&gt;&lt;/li&gt;
++   &lt;% end %&gt;
++   &lt;/ul&gt;
++ &lt;% end %&gt;
+</span>
+  &lt;%= form_for @registration, :url =&gt; update_step2_event_registration_path(@event, @registration) do |f| %&gt;
+
+<span class="gd">-   &lt;div class="form-group &lt;%= (f.object.errors[:name].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gi">+   &lt;div class="form-group"&gt;
+</span>      &lt;%= f.label :name, "姓名", :class =&gt; "control-label" %&gt;
+      &lt;%= f.text_field :name, :class =&gt; "form-control", :required =&gt; true, :autofocus =&gt; true %&gt;
+
+<span class="gd">-     &lt;% if f.object.errors[:name] %&gt;
+-       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:name], "、") %&gt;&lt;/span&gt;
+-     &lt;% end %&gt;
+</span><span class="gi">+     &lt;div class="help-block with-errors"&gt;&lt;/div&gt;
+</span>    &lt;/div&gt;
+
+<span class="gd">-   &lt;div class="form-group &lt;%= (f.object.errors[:email].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gi">+   &lt;div class="form-group"&gt;
+</span>      &lt;%= f.label :email, "E-mail", :class =&gt; "control-label" %&gt;
+      &lt;%= f.email_field :email, :class =&gt; "form-control", :required =&gt; true %&gt;
+
+<span class="gd">-     &lt;% if f.object.errors[:email] %&gt;
+-       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:email], "、") %&gt;&lt;/span&gt;
+-     &lt;% end %&gt;
+</span><span class="gi">+     &lt;div class="help-block with-errors"&gt;&lt;/div&gt;
+</span>    &lt;/div&gt;
+
+<span class="gd">-   &lt;div class="form-group &lt;%= (f.object.errors[:cellphone].any?)? "has-error" : "" %&gt;"&gt;
+</span><span class="gi">+   &lt;div class="form-group"&gt;
+</span>      &lt;%= f.label :cellphone, "电话", :class =&gt; "control-label" %&gt;
+     &lt;%= f.text_field :cellphone, :class =&gt; "form-control", :required =&gt; true %&gt;
+
+<span class="gd">-     &lt;% if f.object.errors[:cellphone] %&gt;
+-       &lt;span class="help-block"&gt;&lt;%= safe_join(f.object.errors[:cellphone], "、") %&gt;&lt;/span&gt;
+-     &lt;% end %&gt;
+</span><span class="gi">+     &lt;div class="help-block with-errors"&gt;&lt;/div&gt;
+</span>    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+      &lt;%= link_to "Previous", step1_event_registration_path(@event, @registration), :class =&gt; "btn btn-default" %&gt;
+      &lt;%= f.submit "Save &amp; Next", :class =&gt; "btn btn-primary" %&gt;
+    &lt;/div&gt;
+
+  &lt;% end %&gt;
+
+<span class="gi">+ &lt;script&gt;
++   $("form").validator();
++ &lt;/script&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>以下是最后成果，这个前端套件的作法更为精致，它会编辑完一个输入框就验证一次，而不是最后按送出才验证。反应速度非常好。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5y4GXq4ySl2rGnKnmtQt_16-16.png" title=""></figure></p>
+
+<p>解说：</p>
+
+<ul>
+<li>因为内联式(inline)错误讯息改成用前端套件来处理，因此这里拆掉 17-2 做的。</li>
+<li>前端验证是不可靠的，用户只要关闭浏览器的 JavaScript 就可以跳过前端验证。以防万一，我们还是把传统的错误讯息方式加回来，如果前端验证失效时，至少还可以看到错误讯息。</li>
+</ul>
+
+<p>剩下 Step 3，请编辑 <code>app/views/registrations/step3.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/registrations/step3.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;div class="form-group"&gt;
+     &lt;%= f.label :website %&gt;
+     &lt;%= f.url_field :website, :class =&gt; "form-control" %&gt;
+
+<span class="gi">+    &lt;div class="help-block with-errors"&gt;&lt;/div&gt;
+</span>   &lt;/div&gt;
+
+   &lt;div class="form-group"&gt;
+     &lt;%= f.label :bio %&gt;
+<span class="gd">-    &lt;%= f.text_area :bio, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+    &lt;%= f.text_area :bio, :class =&gt; "form-control", :required =&gt; true %&gt;
+</span>
+     &lt;div class="help-block with-errors"&gt;&lt;/div&gt;
+   &lt;/div&gt;
+
+  # (略)
+
+  &lt;script&gt;
+    $("form").validator();
+  &lt;/script&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-1 制作后台管理报名资料
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来制作报名资料的后台管理页面。</p>
+
+<p>编辑 <code>config/routes.rb</code>，增加后台用的 registrations 路由：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>   namespace :admin do
+     root "events#index"
+     resources :events do
+<span class="gi">+      resources :registrations, :controller =&gt; "event_registrations"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/admin/events/index.html.erb</code>，加上一个连结可以前往 registration index 页面。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+      &lt;%= link_to "Registrations", admin_event_registrations_path(event), :class =&gt; "btn btn-default" %&gt;
+</span>       &lt;%= link_to "Tickets", admin_event_tickets_path(event), :class =&gt; "btn btn-default" %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/TpsBcIDfRIKe9YT0WlwO_18-1.png" title=""></figure></p>
+
+<p>执行 <code>rails g controller admin::event_registrations</code></p>
+
+<p>编辑 <code>app/controllers/admin/event_registrations_controller.rb</code>，新增 index 和 destroy action</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-   class Admin::EventRegistrationsController &lt; ApplicationController
+</span><span class="gi">+   class Admin::EventRegistrationsController &lt; AdminController
+</span>
+<span class="gi">+   before_action :find_event
++
++   def index
++     @registrations = @event.registrations.includes(:ticket).order("id DESC")
++   end
++
++   def destroy
++     @registration = @event.registrations.find_by_uuid(params[:id])
++     @registration.destroy
++
++     redirect_to admin_event_registrations_path(@event)
++   end
++
++   protected
++
++   def find_event
++     @event = Event.find_by_friendly_id!(params[:event_id])
++   end
++
++   def registration_params
++     params.require(:registration).permit(:status, :ticket_id, :name, :email, :cellphone, :website, :bio)
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>新增 <code>app/views/admin/event_registrations/index.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span><span class="err">&lt;</span>%= @event.name %&gt; / Registrations<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-right"</span><span class="nt">&gt;</span>
+<span class="err">&lt;</span>%= link_to "New Registration", new_admin_event_registration_path(@event), :class =&gt; "btn btn-primary" %&gt;
+<span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;tr&gt;</span>
+  <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Ticket<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Status<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>E-mail<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>建立时间<span class="nt">&lt;/th&gt;</span>
+  <span class="nt">&lt;th&gt;</span>Actions<span class="nt">&lt;/th&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+<span class="err">&lt;</span>% @registrations.each do |registration| %&gt;
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= registration.id %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= registration.ticket.name %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= registration.name %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= t( registration.status, :scope =&gt; "registration.status") %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= registration.email %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span><span class="err">&lt;</span>%= registration.created_at %&gt;<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>
+      <span class="err">&lt;</span>%= link_to "Edit", edit_admin_event_registration_path(@event, registration), :class =&gt; "btn btn-default" %&gt;
+      <span class="err">&lt;</span>%= link_to "Delete", admin_event_registration_path(@event, registration), :method =&gt; "delete", :data =&gt; { :confirm =&gt; "Are you sure?" }, :class =&gt; "btn btn-danger" %&gt;
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="err">&lt;</span>% end %&gt;
+<span class="nt">&lt;/table&gt;</span>
+</pre></div>
+</figure>
+
+<blockquote>
+<p>这里就不练习做新增和编辑了，你应该做了100遍了。</p>
+</blockquote>
+
+<p>没有资料不好玩，让我们新增一些假资料。请编辑 <code>lib/tasks/dev.rake</code> 新增一个任务</p>
+
+<figure class="figure-code code"><figcaption><span>lib/tasks/dev.rake
+</span></figcaption><div class="highlight"><pre>  namespace :dev do
+
+<span class="gi">+   task :fake_event_and_registrations =&gt; :environment do
++     event = Event.create!( :status =&gt; "public", :name =&gt; "全栈营 Meetup", :friendly_id =&gt; "fullstack-meetup")
++     t1 = event.tickets.create!( :name =&gt; "Guest", :price =&gt; 0)
++     t2 = event.tickets.create!( :name =&gt; "VIP 第一期", :price =&gt; 199)
++     t3 = event.tickets.create!( :name =&gt; "VIP 第二期", :price =&gt; 199)
++
++     1000.times do |i|
++       event.registrations.create!( :status =&gt; ["pending", "confirmed"].sample,
++                                    :ticket =&gt; [t1,t2,t3].sample,
++                                    :name =&gt; Faker::Cat.name, :email =&gt; Faker::Internet.email,
++                                    :cellphone =&gt; "12345678", :bio =&gt; Faker::Lorem.paragraph,
++                                    :created_at =&gt; Time.now - rand(10).days - rand(24).hours )
++     end
++
++     puts "Let's visit http://localhost:3000/admin/events/fullstack-meetup/registrations"
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake dev:fake_event_and_registrations</code>，就会新建一个活动，会有三种票和随机产生1000位报名人。</p>
+
+<p>浏览 <code>http://localhost:3000/admin/events/fullstack-meetup/registrations</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/qnwMfSqq2QjrSc8WogtE_18-2.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-2 分页机制
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>回想看看为什么要做分页呢？让我们想想看：</p>
+
+<ul>
+<li>数据库的资料会存在硬盘上，当我们用 Ruby 程序从数据库读出来时，就会放在内存，内存的读取速度比硬盘快非常非常多。所有正在执行的程序，都会放到内存。内存是有限的，例如大家的 Macbook 可能有 8G，但是硬盘空间很大，例如 (SSD)可能有 256G，传统(磁盘式)硬盘的话现在已经发展到 1T、2T 以上，如果把硬盘的数据都读出来放到内存上，不但放不下也很浪费。</li>
+<li>用户下载所有资料需要传输时间，浏览器加载也需要时间，如果资料很多，就会花很久时间才能看到画面。</li>
+</ul>
+
+<p>因此，如果资料量多达数万笔时，就一定要制作分页的功能，避免调用 <code>.all</code> 方法。</p>
+
+<p>我们已经教过用 <a href="https://github.com/mislav/will_paginate">will_paginate</a> gem 来做分页功能，这里示范用另一套也是非常热门的分页套件 <a href="https://github.com/kaminari/kaminari">kaminari</a>，两者大同小异。可依照<del>个人</del>公司偏好选择。</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'kaminari'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器。</p>
+
+<p>执行 <code>rails g kaminari:views bootstrap3</code>，这会产生搭配 Bootstrap 样式的样板</p>
+
+<p>编辑 <code>app/controllers/admin/event_registrations_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @registrations = @event.registrations.includes(:ticket).order("id DESC")
+</span><span class="gi">+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>要指定一页有多少笔的话，使用 <code>per</code> 方法，例如 <code>@event.registrations.includes(:ticket).order("id DESC").page(params[:page]).per(10)</code></p>
+</blockquote>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，在最下方放上分页的超连结。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;/table&gt;
+
+<span class="err">+  &lt;%= paginate @registrations %&gt;
+</span></pre></div>
+</figure>
+
+<p>最后结果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/pXpNPJ3SaewzmqO44LGk_18-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-3 筛选资料(单选)
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：可以点选状态或票种(单选)来筛选出报名人资料</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/sok6CT6sScmADqu0EqLe_18-4.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，加上两组 Bootstrap 样式的按钮：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;h1&gt;&lt;%= @event.name %&gt; / Registrations&lt;/h1&gt;
+
+  &lt;p class="text-right"&gt;
+  &lt;%= link_to "New Registration", new_admin_event_registration_path(@event), :class =&gt; "btn btn-primary" %&gt;
+  &lt;/p&gt;
+
+<span class="gi">+  &lt;div class="submenu"&gt;
++    &lt;div class="btn-group"&gt;
++      &lt;%= link_to "全部 (#{@event.registrations.size})", admin_event_registrations_path(registration_filters(:status =&gt;   nil)), :class =&gt; "btn btn-success btn-group #{(params[:status].blank?) ? "active" : ""}" %&gt;
++      &lt;% Registration::STATUS.each do |s| %&gt;
++        &lt;%= link_to t(s, :scope =&gt; "registration.status") + " (#{@event.registrations.by_status(s).size})",   admin_event_registrations_path(registration_filters(:status =&gt; s)), :class =&gt; "btn btn-success btn-group #{(  params[:status] == s) ? "active" : ""}" %&gt;
++        &lt;% end %&gt;
++    &lt;/div&gt;
++
++    &lt;div class="btn-group"&gt;
++      &lt;%= link_to "全部 (#{@event.registrations.size})", admin_event_registrations_path(registration_filters(:ticket_id =&gt;   nil)), :class =&gt; "btn btn-default btn-group #{(params[:ticket_id].blank?) ? "active" : ""}" %&gt;
++      &lt;% @event.tickets.each do |t| %&gt;
++        &lt;%= link_to t.name + " (#{@event.registrations.by_ticket(t).size})", admin_event_registrations_path(  registration_filters(:ticket_id =&gt; t.id)), :class =&gt; "btn btn-default btn-group #{(params[:ticket_id].to_i == t.id)   ? "active" : ""}" %&gt;
++      &lt;% end %&gt;
++    &lt;/div&gt;
++  &lt;/div&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/helpers/admin/event_registrations_helper.rb</code>，新增 <code>registration_filters</code> 方法</p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/admin/event_registrations_helper.rb
+</span></figcaption><div class="highlight"><pre>   module Admin::EventRegistrationsHelper
+<span class="gi">+
++   def registration_filters(options)
++     params.permit(:status, :ticket_id).merge(options)
++   end
++
+</span><span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>这个 <code>registration_filters</code> 方法的目的，在于建构按钮超连结的参数。当点了状态再点票种，或是点了票种再点状态时，要同时套用两个参数。</p>
+
+<p>修改 <code>app/models/registration.rb</code> 加上两个 scope</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/registration.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  scope :by_status, -&gt;(s){ where( :status =&gt; s ) }
++  scope :by_ticket, -&gt;(t){ where( :ticket_id =&gt; t ) }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/admin/event_registrations_controller.rb</code>，如果有传参数进来，则进行筛选：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+
+<span class="gi">+   if params[:status].present? &amp;&amp; Registration::STATUS.include?(params[:status])
++     @registrations = @registrations.by_status(params[:status])
++   end
+</span>
+<span class="gi">+   if params[:ticket_id].present?
++     @registrations = @registrations.by_ticket(params[:ticket_id])
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>scope 的作用是将常用的查询条件宣告起来，方便重复使用</p>
+</blockquote>
+
+<p>修改 <code>app/assets/stylesheets/admin.scss</code>，调整一下间距。</p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/stylesheets/admin.scss
+</span></figcaption><div class="highlight"><pre><span class="gi">+ .submenu {
++   margin-bottom: 10px;
++ }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-4 筛选资料(多选)
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：可以用核选方块(多选)状态和票种，来筛选出报名人资料</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FzTn62HlT02YpVnOHp04_18-5.png" title=""></figure></p>
+
+<blockquote>
+<p>实务上，单选和多选的作法不太会混用，所以这里会注解掉上一节的单选接口让画面清楚一点。</p>
+</blockquote>
+
+<p>再次编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，加上核选方块的表单，以及一个送出筛选的按钮：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;% if false %&gt;
+</span>   &lt;div class="submenu"&gt;
+     # 略
+   &lt;/div&gt;
+<span class="gi">+  &lt;% end %&gt;
+</span>
+<span class="gi">+ &lt;%= form_tag admin_event_registrations_path(@event), :method =&gt; :get do %&gt;
++
++   &lt;p&gt;&lt;% Registration::STATUS.each do |s| %&gt;
++     &lt;label&gt;&lt;%= check_box_tag "statuses[]", s, Array(params[:statuses]).include?(s) %&gt; &lt;%= t(s, :scope =&gt; + "registration.status") %&gt; (&lt;%= @event.registrations.by_status(s).size %&gt;)&lt;/label&gt;
++   &lt;% end %&gt;&lt;/p&gt;
++
++   &lt;p&gt;&lt;% @event.tickets.each do |t| %&gt;
++     &lt;label&gt;&lt;%= check_box_tag "ticket_ids[]", t.id, Array(params[:ticket_ids]).include?(t.id.to_s) %&gt; &lt;%= t.name %&gt; (&lt;%= + @event.registrations.where( :ticket_id =&gt; t.id ).size %&gt;)&lt;/label&gt;
++   &lt;% end %&gt;&lt;/p&gt;
++
++   &lt;p class="text-right"&gt;
++     &lt;%= submit_tag "送出筛选", :class =&gt; "btn btn-primary" %&gt;
++   &lt;/p&gt;
++ &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>Protip: 样板中如果有大范围暂时需要注解，可以用 <code>&lt;% if false %&gt;</code> .... <code>&lt;% end %&gt;</code> 包起来。</p>
+</blockquote>
+
+<p>修改 <code>app/controllers/admin/event_registrations_controller.rb</code>，如果有传参数进来，则进行筛选：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+
+<span class="gi">+   if Array(params[:statuses]).any?
++     @registrations = @registrations.by_status(params[:statuses])
++   end
+</span>
+<span class="gi">+   if Array(params[:ticket_ids]).any?
++     @registrations = @registrations.by_ticket(params[:ticket_ids])
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-5 时间区间筛选
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：可以输入报名日期区间来筛选出报名人资料</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bQ70K7vmQXe0SUA27c8Q_18-6.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，加上日期输入框：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;p&gt;
++    报名日期：&lt;%= date_field_tag :start_on, params[:start_on] %&gt;～&lt;%= date_field_tag :end_on, params[:end_on] %&gt;
++  &lt;/p&gt;
+</span>
+  &lt;p class="text-right"&gt;
+    &lt;%= submit_tag "送出筛选", :class =&gt; "btn btn-primary" %&gt;
+  &lt;/p&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/admin/event_registrations_controller.rb</code>，如果有传参数进来，则进行筛选：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+
+<span class="gi">+   if params[:start_on].present?
++     @registrations = @registrations.where( "created_at &gt;= ?", Date.parse(params[:start_on]).beginning_of_day )
++   end
+</span>
+<span class="gi">+   if params[:end_on].present?
++     @registrations = @registrations.where( "created_at &lt;= ?", Date.parse(params[:end_on]).end_of_day )
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>输入的是日期，但是数据库中存的是 UTC 时间，因此这里需要调用 <code>beginning_of_day</code> 和 <code>end_of_day</code> 才会转换成正确的时间。例如北京时区的 2017/4/30 这一天，对数据库中存 UTC 时间的字段来说，正确的区间是 2017-04-30 16:00:00 UTC 到 2017-05-01 15:59:59 UTC。</p>
+</blockquote>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-6 资料比对筛选
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：可以输入报名编号搜寻报名人资料</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Dn4ij3ZIT9WwlQwuQCYO_18-7.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/W4EVfeFFSzuCH0fpgkIM_18-8.png" title=""></figure></p>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，加上文字输入框：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre>
+  &lt;%= form_tag admin_event_registrations_path(@event), :method =&gt; :get do %&gt;
+<span class="gi">+   &lt;p&gt;&lt;%= text_field_tag :registration_id, params[:registration_id], :placeholder =&gt; "报名编号，可用,号区隔", :class =&gt; "form-control" %&gt;&lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/admin/event_registrations_controller.rb</code>，如果有传参数进来，则进行筛选：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+
+<span class="gi">+   if params[:registration_id].present?
++     @registrations = @registrations.where( :id =&gt; params[:registration_id].split(",") )
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样又完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+       18-7 关键字搜寻，使用 Ransack
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：可以输入姓名或 Email，模糊搜寻报名人资料</p>
+
+<p>上一节的资料比对，会要完全一模一样(exact match)才会筛选出来，如果只要符合部分关键字就好，则需要用数据库的 <a href="https://www.w3schools.com/sql/sql_like.asp">LIKE 搜寻</a> 语法，这里我们使用 <a href="https://github.com/activerecord-hackery/ransack">ransack</a> gem 来帮我们达成这个功能。</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+ gem 'ransack'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>修改 <code>app/controllers/admin/event_registrations_controller.rb</code>，改成需要先调用 ransack 方法</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/event_registrations_controller.rb
+</span></figcaption><div class="highlight"><pre>   def index
+<span class="gd">-    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page])
+</span><span class="gi">+    @q = @event.registrations.ransack(params[:q])
++
+</span><span class="err">+    @registrations = @q.result.includes(:ticket).order("id DESC").page(params[:page])
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/event_registrations/index.html.erb</code>，改成 ransack 提供的 <code>search_form_for</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event_registrations/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= form_tag admin_event_registrations_path(@event), :method =&gt; :get do %&gt;
+</span><span class="gi">+  &lt;%= search_form_for @q, :url =&gt; admin_event_registrations_path(@event) do |f| %&gt;
++
++    &lt;p&gt;&lt;%= f.search_field :name_cont, :placeholder =&gt; "姓名", :class =&gt; "form-control" %&gt;&lt;/p&gt;
++    &lt;p&gt;&lt;%= f.search_field :email_cont, :placeholder =&gt; "E-mail", :class =&gt; "form-control" %&gt;&lt;/p&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 <code>search_field</code> 是 ransack 独到的方法，后面的 <code>:name_cont</code> 代表 name 这个字段要包含(contains)的关键字。详见 ransack 的文档说明，有各种用法。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9Zqzrk4MTKmihkovGTXa_18-9.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/x3e6nY8QkuVDCKEjCBxm_18-10.png" title=""></figure></p>
+
+<p>全栈营交流论坛上也有很多小夥伴写的教程可以参考，请<a href="https://forum.qzy.camp/search?q=ransack">搜索 ransack</a>。</p>
+
+<blockquote>
+<p>ransack 会用数据库的 LIKE 语法来做搜寻，虽然用起来方便，但它会逐笔检查资料是否符合，而不会使用数据库的索引。如果数据量非常多有上万笔以上，搜寻效能就会不满足我们的需要。这时候会改安装专门的全文搜寻引擎，例如 <a href="https://www.elastic.co/">Elasticsearch</a>，这是大数据等级的。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      18-8 前台的活动状态筛选
+    </h1><h4>所属章节：18. 资料筛选和搜寻</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>需求：活动的状态有分公开(public)、私密(private)和草稿(draft)：前台的活动列表页应该只显示 public 的活动、前台的活动页面不能显示状态是 draft 的活动</p>
+
+<blockquote>
+<p>私密(private)状态的意思是，在活动列表上看不到，但是如果直接分享网址的话，透过连结还是可以打开。像我们默认的活动网址是随机的 uuid，如果不是自己分享的话，是不可能猜到的。</p>
+</blockquote>
+
+<p>编辑 <code>app/models/event.rb</code>，加上两个 scope</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  scope :only_public, -&gt; { where( :status =&gt; "public" ) }
++  scope :only_available, -&gt; { where( :status =&gt; ["public", "private"] ) }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/events_controller.rb</code>，分别套用这两个 scope</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre> class EventsController &lt; ApplicationController
+
+   def index
+<span class="gd">-    @events = Event.rank(:row_order).all
+</span><span class="gi">+    @events = Event.only_public.rank(:row_order).all
+</span>   end
+
+   def show
+<span class="gd">-    @event = Event.find_by_friendly_id!(params[:id])
+</span><span class="gi">+    @event = Event.only_available.find_by_friendly_id!(params[:id])   # 如果活动是 draft 的话，经过 only_available scope 就会找不到，这就是我们的目的
+</span>   end
+
+ end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>回到前台浏览看看活动列表，只剩下有公开的活动了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      19-1 上传单张图片
+    </h1><h4>所属章节：19. 多档案上传</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章介绍上传文档，示范的情境有：</p>
+
+<ol>
+<li>Event 活动可以上传一张 Logo 图片</li>
+<li>Event 活动可以上传多张 Images 图片</li>
+<li>Events 活动可以上传多个附加文档，每个文档有各自的描述说明</li>
+</ol>
+
+<p>在 Rails 中上传和存储文档，最常见使用的 gem 是 <a href="https://github.com/carrierwaveuploader/carrierwave">carrierwave</a> 和 <a href="https://github.com/thoughtbot/paperclip">paperclip</a>，这里我们使用 carrierwave。</p>
+
+<p>接下来我来实作为 Event 活动上传一张 Logo 图片：</p>
+
+<p>编辑 Gemfile</p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'carrierwave'
++  gem "mini_magick"
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code>，重启服务器</p>
+
+<p>执行 <code>rails g migration add_logo_to_events logo:string</code>，这会产生一个 migration 内容是为 events 增加一个 logo 字段。</p>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>执行 <code>rails g uploader EventLogo</code></p>
+
+<p>编辑 <code>app/uploaders/event_logo_uploader.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>event_logo_uploader.rb
+</span></figcaption><div class="highlight"><pre>  class EventLogoUploader &lt; CarrierWave::Uploader::Base
+
+<span class="gi">+   include CarrierWave::MiniMagick
+</span>
+<span class="gi">+   version :thumb do
++     process resize_to_fit: [50, 50]
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code>，把 carrierwave 的 Uploader 挂载上去。</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+<span class="gi">+   mount_uploader :logo, EventLogoUploader
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code> 加上文档上传的输入框。如果已经有上传过了，则多显示删除的 checkbox。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  &lt;div class="form-group"&gt;
++    &lt;%= f.label :logo %&gt;
++    &lt;%= f.file_field :logo, :class =&gt; "form-control" %&gt;
++    &lt;% if f.object.logo.present? %&gt;
++      &lt;label&gt;
++        &lt;%= f.check_box :remove_logo %&gt; 删除图档
++      &lt;/label&gt;
++      &lt;%= link_to f.object.logo.filename, f.object.logo.url, :target =&gt; "_blank" %&gt;
++    &lt;% end %&gt;
++  &lt;/div&gt;
+</span>
+   &lt;div class="form-group"&gt;
+     &lt;%= f.label :description %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code> 加上 <code>:logo</code> 和 <code>:remove_logo</code> 到 event_params</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>  def event_params
+<span class="gd">-    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id, :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span><span class="gi">+    params.require(:event).permit(:name, :logo, :remove_logo, :description, :friendly_id, :status, :category_id, :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Mr4XqYL1Shm9ijTbSFDv_21-1.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/QsU4DWerSTeeduIK79As_21-2.png" title=""></figure></p>
+
+<p>编辑前台的活动页面 <code>app/views/events/show.html.erb</code>，把图片显示出来</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;% if @event.logo.present? %&gt;
++   &lt;%= link_to image_tag(@event.logo.url(:thumb)), @event.logo.url, :target =&gt; "_blank" %&gt;
++ &lt;% end %&gt;
+</span>
+  &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>最后，上传的文档不需要 git commit，所以请编辑 <code>.gitignore</code> 忽略掉 <code>public/uploads</code> 这个目录。</p>
+
+<figure class="figure-code code"><figcaption><span>.gitignore
+</span></figcaption><div class="highlight"><pre>  # Ignore Byebug command history file.
+  .byebug_history
+<span class="gi">+ /public/uploads/*
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了，请在后台上传图片，然后到前台活动页就可看到了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      19-2 上传多档
+    </h1><h4>所属章节：19. 多档案上传</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>情境：Event 活动可以上传多张 Images 图片</p>
+
+<p>执行 <code>rails g migration add_images_to_events images:string</code></p>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>执行 <code>rails g uploader EventImage</code></p>
+
+<p>编辑 <code>app/uploaders/event_image_uploader.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/uploaders/event_image_uploader.rb
+</span></figcaption><div class="highlight"><pre>  class EventImageUploader &lt; CarrierWave::Uploader::Base
+
+<span class="gi">+   include CarrierWave::MiniMagick
+</span>
+<span class="gi">+   version :small do
++     process resize_to_fit: [250, 250]
++   end
+</span>
+<span class="err">  end
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event.rb</code>，把 carrierwave 的 Uploader 挂载上去：</p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>  class Event &lt; ApplicationRecord
+    mount_uploader :logo, EventLogoUploader
+<span class="gi">+   mount_uploaders :images, EventImageUploader
++   serialize :images, JSON
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code> 加上文档上传的输入框，注意到因为要支援多档上传，多了一个 <code>:multiple =&gt; true</code> 参数。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+  &lt;div class="form-group"&gt;
++    &lt;%= f.label :images %&gt;
++    &lt;%= f.file_field :images, :multiple =&gt; true, :class =&gt; "form-control" %&gt;
++    &lt;% if f.object.images.present? %&gt;
++      &lt;label&gt;
++        &lt;%= f.check_box :remove_images %&gt; 删除图档
++      &lt;/label&gt;
++      &lt;% f.object.images.each do |i| %&gt;
++        &lt;%= link_to i.filename, i.url, :target =&gt; "_blank" %&gt;
++      &lt;% end %&gt;
++    &lt;% end %&gt;
++  &lt;/div&gt;
+</span>
+   &lt;div class="form-group"&gt;
+     &lt;%= f.label :description %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code> 加上 <code>:remove_images</code> 和 <code>:images =&gt; []</code> 到 event_params</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>  def event_params
+<span class="gd">-    params.require(:event).permit(:name, :logo, :remove_logo, :description, :friendly_id, :status, :category_id, :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span><span class="gi">+    params.require(:event).permit(:name, :logo, :remove_logo, :remove_images, :description, :friendly_id, :status, :category_id, :images =&gt; [], :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>小心 <code>:images =&gt; []</code> 要放在最后，因为默认的 Hash 哈希参数都是放在参数最后</p>
+</blockquote>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WmS1lwxIRm64dZLRVwkQ_21-3.png" title=""></figure></p>
+
+<blockquote>
+<p>请用 command 点选文档进行多选</p>
+</blockquote>
+
+<p>编辑前台的活动页面 <code>app/views/events/show.html.erb</code>，把图片显示出来。注意到因为是多档了，所以相比显示 Logo 多了 <code>.each</code> 循环。</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;h2&gt;&lt;%= @event.category.try(:name) %&gt;&lt;/h2&gt;
+
+<span class="gi">+  &lt;% if @event.images.present? %&gt;
++    &lt;% @event.images.each do |i| %&gt;
++      &lt;%= link_to image_tag(i.url(:small)), i.url %&gt;
++    &lt;% end %&gt;
++  &lt;% end %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      19-3 上传多档案(使用额外Model)
+    </h1><h4>所属章节：19. 多档案上传</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节的多档上传实作，我们用了 <code>serialize :images, JSON</code> 这会将多个文档的档名数组，转成 JSON 后存储在 <code>images</code> 字段之中，Rails 在读出来的时候，会自动转回数组。这一招让 carrierwave 很简单就可以支援多档上传，它把所有档名的数据都塞进同一个字段 <code>images</code>。</p>
+
+<p>不过这种方法有几个缺点：</p>
+
+<ol>
+<li>无法增加每个文档编辑额外的描述或其他资讯</li>
+<li>无法为个别的文档进行更新：重传的时候，它会全部砍掉然后全部重新上传</li>
+<li>上传的 UI 需要用户知道用 Command 按键才能多选文档。因此如果是后台管理员还可以教育，前台一般用户可能会不知道如何使用。</li>
+</ol>
+
+<p>因此，接下来我们示范如何让 Events 活动可以上传多个附加文档，每个文档有各自的描述说明。</p>
+
+<p>作法是新增一个 EventAttachment model，然后让 Event has_many EventAttachment，其中每一笔 EventAttachment 就是一个附加文档。表单 UI 的部分则使用百宝箱10教过的 「嵌套表单(1-to-many」</p>
+
+<p>执行 <code>rails g model event_attachment</code>，我们将让 Event has_many 这个 EventAttachment model，然后将 carrierwave 也挂载到这个 EventAttachment model 身上。</p>
+
+<p>编辑 <code>201XXXXX025046_create_event_attachments.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>db/migrate/201XXXXX025046_create_event_attachments.rb
+</span></figcaption><div class="highlight"><pre>  class CreateEventAttachments &lt; ActiveRecord::Migration[5.0]
+    def change
+      create_table :event_attachments do |t|
+<span class="gi">+       t.integer :event_id, :index =&gt; true
++       t.string :attachment
++       t.string :description
+</span>        t.timestamps
+      end
+    end
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>执行 <code>rake db:migrate</code></p>
+
+<p>执行 <code>rails g uploader EventAttachment</code></p>
+
+<p>编辑 <code>app/models/event.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event.rb
+</span></figcaption><div class="highlight"><pre>   has_many :tickets, :dependent =&gt; :destroy
+   accepts_nested_attributes_for :tickets, :allow_destroy =&gt; true, :reject_if =&gt; :all_blank
+
+<span class="gi">+  has_many :attachments, :class_name =&gt; "EventAttachment", :dependent =&gt; :destroy
++  accepts_nested_attributes_for :attachments, :allow_destroy =&gt; true, :reject_if =&gt; :all_blank
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/models/event_attachment.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/models/event_attachment.rb
+</span></figcaption><div class="highlight"><pre>  class EventAttachment &lt; ApplicationRecord
+
+<span class="gi">+   mount_uploader :attachment, EventAttachmentUploader
++   belongs_to :event
+</span>
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样 models 的部分就好了。接着编辑后台表单 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+ &lt;%= f.nested_fields_for :attachments do |ff| %&gt;
++   &lt;fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;"&gt;
++     &lt;legend&gt;Attachment&lt;/legend&gt;
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :attachment %&gt;
++       &lt;%= ff.file_field :attachment, :class =&gt; "form-control" %&gt;
++       &lt;% if ff.object.attachment.present? %&gt;
++         已上传档案 &lt;%= link_to ff.object.description, ff.object.attachment.url, :target =&gt; "_blank" %&gt;
++       &lt;% end %&gt;
++     &lt;/div&gt;
++
++     &lt;div class="form-group"&gt;
++       &lt;%= ff.label :description %&gt;
++       &lt;%= ff.text_field :description, :class =&gt; "form-control" %&gt;
++     &lt;/div&gt;
++
++     &lt;%= ff.remove_nested_fields_link "移除这个档案", :class =&gt; "btn btn-danger" %&gt;
++   &lt;/fieldset&gt;
++ &lt;% end %&gt;
++ &lt;p class="text-right"&gt;
++   &lt;%= f.add_nested_fields_link :attachments, "新增档案", :class =&gt; "btn btn-default" %&gt;
++ &lt;/p&gt;
++
+</span>
+ &lt;%= f.nested_fields_for :tickets do |ff| %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code>，如果该 @event 没有 attachments 的话，new 出来一笔好让表单可以显示一笔进行编辑，以及把 <code>attachments_attributes</code> 加进 <code>event_params</code>。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>   def new
+     @event = Event.new
+     @event.tickets.build
+<span class="gi">+    @event.attachments.build
+</span>   end
+
+   # (略)
+
+   def edit
+     @event = Event.find_by_friendly_id!(params[:id])
+     @event.tickets.build if @event.tickets.empty?
+<span class="gi">+    @event.attachments.build if @event.attachments.empty?
+</span>   end
+
+   # (略)
+
+   protected
+
+   def event_params
+<span class="gd">-    params.require(:event).permit(:name, :logo, :remove_logo, :remove_images, :description, :friendly_id, :status, :category_id, :images =&gt; [], :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy])
+</span><span class="gi">+    params.require(:event).permit(:name, :logo, :remove_logo, :remove_images, :description, :friendly_id, :status, :category_id, :images =&gt; [], :tickets_attributes =&gt; [:id, :name, :description, :price, :_destroy], :attachments_attributes =&gt; [:id, :attachment, :description, :_destroy])
+</span>   end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/cqVoKjNVSByyDpZKl51b_21-5.png" title=""></figure></p>
+
+<p>编辑前台 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;ul&gt;
++  &lt;% @event.attachments.each do |a| %&gt;
++    &lt;li&gt;&lt;%= link_to a.description, a.attachment.url %&gt;&lt;/li&gt;
++  &lt;% end %&gt;
++  &lt;/ul&gt;
+</span>
+<span class="err">  &lt;%= sanitize @event.description %&gt;
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。请在后台上传一些文档和描述，然后到前台浏览看看。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20-1 前言和 Chart.js 安装
+    </h1><h4>所属章节：20. 图表资料分析</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这一章介绍如何制作图表来分析报名资料，包括：</p>
+
+<ul>
+<li>分析票种的报名人数</li>
+<li>分析票种的总金额</li>
+<li>分析票种的报名人数，并根据状态分类(报名尚未完成、报名成功)</li>
+<li>分析每日报名人数，并根据状态分类</li>
+</ul>
+
+<p>制作图表需要用到前端 JavaScript 套件，例如：</p>
+
+<ul>
+<li>
+<a href="http://chartkick.com/">Chartkick</a> 这一套搭配 Rails 最简单，甚至不需要写 JavaScript 代码，有 Helper 可以使用</li>
+<li>
+<a href="http://www.chartjs.org">Chart.js</a> 这一套好用又漂亮，需要写 JavaScript</li>
+<li>
+<a href="https://d3js.org/">D3.js</a> 这一套功能最强，是专业的数据可视化套件，但也比较复杂</li>
+</ul>
+
+<p>我们将示范会使用 <a href="http://www.chartjs.org">Chart.js</a>，这也有<a href="http://www.bootcss.com/p/chart.js/">中文文档</a>。</p>
+<h4>Chart.js 安装</h4>
+<p>Chart.js 有 <a href="https://github.com/coderbydesign/chart-js-rails">chart-js-rails gem</a> 可以安装，但是因为只有后台报表那一页有用到，所以我们就不包进 asset pipeline 了，而是使用 CDN 让用户直接从 CDN 服务器下载回去。</p>
+
+<p>在国内免费的 CDN 服务器 <a href="http://www.bootcdn.cn/">BootCDN</a> 上可以找到 Chart.js，编辑 <code>app/views/admin/events/show.html.erb</code> 把该位置贴上去：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;script src="//cdn.bootcss.com/Chart.js/2.5.0/Chart.bundle.min.js"&gt;&lt;/script&gt;
+</span>
+   &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样用户进到这一页，就可以使用 Chart.js 了。</p>
+
+<p>让我们试试看效果，再次编辑 <code>app/views/admin/events/show.html.erb</code>，贴上一段范例：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/show.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;script src="//cdn.bootcss.com/Chart.js/2.5.0/Chart.bundle.min.js"&gt;&lt;/script&gt;
+
+   &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+   &lt;p&gt;
+     &lt;%= link_to "打开前台", event_path(@event), :target =&gt; "_blank", :class =&gt; "btn    btn-primary" %&gt;
+   &lt;/p&gt;
+
+<span class="gi">+  &lt;canvas id="myChart" width="400" height="200"&gt;&lt;/canvas&gt;
++  &lt;script&gt;
++  var ctx = document.getElementById("myChart");
++  var myChart = new Chart(ctx, {
++      type: 'bar',
++      data: {
++          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
++          datasets: [{
++              label: '# of Votes',
++              data: [12, 19, 3, 5, 2, 3],
++              backgroundColor: [
++                  'rgba(255, 99, 132, 0.2)',
++                  'rgba(54, 162, 235, 0.2)',
++                  'rgba(255, 206, 86, 0.2)',
++                  'rgba(75, 192, 192, 0.2)',
++                  'rgba(153, 102, 255, 0.2)',
++                  'rgba(255, 159, 64, 0.2)'
++              ],
++              borderColor: [
++                  'rgba(255,99,132,1)',
++                  'rgba(54, 162, 235, 1)',
++                  'rgba(255, 206, 86, 1)',
++                  'rgba(75, 192, 192, 1)',
++                  'rgba(153, 102, 255, 1)',
++                  'rgba(255, 159, 64, 1)'
++              ],
++              borderWidth: 1
++          }]
++      },
++      options: {
++          scales: {
++              yAxes: [{
++                  ticks: {
++                      beginAtZero:true
++                  }
++              }]
++          }
++      }
++  });
++  &lt;/script&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/WPraiiXjTDOLorlzd9ET_22-1.png" title=""></figure></p>
+
+<p>这只是个 Chart.js 范例，并没有用到数据库的真实资料。在继续下去之前，请删掉它。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20-2 分析不同票种的报名人数
+    </h1><h4>所属章节：20. 图表资料分析</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>最常见的数据分析模式，就是根据不同分类计算数量或总和，例如我们来分析不同票种的报名人数。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/lpC3TNN7SZqnzLwqVTjL_22-2.png" title=""></figure></p>
+
+<blockquote>
+<p>以下数据沿用我们在 <a href="https://fullstack.xinshengdaxue.com/posts/1160">18-1 制作后台管理报名资料</a> 所产生的假活动和报名数据。</p>
+</blockquote>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>  def show
+    @event = Event.find_by_friendly_id!(params[:id])
+
+<span class="gi">+    colors = ['rgba(255, 99, 132, 0.2)',
++              'rgba(54, 162, 235, 0.2)',
++              'rgba(255, 206, 86, 0.2)',
++              'rgba(75, 192, 192, 0.2)',
++              'rgba(153, 102, 255, 0.2)',
++              'rgba(255, 159, 64, 0.2)'
++              ]
++
++    ticket_names = @event.tickets.map { |t| t.name }
++
++    @data1 = {
++        labels: ticket_names,
++        datasets: [{
++          label: "# of Registrations",
++          data: @event.tickets.map{ |t| t.registrations.count },
++          backgroundColor: colors,
++          borderWidth: 1
++        }]
++    }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/show.html.erb
+</span></figcaption><div class="highlight"><pre>  &lt;script src="//cdn.bootcss.com/Chart.js/2.5.0/Chart.bundle.min.js"&gt;&lt;/script&gt;
+
+  &lt;h1&gt;&lt;%= @event.name %&gt;&lt;/h1&gt;
+
+  &lt;p&gt;
+    &lt;%= link_to "打开前台", event_path(@event), :target =&gt; "_blank", :class =&gt; "btn   btn-primary" %&gt;
+  &lt;/p&gt;
+
+<span class="gi">+  &lt;canvas id="myChart1" width="400" height="200"&gt;&lt;/canvas&gt;
++  &lt;script&gt;
++  var ctx1 = document.getElementById("myChart1");
++  var myChart1 = new Chart(ctx1, {
++      type: 'bar',
++      data: &lt;%= raw @data1.to_json %&gt;,
++      options: {
++          scales: {
++              yAxes: [{
++                  ticks: {
++                      beginAtZero:true
++                  }
++              }]
++          }
++      }
++  });
++  &lt;/script&gt;
++
+</span><span class="err">+  &lt;hr&gt;
+</span></pre></div>
+</figure>
+
+<p>我们在 controller 中准备了<code>@data1</code> 变量就是要餵给 Chart.js 的分析资料，在 View 中需要把这个 Ruby 变量透过 <code>to_json</code> 转成 JavaScript 变量。</p>
+
+<p>这个 <code>@data1</code> 输出后的数据格式长这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FXlFQSMcRseHrl80ILxK_22-3.png" title=""></figure></p>
+
+<p>Chart.js 参数说明：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="nx">type</span><span class="err">:</span> <span class="s1">'bar'</span><span class="p">,</span>  <span class="c1">// 长条图
+</span>
+<span class="nx">data</span><span class="err">:</span> <span class="p">{</span>
+  <span class="s2">"labels"</span><span class="err">:</span> <span class="p">[</span><span class="s2">"Guest"</span><span class="p">,</span><span class="s2">"VIP 第一期"</span><span class="p">,</span><span class="s2">"VIP 第二期"</span><span class="p">],</span>   <span class="c1">// 横轴的标籤有哪些
+</span>
+  <span class="s2">"datasets"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"# of Registrations"</span><span class="p">,</span>   <span class="c1">// 数据集的名称
+</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span><span class="mi">324</span><span class="p">,</span><span class="mi">346</span><span class="p">,</span><span class="mi">330</span><span class="p">],</span>           <span class="c1">// 数据(这是数组)
+</span>
+      <span class="s2">"backgroundColor"</span><span class="p">:[</span><span class="s2">"rgba(255, 99, 132, 0.2)"</span><span class="p">,</span><span class="s2">"rgba(54, 162, 235, 0.2)"</span><span class="p">,</span><span class="s2">"rgba(255, 206, 86, 0.2)"</span><span class="p">,</span><span class="s2">"rgba(75, 192, 192, 0.2)"</span><span class="p">,</span><span class="s2">"rgba(153, 102, 255, 0.2)"</span><span class="p">,</span><span class="s2">"rgba(255, 159, 64, 0.2)"</span><span class="p">],</span>  <span class="c1">// 长条的颜色
+</span>
+      <span class="s2">"borderWidth"</span><span class="p">:</span> <span class="mi">1</span>    <span class="c1">// 要有框线
+</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">},</span>
+<span class="nx">options</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">scales</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">yAxes</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="na">ticks</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">beginAtZero</span><span class="p">:</span><span class="kc">true</span>   <span class="c1">// X 轴要从 0 起跳
+</span>
+            <span class="p">}</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+</figure>
+
+<p>详细关于这个资料结构的说明，可以参考 Chart.js 文档。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20-3 分析票种的总金额
+    </h1><h4>所属章节：20. 图表资料分析</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>跟上一节类似，但改成计算报名成功的总金额。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ZvygV2IT2mW2Z7FvOKL5_22-4.png" title=""></figure></p>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+   @data2 = {
++       labels: ticket_names,
++       datasets: [{
++           label: '# of Amount',
++           data:  @event.tickets.map{ |t| t.registrations.by_status("confirmed").count * t.price },
++           backgroundColor: colors,
++           borderWidth: 1
++       }]
++   }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 data 的部分变成计算报名成功的数量乘上该票价。</p>
+
+<p>编辑 <code>app/views/admin/event/show.html.erb</code> 加上图表：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event/show.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;hr&gt;
+
+<span class="gi">+  &lt;canvas id="myChart2" width="400" height="200"&gt;&lt;/canvas&gt;
++  &lt;script&gt;
++  var ctx2 = document.getElementById("myChart2");
++  var myChart2 = new Chart(ctx2, {
++      type: 'bar',
++      data: &lt;%= raw @data2.to_json %&gt;,
++      options: {
++          scales: {
++              yAxes: [{
++                  ticks: {
++                      beginAtZero:true
++                  }
++              }]
++          }
++      }
++  });
++  &lt;/script&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。Guest 票因为票价是0元，所以总金额也是0。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20-4 分析票种的报名人数，并根据状态分类
+    </h1><h4>所属章节：20. 图表资料分析</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在上上节 "不同票种的报名人数" 图表中，把报名未完成和报名成功的数据都算在一起了，有没有办法可以根据不同状态分开算呢？</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/NiA2RLO4ROSFrwhbTO21_22-5.png" title=""></figure></p>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gd">-   @data1 = {
+-       labels: ticket_names,
+-       datasets: [{
+-         label: "# of Registrations",
+-         data: @event.tickets.map{ |t| t.registrations.count },
+-         backgroundColor: colors,
+-         borderWidth: 1
+-       }]
+-   }
+</span>
+<span class="gi">+   status_colors = { "confirmed" =&gt; "#FF6384",
+</span>                      "pending" =&gt; "#36A2EB"}
+
+<span class="gi">+   @data1 = {
++       labels: ticket_names,
++       datasets: Registration::STATUS.map do |s|
++         {
++           label: I18n.t(s, :scope =&gt; "registration.status"),
++           data: @event.tickets.map{ |t| t.registrations.by_status(s).count },
++           backgroundColor: status_colors[s],
++           borderWidth: 1
++         }
++       end
++   }
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><code>datasets</code> 参数其实就是资料集的数组，本来只有一个资料集，现在改成透过 <code>Registration::STATUS.map</code> 产生两个资料集，分别是报名未完成和报名成功。</p>
+
+<p>让我们观察一下实际输出的数据格式长怎样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9TFqc71Q6KKirZsyAz6Q_22-6.png" title=""></figure></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="nx">data</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"labels"</span><span class="err">:</span> <span class="p">[</span><span class="s2">"Guest"</span><span class="p">,</span><span class="s2">"VIP 第一期"</span><span class="p">,</span><span class="s2">"VIP 第二期"</span><span class="p">],</span>  <span class="c1">// 这是 Y 轴的标籤
+</span>
+    <span class="s2">"datasets"</span><span class="err">:</span><span class="p">[</span>
+      <span class="p">{</span> <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"报名尚未完成"</span><span class="p">,</span>     <span class="c1">// 这是第一个资料集
+</span>
+        <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span><span class="mi">160</span><span class="p">,</span><span class="mi">164</span><span class="p">,</span><span class="mi">160</span><span class="p">],</span>
+        <span class="s2">"backgroundColor"</span><span class="p">:</span><span class="s2">"#36A2EB"</span><span class="p">,</span>
+        <span class="s2">"borderWidth"</span><span class="p">:</span><span class="mi">1</span>
+      <span class="p">},</span>
+      <span class="p">{</span> <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"报名成功"</span><span class="p">,</span>         <span class="c1">// 这是第二个资料集
+</span>
+        <span class="s2">"data"</span><span class="p">:[</span><span class="mi">164</span><span class="p">,</span><span class="mi">182</span><span class="p">,</span><span class="mi">170</span><span class="p">],</span>
+        <span class="s2">"backgroundColor"</span><span class="p">:</span><span class="s2">"#FF6384"</span><span class="p">,</span>
+        <span class="s2">"borderWidth"</span><span class="p">:</span><span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+
+</pre></div>
+</figure>
+
+<p>当有多个资料集时，它会沿着 Y 轴的标籤依序画上去。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      20-5 分析每日报名人数，并根据状态分类
+    </h1><h4>所属章节：20. 图表资料分析</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>分析从第一天到今天的每日报名人数，并根据状态分类。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/wys4IY7ySLGxyC0sDbrU_22-7.png" title=""></figure></p>
+
+<p>编辑 <code>app/controllers/admin/events_controller.rb</code>。其中 labels 参数是 Y 轴，这里改成用 dates 数组，代表从有人报名的第一天到今天。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>
+<span class="gi">+   if @event.registrations.any?
++     dates = (@event.registrations.order("id ASC").first.created_at.to_date..Date.today).to_a
+</span>
+<span class="gi">+     @data3 = {
++       labels: dates,
++       datasets: Registration::STATUS.map do |s|
++         {
++           :label =&gt; I18n.t(s, :scope =&gt; "registration.status"),
++           :data =&gt; dates.map{ |d|
++             @event.registrations.by_status(s).where( "created_at &gt;= ? AND created_at &lt;= ?", d.beginning_of_day, d.end_of_day).count
++           },
++           borderColor: status_colors[s]
++         }
++       end
++     }
++   end
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>跟上一节类似，<code>data</code> 有有两个资料集分别是报名尚未完成和报名完成。</p>
+
+<p>编辑 <code>app/views/admin/event/show.html.erb</code> 加上图表，这里改成用 <code>line</code> 折线图：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/event/show.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;hr&gt;
+
+<span class="gi">+  &lt;canvas id="myChart3" width="400" height="200"&gt;&lt;/canvas&gt;
++  &lt;script&gt;
++  var ctx3 = document.getElementById("myChart3");
++  var myChart3 = new Chart(ctx3, {
++      type: 'line',
++      data: &lt;%= raw @data3.to_json %&gt;,
++      options: {
++          scales: {
++              yAxes: [{
++                  ticks: {
++                      beginAtZero:true
++                  }
++              }]
++          }
++      }
++  });
+</span><span class="err">+  &lt;/script&gt;
+</span></pre></div>
+</figure>
+
+<p>这样就完成了。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

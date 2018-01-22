@@ -1,0 +1,776 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      11-1 需求说明
+    </h1><h4>所属章节：11. 选日期时间的 UI</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>之前我们在后台编辑 User Profile 的生日时，用的是</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/user_profiles/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="err">&lt;</span>%= f.date_field :birthday, :class =&gt; "form-control" %&gt;
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/DgdJkBaScma2QZ8CV8Ce_11-3.png" title=""></figure></p>
+
+<p>这个 UI 是用浏览器内建的 <code>&lt;input type="date"&gt;</code> 输入框，不过很可惜，这种 input 除了 Chrome 浏览器之外是不太支援的，详见 <a href="http://caniuse.com/#feat=input-datetime">Can I use?</a> 的统计资料。因此后台用还可以，因为你可以要求管理员统一用 Chrome 浏览器，但是前台要给一般用户就不太好了。</p>
+
+<p>Rails 也有另外内建一种用下拉选单的方式：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/user_profiles/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="err">&lt;</span>%= f.date_select :birthday, :class =&gt; "form-control" %&gt;
+</pre></div>
+</figure>
+
+<p>这会产生三个下拉选单：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/f3ignv3SVij8wJvIHKXt_11-4.png" title=""></figure></p>
+
+<p>这种下拉选单就没有浏览器支援的问题，但是就是有点丑而且没有日历，我们想要 📅 啊。</p>
+
+<p>这一章将介绍使用 <a href="https://uxsolutions.github.io/bootstrap-datepicker/">bootstrap-datepicker</a> 这个 jQuery Plugin，可以获得日历般的点选接口。</p>
+
+<blockquote>
+<p>bootstrap-datepicker 只有日期，如果需要日期加上时间，可以用 <a href="http://eonasdan.github.io/bootstrap-datetimepicker/">bootstrap-datetimepicker</a> 这个 jQuery Plugin，以及包好的 <a href="https://github.com/TrevorS/bootstrap3-datetimepicker-rails">bootstrap3-datetimepicker-rails</a> gem。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      11-2 安装使用 datepicker
+    </h1><h4>所属章节：11. 选日期时间的 UI</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://uxsolutions.github.io/bootstrap-datepicker/">bootstrap-datepicker</a> 是个 jQuery Plugin，并且有现成包好的 gem 可以直接使用 <a href="https://github.com/Nerian/bootstrap-datepicker-rails">bootstrap-datepicker-rails</a>。</p>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="err">+  gem 'bootstrap-datepicker-rails'
+</span></pre></div>
+</figure>
+
+<p>执行 <code>bundle</code> 后，重启服务器</p>
+
+<p>编辑 <code>app/assets/stylesheets/application.scss</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/stylesheets/application.scss
+</span></figcaption><div class="highlight"><pre>   @import "bootstrap-sprockets";
+   @import "bootstrap";
+   @import "select2";
+   @import "select2-bootstrap";
+<span class="gi">+  @import "bootstrap-datepicker3";
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/assets/javascripts/application.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>   //= require jquery
+   //= require jquery_ujs
+   //= require turbolinks
+   //= require bootstrap-sprockets
+   //= require select2
+   //= require nested_form_fields
+<span class="gi">+  //= require bootstrap-datepicker/core
++  //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+</span><span class="err">   //= require_tree .
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/users/edit.html.erb</code>，将 script 放到最下方：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/users/edit.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= ff.date_field :birthday, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+  &lt;%= ff.text_field :birthday, :class =&gt; "form-control" %&gt;
+</span>
+   # 略
+
+<span class="gi">+  &lt;script&gt;
++    $("#user_profile_attributes_birthday").datepicker({ format: "yyyy-mm-dd" });
++  &lt;/script&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>注意格式要指定以配合 Rails，这里指定成 <code>"yyyy-mm-dd"</code> 年月日的顺序。</p>
+
+<p>其中 <code>#user_profile_attributes_birthday</code> 这个 HTML ID 可以透过 Chrome 按右键透过 Inspect 观察得知：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/fRMgcp9jQYGbLXq7yNj2_11-0.png" title=""></figure></p>
+
+<p>这是成果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/puMQftqjT1eTRtkjF57q_11-1.png" title=""></figure></p>
+
+<p>如果需要支援多语言，可以指定语言：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;script&gt;
+  $("#user_profile_attributes_birthday").datepicker({ format: "yyyy-mm-dd", language: "&lt;%= I18n.locale %&gt;" });
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/sR6WptvZQKyT14SR3kAz_11-6.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12-1 需求说明
+    </h1><h4>所属章节：12. 拆开前后台的 CSS 和 JS</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们学过如何拆 layout 了：默认的 layout 是 <code>app/views/layouts/application.html.erb</code>，而后台的 controller 我们透过 <code>layout "admin"</code> 可以改用 <code>app/views/layouts/admin.html.erb</code>。</p>
+
+<p>但是有个部分我们没有拆开，那就是 css 和 javascript，到目前还是共享 <code>app/assets/stylesheets/application.scss</code> 和 <code>app/assets/javascript/application.js</code>。</p>
+
+<p>随着 Plugins 功能越装越多，有很多 css/js 前后台是不一样的，例如我们后来装的 <code>select2</code> 和 <code>nested_form_fields</code> plugins，前台目前没有用到，但是因为前后台共享的关系，还是被用户下载了。</p>
+
+<p>这部分的 css/js 也可以前后台拆开，除了可以让前台下载更有效率，也可以让代码分开管理。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      12-2 实作拆开
+    </h1><h4>所属章节：12. 拆开前后台的 CSS 和 JS</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>新增 <code>app/assets/stylesheets/admin.scss</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "select2";
+@import "select2-bootstrap";
+@import "bootstrap-datepicker3";
+
+</pre></div>
+</figure>
+
+<p>新增 <code>app/assets/javascripts/admin.js</code></p>
+
+<figure class="figure-code code"><div class="highlight"><pre>//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require bootstrap-sprockets
+//= require select2
+//= require nested_form_fields
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+
+</pre></div>
+</figure>
+
+<p>修改 <code>config/initializers/assets.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/initializers/assets.rb
+</span></figcaption><div class="highlight"><pre><span class="o">-</span> <span class="c1"># Rails.application.config.assets.precompile += %w( search.js )
+</span>
+<span class="o">+</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">assets</span><span class="p">.</span><span class="nf">precompile</span> <span class="o">+=</span> <span class="sx">%w( admin.css admin.js )</span>
+
+</pre></div>
+</figure>
+
+<p>这会告诉 Rails 编译 assets 时要多编译这两个进入点档案。</p>
+
+<p>重启 Rails 服务器</p>
+
+<p>修改 <code>app/views/layouts/admin.html.erb</code>，换成载入 admin css 和 js</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/admin.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="gi">+ &lt;%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %&gt;
+</span>
+<span class="gd">-  &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="gi">+  &lt;%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>浏览看看后台，一切应正常。</p>
+
+<p>如果检视一下 HTML 源码，可以看到已经顺利改用 admin css 和 js 了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ijBWWSBRlwhp8vw0giOQ_12.png" title=""></figure></p>
+
+<p>既然是前后台拆开了，接着可以瘦身一下前台的 css 和 js，来把 <code>select2</code> 和 <code>nested_form_fields</code> 移除。</p>
+
+<p>修改 <code>app/assets/stylesheets/application.scss</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/stylesheets/application.scss
+</span></figcaption><div class="highlight"><pre>   @import "bootstrap-sprockets";
+   @import "bootstrap";
+<span class="gd">-  @import "select2";
+-  @import "select2-bootstrap";
+</span><span class="err">   @import "bootstrap-datepicker3";
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/assets/javascripts/application.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/assets/javascripts/application.js
+</span></figcaption><div class="highlight"><pre>   //= require jquery
+   //= require jquery_ujs
+   //= require turbolinks
+   //= require bootstrap-sprockets
+<span class="gd">-  //= require select2
+-  //= require nested_form_fields
+</span>   //= require bootstrap-datepicker/core
+   //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+   //= require_tree .
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>检查看看前台功能，应该一切正常。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13-1 如何显示用户输入的 HTML
+    </h1><h4>所属章节：13. Rich Editor 编辑器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>后台在编辑 Event 描述时，用了多行输入框(text_area)来输入活动描述。不知道你有没有尝试过输入 HTML 代码，结果会怎么样？ 例如以下的输入：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/EH5YbHTRheC6bgGkCkbo_13-1.png" title=""></figure></p>
+<h4>simple_format</h4>
+<p>目前在 <code>app/views/admin/events/show.html.erb</code> 页面上，显示的部分是用 <code>&lt;%= simple_format @event.description %&gt;</code>，结果是：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vf3WOd2jQWi67nbZZz5B_13-2.png" title=""></figure></p>
+
+<p>好像哪里怪怪的，颜色跟表格不见了，观察看看原始码:</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/S4SkfbgQjqxJ8rGKV4ti_13-3.png" title=""></figure></p>
+
+<p>跟当初输入的不一样，<code>table</code> 标籤不见了、<code>style</code>属性也不见了。这是因为 simple_format 的安全机制会过滤 HTML 的输出。</p>
+
+<p>另外，<code>simple_format</code> 的作用是换行：在输入框中的换行，输出时会多包一个 <code>&lt;p&gt;</code> 标籤来区分段落。这里也看出了 <code>simple_format</code> 其实不适合用在用户输入 HTML 的情况，因为它会自作聪明多包一层 <code>&lt;p&gt;</code>。</p>
+<h4>移除 simple_format，改回 Rails 默认输出行为</h4>
+<p>那如果不要用 <code>simple_format</code> helper 呢，来改成 <code>&lt;%= @event.description %&gt;</code>，结果是：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rrizmUckRh6l2qhIv1CM_13-4.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0oNUFg5kRrokTkLmZPbW_13-5.png" title=""></figure></p>
+
+<p>这下子 HTML 完全被脱逸(escaped)了，例如 <code>&lt;</code> 会变成 <code>&amp;lt;</code>。这是 Rails 默认的安全机制，但也不是我们这里想要的结果。</p>
+<h4>raw 或 html_safe</h4>
+<p>那可以叫 Rails 不要脱逸 HTML 吗？来改成 <code>&lt;%= raw @event.description %&gt;</code> 或 <code>&lt;%= @event.description.html_safe %&gt;</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4jRtbMrAS1ys9WlRTZZl_13-6.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/sXUNF3gFRKuBe8mZnWgv_13-7.png" title=""></figure></p>
+
+<p>结果看起来对了，但是 Rails 既然默认会脱逸 HTML，想必有其设计的道理吧？没错，这的确会造成安全性的问题，例如用户可以输入 JavaScript 程序：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/V7ul5K9sTUGNtmsyOL2L_13-8-hack.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/rEpVyrfoRQqniUSFKMZA_13-9-hackyou.png" title=""></figure></p>
+
+<p>这么当其他用户浏览到这一页时，浏览器就会盲目的执行这段 JavaScript 代码，例如这里会跳出恼人的 <code>alert</code> 视窗，而恶意的骇客会植入邪恶的 JavaScript 程序，例如输入 <code>&lt;script&gt;location.href='https://ihower.tw'&lt;/script&gt;</code> 就会把用户骗去 ihower 老师的网页 😵😵😵 或是删除用户资料或窃取登入权限等等。这种攻击方式叫做 <a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%BD%91%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A0%81">XSS</a> 跨站脚本攻击，是最常见的网络攻击手法之一。任何网站只要允许用户输入资料，就有这个风险。防范的方式就是在输出时，进行过滤或一律脱逸。</p>
+
+<p>而当我们用 <code>raw</code> 或 <code>html_safe</code> 的话，就是告诉 Rails 这个输出字串是安全的。</p>
+
+<blockquote>
+<p>当然，在这个情境中，我们可以假设能进入后台的用户就是可信任的管理员，应该不会自己骇自己的网站，因此直接 <code>raw</code> 输出当是无妨。但如果是一般用户在前台输入、编辑自己的个人资料，就不能信任了。</p>
+</blockquote>
+<h4>sanitize 白名单过滤</h4>
+<p>需要显示用户输入的 HTML 又要有安全性，那就需要一种白名单的过滤机制了，Rails 提供了 <code>sanitize</code> helper。</p>
+
+<p>请修改 <code>app/views/admin/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>-  &lt;%= simple_format @event.description %&gt;
++  &lt;%= sanitize @event.description %&gt;
+</pre></div>
+</figure>
+
+<p>以及前台的 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>-  &lt;%= simple_format @event.description %&gt;
++  &lt;%= sanitize @event.description %&gt;
+</pre></div>
+</figure>
+
+<p>结果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FzKAIVKLTj2Z85LhzfCl_13-10-sanitize.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7bxvvNS4R9qNmLUB3GLm_13-11.png" title=""></figure></p>
+
+<p>看起来比较正常了，比起 <code>simple_format</code> 不会多管閒事多包 <code>&lt;p&gt;</code> 标籤，但是还是少了 <code>table</code> 标籤和 <code>style</code> 属性。这是因为默认的白名单是：</p>
+
+<ul>
+<li>允许的 HTML 标籤 <code>strong em b i p code pre tt samp kbd var sub
+    sup dfn cite big small address hr br div span h1 h2 h3 h4 h5 h6 ul ol li dl dt dd abbr
+    acronym a img blockquote del ins</code>
+</li>
+<li>允许的 HTML 属性 <code>href src width height alt cite datetime title class name xml:lang abbr</code>
+</li>
+</ul>
+
+<p>恰巧 table 跟 style 不在里面，我们需要自己加。请修改 <code>config/application.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb 
+</span></figcaption><div class="highlight"><pre>
+  class Application &lt; Rails::Application 
+    config.i18n.default_locale = "zh-CN"
+    config.time_zone = "Beijing"
+    
+<span class="gi">+   config.action_view.sanitized_allowed_tags = Rails::Html::WhiteListSanitizer.allowed_tags + %w(table tr td) 
++   config.action_view.sanitized_allowed_attributes = Rails::Html::WhiteListSanitizer.allowed_attributes + %w(style border) 
+</span>  end
+<span class="err">   
+</span></pre></div>
+</figure>
+
+<p>重启服务器，再看一次结果：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xxwQowAOQUuAAmOnH2n5_13-12-ok.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2o7IqjStQxSlFj7Qt25z_13-13-ok.png" title=""></figure></p>
+
+<p>这样就既满足安全性要求，又达到我们要的结果了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      13-2 输入 HTML：使用 Rich Editor
+    </h1><h4>所属章节：13. Rich Editor 编辑器</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节中，就算我们允许 HTML 输入，但是那个输入的界面却不是普通人可以接受的，所以通常我们用另外安装所见即所得(WYSIWYG) 的编辑器，又叫做 Rich Editor。</p>
+
+<p>这种编辑器是一种前端 Plugin，今天叫示范安装其中一套叫做 <a href="http://ckeditor.com">ckeditor</a>，这有现成的 Rails gem <a href="https://github.com/galetahub/ckeditor" rel="nofollow" target="_blank">https://github.com/galetahub/ckeditor</a> 可以直接安装比较方便。</p>
+
+<p>修改 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>Gemfile
+</span></figcaption><div class="highlight"><pre><span class="gi">+  gem 'ckeditor'
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/assets/javascripts/admin.js</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  //= require jquery
+  //= require jquery_ujs
+  //= require turbolinks
+  //= require bootstrap-sprockets
+  //= require select2
+  //= require nested_form_fields
+  //= require bootstrap-datepicker/core
+  //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+<span class="gi">+ //= require ckeditor/init
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>编辑 <code>app/views/admin/events/_form.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= f.text_area :description, :class =&gt; "form-control" %&gt;
+</span><span class="gi">+  &lt;%= f.cktext_area :description, ckeditor: { language: 'zh-CN'} %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>如果用 <code>simple_form</code> 的话，可以用 <code>f.input :description, as: :ckeditor</code></p>
+</blockquote>
+
+<p>编辑 <code>config/initializers/assets.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/initializers/assets.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  # Rails.application.config.assets.precompile += %w( admin.css admin.js )
+</span><span class="gi">+  Rails.application.config.assets.precompile += %w( admin.css admin.js ckeditor/* )
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>运行 bundle，重启 Rails server</p>
+
+<p>编辑看看 Event 就有厉害的编辑器了：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FhLZMXHCQLyh7C2EYnlc_13-14-ckeditor.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/vtatM3mSgut7JUN3S5BO_13-15.png" title=""></figure></p>
+
+<p>如果觉得默认的工具列(toolbar)太复杂，可以改用 mini toolbar 配置：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/_form.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= f.cktext_area :description, ckeditor: { language: 'zh-CN'} %&gt;
+</span><span class="gi">+  &lt;%= f.cktext_area :description, ckeditor: { toolbar: 'mini', language: 'zh-CN'} %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/h7iXwOsT7qfaigj0bHab_13-16.png" title=""></figure></p>
+
+<p>Ckeditor 还可以进一步自订义工具列的长相，就请自行参考文档了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14-1 需求说明
+    </h1><h4>所属章节：14. 批次编辑 (Bulk Editing)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在后台编辑资料时，如果资料很多，有没有什么 UI 可以一次修改或删除多笔呢？ 这一章将实作透过核选方块来做批次删除和修改。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/n59xy2wAQSCp8SsqjomP_14-2.png" title=""></figure></p>
+
+<p>勾选要修改哪些活动，按下最下面的按钮就会批次修改。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14-2 批次删除
+    </h1><h4>所属章节：14. 批次编辑 (Bulk Editing)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>先来做批次删除，首先需要修改 <code>config/routes.rb</code>，加上一个新的路由来做批次动作：</p>
+
+<figure class="figure-code code"><figcaption><span>config/routes.rb
+</span></figcaption><div class="highlight"><pre>resources :events do
+  resources :tickets, :controller =&gt; "event_tickets"
+
+<span class="gi">+      collection do
++        post :bulk_update
++      end
+</span><span class="err">end
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/views/admin/events/index.html.erb</code>，用 <code>form_tag</code> 包住整个 <code>table</code>，并加上核选方块和批次删除的按钮：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  &lt;%= form_tag bulk_update_admin_events_path, :class =&gt; "form-inline" do %&gt;
+</span>   &lt;table class="table"&gt;
+   &lt;tr&gt;
+<span class="gi">+    &lt;th&gt;&lt;%= check_box_tag "全选", "1", false, :id =&gt; "toggle_all" %&gt;&lt;/th&gt;
+</span>
+   # 略
+
+   &lt;% @events.each do |event| %&gt;
+    &lt;tr&gt;
+<span class="gi">+     &lt;td&gt;
++       &lt;%= check_box_tag "ids[]", event.id %&gt;
++     &lt;/td&gt;
+</span>
+   # 略
+
+   &lt;/table&gt;
+
+<span class="gi">+    &lt;p&gt;&lt;%= submit_tag "批次删除", :class =&gt; "btn btn-danger", :data =&gt; { :confirm =&gt; "Are you sure?" } %&gt;&lt;/p&gt;
++  &lt;% end %&gt;
+</span>
+<span class="gi">+  &lt;script&gt;
++    // 这个 javascript 会绑事件在 #toggle_all 核选方块上，来做全选效果
++    $("#toggle_all").click(function(){
++      if ( $(this).prop("checked") ) {
++        $("input[name='ids[]']").prop("checked", true);
++      } else {
++        $("input[name='ids[]']").prop("checked", false);
++      }
++    })
++  &lt;/script&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>app/controllers/admin/events_controller.rb</code>，循环 <code>params[:ids]</code> 数组找出每个 event 然后删除。</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+  def bulk_update
++    total = 0
++    Array(params[:ids]).each do |event_id|
++      event = Event.find(event_id)
++      event.destroy
++      total += 1
++    end
++
++    flash[:alert] = "成功完成 #{total} 笔"
++    redirect_to admin_events_path
+</span><span class="err">+  end
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5TDfv99jRj2d1Mh8nUQY_14-1.png" title=""></figure></p>
+
+<p>这样就可以批次删除了。</p>
+
+<blockquote>
+<p>Pro Tip 小技巧：关于 <code>Array(params[:ids]</code> 这个用法，如果是 <code>Array([1,2,3])</code> 会等同于 <code>[1,2,3]</code> 没变，但是 <code>Array[nil]</code> 会变成 <code>[]</code> 空数组，这可以让 <code>.each</code> 方法不会因为 <code>nil.each</code> 而爆错。如果不这样处理，在没有勾选任何活动就送出的情况，就会爆出 NoMethodError 错误。除非你额外检查 <code>params[:id]</code> 如果是 <code>nil</code> 就返回，但不如用 <code>Array</code> 来的精巧。</p>
+</blockquote>
+
+<p>注意本来的 admin layout 中的 flash 样式有点问题，请修改 <code>app/views/layouts/admin.html.erb</code> 修正一下：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/layouts/admin.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-    &lt;div class="container"&gt;
+</span><span class="gi">+    &lt;div class="container" style="padding-top: 60px"&gt;
+</span>
+<span class="gd">-      &lt;p class="notice"&gt;&lt;%= notice %&gt;&lt;/p&gt;
+-      &lt;p class="alert"&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</span>
+<span class="gi">+      &lt;% if notice %&gt;
++        &lt;p class="notice alert-success"&gt;&lt;%= notice %&gt;&lt;/p&gt;
++      &lt;% end %&gt;
+</span>
+<span class="gi">+      &lt;% if alert %&gt;
++        &lt;p class="alert alert-danger"&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</span><span class="err">+      &lt;% end %&gt;
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      14-3 批次修改
+    </h1><h4>所属章节：14. 批次编辑 (Bulk Editing)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>接下来实作批次修改状态。注意到我们已经包了一个 <code>form</code> 在 <code>table</code> 外面了：</p>
+
+<ul>
+<li>一个 form 的送出 URL 位置是固定的，会进到同一个 action。这里会 POST 送出到 <code>bulk_update_admin_events_path</code>
+</li>
+<li>
+<code>form</code> 里面不能再包 <code>form</code>
+</li>
+</ul>
+
+<p>那我们要怎么区别到底是要删除还是修改？所幸，按钮的文字也会送出变成参数。请修改 <code>app/views/admin/events/index.html.erb</code>，加上批次修改的按钮，以及状态的下拉选单：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/admin/events/index.html.erb
+</span></figcaption><div class="highlight"><pre>   &lt;/table&gt;
+
+<span class="gd">-   &lt;p&gt;&lt;%= submit_tag "批次删除", :class =&gt; "btn btn-danger", :data =&gt; { :confirm =&gt; "Are you sure?" } %&gt;&lt;/p&gt;
+</span>
+<span class="gi">+   &lt;p&gt;
++   &lt;%= select_tag :event_status, options_for_select( Event::STATUS.map{ |s| [t(s, :scope =&gt; + "event.status"), s] }), :class =&gt; "form-control" %&gt;
++
++   &lt;%= submit_tag t(:bulk_update), :class =&gt; "btn btn-primary" %&gt;
++   &lt;%= submit_tag t(:bulk_delete), :class =&gt; "btn btn-danger", :data =&gt; { :confirm =&gt; "Are you + sure?" } %&gt;
++   &lt;/p&gt;
+</span>
+  &lt;% end %&gt;
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>修改 <code>config/locales/zh-CN.yml</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/locales/zh-CN.yml
+</span></figcaption><div class="highlight"><pre>   "zh-CN":
+<span class="gi">+    bulk_update: 批次编辑
++    bulk_delete: 批次删除
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>如果要做英文版，请再编辑 en.yml 加上英文翻译即可</p>
+</blockquote>
+
+<p>如果观察一下 HTML 源码，可以看到按钮也是有参数的：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/icBx4QySZe3g4RHWK62m_14-3.png" title=""></figure></p>
+
+<p>接着修改 <code>app/controllers/admin/events_controller.rb</code>，根据 <code>params[:commit]</code> 参数，就可以判断用户当初是按下删除还是修改了：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/admin/events_controller.rb
+</span></figcaption><div class="highlight"><pre>
+     Array(params[:ids]).each do |event_id|
+       event = Event.find(event_id)
+<span class="gd">-      event.destroy
+-      total += 1
+</span><span class="gi">+
++      if params[:commit] == I18n.t(:bulk_update)
++        event.status = params[:event_status]
++        if event.save
++          total += 1
++        end
++      elsif params[:commit] == I18n.t(:bulk_delete)
++        event.destroy
++        total += 1
++      end
+</span>     end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/sMOVxKR4RVepfCD0fiYY_14-2.png" title=""></figure></p>
+
+<blockquote>
+<p>Pro Tip 小技巧：这里 ihower 老师改用了 I18n 来显示按钮字串，这倒不是因为一定要支援多语言，而是因为文案可能会改。如果你按钮写死 <code>&lt;%= submit_tag '批次修改'</code> 的话，那么在 controller 中也需要写成 <code>if params[:commit] == '批次修改'</code>。将来那一天要改字，就要记得两个地方都要改到。但是如果用 I18n 来处理，就之后只要记得改翻译档一个地方就好了。这个原则就叫做 <a href="https://zh.wikipedia.org/wiki/%E4%B8%80%E6%AC%A1%E4%B8%94%E4%BB%85%E4%B8%80%E6%AC%A1">DRY: Don't repeat yourself</a>，这是一个写好程序的基本原则。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>

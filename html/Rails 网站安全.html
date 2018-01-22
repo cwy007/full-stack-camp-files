@@ -1,0 +1,1379 @@
+
+<style>
+  .frame {
+      margin-left: 30px;
+      margin-right: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+  }
+
+  .view-count {
+      float: right;
+      margin-top: -54px;
+      color: #9B9B9B;
+  }
+
+  .markdown h2, .markdown h3, .markdown h4 {
+      text-align: left;
+      font-weight: 800;
+      font-size: 16px !important;
+      line-height: 100%;
+      margin: 0;
+      color: #555;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+  }
+
+    .markdown .figure-code figcaption {
+      background-color: #e6e6e6;
+
+      font: 100%/2.25 Monaco, Menlo, Consolas, 'Courier New', monospace;
+      text-indent: 10.5px;
+
+      -moz-border-radius: 0.25em 0.25em 0 0;
+      -webkit-border-radius: 0.25em;
+      border-radius: 0.25em 0.25em 0 0;
+      -moz-box-shadow: inset 0 0 0 1px #d9d9d9;
+      -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+      box-shadow: inset 0 0 0 1px #d9d9d9;
+  }
+
+  .markdown {
+      position: relative;
+      line-height: 1.8em;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif !important;
+  }
+
+  .markdown ol li, .markdown ul li {
+      line-height: 1.6em;
+      padding: 2px 0;
+      color: #333;
+      font-size: 16px;
+  }
+
+  .markdown .figure-code {
+      margin: 20px 0;
+  }
+
+  .post-content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  .markdown code {
+      background-color: #ececec;
+      color: #d14;
+      font-size: 85%;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+      border: 1px solid #d9d9d9;
+      padding: 0.15em 0.3em;
+  }
+
+  div {
+      display: block;
+  }
+
+  .markdown figure.code pre {
+      background-color: #ffffcc !important;
+  }
+
+  .code .gi {
+      color: #859900;
+      line-height: 1.2em;
+  }
+
+  .code .err {
+      color: #93A1A1;
+  }
+
+  .markdown a:link, .markdown a:visited {
+      color: #0069D6 !important;
+      text-decoration: none !important;
+  }
+
+  .markdown p {
+      font-size: 16px;
+      line-height: 1.5em;
+  }
+
+  .markdown blockquote {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 12px;
+      border-left: 5px solid #50AF51;
+      background-color: #F3F8F3;
+      clear: both;
+      display: block;
+  }
+
+  .markdown blockquote>*:first-child {
+      margin-top: 0 !important;
+  }
+
+  .markdown blockquote>*:last-child {
+      margin-bottom: 0 !important;
+  }
+
+  .markdown blockquote p {
+      color: #222;
+  }
+
+  * {
+      outline: none !important;
+  }
+
+  a:active, a:hover, a:link, a:visited {
+      text-decoration: none;
+  }
+
+  pre {
+      margin: 0;
+  }
+
+  .markdown img {
+      vertical-align: top;
+      max-width:100%;
+      height:auto;
+  }
+
+  h1 a {
+    color: #071A52;
+  }
+
+  h4 {
+    color: #734488;
+  }
+
+  hr {
+    border-color: #DEDEDE;
+    border-width: 0.8px;
+    margin-bottom: auto;
+  }
+
+  .end {
+    height: 400px;
+  }
+
+  .end img {
+    clear: both;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .end p {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 60px auto 100px;
+    color: #ddd;
+  }
+</style>
+<div class='frame'><h1>
+      1-1 前言
+    </h1><h4>所属章节：1. 前言与案例准备</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>为了让大家可以快速开始进行<del>攻击</del>，请 Fork 这个项目：<a href="https://github.com/growthschool/hackme-app" rel="nofollow" target="_blank">https://github.com/growthschool/hackme-app</a>，然后 Clone 回去。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/RJ7gTIJqTLWOQtFmp3J3_1-1.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/bsQSwaFnT0SXT38aPK8E_1-2.png" title=""></figure></p>
+
+<blockquote>
+<p>因为等会交作业用 Pull Request，所以你需要用 Fork 把项目复制在你的 Github 帐号下，这样修改后才可以 Push 上去，最后用 Pull Request 交作业。</p>
+</blockquote>
+
+<p>Fork 后，请依序执行：</p>
+
+<p><code>git clone git@github.com:你的帐号/hackme-app.git</code><br>
+<code>cd hackme-app</code><br>
+<code>bin/setup</code><br>
+<code>bundle exec rake dev:fake</code></p>
+
+<p>在这个项目中，已经装好了 Devise、Bootstrap、RSpec，并且建立好了以下功能：</p>
+
+<ul>
+<li>用户登入、登出</li>
+<li>用户可以浏览不同活动</li>
+<li>用户可以针对活动留言</li>
+<li>管理员可以针对特定留言，进行高亮(Highlight)显示</li>
+<li>用户可以浏览商品</li>
+<li>用户可以将商品加入购物车</li>
+</ul>
+
+<p>执行 <code>rails server</code></p>
+
+<p>接着打开浏览器 <a href="http://localhost:3000" rel="nofollow" target="_blank">http://localhost:3000</a></p>
+
+<p>数据库中已经有三个用户：</p>
+
+<p>帐号: <code>hacker@example.org</code><br>
+密码: <code>12345678</code><br>
+说明: 这是你，超级骇客</p>
+
+<p>帐号: <code>ihower@gmail.com</code><br>
+密码: <code>12345678</code><br>
+说明: 这是要被骇的路人</p>
+
+<p>帐号: <code>admin@example.org</code><br>
+密码: <code>12345678</code><br>
+说明: 这是要被骇的网站管理员</p>
+
+<p>请浏览看看前台其中一个活动页面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/0pC86VofRmLDzD6Zkm3x_1-3.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      1-2 法律警告
+    </h1><h4>所属章节：1. 前言与案例准备</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>本课程的目的是为了让大家能够更好的保护自己，了解骇客是如何攻击的，进而了解 Rails 是如何进行防御的。所谓「害人之心不可有，防人之心不可无」，看到别人家里没锁门，不代表你可以进去破坏或偷东西。这在每个国家都是犯法的行为！你可以善意地提醒人家没锁门，但是千万不要自以为是越过法律的界线喔。</p>
+
+<blockquote>
+<p><a href="http://www.npc.gov.cn/npc/xinwen/2016-11/07/content_2001605.htm">中华人民共和国网络安全法</a> 第二十七条  任何个人和组织不得从事非法侵入他人网络、干扰他人网络正常功能、窃取网络数据等危害网络安全的活动；不得提供专门用于从事侵入网络、干扰网络正常功能及防护措施、窃取网络数据等危害网络安全活动的程序、工具；明知他人从事危害网络安全的活动的，不得为其提供技术支持、广告推广、支付结算等帮助。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-1 什么是 XSS 跨站脚本攻击?
+    </h1><h4>所属章节：2. XSS 跨站脚本攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>我们在「百宝箱 13. Rich Editor 编辑器」有介绍过 <a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%BD%91%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A0%81">XSS</a> 跨站脚本攻击：如果用户可以自己张贴内容到网站上，并且网站会显示出来的话，就有可能有 XSS 漏洞。恶意用户会张贴 JavaScript 代码上来，那么这么当其他用户浏览到这一页时，浏览器就会盲目的执行 JavaScript 代码。</p>
+
+<p>让我们攻击看看，请用 <code>hacker@example.org</code> 登入，然后针对一则活动留言，贴上以下 JavaScript 代码：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;script&gt;
+$.ajax({
+  url: $(location).attr('href') + "/comments",
+  method: "POST",
+  data: {  comment : { content: "啊哈哈哈～你看看你！ (σﾟ∀ﾟ)σﾟ∀ﾟ)σﾟ∀ﾟ)σ" } },
+  dataType: "JSON"
+})
+&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/spCHxGm0T1a72SvrzZCV_2-1.png" title=""></figure></p>
+
+<p>留言完之后，接下来任何人看到这一页，就会执行这段 Ajax 代码，也跟着留言一次。请多重新整理页面几次看看。</p>
+
+<p>你也可以测试看看其他人浏览会怎么样？你可以用另一个浏览器(例如 Safari)，或是用 Chrome 的 Incognito Windows(无痕模式，这会开启一个干净没有 Cookie 的新视窗)，然后改用 <code>admin@example.org</code> 登入，然后浏览刚刚那一个活动...</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/pVhhnVfpQhORali1KhpE_2-chrome.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/j0wwOYnhQ8qwc4Nx7rhk_2-2.png" title=""></figure></p>
+
+<p><code>admin</code> 也会自动张贴留言了....</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-2 如何防御 XSS?
+    </h1><h4>所属章节：2. XSS 跨站脚本攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>要防御说起来简单，就是显示每个用户贴文的地方都要脱逸(或叫做转义) HTML，打开 <code>app/views/events/show.html.erb</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= raw comment.content %&gt;
+</span><span class="err">+  &lt;%= comment.content %&gt;
+</span></pre></div>
+</figure>
+
+<p>Rails 默认就会脱逸 HTML 了，用 <code>raw comment.content</code> 或 <code>comment.content.html_safe</code> 反而是告诉 Rails 不要脱逸 HTML。拿掉 <code>raw</code> 之后，就会脱逸显示出原代码，例如 <code>&lt;</code> 会变成 <code>&amp;lt;</code>。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/1GJCqr1cSja2Ogj1Y6Hk_2-3.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ENHZc8s5T66i5qSGpllR_2-4.png" title=""></figure></p>
+
+<p>不过这样会完全防止任何 HTML 标籤，例如我们张贴以下这张图片：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;img src="http://placehold.it/200x200" /&gt;
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/TUL929xbQHaN0UknZsg2_2-5.png" title=""></figure></p>
+
+<p>一样被脱逸了 :(</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/A36zirZfQ7CaOuHabLkL_2-6.png" title=""></figure></p>
+
+<p>如果我们还是希望用户可以输入 HTML，就像百宝箱 13. Rich Editor 编辑器的需求，请改用 sanitize 白名单过滤，只允许部分的 HTML 标籤：</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= comment.content %&gt;
+</span><span class="err">+  &lt;%= sanitize comment.content %&gt;
+</span></pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xahFlNcQgGPo1lW4430z_2-7.png" title=""></figure></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-3 另一个不小心的漏洞
+    </h1><h4>所属章节：2. XSS 跨站脚本攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>请点主选单的修改个人资料，这个地方会不会有漏洞呢?</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/OGu6g0GnTimIzv03Wkdb_2-8.png" title=""></figure></p>
+
+<p>回到任一个活动页面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ogGFNIQTjmKqTWzeXt29_2-9.png" title=""></figure></p>
+
+<p>发现竟然有漏洞，这段 JavaScript 被执行了。</p>
+
+<p>让我们找找看漏洞出现在哪里，原来是在留言显示用户名称的地方，没有做好脱逸 :(</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html
+</span></figcaption><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel-heading"</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">user_avatar_link</span><span class="p">(</span><span class="n">comment</span><span class="p">.</span><span class="nf">author</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</figure>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/users_helper.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'digest/md5'</span>
+
+<span class="k">module</span> <span class="nn">UsersHelper</span>
+
+  <span class="k">def</span> <span class="nf">user_avatar_link</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="c1"># https://cn.gravatar.com/
+</span>
+    <span class="n">email_md5</span> <span class="o">=</span> <span class="no">Digest</span><span class="o">::</span><span class="no">MD5</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
+    <span class="n">gravatar_url</span> <span class="o">=</span> <span class="s2">"https://www.gravatar.com/avatar/</span><span class="si">#{</span><span class="n">email_md5</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="n">str</span> <span class="o">=</span> <span class="s2">"&lt;div class ='user-link'&gt;"</span> <span class="o">+</span> <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="n">gravatar_url</span><span class="p">),</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="nf">display_name</span> <span class="o">+</span> <span class="s2">"&lt;/div&gt;"</span>
+
+    <span class="n">str</span><span class="p">.</span><span class="nf">html_safe</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>这个 <code>user_avatar_link</code> helper 的目的是输出用户的 <a href="https://cn.gravatar.com/">Gravater</a> 照片的连结，以及用户的显示名称，而问题就出在 <code>str.html_safe</code> 太过放纵了。</p>
+
+<p>但是如果你把 <code>str.html_safe</code> 这行拿掉，你会发现整个 Helper 的输出都被脱逸了 :( 不是我们想要的结果。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/dNkDDgeuS2euPQwfxWVQ_2-10.png" title=""></figure></p>
+
+<p>这是因为 Rails 会追踪每个字符串是否是安全的，如果不安全的话，输出时会自动脱逸。不安全的字符串 <code>+</code> 安全的字符串，会变成不安全的。由于字符串 <code>"&lt;div class ='user-link'&gt;"</code> 默认是不安全的，因此后来累加字符串进来，整个 <code>str</code> 都是不安全的，所以 Rails 最后会让整个 <code>str</code> 都脱逸，造成图片 img 标籤也无法显示。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-4 解法办法
+    </h1><h4>所属章节：2. XSS 跨站脚本攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <h4>解法办法一</h4>
+<p>小心翼翼地在不需要脱逸的地方加上 <code>.html_safe</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/users_helper.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'digest/md5'</span>
+
+<span class="k">module</span> <span class="nn">UsersHelper</span>
+
+  <span class="k">def</span> <span class="nf">user_avatar_link</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="c1"># https://cn.gravatar.com/
+</span>
+    <span class="n">email_md5</span> <span class="o">=</span> <span class="no">Digest</span><span class="o">::</span><span class="no">MD5</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
+    <span class="n">gravatar_url</span> <span class="o">=</span> <span class="s2">"https://www.gravatar.com/avatar/</span><span class="si">#{</span><span class="n">email_md5</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="o">-</span>   <span class="n">str</span> <span class="o">=</span> <span class="s2">"&lt;div class ='user-link'&gt;"</span> <span class="o">+</span> <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="n">gravatar_url</span><span class="p">),</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="nf">display_name</span> <span class="o">+</span> <span class="s2">"&lt;/div&gt;"</span>
+<span class="o">-</span>   <span class="n">str</span><span class="p">.</span><span class="nf">html_safe</span>
+
+<span class="o">+</span>   <span class="s2">"&lt;div class ='user-link'&gt;"</span><span class="p">.</span><span class="nf">html_safe</span> <span class="o">+</span> <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="n">gravatar_url</span><span class="p">),</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="nf">display_name</span> <span class="o">+</span> <span class="s2">"&lt;/div&gt;"</span><span class="p">.</span><span class="nf">html_safe</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/w86gvStkTVKo8BkJUMQ0_2-11.png" title=""></figure></p>
+<h4>解法办法二</h4>
+<p>可以用 Rails 内建的 <code>content_tag</code> helper 产生标籤，结果一样，只是写起来会比字符串相加好看一点：</p>
+
+<figure class="figure-code code"><figcaption><span>app/helpers/users_helper.rb
+</span></figcaption><div class="highlight"><pre><span class="nb">require</span> <span class="s1">'digest/md5'</span>
+
+<span class="k">module</span> <span class="nn">UsersHelper</span>
+
+  <span class="k">def</span> <span class="nf">user_avatar_link</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="c1"># https://cn.gravatar.com/
+</span>
+    <span class="n">email_md5</span> <span class="o">=</span> <span class="no">Digest</span><span class="o">::</span><span class="no">MD5</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">email</span><span class="p">)</span>
+    <span class="n">gravatar_url</span> <span class="o">=</span> <span class="s2">"https://www.gravatar.com/avatar/</span><span class="si">#{</span><span class="n">email_md5</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="o">-</span>   <span class="s2">"&lt;div class ='user-link'&gt;"</span><span class="p">.</span><span class="nf">html_safe</span> <span class="o">+</span> <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="n">gravatar_url</span><span class="p">),</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="nf">display_name</span> <span class="o">+</span> <span class="s2">"&lt;/div&gt;"</span><span class="p">.</span><span class="nf">html_safe</span>
+
+<span class="o">+</span>   <span class="n">content_tag</span><span class="p">(</span><span class="ss">:div</span><span class="p">,</span>
+      <span class="n">link_to</span><span class="p">(</span><span class="n">image_tag</span><span class="p">(</span><span class="n">gravatar_url</span><span class="p">),</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">user</span><span class="p">.</span><span class="nf">display_name</span> <span class="p">,</span>
+      <span class="ss">:class</span> <span class="o">=&gt;</span> <span class="s2">"user-link"</span> <span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      2-5 小结
+    </h1><h4>所属章节：2. XSS 跨站脚本攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>由于 Rails 默认会脱逸 HTML 的关系，所以 Rails 对 XSS 是有了基本的防御。如果不是 Rails 这种的框架帮你默认脱逸的话，网页上只要显示用户的输出，都有可能是个安全漏洞。</p>
+
+<p>不过即使有 Rails 的保护，你也有可能在字符串相加的过程中，不小心太过放纵而造成漏洞，就像这一节所示范的。这时候就必须小心处理那些是安全的字符串、那些是用户输入的不安全字符串。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-1 什么是 CSRF 跨站请求伪造?
+    </h1><h4>所属章节：3. CSRF 跨站请求伪造</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>请用 <code>admin@example.org</code> 帐号登入，浏览任一活动：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/xzif4mY0RHSx4CHkXAHg_3-1.png" title=""></figure></p>
+
+<p>管理员可以给留言 Highlight 高亮，这样就会显示黄色背景。</p>
+
+<p>骇客没有办法办法骗管理员去高亮特定文章呢? 如果还有 XSS 漏洞的话，可以用 XSS 攻击，留下一段 JavaScript 代码去触发那个高亮按钮，只要管理员逛到那一页，执行到 JavaScript 的话，也可以办到这件事情。</p>
+
+<p>不过，上一节我们已经防御好 XSS，这一节我们用另一条攻击手法。请先观察你要高亮那一篇留言：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ufxd4fILRnOPoEdRvjon_3-2.png" title=""></figure></p>
+
+<p>这一篇留言的ID是 522，所以要骗管理员去高亮这篇留言，就是要骗管理员的浏览器去打 <code>/events/92/comments/522/highlight</code> 囉，这件事情其实很简单，骇客留言一下：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;img src="/events/92/comments/522/highlight"&gt;
+
+
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/tA2uiHPVR4GsxUU8sbcW_3-3.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/Z9iRHVb0R02iZnVSFpi2_3-4.png" title=""></figure></p>
+
+<p>上一节防止 XSS 时，有用 sanitize 来做白名单的过滤，而 <code>img</code> 标籤是一个白名单放行的标籤，因此这个图档浏览器会发送 Request 请求到 <code>/events/92/comments/522/highlight</code> 去抓图。当然，我目前的身份是 <code>hacker@example.org</code> 是没有权限高亮的，但是已经挖了一个坑准备给管理员跳。</p>
+
+<blockquote>
+<p>在 <code>app/controllers/comments_controller.rb</code> 中，我们有用 <code>before_action :require_admin!, :only =&gt; [:highlight]</code> 检查调用 highlight 方法必须有管理员权限。</p>
+</blockquote>
+
+<p>接着请切换到管理员 <code>admin@example.org</code> 身份，去浏览这一页，然后重新整理页面一次：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/yKUjNFM8SVK4wuRsd4UO_3-5.png" title=""></figure></p>
+
+<p>这篇文章就被高亮了..... 用管理员的权限去高亮的。浏览器真好骗啊。</p>
+
+<p>这种攻击，就叫做<a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">CSRF 跨站请求伪造</a>，骇客挖坑让有权限的用户去跳。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-2 如何防御？
+    </h1><h4>所属章节：3. CSRF 跨站请求伪造</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>首先，这个高亮会这么好触发的原因，在于我们把它设计成 <code>GET</code> 请求，这样骇客用 <code>img</code> 标籤太容易就能诱骗浏览器了。让我们把它改成 <code>POST</code> 操作。</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  resources :events do
+    resources :comments do
+      member do
+-       get :highlight
++       post :highlight
+      end
+    end
+  end
+
+</pre></div>
+</figure>
+
+<p>以及</p>
+
+<figure class="figure-code code"><figcaption><span>app/views/events/show.html.erb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  &lt;%= link_to "Highligh", highlight_event_comment_path(@event, comment), :class =&gt; "btn btn-default" %&gt;
+</span><span class="gi">+  &lt;%= link_to "Highligh", highlight_event_comment_path(@event, comment), :method =&gt; :post, :class =&gt; "btn btn-default" %&gt;
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<blockquote>
+<p>在 Web API 设计实作课程的 <a href="https://fullstack.xinshengdaxue.com/posts/838">3-2 什么是 REST API</a> 之中，也有讲述到 GET 和 POST 的差异：GET 只能单纯读取资料，不应该修改资料。而 POST 则是执行某个操作，会修改到服务器的资料。</p>
+</blockquote>
+
+<p>这样的话，用 <code>img</code> 标籤就不能攻击了，骇客必须用到 JavaScript 才能让管理员的浏览器去做 POST 请求。但是要用 JavaScript 的话，就必须存在有上一节的 XSS 漏洞才行了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-3 漏网之鱼
+    </h1><h4>所属章节：3. CSRF 跨站请求伪造</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>CSRF 之所以危险的地方，在于攻击方可以在其他网站挖坑，只要管理员浏览到那一页，一样可以执行这个攻击。</p>
+
+<p>所以就算上一节我们已经改成 POST 了，而且这个网站也不存在 XSS 漏洞，骇客依然有办法去诱使管理员的浏览器去 POST 操作。例如骇客知道管理员常去看「百度贴吧」，然后假设「百度贴吧」有个 XSS 漏洞可以贴 JavaScript 代码，那么骇客可以贴文：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>&lt;iframe style="display:none" name="csrf-frame"&gt;&lt;/iframe&gt;
+
+&lt;form method='POST' action='http://localhost:3000/events/92/comments/522/highlight' target="csrf-frame" id="csrf-form"&gt;
+  &lt;input type='submit' value='submit'&gt;
+&lt;/form&gt;
+
+&lt;script&gt;document.getElementById("csrf-form").submit()&lt;/script&gt;
+</pre></div>
+</figure>
+
+<p>这段 HTML 和 JavaScript 代码会自动 submit 到隐藏的 iframe 视窗里面，所以管理员是没有感觉的。只要管理员浏览到这段贴文的网页，浏览器就会自动 POST 出去了.... 达成高亮效果。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      3-4 如何防御 POST 类型的 CSRF 攻击？
+    </h1><h4>所属章节：3. CSRF 跨站请求伪造</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>那要如何防御呢？我们需要针对所有非 GET 的操作，都加上额外的 token 验证码参数，检查用户浏览器当初真的是从网站上的某个表单送出的，而不是不小心触发的 CSRF 攻击。</p>
+
+<p>这个防御功能 Rails 已经内建了，请修改 <code>app/controllers/application_controller.rb</code>，打开 <code>protect_from_forgery</code></p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/application_controller.rb
+</span></figcaption><div class="highlight"><pre>  class ApplicationController &lt; ActionController::Base
+
+    # protect_from_forgery with: :exception
+<span class="gi">+   protect_from_forgery with: :exception
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>在 Rails 产生的表单中，就有带这个参数 <code>authenticity_token</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/CWOAeWOaS4pAEApihUoO_3-6.png" title=""></figure></p>
+
+<p>如果是 Ajax 请求，jQuery 则会去抓 meta 中的 <code>csrf-token</code> 参数附加上去：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/kK2BE2SMTJ2qI4NiaSSp_3-7.png" title=""></figure></p>
+
+<p>透过这种机制，骇客在其他网站挖的坑因为没有这个<code>authenticity_token</code>参数，送过来的时候就会被 Rails 阻挡住，会有以下的错误画面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7MnnSijMSdCm8zBg47jj_3-8-422.png" title=""></figure></p>
+
+<p>这也是为什么有时候逛 Rails 制作的网站，表单如果放太久才送出，有时候也会出现这个错误画面，因为这个 <code>authenticity_token</code> 过期失效了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-1 什么是 SQL
+    </h1><h4>所属章节：4. SQL Injection 数据库注入攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在 Rails 中我们利用 ActiveRecord 语法来操作数据库的资料，例如查询所有活动：</p>
+
+<p><code>@events = Event.all</code></p>
+
+<p>这段 Ruby 代码，实际上会被转成数据库语言 <a href="https://zh.wikipedia.org/zh-cn/SQL">SQL</a> 来对数据库做查询 ：</p>
+
+<p><code>SELECT "events".* FROM "events"</code></p>
+
+<p>在 Rails log 中，只要对数据库做任何 CRUD 操作，都会是一个 SQL，例如这些都是 SQL</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2P3yfiytQS6PMtmaHwdb_4-1.png" title=""></figure></p>
+
+<blockquote>
+<p>之后会有数据库课程教各位理解数据库原理和 SQL，理解 SQL 就可以做出比较复杂的数据分析功能，可以把 ActiveRecord 数据查询用的更好。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-2 什么是 SQL Injection 攻击?
+    </h1><h4>所属章节：4. SQL Injection 数据库注入攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在实际的网站应用中，我们会将用户输入的参数，动态地组合出 SQL 来对数据库查询。例如：</p>
+
+<p><code>@registrations = Registration.where( :status =&gt; params[:status] )</code></p>
+
+<p>就会根据用户浏览器传过来的 <code>params[:status]</code> 参数不同，而组合出不同的 SQL 句子。假如参数 <code>params[:status]</code> 是 <code>pending</code>，那这个 SQL 句就会是：</p>
+
+<p><code>SELECT "registrations".* FROM "registrations" WHERE "registrations"."status" = 'pending'</code></p>
+<h3>实际攻击示范</h3>
+<p>在本课程的范例中，有一个功能是关键字查询留言，请浏览至任一个活动页面：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/2yEqOPZRuKISZQSStiOz_4-2.png" title=""></figure></p>
+
+<p>按下 Search 按钮后，对应的处理代码在 <code>app/controllers/events_controller.rb</code> 中的 show action:</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre>  <span class="vi">@comments</span> <span class="o">=</span> <span class="vi">@comments</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span> <span class="s2">"comments.content LIKE '%</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="ss">:keyword</span><span class="p">]</span><span class="si">}</span><span class="s2">%'"</span><span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>这段 ActiveRecord 语法会被转成如以下的 SQL 句：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>SELECT "comments".* FROM "comments" WHERE "comments"."event_id" = ? AND (comments.content LIKE '%这是搜寻关键字%')  [["event_id", 95]]
+</pre></div>
+</figure>
+
+<p>很不幸的，这种写法存在 SQL Injection 漏洞，用以下的关键字就可以进行攻击，删除所有留言数据：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>sorry'); DELETE * FROM comments; --
+</pre></div>
+</figure>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/9rU0g4kwRuOkcbxbQdnE_4-3.png" title=""></figure></p>
+
+<p>按下 Search 按钮后，悲惨的事情就发生了，所有留言都被删除了 😳😳😳😳😳</p>
+
+<p>这是怎么办到的？我们把攻击的关键字代入 SQL 句子，就会变成：</p>
+
+<p><code>SELECT "comments".* FROM "comments" WHERE "comments"."event_id" = ? AND (comments.content LIKE '%sorry'); DELETE * FROM comments; --%')  [["event_id", 95]]</code></p>
+
+<p>这会被数据库解读成三个 SQL 句子：</p>
+
+<ol>
+<li><code>SELECT "comments".* FROM "comments" WHERE "comments"."event_id" = ? AND (comments.content LIKE '%sorry');</code></li>
+<li><code>DELETE * FROM comments;</code></li>
+<li><code>--%')  [["event_id", 95]]</code></li>
+</ol>
+
+<p>其中第二句就达成删除的效果，第三句的 <code>--</code> 是 SQL 的注解。</p>
+
+<p>由此可知，SQL Injection 数据库注入攻击可以破坏我们的数据库、修改数据资料、跳过登入密码检查等等，是非常有破坏力的攻击行为。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-3 如何防御 SQL 注入攻击 ？
+    </h1><h4>所属章节：4. SQL Injection 数据库注入攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>跟防御 XSS 一样的道理，所有用户传进来要代入 SQL 的参数，都必须加以逸出：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  @comments = @comments.where( "comments.content LIKE '%#{params[:keyword]}%'")
+</span>
+<span class="gi">+  keyword = ActiveRecord::Base::connection.quote_string( params[:keyword] )
++  @comments = @comments.where( "comments.content LIKE '%#{keyword}%'")
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>不过代入用户参数的情景实在太常见了，在 Rails 会通常会用特别的写法来指定 SQL 条件，让 Rails 能够知道哪一部分需要逸出：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  @comments = @comments.where( "comments.content LIKE '%#{params[:keyword]}%'")
+</span><span class="gi">+  @comments = @comments.where( "comments.content LIKE ?", "%#{params[:keyword]}%")
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>其中 <code>?</code> 代表要代入的参数。</p>
+
+<p>最后的 SQL 句子变成：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>SELECT "comments".* FROM "comments" WHERE "comments"."event_id" = ? AND (comments.content LIKE '%sorry''); DELETE * FROM comments; --%')  [["event_id", 95]]
+</pre></div>
+</figure>
+
+<p>其中 <code>sorry')</code> 变成 <code>sorry'')</code> 了，这样数据库就知道这此单引号不是结束的单引号。</p>
+
+<blockquote>
+<p>你可以再测试看看还会不会有这个漏洞，送出后会先看到没有任何资料是正常的，因为查不到任何留言是符合关键字。请回首页再进来，留言还是正常没有被删除掉。</p>
+</blockquote>
+
+<p>另一种常见的写法是用 Hash，例如</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="vi">@registrations</span> <span class="o">=</span> <span class="no">Registraion</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span> <span class="s2">"status = '</span><span class="si">#{</span><span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">]</span><span class="si">}</span><span class="s2">' ) # 自己组字符串，这不安全，有 SQL 注入漏洞
+
+@registrations = Registraion.where( :status =&gt; params[:status] ) # Hash 写法，这是安全的
+@registrations = Registraion.where( "</span><span class="n">status</span> <span class="o">=</span> <span class="sc">?"</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">]</span> <span class="p">)</span> <span class="c1"># Array 写法，这是安全的
+</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      4-4 漏网之鱼
+    </h1><h4>所属章节：4. SQL Injection 数据库注入攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>上一节中我们示范了在 <code>where</code> 语法中，用 Hash 或 Array 写法可以自动做逸出。但是在 ActiveReocrd 中，还有一些方法并没有帮我们做逸出，包括 <code>order</code>、<code>pluck</code> 等等，详见 <a href="https://rails-sqli.org">Rails SQL Injection</a>。</p>
+
+<p>所以当我们需要将用户传过来的参数传进去时，除了逸出之外，也可以采用白名单的过滤方式。</p>
+
+<p>在范例中，可以根据用户指定的顺序来做排序：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/wmMSHd62RnQnxiWbhfKV_4-4.png" title=""></figure></p>
+
+<p>用户可以点不同连结来进行排序，会传不同 <code>sort</code> 参数。用户传过来的参数都是不可以信任的，用户大可以直接修改网址就可以传任意参数进来 🙀🙀🙀</p>
+
+<p>请修改 <code>app/controllers/events_controller.rb</code>，我们只能允许特定的查询参数：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/events_controller.rb
+</span></figcaption><div class="highlight"><pre><span class="gd">-  if params[:sort] # 本来这样有漏洞，你太相信用户传进来的参数了
+</span><span class="gi">+  if params[:sort] &amp;&amp; ["id DESC", "id ASC"].include?(params[:sort])  # 只有白名单内的参数可以用
+</span>    @comments = @comments.order(params[:sort])
+  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-1 ActiveRecord 赋值功能
+    </h1><h4>所属章节：5. 大量赋值(Mass Assignment)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>大量赋值(Mass Assignment)是 ActiveRecord 的一个功能，例如以下是新建 Event 的代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"Foo"</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">description</span> <span class="o">=</span> <span class="s2">"Bar"</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">save</span>
+</pre></div>
+</figure>
+
+<p>这个 <code>new</code> 可以接受 Hash 来做赋值，上述的代码等同于：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="no">Event</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Foo"</span><span class="p">,</span> <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">"Bar"</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>另外，放在方法参数最后面的 Hash，它的 <code>{ }</code> 是可以省略的，因此这又等同于：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>Event.new( :name =&gt; "Foo", :description =&gt; "Bar" )
+</pre></div>
+</figure>
+
+<p>这种用法就叫做大量赋值(Mass Assignment)。除了 <code>new</code> 之外，<code>update</code> 也是一样的，这个我们在做 CRUD 时就有看过，例如：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">first</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"Foo"</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">description</span> <span class="o">=</span> <span class="s2">"Bar"</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">save</span>
+
+</pre></div>
+</figure>
+
+<p>等同于</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">first</span>
+<span class="n">event</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Foo"</span><span class="p">,</span> <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">"Bar"</span> <span class="p">)</span>
+
+</pre></div>
+</figure>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-2 大量赋值与 Rails 表单
+    </h1><h4>所属章节：5. 大量赋值(Mass Assignment)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>这个功能的主用用途是可以跟 Rails <code>form_for</code> 方法产生的表单做配套，在以下的 Event 表单中，Rails 故意将 HTML 输入框 input 的 <code>name</code> 命名成 <code>event[name]</code> 和 <code>event[description]</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/gNJTNOwpQUKrR6pgsccI_5-1.png" title=""></figure></p>
+
+<p>这样送出后，Rails 会解析成 <code>params[:event]</code> 刚好是一个 Hash，可以跟大量赋值用法配套在一起：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/MlJegER3y7OdbjesqaSg_5-2.png" title=""></figure></p>
+
+<p>在早先的 Rails 版本中，可以直接把 <code>params[:event]</code> 丢进 <code>new</code> 或 <code>update</code> 中，例如：</p>
+
+<p><code>Event.new(params[:event])</code></p>
+
+<p><code>@event.update( params[:event] )</code></p>
+
+<p>不过这样却存在一个大漏洞，用户可以自行修改表单 input 的 name。这很简单你用 Chrome 除错器就可以办到了，点该 input 的 name 就可以改：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/r79h5T4SQ15rSZpoaU7M_5-3.png" title=""></figure></p>
+
+<p>这里改成 <code>event[user_id]</code>，送出之后如果直接调用<code>@event.update( params[:event] )</code>的话，那就修改到 <code>user_id</code> 了 🙀🙀🙀</p>
+
+<p>因此在新版的 Rails 中，必须经过 <a href="https://github.com/rails/strong_parameters">Strong Parameters</a> 过滤后，才能传进 <code>new</code> 或 <code>update</code> 之中，以下这段代码大家都熟悉：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">update</span>
+    <span class="vi">@event</span> <span class="o">=</span> <span class="no">Event</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="vi">@event</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">event_params</span><span class="p">)</span>
+      <span class="n">redirect_to</span> <span class="n">admin_events_path</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s2">"edit"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">event_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:event</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span><span class="p">)</span>
+  <span class="k">end</span>
+
+</pre></div>
+</figure>
+
+<p>其中 <code>params.require(:event).permit(:name, :description)</code> 就是在做白名单的检查，只能允许 <code>params[:event][:name]</code> 和 <code>params[:event][:description]</code></p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-3 攻击示范
+    </h1><h4>所属章节：5. 大量赋值(Mass Assignment)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>不过即使有 <a href="https://github.com/rails/strong_parameters">Strong Parameters</a> 的保护，还是可能因为程序员漫不经心而存在漏洞。让我们来攻击看看。</p>
+
+<p>请点选主选单上的修改个人资料，不过我们不是想要修改暱称，我们想要来修改 Role 角色....</p>
+
+<ol>
+<li>透过 Chrome 除错器将暱称 input 的 name 为 <code>user[role]</code>
+</li>
+<li>输入框输入 <code>admin</code>
+</li>
+<li>按下送出</li>
+</ol>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/ilSd1SFgTTO7pN4W2TvE_5-4.png" title=""></figure></p>
+
+<p>然后 hacker 就变成 admin 了，你现在可以在主选单上点进后台.... 🙀🙀🙀🙀🙀</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      5-4 修补漏洞
+    </h1><h4>所属章节：5. 大量赋值(Mass Assignment)</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>让我们看看到底哪里出了漏洞，请打开 <code>app/controllers/users_controller.rb</code>，问题出在 <code>params.require(:user).permit(:nickname, :role)</code> 这一行太过放纵了，竟然允许用户可以传参数 <code>role</code> 进来... :(</p>
+
+<p>虽然在网页表单上面没有 <code>role</code> 输入框，但是用户依然可以自己想办法把参数传进来。</p>
+
+<p>让我们修补这个漏洞：</p>
+
+<figure class="figure-code code"><figcaption><span>app/controllers/users_controller.rb
+</span></figcaption><div class="highlight"><pre>  def update
+    @user = current_user
+
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render "edit"
+    end
+  end
+
+  protected
+
+  def user_params
+<span class="gd">-    params.require(:user).permit(:nickname, :role)
+</span><span class="gi">+    params.require(:user).permit(:nickname)
+</span>  end
+<span class="err">
+</span></pre></div>
+</figure>
+
+<p>再测试一次，骇客就不能修改 role 了。在 Rails log 之中，会出现</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/7tNCd9v4ReeoZ4mAaoiq_5-5.png" title=""></figure></p>
+
+<p><code>Unpermitted parameter: role</code> 的意思就是用户传了一个 <code>role</code> 参数进来被过滤掉了。</p>
+
+<p>从这个漏洞我们也可以了解为什么前台、后台的 controller 会拆开的一个原因，就是前后台的 Strong Parameters 参数白名单是不一样的。给前台用户的 <code>users_controller</code> 不允许修改 role，但是后台 <code>admin::users_controller</code> 是可以允许修改 role 的。如此拆分才会清楚不会搞混造成漏洞。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-1 什么是加密 Cookie
+    </h1><h4>所属章节：6. 破解加密 Cookie-based Session</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://zh.wikipedia.org/zh-cn/Cookie">Cookie</a> 是浏览器的一个功能，让服务器可以留数据在用户浏览器上，这样 Rails 就可以追踪识别不同登入用户。浏览器每次对服务器的请求，都会附带这个 Cookie 数据。</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/8Q50gisARByEBfKgIE2u_6-1.png" title=""></figure></p>
+
+<p>例如用户登入时，输入帐号、密码，服务器检查没问题后，就会设定该浏览器的一个 Cookie 是 user_id 是 123<br>
+接下来用户浏览器对这个网站的任何请求，就会附带这个 Cookie 参数，那么服务器就知道这个浏览器是用户 123</p>
+
+<p>不过，这是简化的版本，相信大家都知道用户是不可以相信的，存在用户端的 Cookie 也是不可以相信的，骇客可以修改 user_id 变成 1，那不就变身为管理员了吗?</p>
+
+<p>因此我们需要针对 Cookie 做加密，用一种叫做<a href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86">对称密钥加密</a>的算法，用一把密钥来做加密，并且用这个密钥可以解密回来。</p>
+
+<p>例如，以下是一段用 <a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96">DES</a> 算法加密的 Ruby 代码，将 <code>{message: "这是密文"}</code> 进行加密，你可以进 <code>irb</code> 实验看看：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">key</span> <span class="o">=</span> <span class="s1">'baRudSWouiTVfu0jwXfYDg=='</span> <span class="c1"># 一段随机数是密钥
+</span>
+
+<span class="c1"># 加密
+</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'base64'</span>
+<span class="nb">require</span> <span class="s1">'openssl'</span>
+<span class="n">text</span> <span class="o">=</span> <span class="p">{</span><span class="ss">message: </span><span class="s2">"这是密文"</span><span class="p">}.</span><span class="nf">to_json</span>
+<span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">DES</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"ECB"</span><span class="p">)</span>
+<span class="n">cipher</span><span class="p">.</span><span class="nf">encrypt</span>
+<span class="n">cipher</span><span class="p">.</span><span class="nf">key</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">strict_decode64</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="n">encrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="n">cipher</span><span class="p">.</span><span class="nf">final</span>
+<span class="n">data</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">strict_encode64</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>最后得到的 data 是 <code>"pxsTws7UtD7bOwCl6+FeLQEBJWqNTb3RSo2V84/udL0="</code> 就是一段加密后的文字。</p>
+
+<p>以下是解密的代码：</p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="n">key</span> <span class="o">=</span> <span class="s1">'baRudSWouiTVfu0jwXfYDg=='</span> <span class="c1"># 要同一把密钥才能解开
+</span>
+
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'base64'</span>
+<span class="nb">require</span> <span class="s1">'openssl'</span>
+
+<span class="n">encrypted_string</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">decode64</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">DES</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"ECB"</span><span class="p">)</span>
+<span class="n">cipher</span><span class="p">.</span><span class="nf">decrypt</span>
+<span class="n">cipher</span><span class="p">.</span><span class="nf">key</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">strict_decode64</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">encrypted_string</span><span class="p">)</span> <span class="o">+</span> <span class="n">cipher</span><span class="p">.</span><span class="nf">final</span>
+<span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</figure>
+
+<p>最后就解回 <code>{message: "这是密文"}</code> 了。</p>
+
+<p>在不知道密钥的情况下，要破解回本来的秘文是非常困难的，需要耗费非常强大的超级电脑 CPU 运算资源才能破解。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-2 Rails 的 secret key
+    </h1><h4>所属章节：6. 破解加密 Cookie-based Session</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>在 Rails 中，默认的 Session 实际上就是加密的 Cookie，我们在购物车教程中，使用了 <code>session[:cart_id]</code> 来储存追踪用户是哪一台购物车。</p>
+
+<p>刚刚我们学到要能解密的关键是那个密钥，而在 Rails 中，这一把密钥就存在 <code>config/secrets.yml</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre><span class="s">development:</span><span class="err">
+</span>
+  <span class="s">secret_key_base</span><span class="pi">:</span> <span class="s">a875bedfd1ba629c6c6039597cfd89a5bfb34fc440a0203d649bbd9e06de3e1939a4a586e1ed893108157688782b86b25223853a5b140aba7a21e5df675bed22</span><span class="err">
+</span>
+
+<span class="s">test:</span><span class="err">
+</span>
+  <span class="s">secret_key_base</span><span class="pi">:</span> <span class="s">162ffbf8a8079326e46d6f6cf946de5c67a5c2372120a642b10c6d14b413f78fda09870a0697315ac067cf6bb6924b7ae16841894f3919ef09de65238d85f712</span><span class="err">
+</span>
+
+<span class="c1"># Do not keep production secrets in the repository,
+</span>
+<span class="c1"># instead read values from the environment.
+</span>
+<span class="s">production:</span><span class="err">
+</span>
+  <span class="s">secret_key_base</span><span class="pi">:</span> <span class="s">&lt;%= ENV["SECRET_KEY_BASE"] %&gt;</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>这个 YAML 还根据不同环境区分，本机开发用的密钥，和部署 production 环境用的密钥是不同的。</p>
+
+<p>这把密钥非常重要，不能外洩。知道密钥的话，用户就可以解开 Cookie，偷看里面的内容，甚至修改存回去，这样服务器就会被骗过去....</p>
+
+<p>让我们看看如果外洩会怎么样，例如你把 production 正式环境的密钥 push 到 github 公开的项目....</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-3 破解示范
+    </h1><h4>所属章节：6. 破解加密 Cookie-based Session</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>好，，假设我们已经知道密钥是 <code>a875bedfd1ba629c6c6039597cfd89a5bfb34fc440a0203d649bbd9e06de3e1939a4a586e1ed893108157688782b86b25223853a5b140aba7a21e5df675bed22</code></p>
+
+<p>接着打开 Chrome 除错器，复制下 <code>_hackme-app_session</code> 这段 Cookie 的值，例如：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>V0JxRVF2UjQ4ZUx5M0tYMFgxN3ZIK092Yy9aY1RSNGJFZ3FIdDgvbUdOZjJxd0tJWHMyRk12bjRpRmMyRm85Qko1bXAwSThHZVA1TnhhZHhNb0hNL3FJQ0c3cVpGVUJ0VVY3N28zU3l6bkRCQkJXdGQ0LzRqR2tCeVVMSzNYbWtIRm1ycEhIejN2L1FmUTFIMktvNGpmWk8yOHFyQXUxZXlBMXd2SHlkV29RaENUdWwxSWsxdlBHVHF2Q0hTYXFoc0RydUd4MXJJMzQ5dm5ZUS9vYURnaWdubnduc1cwK3ExZldpMFVRSmZkUXZRa0FvR3FqQVplZEordE10MzVqTS0tSUs4NCtsZjNRZGRDMjM1ajVzQkRHQT09--f99ee52c228793955481cf56604ca293c96989a4
+</pre></div>
+</figure>
+
+<p>进 <code>rails console</code> 贴上：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>def decrypt_session_cookie(cookie, key)
+  cookie = CGI::unescape(cookie)
+  salt         = "encrypted cookie"
+  signed_salt  = "signed encrypted cookie"
+
+  key_generator = ActiveSupport::KeyGenerator.new(key, iterations: 1000)
+  secret = key_generator.generate_key(salt)
+  sign_secret = key_generator.generate_key(signed_salt)
+
+  encryptor = ActiveSupport::MessageEncryptor.new(secret, sign_secret, serializer: ActiveSupport::MessageEncryptor::NullSerializer)
+  encryptor.decrypt_and_verify(cookie)
+end
+
+key = 'a875bedfd1ba629c6c6039597cfd89a5bfb34fc440a0203d649bbd9e06de3e1939a4a586e1ed893108157688782b86b25223853a5b140aba7a21e5df675bed22'
+cookie = 'V0JxRVF2UjQ4ZUx5M0tYMFgxN3ZIK092Yy9aY1RSNGJFZ3FIdDgvbUdOZjJxd0tJWHMyRk12bjRpRmMyRm85Qko1bXAwSThHZVA1TnhhZHhNb0hNL3FJQ0c3cVpGVUJ0VVY3N28zU3l6bkRCQkJXdGQ0LzRqR2tCeVVMSzNYbWtIRm1ycEhIejN2L1FmUTFIMktvNGpmWk8yOHFyQXUxZXlBMXd2SHlkV29RaENUdWwxSWsxdlBHVHF2Q0hTYXFoc0RydUd4MXJJMzQ5dm5ZUS9vYURnaWdubnduc1cwK3ExZldpMFVRSmZkUXZRa0FvR3FqQVplZEordE10MzVqTS0tSUs4NCtsZjNRZGRDMjM1ajVzQkRHQT09--f99ee52c228793955481cf56604ca293c96989a4'
+
+j = decrypt_session_cookie(cookie, key)
+
+</pre></div>
+</figure>
+
+<p>就会解密出一段 JSON 告诉我们用户 id 是 48，购物车 <code>cart_id</code> 是 501。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>"{\"session_id\":\"744813165ee90c30650c4ab8338d8140\",\"cart_id\":501,\"warden.user.user.key\":[[48],\"$2a$11$tpfEqlcCqD/8JRWPtvZTzu\"],\"_csrf_token\":\"zMPrCyTnxvpsPY0OWhPi8sM2suOa3dUFk4HHDyedbIs=\"}"
+</pre></div>
+</figure>
+
+<p>以下代码会修改 cart_id 并可以加密回去：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>def encrypt_session_cookie(value, key)
+  salt         = "encrypted cookie"
+  signed_salt  = "signed encrypted cookie"
+
+  key_generator = ActiveSupport::KeyGenerator.new(key, iterations: 1000)
+  secret = key_generator.generate_key(salt)
+  sign_secret = key_generator.generate_key(signed_salt)
+
+  encryptor = ActiveSupport::MessageEncryptor.new(secret, sign_secret, serializer: ActionDispatch::Cookies::JsonSerializer)
+  encryptor.encrypt_and_sign(value)
+end
+
+h = JSON.parse(j)
+h["cart_id"] = 1
+encrypt_session_cookie(h, key)
+</pre></div>
+</figure>
+
+<blockquote>
+<p>加解密的代码是从 Rails 源代码中挖出来的</p>
+</blockquote>
+
+<p>最后得到 cookie 值，最后一步就是设定回 Chrome 浏览器。不过 Chrome 默认不允许我们改 Cookie，你可以装一个 extension 是 <a href="https://chrome.google.com/webstore/detail/cookie-inspector/jgbbilmfbammlbbhmmgaagdkbkepnijn">Cookie Inspector</a>，然后把刚刚改过的 cookie 值设进去，这样就会骗过服务器了。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      6-4 如何防御?
+    </h1><h4>所属章节：6. 破解加密 Cookie-based Session</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>最基本的当然是不要外洩密钥，如果外洩了，请马上换一个密钥。换密钥会强迫所有用户登出，因为大家的 Cookie 都会因为无法解密回来而失效。</p>
+
+<p>如果你的网站需要非常高的安全性，则不建议使用 Cookie 加密来做 Session。在 Rails 可以更换 Session 存储的方式，例如换成 <a href="https://github.com/rails/activerecord-session_store">Active Record's Session Store</a>。这会将 Session 数据存在数据库中，而不是 Cookie 之中，这样骇客就完全无从下手了。</p>
+
+<p>打开 <code>config/initializers/session_store.rb</code> 观察看看：</p>
+
+<figure class="figure-code code"><figcaption><span>config/initializers/session_store.rb
+</span></figcaption><div class="highlight"><pre><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">session_store</span> <span class="ss">:cookie_store</span><span class="p">,</span> <span class="ss">key: </span><span class="s1">'_hackme-app_session'</span>
+
+</pre></div>
+</figure>
+
+<p>这个设定档就是在设定 Session 的 cookie key 叫做 <code>_hackme-app_session</code>，而且使用 <code>cookie_store</code> 机制来存储。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-1 什么是 DoS 拒绝服务攻击
+    </h1><h4>所属章节： 7. DoS 拒绝服务攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>想像你今天开一间书店，恶意的对手找了跑腿100人在你的店门口只看不买，这一种攻击就叫做 <a href="https://zh.wikipedia.org/wiki/%E9%98%BB%E6%96%B7%E6%9C%8D%E5%8B%99%E6%94%BB%E6%93%8A">DoS 拒绝服务攻击</a>。不像前几章，骇客的目的是窃取资料或是修改资料，DoS 攻击的目的是让你做不成生意，让你的网站无法服务正常用户。</p>
+
+<p>攻击的手法就是暴力，只要不断地发送 HTTP 请求让服务器忙不过来即可。用浏览器不断重新整理太慢了，让我们安装一个 <a href="https://github.com/wg/wrk">wrk</a>，这是一个量测 HTTP 服务器效能的压力测试工具：</p>
+
+<p>执行 <code>brew install wrk</code></p>
+
+<p>执行 <code>wrk -t12 -c400 -d30s http://localhost:3000/products</code></p>
+
+<p>这会在 30 秒内，同时平行发送 12 个 HTTP 请求，并保持 400 个 HTTP 连线不中断的速度，进行 <code>http://localhost:3000/products</code> 的压力测试。</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>Running 30s test @ http://localhost:3000/products
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   468.83ms  168.30ms 888.55ms   63.89%
+    Req/Sec     3.12      3.07    10.00     65.31%
+  50 requests in 30.06s, 1.30MB read
+  Socket errors: connect 0, read 319, write 0, timeout 14
+  Non-2xx or 3xx responses: 4
+Requests/sec:      1.66
+Transfer/sec:     44.25KB
+</pre></div>
+</figure>
+
+<p>本机跑的 <code>rails server</code> 超不耐打的，这个网站基本上是废了，你用浏览器已经无法正常浏览 <code>http://localhost:3000</code> 了。</p>
+
+<blockquote>
+<p>强烈警告，对自己的网站打叫做"压力测试"，对别人的网站打可是"干扰他人网络正常功能"，是犯法的行为。请不要以身试法。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      7-2 如何防御?
+    </h1><h4>所属章节： 7. DoS 拒绝服务攻击</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>DoS 其实是不太好防御的攻击，因为并不是因为网站有什么漏洞造成的。大方向只能想办法去辨识攻击方的样态，然后进行封锁。实务上需要临场反应，碰到了见招拆招。</p>
+
+<p>封锁攻击方的 IP 网络地址是最基本的手法，问题就出在样态可能很多种，例如 DDoS (分布式DoS)就是利用很多台被骇客控制的中毒电脑，同时进行攻击，那么来源 IP 就很多，防御方就不容易判断哪一些是正常用户流量、哪一些是恶意的。</p>
+
+<p>在 Rails 中，可以安装 <a href="https://github.com/kickstarter/rack-attack">rack-attack</a> gem，这可以设定当特定 IP 位址就某一段时间内存取太多次的话，自动进行封锁：</p>
+
+<blockquote>
+<p>不过困难点在于太多次是多少次，设太低会阻挡到正常用户，例如有些公司组织很可能是很多人共享同一个 IP 位址来上网的，透过 VPN 科学上网的话，来源 IP 也是很多人共享的。但是设太高又没效果。</p>
+</blockquote>
+
+<p>编辑 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>+  gem 'rack-attack'
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>编辑 <code>config/application.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/application.rb
+</span></figcaption><div class="highlight"><pre><span class="gi">+     config.middleware.use Rack::Attack
+</span><span class="err">
+</span></pre></div>
+</figure>
+
+<p>新增 <code>config/initializers/rack-attack.rb</code></p>
+
+<figure class="figure-code code"><figcaption><span>config/initializers/rack-attack.rb
+</span></figcaption><div class="highlight"><pre><span class="k">class</span> <span class="nc">Rack</span><span class="o">::</span><span class="no">Attack</span>
+
+  <span class="n">throttle</span><span class="p">(</span><span class="s1">'req/ip'</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">180</span><span class="p">,</span> <span class="ss">:period</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">.</span><span class="nf">minutes</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+    <span class="n">req</span><span class="p">.</span><span class="nf">ip</span>
+  <span class="k">end</span>
+
+  <span class="c1">### Prevent Brute-Force Login Attacks ###
+</span>
+
+  <span class="c1"># The most common brute-force login attack is a brute-force password
+</span>
+  <span class="c1"># attack where an attacker simply tries a large number of emails and
+</span>
+  <span class="c1"># passwords to see if any credentials match.
+</span>
+  <span class="c1">#
+</span>
+  <span class="c1"># Another common method of attack is to use a swarm of computers with
+</span>
+  <span class="c1"># different IPs to try brute-forcing a password for a specific account.
+</span>
+
+  <span class="c1"># Throttle POST requests to /login by IP address
+</span>
+  <span class="c1">#
+</span>
+  <span class="c1"># Key: "rack::attack:#{Time.now.to_i/:period}:logins/ip:#{req.ip}"
+</span>
+  <span class="n">throttle</span><span class="p">(</span><span class="s1">'logins/ip'</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="ss">:period</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">.</span><span class="nf">seconds</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s1">'/users/sign_in'</span> <span class="o">&amp;&amp;</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
+      <span class="n">req</span><span class="p">.</span><span class="nf">ip</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Throttle POST requests to /login by email param
+</span>
+  <span class="c1">#
+</span>
+  <span class="c1"># Key: "rack::attack:#{Time.now.to_i/:period}:logins/email:#{req.email}"
+</span>
+  <span class="c1">#
+</span>
+  <span class="c1"># Note: This creates a problem where a malicious user could intentionally
+</span>
+  <span class="c1"># throttle logins for another user and force their login requests to be
+</span>
+  <span class="c1"># denied, but that's not very common and shouldn't happen to you. (Knock
+</span>
+  <span class="c1"># on wood!)
+</span>
+  <span class="n">throttle</span><span class="p">(</span><span class="s2">"logins/email"</span><span class="p">,</span> <span class="ss">:limit</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="ss">:period</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">.</span><span class="nf">seconds</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">req</span><span class="o">|</span>
+    <span class="k">if</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span> <span class="o">==</span> <span class="s1">'/users/sign_in'</span> <span class="o">&amp;&amp;</span> <span class="n">req</span><span class="p">.</span><span class="nf">post?</span>
+      <span class="c1"># return the email if present, nil otherwise
+</span>
+      <span class="n">req</span><span class="p">.</span><span class="nf">params</span><span class="p">[</span><span class="s1">'email'</span><span class="p">].</span><span class="nf">presence</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</figure>
+
+<p>重启服务器。以上设定包括：</p>
+
+<ol>
+<li>一分钟内，一个 IP 位址只能存取 180 次</li>
+<li>针对 <code>/users/sign_in</code> 这个登入网址，20 秒内只能尝试登入 5 次</li>
+<li>针对 <code>/users/sign_in</code> 这个网址，同一 email 在 20 秒内只能尝试登入 5 次</li>
+</ol>
+
+<p>另外可以做的事情就是，改进网站效能：假如你有一个页面效能很烂，需要跑好几秒，这么这就是网站 DoS 的弱点，因为骇客只要去打这个页面就有最好的攻击效果。</p>
+
+<p>如果真的面临大量的DDoS 攻击，就不是Rails 应用层级可以处理得了，必须购买专门的网络防火墙，例如<a href="http://anquan.baidu.com/pages/ddos.html">百度安全</a>、<a href="https://intl.aliyun.com/zh/product/ddos-pro">云盾DDoS高防IP</a>等等云服务商的产品。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-1 安装 brakeman 检测代码
+    </h1><h4>所属章节：8. 安全分析工具</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://github.com/presidentbeef/brakeman">brakeman</a> 是一个 Rails 的工具可以分析代码，找出可能有漏洞的地方。</p>
+
+<p>修改 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  group :development do
++    gem 'brakeman'
+
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>执行 <code>brakeman</code>，就会分析你的代码，列出"可能"有漏洞的地方：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FKULBIUCTemz0A82LlO2_8-1.png" title=""></figure></p>
+
+<blockquote>
+<p>brakeman 报表结果仅供参考，不表示必然有漏洞。需要一条一条实际检查看看。</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      8-2 安装 bundler-audit 检测套件
+    </h1><h4>所属章节：8. 安全分析工具</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>除了自己写的代码有可能有漏洞之外，安装的 gem 也有可能爆出安全性漏洞。透过 bundler-audit 这个 gem 可以帮忙检查有没有套件有已知的漏洞需要升级。</p>
+
+<p>修改 <code>Gemfile</code></p>
+
+<figure class="figure-code code"><figcaption><span>
+</span></figcaption><div class="highlight"><pre>  group :development do
++    gem 'bundler-audit'
+
+</pre></div>
+</figure>
+
+<p>执行 <code>bundle</code></p>
+
+<p>执行 <code>bundle-audit</code></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/5zgyzSq5REaICSpf5OXf_8-2.png" title=""></figure></p>
+
+<p>目前没有需要升级的套件。如果有的话，请执行 <code>bundle update 套件名称</code> 就可以进行升级。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-1 认识散列函数
+    </h1><h4>所属章节：9. 密码是如何存储的？</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>散列函数是一种能将数据变成摘要(digest)的算法，执行 <code>irb</code>，然后输入以下代码实验看看：</p>
+
+<figure class="figure-code code"><div class="highlight"><pre>require 'digest'
+Digest::SHA1.hexdigest '12345678'
+</pre></div>
+</figure>
+
+<p>得到 <code>"7c222fb2927d828af22f592134e8932480637c0d"</code></p>
+
+<p>散列函数有一些特性：</p>
+
+<ol>
+<li>相同的数据，每次都会得到一样的摘要</li>
+<li>是单向的，无法逆推：只知道摘要的话，没有办法能够透过计算知道本来的数据长怎样。例如给你 <code>7c222fb2927d828af22f592134e8932480637c0d</code>，没有算法可以逆推回来。除非有一个对照的字典。</li>
+</ol>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      9-2 散列函数的用途
+    </h1><h4>所属章节：9. 密码是如何存储的？</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p><a href="https://zh.wikipedia.org/wiki/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B8">散列函数</a>非常有用，可以拿来快速比较两个文档是否相同，而不需要实际比较文档内容，例如：</p>
+
+<ol>
+<li>Git 每次的 commit，都会有一个摘要。不同的摘要就代表 commit 内容不同。Git 用这个摘要值当作每次 commit 的唯一识别 ID。</li>
+<li>网络传档的时候，透过比较这个摘要，就可以知道下载了完整正确的档案。</li>
+<li>在 Rails 中，Asset pipeline 会将 CSS 和 JavaScript 压缩，档名就是透过散列函数产生的。这是因为浏览器会缓存静态档案，如果 CSS/Javascript 内容有修改的话，用户浏览器可能不知道有新版而使用到旧的 CSS/JS 档案。但是因为档名用了散列函数的关系，内容一改档名就会变得不一样，那么浏览器就会下载新的档案了。</li>
+</ol>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/4zxGcrmNRCG4BgiySHAo_9-3.png" title=""></figure></p>
+
+<ol>
+<li>存储用户密码。大家已经会用 Devise 在 Rails 中实做 User Model，在 users table 中实际的字段是 <code>encrypted_password</code>
+</li>
+</ol>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/8UURspY6Rc2nBum563xr_9-1.png" title=""></figure></p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/m7jUkAkFRtuW7ZIZmre4_9-2.png" title=""></figure></p>
+
+<p>用户注册时输入的密码，在实际存储进数据库时，会先经过散列函数，变成摘要值。数据库里面没有存用户的明码，而是存密码摘要后的值。</p>
+
+<p>而下次用户要登入的时候，将用户输入的密码摘要一次，与数据库中存的密码摘要进行比对，就可以知道密码对不对了。</p>
+
+<p>这样的好处是什么呢?</p>
+
+<ol>
+<li>数据库不会存用户的明码，所以即使是数据库管理员，也不会知道用户真正的密码是什么。知道 <code>encrypted_password</code> 并没有什么用，因为我们无法逆推。也无法用这个 <code>encrypted_password</code> 做登入。</li>
+<li>万一数据库整个外洩了，骇客也无法知道用户的密码</li>
+</ol>
+
+<p>不过，目前是市面上仍有很多网站是直接存储用户明码，这会造成用户隐私很大的危害。因为管理员或骇客(如果数据库外洩)可以直接看到你密码，然后很多人在不同网站中，会沿用一样的密码。</p>
+
+<p>要怎么判断一个网站有没有存明码呢？只要试试看忘记密码程序即可，如果网站直接将你的密码寄给你，那就代表他的<br>
+数据库存明码。如果网站要求你重新设定密码(就像 Devise 一样)，就表示这网站有安全意识。</p>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-1. 认识非对称加密
+    </h1><h4>所属章节：10. HTTPS 加密安全连线</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>近年来由于上网安全意识的提升，越来越多的网站使用 HTTPS 加密连线，网址像这样：</p>
+
+<p><figure><img src="https://s3-ap-northeast-1.amazonaws.com/ontrackapp-production/FQaKnbDVTyaoqrilCA3M_10-1.png" title=""></figure></p>
+
+<p>这个原理是什么呢? 浏览器和服务器之间，是如何安全连线的？如何保障中间传输的过程，不会被人偷听、被人修改内容。</p>
+
+<blockquote>
+<p>没有加密的 HTTP 连线，可以透过监听网络封包，就可以知道浏览器传输的内容。例如在咖啡厅上网，骇客可以透过监听无线网络，看到你上网的一举一动。有些咖啡厅可以在网页中置入广告 Banner，就是因为连线是走 HTTP 未加密的关系，所以很容易就可以修改网页内容。</p>
+</blockquote>
+
+<p>我们在 6-1 教过什么是<a href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86">对称密钥加密</a>算法，透过密钥就可以传输密文。</p>
+
+<p>但是对称密钥加密方法，在浏览器和服务器连线的情境，有个致命的缺点，就是一开始连线时如何交换密钥。双方都要知道密钥，才能知道对方讲了什么话。</p>
+
+<p>既然一开始连线就是不安全的，在把密钥告诉对方的过程中，这个密钥也就外洩了...</p>
+
+<p>所幸聪明的数学家发明了<a href="https://zh.wikipedia.org/zh-cn/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86">非对称加密</a>，可以在不交换密钥的情况下，解决这个问题。</p>
+
+<p>在非对称加密算法中，会有两把钥匙，一把叫做公钥、一把叫做密钥。</p>
+
+<ul>
+<li>透过公钥加密的密文，只有密钥能够解开</li>
+<li>透过密钥加密的密文，只有公钥能够解开</li>
+</ul>
+
+<p>服务器会将公钥公开给浏览器知道，浏览器会用公钥加密内容，传给服务器，服务器用密钥解开。反之服务器用密钥加密，浏览器用公钥解开。如此就解决了一开始密钥交换的问题。</p>
+
+<blockquote>
+<p>这种方式也用在 SSH 连线认证和加密连线 1. 在部署 Linux 服务器时，我们会将自己的公钥放在服务器上，这样登入的时候就不需要打帐号密码，服务器就能认证你 2. 在 Git 之中，我们会将自己的公钥放在 Github 上，这样 git push 和 pull 时，Github 就能做认证。</p>
+</blockquote>
+
+<p>剩下信任问题，我们怎么知道这个公钥真的代表这个网站主？这就是为什么我们需要申请或购买网站安全凭证(SSL certificate)的原因。网站主需要向权威机构购买申请或购买，经过一些认证程序后，才能获得 HTTPS 需要的安全凭证。而用户的浏览器中，在出场时就会默认相信一些权威机构所核发的安全凭证，以此建构出信任鍊。</p>
+
+<p>上述是简化的说明，详细可以参考以下文章：</p>
+
+<ul>
+<li><a href="http://showme.codes/2017-02-20/understand-https/">也许，这样理解HTTPS更容易</a></li>
+<li><a href="https://segmentfault.com/a/1190000004523659">HTTPS科普扫盲帖</a></li>
+<li><a href="https://cattail.me/tech/2015/11/30/how-https-works.html">HTTPS工作原理</a></li>
+</ul>
+
+<p>那么要如何在服务器上安装 HTTPS 呢? 步骤会比较复杂，我们会在进阶的部署教程再说以说明。</p>
+
+<blockquote>
+<p><a href="https://blog.heroku.com/announcing-automated-certificate-management">Heroku: Announcing Free and Automated SSL Certs For All Paid Dynos</a> Heroku 的付费用户可以免费得到SSL Certs</p>
+</blockquote>
+
+    </div>
+  </div></div><div class='frame'><h1>
+      10-2 结语
+    </h1><h4>所属章节：10. HTTPS 加密安全连线</h4><hr><div class="post group">
+    <div class="post-content markdown">
+      <p>希望本课程可以有效提供大家网站安全意识，「害人之心不可有，防人之心不可无」，再次提醒大家切勿以身试法。</p>
+
+<p>对网络安全有兴趣的朋友，推荐阅读阿里巴巴的网络安全专家所写的入门书：<a href="https://book.douban.com/subject/10546925/">白帽子讲Web安全</a>这本书。</p>
+
+    </div>
+  </div></div><div class='end'>
+              <a href='https://fullstack.qzy.camp/'>
+                <img src='https://img.buzzfeed.com/buzzfeed-static/static/2014-10/26/6/enhanced/webdr08/longform-original-14836-1414320930-10.jpg'>
+              </a>
+              <p>The End</p>
+            </div>
