@@ -7,7 +7,9 @@ link: http://html2pdf.com/zh/
 ## 2. 全栈营 爬虫代码
 ```
 secret.rb 存有发送请求所需的
-SECRET="_session_name=cookie 值"
+COOKIE="_session_name=cookie 值"
+# eg:
+# COOKIE = "_quanzhan_session=ZlhqRUJJR2NqdEdhY3..."
 
 style.rb
 写有所获取 html 资料所需的样式字串
